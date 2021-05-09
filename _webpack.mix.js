@@ -11,15 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.webpackConfig({
-    resolve: {
-        extensions: ["ts", "vue"],
-        alias: {
-            "@": __dirname + "/resources/client/src"
-        }
-    }
-})
-
-
-
 mix.ts('resources/client/src/main.ts', 'public/js')
+    .vue();
