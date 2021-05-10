@@ -1,5 +1,8 @@
 import "./bootstrap"
 import './registerServiceWorker'
+import "./plugins/global-components"
+
+import "bootstrap/dist/css/bootstrap-grid.min.css"
 
 import Vue from 'vue'
 import App from './App.vue'
