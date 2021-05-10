@@ -120,7 +120,7 @@
               </div>
               <div>
                 <input type="email" name="email" class="form-control" placeholder="E-mail" required="" />
-                <input type="text" name="role" hidden class="form-control" value="1" required="" />
+                <input type="text" name="role" hidden class="form-control" value="2" required="" />
               </div>
               <div>
                 <input type="text" name="phone" class="form-control" size="10" maxlength="10" placeholder="Téléphone Ex:07XXXXXXXX" required="" />

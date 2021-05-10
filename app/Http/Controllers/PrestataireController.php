@@ -35,6 +35,8 @@ class PrestataireController extends Controller
         $user = Auth::user();
         $ficheExiste = $this->ficheExiste($user->id);
         $galerieExiste = $this->galerieExiste($user->id);
+
+        
         return view('prestataire.home',compact('ficheExiste','galerieExiste'));
     }
 
@@ -91,7 +93,8 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($user->id);
         $galerieExiste = $this->galerieExiste($user->id);
 
-        //dd($galerieExiste);
+
+        //dd($ficheExiste);
 
         return view('prestataire.detail_fiche',compact('ficheExiste','galerieExiste'));
     }
