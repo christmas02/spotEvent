@@ -29,6 +29,9 @@
 
     <!-- Custom Theme Style -->
     <link href="{{asset('/admin/build/css/custom.min.css')}}" rel="stylesheet">
+
+     <!-- Custom Theme Style -->
+     <link href="{{asset('/css/style.css')}}" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -74,6 +77,11 @@
                   <li><a href="/liste/reservations"><i class="fa fa-table"></i> Liste des reservations </a></li>
                   <li><a><i class="fa fa-comments"></i> Messageries </a></li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Statistique </a></li>
+                  <li><a href="#"><i class="fa fa-cog"></i> Parametre<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/list/prestations">Prestations</a></li>
+                    </ul>
+                  </li>
                   
                   
                   <li><a><i class="fa fa-sign-out"></i> Deconnexion </a></li>

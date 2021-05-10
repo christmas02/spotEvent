@@ -30,7 +30,6 @@
                   <div class="x_title">
                     <h2>Profile</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                       <li><a href="/liste/prestataires" class=""><i class="fa fa-chevron-up"></i>Retour</a>
                     </ul>
                   
                     <div class="clearfix"></div>
@@ -186,4 +185,7 @@
           </div>
         </div>
         <!-- /page content -->
+
+
+    
 @endsection

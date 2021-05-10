@@ -17,6 +17,11 @@ class AdminController extends Controller
         return $listePrestation;
     }
 
+    public function prestations(){
+        $listePrestation = Prestation::all();
+        return $listePrestation;
+    }
+
     public function login(){
         //$listePrestation = Prestation::get();
         return view('admin.login');
@@ -59,5 +64,27 @@ class AdminController extends Controller
 
     public function getReservation(){
         return view('admin.list_reservations');
+    }
+
+    public function getPrestations(){
+        $prestations =  $this->prestations();
+        return view('admin.list_prestation',compact('prestations'));
+    }
+
+    public function savePrestation(Request $request){
+        try {
+
+            $prestation = New Prestation;
+
+            $prestation->name = $request->get('name');
+            $prestation->path_icone = $request->get('image');
+            $prestation->description = $request->get('description');
+            $prestation->statu = 0;
+
+            $prestation->save();
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

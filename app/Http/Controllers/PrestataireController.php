@@ -27,7 +27,7 @@ class PrestataireController extends Controller
     }
 
     public function galerieExiste($id){
-        $galerieExiste = Galerie::where('id_user','=',$id)->get();
+        $galerieExiste = Galerie::where('id_user','=',$id)->first();
         return $galerieExiste;
     }
 
@@ -35,6 +35,8 @@ class PrestataireController extends Controller
         $user = Auth::user();
         $ficheExiste = $this->ficheExiste($user->id);
         $galerieExiste = $this->galerieExiste($user->id);
+
+        //dd($galerieExiste);
 
         
         return view('prestataire.home',compact('ficheExiste','galerieExiste'));
@@ -70,11 +72,15 @@ class PrestataireController extends Controller
             $fiche->phone2_service = $request->get('phone2_service');
             $fiche->phone_whastapp = $request->get('phone_whastapp');
             $fiche->lien_facebook = $request->get('lien_facebook');
+            $fiche->lien_instagram = $request->get('lien_instagram');
             $fiche->email_service = $request->get('email_service');
             $fiche->montant_max_prest = $request->get('montant_max_prest');
             $fiche->montant_min_prest = $request->get('montant_min_prest');
             $fiche->id_user = $user->id;
             $fiche->statu_fiche = 0;
+            $fiche->messagerie = 0;
+            $fiche->position = 0;
+            $fiche->favoris = 0;
             
             // save du menu nourriture ---- #########
             $fiche->save();
@@ -144,6 +150,8 @@ class PrestataireController extends Controller
 
     public function saveGalerie(Request $request){
 
+        dd($request->all());
+
         $user = Auth::user();
         try {
             $input = $request->all();
@@ -162,6 +170,11 @@ class PrestataireController extends Controller
             }
             /*Insert your data*/
 
+            //$user = User::find($id)
+            //$user->name = $request->name;
+            //$user->email = $request->email;
+            //$user->update();
+
             
 
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
@@ -170,5 +183,14 @@ class PrestataireController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.'.$th);
         }
+    }
+
+
+    public function getReservation(){
+
+    }
+
+    public function getMessagerie(){
+        
     }
 }

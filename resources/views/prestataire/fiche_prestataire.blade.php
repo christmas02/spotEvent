@@ -149,6 +149,15 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Votre lien intagram
+                                        </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" name="lien_instagram"  class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label for="middle-name"
                                         class="col-form-label col-md-3 col-sm-3 label-align">Adresse electronique
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
@@ -182,16 +191,9 @@
                             <div id="step-4">
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        principale</label>
+                                        principale dimension de l'image (1733 × 838)</label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="file" name="image_five" class="form-control" required>
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Galeries photo </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="" class="form-control">
                                     </div>
                                 </div>
 

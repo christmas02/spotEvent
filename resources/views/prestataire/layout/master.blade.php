@@ -29,6 +29,9 @@
 
     <!-- Custom Theme Style -->
     <link href="{{asset('/admin/build/css/custom.min.css')}}" rel="stylesheet">
+
+     <!-- Custom Theme Style -->
+     <link href="{{asset('/css/style.css')}}" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -64,7 +67,8 @@
                 <ul class="nav side-menu">
                   <li><a href="/welcome/tableau/gesttion"><i class="fa fa-home"></i> Tableau de bord</span></a></li>
                   <li><a href="/fiche/prestataire"><i class="fa fa-edit"></i> Mon compte</span></a></li>
-                  <li><a href="#"><i class="fa fa-table"></i> Liste des reservations </a></li>
+                  <li><a href="/list/reservations"><i class="fa fa-table"></i> Liste des reservations </a></li>
+                  <li><a href="/list/messageries"><i class="fa fa-comments"></i> Messagerie</a></li>
                   
                   <li><a><i class="fa fa-sign-out"></i> Deconnexion </a></li>
                   
@@ -143,14 +147,14 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <a href="">SpotEvent</a>
           </div>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
       </div>
     </div>
-
+    
     <!-- Modal  MODIFIER DU COMPTE PRESTATAIRES-->
     <div class="modal fade" id="exampleModalImages" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -162,26 +166,27 @@
             </button>
           </div>
           <div class="modal-body">
-              <form method="POST" action="/save/gallerie/" enctype="multipart/form-data">
+              <form method="POST" action="/save/gallerie" enctype="multipart/form-data">
               @csrf
-                  <input type="text" hidden name="id" value="">
-                  <h5>Vous avez la possibilité de choisir plusieur images (shift + le clique sur l'image)</h5>
+                  <h5>Vous avez la possibilité de choisir plusieur images (shift + le clique sur l'image), vous devez choisir moin de 6 images</h5>
                   <div class="item form-group">
-                      <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                          5</label>
+                      <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Gallerie</label>
                       <div class="col-md-6 col-sm-6 ">
                           <input type="file" name="images[]" class="form-control" multiple>
                       </div>
+                     
                   </div>
+                  <div id="erreur" class="alert alert-danger">Vous pouvez enregistre que 6 images</div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer-btn">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-success">Enregistre</button>
+            <button type="submit" id="imageUploadForm" class="btn btn-success">Valider</button>
           </div>
           </form>
         </div>
       </div>
     </div>
+   
 
     <!-- Modal  MODIFIER DU PROFILE UTILISATEUR-->
     <div class="modal fade" id="exampleModalProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -244,6 +249,7 @@
                       <div class="col-md-6 col-sm-6 ">
                           <input type="" name="" class="form-control" value="">
                       </div>
+                      
                   </div>
                   <div class="item form-group">
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Confirmation mot de parse_str</label>
@@ -252,7 +258,7 @@
                       </div>
                   </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer-btn">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
             <button type="submit" class="btn btn-success">Enregistre</button>
           </div>
@@ -320,7 +326,20 @@
     <!-- jQuery Smart Wizard -->
     <script src="{{asset('/admin/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 
-
+    <script>
+        $(document).ready(function() {
+           $("#erreur").hide();
+        });
+        
+        $("#image").on("change", function() {
+            if($("#image")[0].files.length > 6) {
+              //alert("You can select only 2 images");
+              $('#erreur').show();
+            } else {
+              $("#imageUploadForm").submit();
+            }
+        });
+    </script>
 
     <script type="text/javascript">
       function initialize() {
