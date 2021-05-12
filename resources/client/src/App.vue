@@ -50,4 +50,17 @@
         font-weight: bold;
         color: #000 !important;
     }
+
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 90px;
+        height: 5px;
+        background: var(--primary);
+    }
 </style>
