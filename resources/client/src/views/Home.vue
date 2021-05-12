@@ -3,8 +3,10 @@
         <div id="homepage">
             <div>
                 <jumbotron image="images/jmbg1.png">
-                    <h1 class="content-title">Lorem ipsum<br/>Dolor amet</h1>
-                    <p class="content-subtitle my-5">texte essai oui texte essai</p>
+                    <h1 class="content-title">Lorem ipsum<br />Dolor amet</h1>
+                    <p class="content-subtitle my-5">
+                        texte essai oui texte essai
+                    </p>
                     <div>
                         <v-btn color="primary">Découvrir</v-btn>
                     </div>
@@ -28,7 +30,7 @@
                     </template>
                 </jumbotron>
             </div>
-            <div class="main">
+            <div class="main mx-auto">
                 <div class="section">
                     <div class="d-flex justify-content-between">
                         <div>
@@ -44,66 +46,85 @@
                         <benefits-grid></benefits-grid>
                     </div>
                     <div class="text-center">
-                        <v-btn color="primary">Voir plus</v-btn>
+                        <v-btn color="primary" flat>Voir plus</v-btn>
+                    </div>
+                </div>
+                <div class="section mt-0">
+                    <div>
+                        <h2 class="section-title">Prestataires</h2>
+                    </div>
+                    <div style="margin: 50px 0">
+                        <providers-slider></providers-slider>
+                    </div>
+                    <div class="text-center">
+                        <v-btn color="primary" flat
+                            >Découvir tous les prestataires</v-btn
+                        >
                     </div>
                 </div>
             </div>
         </div>
-
     </default-layout>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Jumbotron from "@/components/Jumbotron.vue"
+import Vue from "vue";
+import Jumbotron from "@/components/Jumbotron.vue";
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
-
+import ProvidersSlider from "@/components/ProvidersSlider.vue";
 export default Vue.extend({
-  name: 'Home',
+    name: "Home",
     components: {
-      Jumbotron,
-      BenefitsGrid
+        Jumbotron,
+        BenefitsGrid,
+        ProvidersSlider
     }
 });
 </script>
 
 <style>
-    #homepage .content-title {
+#homepage .content-title {
     font-size: 6rem;
     line-height: 0.9em;
-    }
+}
 
-    #homepage .content-subtitle {
-        font-size: 1.5rem;
-    }
+#homepage .content-subtitle {
+    font-size: 1.5rem;
+}
 
-    #devis {
-        position: absolute;
-        bottom: -33px;
-        background: var(--secondary);
-        width: 90%;
-        left: 5%;
-        padding: 10px 15px 10px 40px;
-    }
+#devis {
+    position: absolute;
+    bottom: -33px;
+    background: var(--secondary);
+    width: 90%;
+    left: 5%;
+    padding: 10px 15px 10px 40px;
+}
 
-    #devis .v-label, #devis .v-input input {
-        color: #fff;
-    }
+#devis .v-label,
+#devis .v-input input {
+    color: #fff;
+}
 
-    #devis .v-text-field>.v-input__control>.v-input__slot:after, #devis .v-text-field>.v-input__control>.v-input__slot:before {
-        background-color: #fff !important;
-    }
+#devis .v-text-field > .v-input__control > .v-input__slot:after,
+#devis .v-text-field > .v-input__control > .v-input__slot:before {
+    background-color: #fff !important;
+}
 
-    #devis .v-text-field:hover>.v-input__control>.v-input__slot:after, #devis .v-text-field:hover>.v-input__control>.v-input__slot:before {
-        background-color: #fff !important;
-    }
+#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,
+#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {
+    background-color: #fff !important;
+}
 
-    #homepage .section {
-        margin: 136px 0;
-    }
+#homepage .main {
+    width: 90%;
+}
 
-    #homepage .actions-container button {
-        margin-left: 10px;
-    }
+#homepage .section {
+    margin: 136px 0;
+}
 
+#homepage .actions-container button {
+    margin-left: 10px;
+}
 </style>
