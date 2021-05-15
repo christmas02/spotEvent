@@ -2703,7 +2703,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "base-card",
-    { attrs: { "max-width": "75%" } },
+    { attrs: { "max-width": "90%" } },
     [
       _c(
         "v-btn",

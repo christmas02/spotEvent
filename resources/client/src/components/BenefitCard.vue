@@ -1,5 +1,5 @@
 <template>
-    <base-card max-width="75%">
+    <base-card max-width="90%">
         <v-btn color="primary" class="discover-btn" small :to="{ name: 'benefit', params: { id: '1'}}">Découvrir</v-btn>
     </base-card>
 </template>
