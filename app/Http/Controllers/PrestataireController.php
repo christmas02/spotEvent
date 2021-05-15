@@ -150,7 +150,7 @@ class PrestataireController extends Controller
 
     public function saveGalerie(Request $request){
 
-        dd($request->all());
+        //dd($request->all());
 
         $user = Auth::user();
         try {

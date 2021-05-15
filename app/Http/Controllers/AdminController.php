@@ -74,17 +74,29 @@ class AdminController extends Controller
     public function savePrestation(Request $request){
         try {
 
+            //dd($request->all());
+           
+
+            $image = $request->file('image');
+            $image_icone = $input['imagename'] = time(). '.' . $image->getClientOriginalname();
+            $destination = public_path('/image');
+            $image->move($destination, $input['imagename']);
+            
+
             $prestation = New Prestation;
 
             $prestation->name = $request->get('name');
-            $prestation->path_icone = $request->get('image');
+            $prestation->path_icone = $image_icone;
             $prestation->description = $request->get('description');
             $prestation->statu = 0;
 
             $prestation->save();
             //code...
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
         } catch (\Throwable $th) {
-            //throw $th;
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
         }
     }
 }

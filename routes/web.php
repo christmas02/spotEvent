@@ -35,9 +35,6 @@ Route::get('/list/prestations','AdminController@getPrestations');
 Route::post('/save/prestation','AdminController@savePrestation');
 
 
-
-
-
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');
 

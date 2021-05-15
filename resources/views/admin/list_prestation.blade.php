@@ -24,6 +24,11 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                  @if(Session::has('success'))
+                        <div class="alert alert-success">{{ Session::get('success') }}</div>
+                        @elseif(Session::has('danger'))
+                        <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+                        @endif
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
@@ -92,7 +97,7 @@
       <h4 class="text-center"></b></h4> 
       <div class="">
         <form method="POST" action="/save/prestation">
-            
+        @csrf
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align"
                 for="first-name">Designation <span class="required">*</span>
@@ -107,7 +112,7 @@
                 for="first-name">Icone <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-                <input type="file" name="image" class="form-control " required>
+                <input type="file" name="image_one" class="form-control " required>
             </div>
         </div>
 
@@ -121,12 +126,13 @@
         
         
         
-        </form>
+        
       </div>
       </div>
       <div class="modal-footer-btn">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-success">Valider</button>
+        <button type="submit" class="btn btn-success">Valider</button>
+        </form>
       </div>
     </div>
   </div>
