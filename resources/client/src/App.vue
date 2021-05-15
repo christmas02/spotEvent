@@ -8,8 +8,26 @@
 :root {
     --primary: #fbb231;
     --secondary: #2f374a;
+    --default-padding: 5%;
 }
 
+
+.main {
+    width: 90%;
+}
+
+.default-padding {
+    padding-left: var(--default-padding);
+    padding-right: var(--default-padding);
+}
+.my-jumbotron .content-title {
+    font-size: 6rem;
+    line-height: 0.9em;
+}
+
+.my-jumbotron .content-subtitle {
+    font-size: 1.5rem;
+}
 .vh-100 {
     height: 100vh;
 }
@@ -62,8 +80,18 @@ button.v-btn--outlined.primary--text .v-btn__content {
     background: var(--primary);
 }
 
-.btn-icon {
-    color: #fff !important;
+.v-btn.v-btn--icon.primary--text {
+    color: #000 !important;
     background: var(--primary);
 }
+
+.v-btn.v-btn--icon.primary--text.v-btn--outlined {
+    color: #fff !important;
+}
+
+/*.v-btn--outlined.v-btn--round.v-btn--rounded.primary--text {*/
+/*    background: #fbb231;*/
+/*}*/
+
+
 </style>

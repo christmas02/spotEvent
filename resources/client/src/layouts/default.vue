@@ -1,23 +1,28 @@
 <template>
-    <div id="default">
-        <nav-bar></nav-bar>
-        <v-main>
-            <slot></slot>
-        </v-main>
-
+    <div>
+        <div :class="{'default-padding': padding}">
+            <nav-bar :height="navBarHeight"></nav-bar>
+            <v-main :style="{paddingTop: navBarHeight+'px'}">
+                <slot></slot>
+            </v-main>
+        </div>
         <app-footer></app-footer>
     </div>
 </template>
 
 <script>
     export default {
-        name: "default"
+        name: "default",
+        props: {
+            padding: {
+                type: Boolean,
+                default: true
+            },
+        },
+        data() {
+            return {
+                navBarHeight: "90"
+            }
+        },
     }
 </script>
-
-<style scoped>
-    #default {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-</style>

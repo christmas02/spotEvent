@@ -1,5 +1,5 @@
 <template>
-    <v-card class="jumbotron">
+    <v-card class="my-jumbotron">
         <img :src="image" alt="" class="background">
         <div class="content">
             <slot></slot>
@@ -22,7 +22,7 @@
 </script>
 
 <style scoped>
-    .jumbotron {
+    .my-jumbotron {
         position: relative;
         height: 600px;
         box-shadow: none !important;

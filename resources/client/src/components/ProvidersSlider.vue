@@ -1,5 +1,5 @@
 <template>
-    <carousel-3d height="auto" space="200" controlsVisible>
+    <carousel-3d height="auto" space="250" controlsVisible perspective="0">
         <slide :index="0">
             <provider-card></provider-card>
         </slide>

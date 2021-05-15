@@ -3,12 +3,13 @@
            class="mx-4"
            id="app-navbar"
            color="white"
-           height="70"
+           :height="height"
            flat
+           fixed
        >
            <div>
                <v-img
-                   width="85"
+                   width="120"
                    :src="require('../../assets/dark-logo.png')"
                >
                </v-img>
@@ -53,7 +54,13 @@
 
 <script>
     export default {
-        name: "navbar"
+        name: "navbar",
+        props: {
+            height: {
+                type: String,
+                default: "90"
+            },
+        },
     }
 </script>
 

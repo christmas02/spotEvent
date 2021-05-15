@@ -3,12 +3,11 @@
         <div class=" d-flex justify-content-between align-items-center img-content">
            <div>
                 <v-btn color="primary" class="discover-btn" small
-                >Demander un devis</v-btn
-            ></v-btn>
+                >Demander un devis</v-btn>
            </div>
             <div class="btn-container">
-                <v-btn icon class="btn-icon"><v-icon>mdi-star</v-icon></v-btn>
-                <v-btn icon class="btn-icon"><v-icon>mdi-phone</v-icon></v-btn>
+                <v-btn icon color="primary" outlined><v-icon>mdi-star</v-icon></v-btn>
+                <v-btn icon color="primary" outlined><v-icon>mdi-phone</v-icon></v-btn>
             </div>
         </div>
     </base-card>

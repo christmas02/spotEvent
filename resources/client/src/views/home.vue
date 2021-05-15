@@ -46,7 +46,7 @@
                         <benefits-grid></benefits-grid>
                     </div>
                     <div class="text-center">
-                        <v-btn color="primary" flat>Voir plus</v-btn>
+                        <v-btn color="primary">Voir plus</v-btn>
                     </div>
                 </div>
                 <div class="section mt-0">
@@ -57,7 +57,7 @@
                         <providers-slider></providers-slider>
                     </div>
                     <div class="text-center">
-                        <v-btn color="primary" flat
+                        <v-btn color="primary"
                             >Découvir tous les prestataires</v-btn
                         >
                     </div>
@@ -83,14 +83,6 @@ export default Vue.extend({
 </script>
 
 <style>
-#homepage .content-title {
-    font-size: 6rem;
-    line-height: 0.9em;
-}
-
-#homepage .content-subtitle {
-    font-size: 1.5rem;
-}
 
 #devis {
     position: absolute;
@@ -114,10 +106,6 @@ export default Vue.extend({
 #devis .v-text-field:hover > .v-input__control > .v-input__slot:after,
 #devis .v-text-field:hover > .v-input__control > .v-input__slot:before {
     background-color: #fff !important;
-}
-
-#homepage .main {
-    width: 90%;
 }
 
 #homepage .section {

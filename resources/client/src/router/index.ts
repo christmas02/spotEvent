@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import HomeScreen from "../views/home.vue";
+import HomeScreen from "@/views/home.vue";
 import LoginScreen from "@/views/auth/login.vue";
 import RegisterScreen from "@/views/auth/register.vue";
 import BenefitScreen from "@/views/benefit.vue";

@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-md-4" v-for="n in 9" :key="n">
+        <div class="col-md-4" v-for="n in 6" :key="n">
             <benefit-card></benefit-card>
         </div>
     </div>

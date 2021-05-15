@@ -1,6 +1,6 @@
 <template>
-    <base-card>
-        <v-btn color="primary" class="discover-btn" small>Découvrir</v-btn>
+    <base-card max-width="75%">
+        <v-btn color="primary" class="discover-btn" small :to="{ name: 'benefit', params: { id: '1'}}">Découvrir</v-btn>
     </base-card>
 </template>
 
@@ -20,5 +20,6 @@ export default Vue.extend({
     position: absolute;
     top: 8%;
     left: 6%;
+    color: #000 !important;
 }
 </style>
