@@ -13,18 +13,19 @@
 
 //use Illuminate\Routing\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('homepage');
+Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
 
 Route::get('/welcome/tableau/gesttion','PrestataireController@home')->name('prestataire');
 Route::get('/infos/compte/prestatire','PrestataireController@getFiche');
 Route::post('/save/compte/prestatire','PrestataireController@postFiche');
 Route::get('/fiche/prestataire','PrestataireController@Fiche');
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
+
 Route::post('/save/gallerie','PrestataireController@saveGalerie'); 
 Route::get('/list/reservations','PrestataireController@getReservation'); 
 Route::get('/list/messageries','PrestataireController@getMessagerie'); 
+
+Route::post('/save/gallerie/','PrestataireController@saveGalerie');
 
 
 Route::get('/welcome/tableau/administrateur','AdminController@home')->name('administrateur');

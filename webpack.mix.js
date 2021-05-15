@@ -11,5 +11,36 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.webpackConfig({
+    resolve: {
+        extensions: ["ts", "vue"],
+        alias: {
+            "@": __dirname + "/resources/client/src"
+        }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.s(c|a)ss$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        // Requires >= sass-loader@^8.0.0
+                        options: {
+                            implementation: require('sass'),
+                            sassOptions: {
+                                indentedSyntax: true // optional
+                            },
+                        },
+                    },
+                ],
+            },
+        ],
+    }
+})
+
+
+
+mix.ts('resources/client/src/main.ts', 'public/js')
