@@ -7,7 +7,7 @@
            </div>
             <div class="btn-container">
                 <v-btn icon color="primary" outlined><v-icon>mdi-star</v-icon></v-btn>
-                <v-btn icon color="primary" outlined><v-icon>mdi-phone</v-icon></v-btn>
+                <v-btn icon color="primary" outlinedc><v-icon>mdi-phone</v-icon></v-btn>
             </div>
         </div>
     </base-card>

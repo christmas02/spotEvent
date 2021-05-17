@@ -3,7 +3,7 @@
         <div class="col-md-7 left d-none d-md-block" :class="action">
             <div class="welcome">
                 <div class="top">
-                    <img src="../assets/logo.png" alt="logo" class="logo">
+                    <img @click="goHome" src="../assets/logo.png" alt="logo" class="logo">
                     <div>
                         <img src="../assets/icons/lfb.png" alt="facebook" class="icon">
                         <img src="../assets/icons/ltwt.png" alt="twitter" class="icon">
@@ -50,7 +50,12 @@
                     return accepted.includes(value);
                 }
             }
-        }
+        },
+        methods: {
+            goHome() {
+                this.$router.push('/');
+            }
+        },
     })
 </script>
 
