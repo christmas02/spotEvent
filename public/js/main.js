@@ -2421,7 +2421,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.main[data-v-220a3d08] {\n    padding-top: 80px;\n    padding-bottom: 80px;\n}\n.my-info[data-v-220a3d08] {\n    background: #f9faff;\n    margin-bottom: 30px;\n    width: 90%;\n}\n.my-info .title[data-v-220a3d08] {\n    font-size: 25px;\n}\n.my-info .subtitle[data-v-220a3d08] {\n    font-size: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.main section[data-v-220a3d08] {\n    padding-top: 80px;\n    padding-bottom: 80px;\n}\nsection.maps[data-v-220a3d08] {\n    background: #f9faff;\n}\n.main[data-v-220a3d08] {\n    margin: 0 auto;\n}\n.my-info[data-v-220a3d08] {\n    background: #f9faff;\n    margin-bottom: 30px;\n    width: 90%;\n}\n.my-info .title[data-v-220a3d08] {\n    font-size: 25px;\n}\n.my-info .subtitle[data-v-220a3d08] {\n    font-size: 15px;\n}\n.more-infos[data-v-220a3d08] {\n    font-size: 50px;\n    margin: 0;\n}\n.content-title[data-v-220a3d08] {\n    margin-bottom: 20px;\n}\n.content-title[data-v-220a3d08]::after {\n    content: \"\";\n    display: block;\n    width: 200px;\n    height: 6px;\n    background: var(--primary);\n    border-radius: 10px;\n}\n.description[data-v-220a3d08] {\n    width: 35%;\n}\n.form-titile[data-v-220a3d08] {\n    font-weight: bold;\n    font-size: 2.8rem;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -4110,221 +4110,155 @@ var render = function() {
         "jumbotron",
         { attrs: { image: __webpack_require__(/*! ../assets/images/jmbg2.png */ "./resources/client/src/assets/images/jmbg2.png") } },
         [
-          _c("p", [_vm._v("Pour plus d'infos")]),
+          _c("p", { staticClass: "more-infos" }, [_vm._v("Pour plus d'infos")]),
           _vm._v(" "),
           _c("h1", { staticClass: "content-title" }, [
             _vm._v("Contactez-nous")
           ]),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n            Accusamus adipisci, animi doloribus eum fuga ipsam natus odio\n            perferendis quibusdam quisquam rem sapiente totam vitae?\n        "
-            )
+          _c("div", { staticClass: "description" }, [
+            _c("p", [
+              _vm._v(
+                "\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n                Accusamus adipisci, animi doloribus eum fuga ipsam natus\n                odio perferendis quibusdam quisquam rem sapiente totam\n                vitae?\n            "
+              )
+            ])
           ])
         ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "main" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "col-md-4" },
-            [
-              _c(
-                "v-list-item",
-                { staticClass: "my-info" },
-                [
-                  _c(
-                    "v-list-item-avatar",
-                    { attrs: { color: "primary" } },
-                    [
-                      _c("v-icon", { attrs: { color: "white" } }, [
-                        _vm._v(
-                          "\n                            mdi-folder\n                        "
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
-                    [
-                      _c("v-list-item-title", { staticClass: "title" }, [
-                        _vm._v("Adresse")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-list-item-subtitle", { staticClass: "subtitle" }, [
-                        _c("p", { staticClass: "m-0 p-0" }, [
-                          _vm._v("Abidjan")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "m-0 p-0" }, [_vm._v("Abidjan")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
-                { staticClass: "my-info" },
-                [
-                  _c(
-                    "v-list-item-avatar",
-                    { attrs: { color: "primary" } },
-                    [
-                      _c("v-icon", { attrs: { color: "white" } }, [
-                        _vm._v(
-                          "\n                            mdi-folder\n                        "
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
-                    [
-                      _c("v-list-item-title", { staticClass: "title" }, [
-                        _vm._v("Adresse")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-list-item-subtitle", { staticClass: "subtitle" }, [
-                        _c("p", { staticClass: "m-0 p-0" }, [
-                          _vm._v("Abidjan")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "m-0 p-0" }, [_vm._v("Abidjan")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
-                { staticClass: "my-info" },
-                [
-                  _c(
-                    "v-list-item-avatar",
-                    { attrs: { color: "primary" } },
-                    [
-                      _c("v-icon", { attrs: { color: "white" } }, [
-                        _vm._v(
-                          "\n                            mdi-folder\n                        "
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
-                    [
-                      _c("v-list-item-title", { staticClass: "title" }, [
-                        _vm._v("Adresse")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-list-item-subtitle", { staticClass: "subtitle" }, [
-                        _c("p", { staticClass: "m-0 p-0" }, [
-                          _vm._v("Abidjan")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "m-0 p-0" }, [_vm._v("Abidjan")])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("div", [
-              _c("h3", [_vm._v("Envoyez-nous un message")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipisicing\n                        elit. Aperiam dolores neque ratione voluptates.\n                    "
-                )
-              ])
-            ]),
-            _vm._v(" "),
+        _c("section", [
+          _c("div", { staticClass: "row" }, [
             _c(
               "div",
+              { staticClass: "col-md-4" },
               [
                 _c(
-                  "v-form",
+                  "v-list-item",
+                  { staticClass: "my-info" },
                   [
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "col-md-6" },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Nom", outlined: "" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-6" },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Prénoms", outlined: "" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-6" },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Email", outlined: "" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-6" },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Website", outlined: "" }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12" },
-                        [
-                          _c("v-textarea", {
-                            attrs: { label: "Message", outlined: "" }
-                          })
-                        ],
-                        1
-                      )
-                    ]),
+                    _c(
+                      "v-list-item-avatar",
+                      { attrs: { color: "primary" } },
+                      [
+                        _c("v-icon", { attrs: { color: "white" } }, [
+                          _vm._v(
+                            "\n                                mdi-folder\n                            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c(
-                      "v-btn",
+                      "v-list-item-content",
+                      [
+                        _c("v-list-item-title", { staticClass: "title" }, [
+                          _vm._v("Adresse")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-list-item-subtitle",
+                          { staticClass: "subtitle" },
+                          [
+                            _c("p", { staticClass: "m-0 p-0" }, [
+                              _vm._v("Abidjan")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "m-0 p-0" }, [
+                              _vm._v("Abidjan")
+                            ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { staticClass: "my-info" },
+                  [
+                    _c(
+                      "v-list-item-avatar",
                       { attrs: { color: "primary" } },
-                      [_c("v-icon", [_vm._v("mdi-arrow-right")])],
+                      [
+                        _c("v-icon", { attrs: { color: "white" } }, [
+                          _vm._v(
+                            "\n                                mdi-folder\n                            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c("v-list-item-title", { staticClass: "title" }, [
+                          _vm._v("Adresse")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-list-item-subtitle",
+                          { staticClass: "subtitle" },
+                          [
+                            _c("p", { staticClass: "m-0 p-0" }, [
+                              _vm._v("Abidjan")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "m-0 p-0" }, [
+                              _vm._v("Abidjan")
+                            ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { staticClass: "my-info" },
+                  [
+                    _c(
+                      "v-list-item-avatar",
+                      { attrs: { color: "primary" } },
+                      [
+                        _c("v-icon", { attrs: { color: "white" } }, [
+                          _vm._v(
+                            "\n                                mdi-folder\n                            "
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c("v-list-item-title", { staticClass: "title" }, [
+                          _vm._v("Adresse")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-list-item-subtitle",
+                          { staticClass: "subtitle" },
+                          [
+                            _c("p", { staticClass: "m-0 p-0" }, [
+                              _vm._v("Abidjan")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "m-0 p-0" }, [
+                              _vm._v("Abidjan")
+                            ])
+                          ]
+                        )
+                      ],
                       1
                     )
                   ],
@@ -4332,7 +4266,124 @@ var render = function() {
                 )
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-8" }, [
+              _c("div", [
+                _c("h3", { staticClass: "form-titile" }, [
+                  _vm._v("Envoyez-nous un message")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                            Lorem ipsum dolor sit amet, consectetur\n                            adipisicing elit. Aperiam dolores neque ratione\n                            voluptates.\n                        "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _c(
+                    "v-form",
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          [
+                            _c("v-text-field", {
+                              attrs: { label: "Nom", outlined: "" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          [
+                            _c("v-text-field", {
+                              attrs: { label: "Prénoms", outlined: "" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          [
+                            _c("v-text-field", {
+                              attrs: { label: "Email", outlined: "" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          [
+                            _c("v-text-field", {
+                              attrs: { label: "Website", outlined: "" }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12" },
+                          [
+                            _c("v-textarea", {
+                              attrs: { label: "Message", outlined: "" }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "primary" } },
+                        [_c("v-icon", [_vm._v("mdi-arrow-right")])],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("section", { staticClass: "maps" }, [
+          _c("div", { staticClass: "text-center" }, [
+            _c("h3", { staticClass: "form-titile" }, [
+              _vm._v("Trouvez-nous sur google")
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                    Lorem ipsum dolor sit amet, consectetur adipisicing\n                    elit. Aperiam dolores neque ratione voluptates.\n                "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("iframe", {
+              staticStyle: { border: "0", width: "100%" },
+              attrs: {
+                src:
+                  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.626502442513!2d-4.021626684674619!3d5.320813537448535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1ebbecfcdfd21%3A0xe0ff20358d182a30!2sCASH%20CENTER%20PLATEAU!5e0!3m2!1sfr!2sci!4v1621328265517!5m2!1sfr!2sci",
+                height: "450",
+                allowfullscreen: "",
+                loading: "lazy"
+              }
+            })
           ])
         ])
       ])
