@@ -58,9 +58,11 @@ class RegisterController extends Controller
         //$this->guard()->login($user);
         $role = $request->role;
         if($role == 1){
-            return redirect('inscriptionPrestataire')->with('success','Votre compte à bien été créer. un lien de confirmation vous a été envoyé à votre adresse email afin de finaliser votre inscription');
+            //return redirect('inscriptionPrestataire')->with('success','Votre compte à bien été créer. un lien de confirmation vous a été envoyé à votre adresse email afin de finaliser votre inscription');
+            return response()->json(['statu'=>1, 'role' => $role]);
         }elseif($role == 2){
-            return redirect('inscriptionUtilisateur')->with('success','Votre compte à bien été créer. un lien de confirmation vous a été envoyé à votre adresse email afin de finaliser votre inscription');
+            //return redirect('inscriptionUtilisateur')->with('success','Votre compte à bien été créer. un lien de confirmation vous a été envoyé à votre adresse email afin de finaliser votre inscription');
+            return response()->json(['statu'=>1, 'role' => $role]);
         }else{
             return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

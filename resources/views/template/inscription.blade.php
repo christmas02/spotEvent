@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>| </title>
 
     <!-- Bootstrap -->
     <link href="admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,14 +30,14 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="/">
               @csrf
-              <h1> Connexion </h1>
+              <h1> Connexiontext</h1>
               <div>
                 <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Adresse electronique" required="" />
               </div>
               <div>
-                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required="" required autocomplete="current-password"/>
+                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mot de passe" required="" required autocomplete="current-password"/>
               </div>
 
               <div>

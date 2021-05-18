@@ -76,11 +76,14 @@ class AdminController extends Controller
 
             //dd($request->all());
            
+                
+                $image = $request->file('image');
+                //dd($image);
+                $image_icone = $input['imagename'] = time(). '.' . $image->getClientOriginalName();
+                $destination = public_path('/image');
+                $image->move($destination, $input['imagename']);
+         
 
-            $image = $request->file('image');
-            $image_icone = $input['imagename'] = time(). '.' . $image->getClientOriginalname();
-            $destination = public_path('/image');
-            $image->move($destination, $input['imagename']);
             
 
             $prestation = New Prestation;

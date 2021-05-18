@@ -96,7 +96,7 @@
       <div class="modal-body">
       <h4 class="text-center"></b></h4> 
       <div class="">
-        <form method="POST" action="/save/prestation">
+        <form method="POST" action="/save/prestation" enctype="multipart/form-data">
         @csrf
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align"
@@ -112,7 +112,7 @@
                 for="first-name">Icone <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-                <input type="file" name="image_one" class="form-control " required>
+                <input type="file" name="image" class="form-control " required>
             </div>
         </div>
 

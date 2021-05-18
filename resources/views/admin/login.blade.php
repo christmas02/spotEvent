@@ -30,9 +30,9 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="authentification/login">
               @csrf
-              <h1> Connexion </h1>
+              <h1> Connexion test</h1>
               <div>
                 <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Adresse electronique" required="" />
               </div>
@@ -66,7 +66,7 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="authentification/register">
               @csrf
               <h1>Créer un compte utiiateur</h1>
               <div>
@@ -105,7 +105,7 @@
           </section>
         
           <section class="login_content">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="authentification/register">
                 @csrf
               <h1>Créer un compte prestatire</h1>
               <div>
