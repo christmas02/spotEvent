@@ -24,6 +24,136 @@
             <div class="clearfix"></div>
 
             <div class="row">
+          
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Profile</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    </ul>
+                  
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="col-md-3 col-sm-3  profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                      <h3>{{ Auth::user()->name }}</h3>
+
+                      <ul class="list-unstyled user_data">
+                        <li><i class="fa fa-envelope user-profile-icon"></i> {{ Auth::user()->email }}</li>
+                        <li><i class="fa fa-phone user-profile-icon"></i> {{ Auth::user()->phone }}</li>
+                      </ul>
+
+                    </div>
+                    <div class="col-md-9 col-sm-9 ">
+                  
+
+                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Commentaire</a>
+                          </li>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Evolution generale</a>
+                          </li>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste reservation</a>
+                          </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="home-tab">
+
+                            <!-- start recent activity -->
+                            <ul class="messages">
+
+                              <li>
+                                <div class="message_date">
+                                  <h3 class="date text-error">21</h3>
+                                  <p class="month">May</p>
+                                </div>
+                                <div class="message_wrapper">
+                                  <h4 class="heading">Brian Michaels</h4>
+                                  <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                  <br />
+                                </div>
+                              </li>
+
+                            </ul>
+                            <!-- end recent activity -->
+
+                          </div>
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+                            <!-- start user projects -->
+                            <table class="data table table-striped no-margin">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Designstion</th>
+                                  <th>Valeurs</th>
+                                
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr> 
+                                  <td></td>
+                                  <td>Nombre total de viste</td>
+                                  <td class="hidden-phone">30</td>
+                                </tr>
+                                <tr> 
+                                  <td></td>
+                                  <td>Nombre total de prise contact</td>
+                                  <td class="hidden-phone">30</td>
+                                </tr>
+                                <tr> 
+                                  <td></td>
+                                  <td>Nombre total de sollicitation</td>
+                                  <td class="hidden-phone">30</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!-- end user projects -->
+
+                          </div>
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                             <!-- start user projects -->
+                             <table class="data table table-striped no-margin">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Informateion client</th>
+                                  <th>Date</th>
+                                  <th>Statu</th>
+                                
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr> 
+                                  <td></td>
+                                  <td><a href="#">Alexis Djidonou - 07 48 99 79 45 - Abidjan cocody </a></td>
+                                  <td>12 Janvier 2021</td>
+                                  <td>lu</td>
+                                </tr>
+                                <tr> 
+                                  <td></td>
+                                  <td><a href="#">Alexis Djidonou - 07 48 99 79 45 - Abidjan cocody </a></td>
+                                  <td>12 Janvier 2021</td>
+                                  <td>En attante</td>
+                                </tr>
+
+                              </tbody>
+                            </table>
+                            <!-- end user projects -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                  
@@ -55,4 +185,7 @@
           </div>
         </div>
         <!-- /page content -->
+
+
+    
 @endsection

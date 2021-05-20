@@ -13,23 +13,33 @@
 
 //use Illuminate\Routing\Route;
 
-Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+Route::group(['namespace' => 'Auth', 'prefix' => 'authentification'], function () {
+
+	Route::post('/login','LoginController@login');
+	Route::post('/register','RegisterController@register');
+
+});
+
+Route::get('/', 'SinglePageController@index')->where('any', '.*');
 
 Route::get('/welcome/tableau/gesttion','PrestataireController@home')->name('prestataire');
 Route::get('/infos/compte/prestatire','PrestataireController@getFiche');
 Route::post('/save/compte/prestatire','PrestataireController@postFiche');
 Route::get('/fiche/prestataire','PrestataireController@Fiche');
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
+
+Route::post('/save/gallerie','PrestataireController@saveGalerie'); 
+Route::get('/list/reservations','PrestataireController@getReservation'); 
+Route::get('/list/messageries','PrestataireController@getMessagerie'); 
+
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
-
-
+ 
 Route::get('/welcome/tableau/administrateur','AdminController@home')->name('administrateur');
 Route::get('/liste/prestataires','AdminController@getPrestatire');
 Route::get('/fiche/prestataires/{id}','AdminController@onePrestatire');
 Route::get('/liste/reservations','AdminController@getReservation');
-
-
-
+Route::get('/list/prestations','AdminController@getPrestations');
+Route::post('/save/prestation','AdminController@savePrestation');
 
 
 Route::get('/connexion','AdminController@login');

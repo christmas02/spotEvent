@@ -1,42 +1,6 @@
 @extends('admin/layout/master')
 
 @section('content') 
-<style>
-.btn-modal{
-    background-color: #ccc;
-    color: gray;
-    border-radius: 50%;
-}
-.form-check-input{
-
-}
-input:checked + .slider {
-  background-color: #2196F3;
-}
-label{
-    font-size: 18px;
-    text-align: center;
-}
-.silde{
-    margin: 0 190px;
-}
-.modal-title{
-    
-    color: #fff;
-    
-}
-.modal-header{
-    background-color: gray;
-    text-align: right !important;
-}
-.modal-footer-btn{
-    margin: 20px 38%;
-
-}
-.form-check-label{
-  margin-left: 5px;
-}
-</style>
 <!-- page content -->
 <div class="right_col" role="main">
           <div class="">
@@ -207,6 +171,17 @@ label{
             <div class="form-check form-switch">
                 <input class="flat" type="checkbox" checked id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Désctivation la messagerie</label>
+            </div>
+        @endif
+        @if($items->favoris == 0)
+            <div class="form-check form-switch">
+                <input class="flat" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Activation l'option favorie</label>
+            </div>
+        @else
+            <div class="form-check form-switch">
+                <input class="flat" type="checkbox" checked id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Désctivation l'option favorie</label>
             </div>
         @endif
         </form>

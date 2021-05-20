@@ -17,6 +17,11 @@ class AdminController extends Controller
         return $listePrestation;
     }
 
+    public function prestations(){
+        $listePrestation = Prestation::all();
+        return $listePrestation;
+    }
+
     public function login(){
         //$listePrestation = Prestation::get();
         return view('admin.login');
@@ -59,5 +64,42 @@ class AdminController extends Controller
 
     public function getReservation(){
         return view('admin.list_reservations');
+    }
+
+    public function getPrestations(){
+        $prestations =  $this->prestations();
+        return view('admin.list_prestation',compact('prestations'));
+    }
+
+    public function savePrestation(Request $request){
+        try {
+
+            //dd($request->all());
+           
+                
+                $image = $request->file('image');
+                //dd($image);
+                $image_icone = $input['imagename'] = time(). '.' . $image->getClientOriginalName();
+                $destination = public_path('/image');
+                $image->move($destination, $input['imagename']);
+         
+
+            
+
+            $prestation = New Prestation;
+
+            $prestation->name = $request->get('name');
+            $prestation->path_icone = $image_icone;
+            $prestation->description = $request->get('description');
+            $prestation->statu = 0;
+
+            $prestation->save();
+            //code...
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
     }
 }

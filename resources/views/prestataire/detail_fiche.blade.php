@@ -57,20 +57,23 @@
                         <img src="{{asset('/image/'.$ficheExiste->path_img)}}" alt="..." />
                       </div>
                       <br>
+                      
                       @if($galerieExiste == null)
                         <div class="alert alert-warning">
-                        <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de presenter vos réalisation,
-                            aux utilisateur qui visiteros votre profil<br> <a class="" data-toggle="modal" data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
-                            NB : Veiller contacter le services conseil et assistance au besoin</h4>
+                            <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de presenter vos réalisation,
+                                aux utilisateur qui visiteros votre profil<br> <a class="" data-toggle="modal" data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
+                                NB : Veiller contacter le services conseil et assistance au besoin</h4>
                         </div>
-                      @endif
-                      <div class="product_gallery">
+                      @else
                       @foreach($galerieExiste as $image)
-                        <a>
-                          <img width="50" height="90" src="{{asset('/image/'.$image->path)}}" alt="..." />
-                        </a>
+                       <div class="product_gallery">
+                          <a>
+                            <img width="50" height="90" src="{{asset('/image/'.$image->path)}}" alt="..." />
+                          </a>
+                        </div>
                       @endforeach
-                      </div>
+                      @endif
+                      
                     </div>
 
                     <div class="col-md-6 col-sm-5 " style="border:0px solid #e5e5e5;">
@@ -110,6 +113,7 @@
                         NB : Veiller contacter le services conseil et assistance au besoin</h4>
                     </div>
                   @endif
+                  
 
                   
 
@@ -198,6 +202,7 @@
   </div>
 </div>
 
+@if($ficheExiste)
 <!-- Modal  MODIFIER LES INFORMATION -->
 <div class="modal fade" id="exampleModalCenterInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -308,6 +313,7 @@
     </div>
   </div>
 </div>
+@endif
 
 
 @endsection
