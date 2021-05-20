@@ -64,8 +64,8 @@ class RegisterController extends Controller
             //return redirect('inscriptionUtilisateur')->with('success','Votre compte à bien été créer. un lien de confirmation vous a été envoyé à votre adresse email afin de finaliser votre inscription');
             return response()->json(['statu'=>1, 'role' => $role]);
         }else{
-            return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            //return $this->registered($request, $user) ?: redirect($this->redirectPath());
+            return response()->json(['statu'=>0, 'role' => $role]);
         }
 
     }
@@ -76,7 +76,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -113,7 +113,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+       return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -121,5 +121,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'confirmation_token'=> str_replace('/','',bcrypt(str_random(16)))
         ]);
+
+        //$message = " Inscription effectuer avec succes, vous avez reçu un mail de confirmation !";
+
+        //return response()->json(['statu'=> 1, 'message' => $message]);
     }
 }

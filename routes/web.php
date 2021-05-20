@@ -20,6 +20,13 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'authentification'], function (
 
 });
 
+Route::group(['prefix' => 'api'], function () {
+
+	Route::get('/listUser','ApiController@getUsers');
+	Route::post('/login','ApiController@login');
+
+});
+
 Route::get('/', 'SinglePageController@index')->where('any', '.*');
 
 Route::get('/welcome/tableau/gesttion','PrestataireController@home')->name('prestataire');
