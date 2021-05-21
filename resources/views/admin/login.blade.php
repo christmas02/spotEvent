@@ -30,7 +30,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="POST" action="authentification/login">
+            <form method="POST" action="api/login">
               @csrf
               <h1> Connexion test</h1>
               <div>
