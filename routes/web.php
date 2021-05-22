@@ -35,12 +35,12 @@ Route::post('/save/compte/prestatire','PrestataireController@postFiche');
 Route::get('/fiche/prestataire','PrestataireController@Fiche');
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
 
-Route::post('/save/gallerie','PrestataireController@saveGalerie'); 
-Route::get('/list/reservations','PrestataireController@getReservation'); 
-Route::get('/list/messageries','PrestataireController@getMessagerie'); 
+Route::post('/save/gallerie','PrestataireController@saveGalerie');
+Route::get('/list/reservations','PrestataireController@getReservation');
+Route::get('/list/messageries','PrestataireController@getMessagerie');
 
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
- 
+
 Route::get('/welcome/tableau/administrateur','AdminController@home')->name('administrateur');
 Route::get('/liste/prestataires','AdminController@getPrestatire');
 Route::get('/fiche/prestataires/{id}','AdminController@onePrestatire');

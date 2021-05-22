@@ -1,42 +1,100 @@
 <template>
-    <v-form class="h-100 d-flex flex-column justify-content-between">
+    <v-form
+        ref="registerForm"
+        lazy-validation
+        @submit.prevent="registerUser"
+        class="h-100 d-flex flex-column justify-content-between">
         <h1 class="page-title">Inscription</h1>
 
-        <div>
-            <v-text-field label="Nom"></v-text-field>
-            <v-text-field label="Prénoms"></v-text-field>
-            <v-select
-                append-icon="mdi-chevron-down"
-                :items="items"
-                label="Catégorie"
-            ></v-select>
-            <v-text-field label="Email" type="email"></v-text-field>
-            <v-text-field label="N° de téléphone" type="tel"></v-text-field>
+        <div class="mt-3">
+            <v-text-field label="Nom et prenoms" v-model="form.name" :rules="requiredRules"></v-text-field>
+            <v-text-field label="Email" type="email" v-model="form.email" :rules="emailRules"></v-text-field>
+            <v-text-field label="N° de téléphone" v-model="form.phone" type="tel" :rules="phoneCiRules"></v-text-field>
             <v-text-field
-                v-model="password"
+                v-model="form.password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 label="Choisir un mot de passe"
                 @click:append="show1 = !show1"
+                :rules="passwordRules"
+            ></v-text-field>
+            <v-text-field
+                v-model="form.password_confirmation"
+                :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show2 ? 'text' : 'password'"
+                label="Confirmer le mot de passe"
+                @click:append="show2 = !show2"
+                :rules="confirmPasswordRules"
             ></v-text-field>
         </div>
         <div>
-            <v-btn color="primary"><v-icon>mdi-arrow-right</v-icon></v-btn>
+            <v-btn color="primary" type="submit" :disabled="loading">
+                <template v-if="loading">Veuillez patienter ...</template>
+                <v-icon v-else>mdi-arrow-right</v-icon>
+            </v-btn>
         </div>
     </v-form>
 </template>
 
 <script lang="ts">
     import Vue from "vue"
+    import { IRegister } from "@/interfaces/auth.interfaces";
+    import ValidationsMixin from "@/mixins/validations.mixin";
+    import {AuthService} from "@/services/auth.service";
+
     export default Vue.extend({
+        mixins: [ValidationsMixin],
         name: "RegisterForm",
+        props: {
+          role: {
+              type: String,
+              required: true
+          }
+        },
         data() {
             return {
-                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-                password: "",
-                show1: false
+                form: {
+                    name: "",
+                    email: "",
+                    role: "",
+                    phone: "",
+                    password: "",
+                    password_confirmation: "",
+                } as IRegister,
+                show1: false,
+                show2: false,
+                loading: false,
             }
         },
+        methods: {
+            async registerUser() {
+                // @ts-ignore
+                if (this.$refs.registerForm.validate()) {
+                    this.loading = true;
+                    this.form.role = this.role;
+                    const authService = new AuthService();
+
+                    const result = await authService.initRegister(this.form);
+
+                    this.loading = false;
+
+                    if (result.statu != 0) {
+                        this.$swal({ icon: "info", text: "'Vous avez reçu un email de confirmation'"});
+                    } else {
+                        this.$swal({icon: "error", text: "Une erreur est survenue"});
+
+                    }
+
+                }
+            }
+        },
+        computed: {
+            confirmPasswordRules() {
+                return [
+                    (v: string) => v === this!.form.password || "Mots de passes pas identiques",
+                ]
+            }
+        }
     })
 </script>
 

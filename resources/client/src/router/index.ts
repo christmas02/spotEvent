@@ -36,10 +36,32 @@ const routes: Array<RouteConfig> = [
     }
 ];
 
+
 const router = new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,
     routes
+});
+
+const guarded_routes: string[] = [];
+
+const guest_routes: string[] = ["auth-login", "auth-register"];
+
+const AUTH_KEY = "auth";
+
+router.beforeEach((to, from, next) => {
+    const routeName = to.name as string;
+    ///if not connected and want to access routes guarded
+    if(guarded_routes.includes(routeName) && !localStorage.getItem(AUTH_KEY)){
+        next({name: 'auth-login'});
+    }
+    //else if connected and want to access to guest routes
+    else if(localStorage.getItem(AUTH_KEY) && guest_routes.includes(routeName)){
+        next({name: 'Home'});
+    }
+    //else good
+    else next();
+
 });
 
 export default router;

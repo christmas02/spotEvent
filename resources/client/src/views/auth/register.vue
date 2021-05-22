@@ -12,11 +12,11 @@
         <v-tabs-items v-model="tab">
             <v-tab-item
             >
-                <register-form></register-form>
+                <register-form role="1"></register-form>
             </v-tab-item>
             <v-tab-item
             >
-                <register-form></register-form>
+                <register-form role="2"></register-form>
             </v-tab-item>
         </v-tabs-items>
     </auth-layout>
