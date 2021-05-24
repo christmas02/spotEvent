@@ -10126,18 +10126,21 @@ __webpack_require__.r(__webpack_exports__);
                 const result = await authService.initLogin(this.form);
                 this.loading = false;
                 console.log(result);
-                switch (result.statu) {
-                    case 1:
-                        await this.$router.push({ name: "Home" });
-                        break;
-                    case 2:
-                        window.location.href = window.location.origin + "/welcome/tableau/gesttion";
-                        break;
-                    case 3:
-                        window.location.href = window.location.origin + "/welcome/tableau/administrateur";
-                        break;
-                    default:
-                        this.$swal({ icon: "warning", text: "Identifiants invalides" });
+                if (result.statu != 0) {
+                    switch (result.statu) {
+                        case 1:
+                            await this.$router.push({ name: "Home" });
+                            break;
+                        case 2:
+                        case 3:
+                            window.location.href = window.location.origin + "/" + result.lien;
+                            break;
+                        default:
+                            this.$swal({ icon: "warning", text: "Identifiants invalides" });
+                    }
+                }
+                else {
+                    this.$swal({ icon: "warning", text: "Identifiants invalides" });
                 }
             }
         }
