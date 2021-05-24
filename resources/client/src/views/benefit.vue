@@ -19,7 +19,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="d-md-flex justify-content-md-center">
-                                    <v-carousel v-model="model" height="400" class="provider-pics">
+                                    <v-carousel cycle hide-delimiters v-model="model" height="400" class="provider-pics">
                                         <v-carousel-item
                                             v-for="(color, i) in colors"
                                             :key="color"

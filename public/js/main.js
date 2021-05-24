@@ -2112,6 +2112,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar",
@@ -3572,9 +3609,86 @@ var render = function() {
       _vm.auth
         ? [
             _c(
-              "v-btn",
-              { attrs: { color: "primary" }, on: { click: _vm.logout } },
-              [_vm._v("\n            Déconnexion\n        ")]
+              "v-menu",
+              {
+                attrs: { bottom: "", rounded: "", "offset-y": "" },
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        return [
+                          _c(
+                            "v-btn",
+                            _vm._g({ attrs: { icon: "" } }, on),
+                            [
+                              _c("v-avatar", { attrs: { color: "primary" } }, [
+                                _c("span", { staticClass: "white--text" }, [
+                                  _vm._v("MH")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ]
+                      }
+                    }
+                  ],
+                  null,
+                  false,
+                  1760376015
+                )
+              },
+              [
+                _vm._v(" "),
+                _c(
+                  "v-card",
+                  [
+                    _c(
+                      "v-list-item-content",
+                      { staticClass: "justify-center" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "mx-auto text-center" },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { depressed: "", rounded: "", text: "" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Mon espace\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("v-divider", { staticClass: "my-3" }),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { depressed: "", rounded: "", text: "" },
+                                on: { click: _vm.logout }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Deconnexion\n                        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
             )
           ]
         : [
@@ -3960,7 +4074,11 @@ var render = function() {
                             "v-carousel",
                             {
                               staticClass: "provider-pics",
-                              attrs: { height: "400" },
+                              attrs: {
+                                cycle: "",
+                                "hide-delimiters": "",
+                                height: "400"
+                              },
                               model: {
                                 value: _vm.model,
                                 callback: function($$v) {
@@ -10125,7 +10243,6 @@ __webpack_require__.r(__webpack_exports__);
                 const authService = new _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]();
                 const result = await authService.initLogin(this.form);
                 this.loading = false;
-                console.log(result);
                 if (result.statu != 0) {
                     switch (result.statu) {
                         case 1:
