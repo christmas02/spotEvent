@@ -51,6 +51,9 @@
               required: true
           }
         },
+        mounted() {
+            console.log(this.role)
+        },
         data() {
             return {
                 form: {
@@ -79,7 +82,15 @@
                     this.loading = false;
 
                     if (result.statu != 0) {
-                        this.$swal({ icon: "info", text: "'Vous avez reçu un email de confirmation'"});
+                        const result = await this.$swal({
+                            icon: "info",
+                            text: "Vous avez reçu un email de confirmation",
+                            allowOutsideClick: false
+                        });
+
+                        if (result.isConfirmed) {
+                            await this.$router.push({name: "auth-login"});
+                        }
                     } else {
                         this.$swal({icon: "error", text: "Une erreur est survenue"});
 

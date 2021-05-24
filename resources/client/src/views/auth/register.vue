@@ -5,8 +5,8 @@
             background-color="transparent"
             grow
         >
-            <v-tab>Je suis un prestataire</v-tab>
             <v-tab>Je recherche une prestation</v-tab>
+            <v-tab>Je suis un prestataire</v-tab>
         </v-tabs>
 
         <v-tabs-items v-model="tab">

@@ -2049,6 +2049,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/common/constants */ "./resources/client/src/common/constants.ts");
 //
 //
 //
@@ -2104,6 +2105,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar",
   props: {
@@ -2115,6 +2124,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     goHome: function goHome() {
       this.$router.push('/');
+    },
+    logout: function logout() {
+      window.localStorage.removeItem(_common_constants__WEBPACK_IMPORTED_MODULE_0__["AUTH_KEY"]);
+      this.$router.push({
+        name: "auth-login"
+      });
+    }
+  },
+  computed: {
+    auth: function auth() {
+      return !!window.localStorage.getItem(_common_constants__WEBPACK_IMPORTED_MODULE_0__["AUTH_KEY"]);
     }
   }
 });
@@ -2934,8 +2954,10 @@ var render = function() {
       attrs: {
         height: "auto",
         space: "250",
+        autoplay: "",
         controlsVisible: "",
-        perspective: "0"
+        perspective: "0",
+        animationSpeed: "4000"
       }
     },
     [
@@ -3547,28 +3569,42 @@ var render = function() {
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),
-      _c(
-        "v-btn",
-        {
-          attrs: {
-            color: "primary",
-            outlined: "",
-            to: { name: "auth-login" },
-            exact: ""
-          }
-        },
-        [_vm._v("\n        Connexion\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "v-btn",
-        {
-          attrs: { color: "primary", to: { name: "auth-register" }, exact: "" }
-        },
-        [_vm._v("\n        Inscription\n    ")]
-      )
+      _vm.auth
+        ? [
+            _c(
+              "v-btn",
+              { attrs: { color: "primary" }, on: { click: _vm.logout } },
+              [_vm._v("\n            Déconnexion\n        ")]
+            )
+          ]
+        : [
+            _c(
+              "v-btn",
+              {
+                attrs: {
+                  color: "primary",
+                  outlined: "",
+                  to: { name: "auth-login" },
+                  exact: ""
+                }
+              },
+              [_vm._v("\n           Connexion\n       ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              {
+                attrs: {
+                  color: "primary",
+                  to: { name: "auth-register" },
+                  exact: ""
+                }
+              },
+              [_vm._v("\n           Inscription\n       ")]
+            )
+          ]
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -3816,9 +3852,9 @@ var render = function() {
           }
         },
         [
-          _c("v-tab", [_vm._v("Je suis un prestataire")]),
+          _c("v-tab", [_vm._v("Je recherche une prestation")]),
           _vm._v(" "),
-          _c("v-tab", [_vm._v("Je recherche une prestation")])
+          _c("v-tab", [_vm._v("Je suis un prestataire")])
         ],
         1
       ),
@@ -10089,11 +10125,19 @@ __webpack_require__.r(__webpack_exports__);
                 const authService = new _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]();
                 const result = await authService.initLogin(this.form);
                 this.loading = false;
-                if (result.statu != 0) {
-                    this.$router.push({ name: "Home" });
-                }
-                else {
-                    this.$swal({ icon: "warning", text: "Identifiants invalides" });
+                console.log(result);
+                switch (result.statu) {
+                    case 1:
+                        await this.$router.push({ name: "Home" });
+                        break;
+                    case 2:
+                        window.location.href = window.location.origin + "/welcome/tableau/gesttion";
+                        break;
+                    case 3:
+                        window.location.href = window.location.origin + "/welcome/tableau/administrateur";
+                        break;
+                    default:
+                        this.$swal({ icon: "warning", text: "Identifiants invalides" });
                 }
             }
         }
@@ -10127,6 +10171,9 @@ __webpack_require__.r(__webpack_exports__);
             required: true
         }
     },
+    mounted() {
+        console.log(this.role);
+    },
     data() {
         return {
             form: {
@@ -10152,7 +10199,14 @@ __webpack_require__.r(__webpack_exports__);
                 const result = await authService.initRegister(this.form);
                 this.loading = false;
                 if (result.statu != 0) {
-                    this.$swal({ icon: "info", text: "'Vous avez reçu un email de confirmation'" });
+                    const result = await this.$swal({
+                        icon: "info",
+                        text: "Vous avez reçu un email de confirmation",
+                        allowOutsideClick: false
+                    });
+                    if (result.isConfirmed) {
+                        await this.$router.push({ name: "auth-login" });
+                    }
                 }
                 else {
                     this.$swal({ icon: "error", text: "Une erreur est survenue" });
@@ -83660,6 +83714,21 @@ else {
 
 /***/ }),
 
+/***/ "./resources/client/src/common/constants.ts":
+/*!**************************************************!*\
+  !*** ./resources/client/src/common/constants.ts ***!
+  \**************************************************/
+/*! exports provided: AUTH_KEY */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_KEY", function() { return AUTH_KEY; });
+const AUTH_KEY = "auth";
+
+
+/***/ }),
+
 /***/ "./resources/client/src/common/rules.ts":
 /*!**********************************************!*\
   !*** ./resources/client/src/common/rules.ts ***!
@@ -84976,13 +85045,15 @@ class CommonService {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
 /* harmony import */ var _services_Common_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/services/Common.service */ "./resources/client/src/services/Common.service.ts");
+/* harmony import */ var _common_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/common/constants */ "./resources/client/src/common/constants.ts");
+
 
 class AuthService extends _services_Common_service__WEBPACK_IMPORTED_MODULE_0__["CommonService"] {
     async initLogin(credentials) {
         try {
             const { data } = await this.client.post("/authentification/login", credentials);
             if (data.statu != 0) {
-                localStorage.setItem("auth", "connected");
+                localStorage.setItem(_common_constants__WEBPACK_IMPORTED_MODULE_1__["AUTH_KEY"], "connected");
             }
             return data;
         }

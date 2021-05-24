@@ -51,12 +51,21 @@
                     const result = await authService.initLogin(this.form);
 
                     this.loading = false;
-                    if (result.statu != 0) {
-                        this.$router.push({name: "Home" });
-                    } else {
-                        this.$swal({icon: "warning",  text: "Identifiants invalides"})
-                    }
 
+                    console.log(result);
+                    switch (result.statu) {
+                        case 1:
+                            await this.$router.push({name: "Home"});
+                        break;
+                        case 2:
+                            window.location.href = window.location.origin + "/welcome/tableau/gesttion";
+                            break;
+                        case 3:
+                            window.location.href = window.location.origin + "/welcome/tableau/administrateur";
+                            break;
+                        default:
+                            this.$swal({icon: "warning",  text: "Identifiants invalides"})
+                    }
                 }
             }
         },

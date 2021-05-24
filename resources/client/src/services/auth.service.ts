@@ -1,5 +1,6 @@
 import {CommonService} from "@/services/Common.service";
 import {ILogin, IRegister, IRegisterResponse,} from "@/interfaces/auth.interfaces";
+import {AUTH_KEY} from "@/common/constants";
 
 
 
@@ -11,7 +12,7 @@ export class AuthService extends CommonService {
         try {
             const { data } = await this.client.post("/authentification/login", credentials);
             if (data.statu != 0) {
-                localStorage.setItem("auth", "connected");
+                localStorage.setItem(AUTH_KEY, "connected");
             }
             return data
         } catch (e) {

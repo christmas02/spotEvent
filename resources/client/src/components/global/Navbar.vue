@@ -43,17 +43,26 @@
 
            <v-spacer></v-spacer>
 
-           <v-btn color="primary" outlined :to="{name: 'auth-login'}" exact>
-               Connexion
-           </v-btn>
+           <template v-if="auth">
+               <v-btn color="primary" @click="logout">
+                   Déconnexion
+               </v-btn>
+           </template>
+          <template v-else>
+              <v-btn color="primary" outlined :to="{name: 'auth-login'}" exact>
+                  Connexion
+              </v-btn>
 
-           <v-btn color="primary" :to="{name: 'auth-register'}" exact>
-               Inscription
-           </v-btn>
+              <v-btn color="primary" :to="{name: 'auth-register'}" exact>
+                  Inscription
+              </v-btn>
+          </template>
        </v-app-bar>
 </template>
 
 <script>
+    import {AUTH_KEY} from "@/common/constants";
+
     export default {
         name: "navbar",
         props: {
@@ -65,6 +74,15 @@
         methods: {
             goHome() {
                 this.$router.push('/');
+            },
+            logout() {
+                window.localStorage.removeItem(AUTH_KEY);
+                this.$router.push({name: "auth-login"});
+            }
+        },
+        computed: {
+            auth() {
+                return !!window.localStorage.getItem(AUTH_KEY);
             }
         },
     }
