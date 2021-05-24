@@ -52,7 +52,6 @@
 
                     this.loading = false;
 
-                    console.log(result);
                     if (result.statu != 0) {
                        switch (result.statu) {
                            case 1:
