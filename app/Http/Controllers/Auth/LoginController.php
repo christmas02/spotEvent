@@ -54,15 +54,33 @@ class LoginController extends Controller
             }else{
                 if (auth()->user()->role == 3){
                     //return redirect()->route('administrateur');
-                    $lieu = 'welcome/tableau/administrateur';
-                    return response()->json(['statu'=> 3, 'lien' => $lieu]);
+                    $user = [
+                        'name' => auth()->user()->name,
+                        'id'   => auth()->user()->id,
+                        'email' => auth()->user()->email,
+                        'phone' => auth()->user()->phone
+                    ];
+                    $lieu = 'welcome/tableau/administrateur/'.auth()->user()->id;
+                    return response()->json(['statu'=> 3, 'lien' => $lieu, 'user'=> $user]);
                 }elseif(auth()->user()->role == 2){
                     //return redirect()->route('prestataire');
-                    $lieu = 'welcome/tableau/gesttion';
-                    return response()->json(['statu'=> 2, 'lien' => $lieu]);
+                    $user = [
+                        'name' => auth()->user()->name,
+                        'id'   => auth()->user()->id,
+                        'email' => auth()->user()->email,
+                        'phone' => auth()->user()->phone
+                    ];
+                    $lieu = 'welcome/tableau/gesttion/'.auth()->user()->id;
+                    return response()->json(['statu'=> 2, 'lien' => $lieu, 'user'=> $user]);
                 }elseif(auth()->user()->role == 1){
                     $role = 1;
-                    return response()->json(['statu'=>1, 'role' => $role]);
+                    $user = [
+                        'name' => auth()->user()->name,
+                        'id'   => auth()->user()->id,
+                        'email' => auth()->user()->email,
+                        'phone' => auth()->user()->phone
+                    ];
+                    return response()->json(['statu'=>1, 'role' => $role, 'user'=> $user]);
                 }else{
                     $role = 0;
                     return response()->json(['statu'=>0, 'role' => $role]);

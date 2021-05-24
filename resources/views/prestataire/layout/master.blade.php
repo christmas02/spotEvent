@@ -51,8 +51,8 @@
                 <img src="{{asset('/admin/images/user.png')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <h2>{{ Auth::user()->name }}</h2>
-                <small>{{ Auth::user()->email }}</small>
+                <h2>{{ $infoUser->name }}</h2>
+                <small>{{ $infoUser->email }}</small>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -92,7 +92,7 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="{{asset('/admin/images/user.png')}}" alt="">{{ Auth::user()->name }}
+                      <img src="{{asset('/admin/images/user.png')}}" alt="">{{ $infoUser->name }}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalProfile" href="#"> Profile</a>
@@ -205,19 +205,19 @@
                   <div class="item form-group">
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Nom et prenom</label>
                       <div class="col-md-6 col-sm-6 ">
-                          <input type="" name="" class="form-control" value="{{ Auth::user()->name }}">
+                          <input type="" name="" class="form-control" value="{{ $infoUser->name }}">
                       </div>
                   </div>
                   <div class="item form-group">
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Numero de telephone</label>
                       <div class="col-md-6 col-sm-6 ">
-                          <input type="" name="" class="form-control" value="{{ Auth::user()->phone }}">
+                          <input type="" name="" class="form-control" value="{{ $infoUser->phone }}">
                       </div>
                   </div>
                   <div class="item form-group">
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Adresse email</label>
                       <div class="col-md-6 col-sm-6 ">
-                          <input type="" name="" class="form-control" value="{{ Auth::user()->email }}">
+                          <input type="" name="" class="form-control" value="{{ $infoUser->email }}">
                       </div>
                   </div>
           </div>
@@ -260,7 +260,7 @@
           </div>
           <div class="modal-footer-btn">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-success">Enregistre</button>
+            <button type="submit" class="btn btn-success">Valider</button>
           </div>
           </form>
         </div>

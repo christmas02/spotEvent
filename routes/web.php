@@ -13,23 +13,9 @@
 
 //use Illuminate\Routing\Route;
 
-Route::group(['namespace' => 'Auth', 'prefix' => 'authentification'], function () {
-
-	Route::post('/login','LoginController@login');
-	Route::post('/register','RegisterController@register');
-
-});
-
-Route::group(['prefix' => 'api'], function () {
-
-	Route::get('/listUser','ApiController@getUsers');
-	Route::post('/login','ApiController@login');
-
-});
-
 Route::get('/', 'SinglePageController@index')->where('any', '.*');
 
-Route::get('/welcome/tableau/gesttion','PrestataireController@home')->name('prestataire');
+Route::get('/welcome/tableau/gesttion/{id}','PrestataireController@home')->name('prestataire');
 Route::get('/infos/compte/prestatire','PrestataireController@getFiche');
 Route::post('/save/compte/prestatire','PrestataireController@postFiche');
 Route::get('/fiche/prestataire','PrestataireController@Fiche');
@@ -41,7 +27,7 @@ Route::get('/list/messageries','PrestataireController@getMessagerie');
 
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
 
-Route::get('/welcome/tableau/administrateur','AdminController@home')->name('administrateur');
+Route::get('/welcome/tableau/administrateur/{id}','AdminController@home')->name('administrateur');
 Route::get('/liste/prestataires','AdminController@getPrestatire');
 Route::get('/fiche/prestataires/{id}','AdminController@onePrestatire');
 Route::get('/liste/reservations','AdminController@getReservation');

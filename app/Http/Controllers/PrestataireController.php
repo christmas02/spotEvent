@@ -31,15 +31,16 @@ class PrestataireController extends Controller
         return $galerieExiste;
     }
 
-    public function home(){
+    public function home($id){
         $user = Auth::user();
-        $ficheExiste = $this->ficheExiste($user->id);
-        $galerieExiste = $this->galerieExiste($user->id);
+        $infoUser = User::where('id',$id)->first();
+        $ficheExiste = $this->ficheExiste($id);
+        $galerieExiste = $this->galerieExiste($id);
 
         //dd($galerieExiste);
 
         
-        return view('prestataire.home',compact('ficheExiste','galerieExiste'));
+        return view('prestataire.home',compact('ficheExiste','galerieExiste','infoUser'));
     }
 
     public function getFiche(){

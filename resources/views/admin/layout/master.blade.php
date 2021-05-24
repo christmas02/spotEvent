@@ -51,8 +51,8 @@
                 <img src="{{asset('/admin/images/user.png')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <h2>{{ Auth::user()->name }}</h2>
-                <small>{{ Auth::user()->email }}</small>
+                <h2>{{ $infoUser->name }}</h2>
+                <small>{{ $infoUser->email }}</small>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -106,7 +106,7 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="{{asset('/admin/images/user.png')}}" alt="">{{ Auth::user()->name }}
+                      <img src="{{asset('/admin/images/user.png')}}" alt="">{{ $infoUser->name }}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;"> Profile</a>

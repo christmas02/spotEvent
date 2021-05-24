@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Prestation;
 use App\Fiche;
+use App\User;
 use App\Galerie;
 use Illuminate\Support\Facades\DB;
 
@@ -27,8 +29,12 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
-    public function home(){
-        return view('admin.home');
+    public function home($id){
+       
+        //dd();
+        $infoUser = User::where('id',$id)->first();
+        //dd($infoUser->name);
+        return view('admin.home', compact('infoUser'));
     }
 
     public function getPrestatire(){

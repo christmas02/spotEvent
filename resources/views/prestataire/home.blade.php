@@ -42,11 +42,10 @@
                           <img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      <h3>{{ Auth::user()->name }}</h3>
-
+                      <h3>{{ $infoUser->name }}</h3>
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-envelope user-profile-icon"></i> {{ Auth::user()->email }}</li>
-                        <li><i class="fa fa-phone user-profile-icon"></i> {{ Auth::user()->phone }}</li>
+                        <li><i class="fa fa-envelope user-profile-icon"></i>[{ $infoUser->email }}</li>
+                        <li><i class="fa fa-phone user-profile-icon"></i> {{ $infoUser->phone }} </li>
                       </ul>
 
                     </div>
