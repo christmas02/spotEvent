@@ -16,14 +16,14 @@
 Route::get('/', 'SinglePageController@index')->where('any', '.*');
 
 Route::get('/welcome/tableau/gesttion/{id}','PrestataireController@home')->name('prestataire');
-Route::get('/infos/compte/prestatire','PrestataireController@getFiche');
+Route::get('/infos/compte/prestatire/{id}','PrestataireController@getFiche');
 Route::post('/save/compte/prestatire','PrestataireController@postFiche');
-Route::get('/fiche/prestataire','PrestataireController@Fiche');
+Route::get('/fiche/prestataire/{id}','PrestataireController@Fiche');
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
 
 Route::post('/save/gallerie','PrestataireController@saveGalerie');
-Route::get('/list/reservations','PrestataireController@getReservation');
-Route::get('/list/messageries','PrestataireController@getMessagerie');
+Route::get('/list/reservations/{id}','PrestataireController@getReservation');
+Route::get('/list/messageries/{id}','PrestataireController@getMessagerie');
 
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
 

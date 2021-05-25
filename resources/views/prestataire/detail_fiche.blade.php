@@ -65,10 +65,10 @@
                                 NB : Veiller contacter le services conseil et assistance au besoin</h4>
                         </div>
                       @else
-                      @foreach($galerieExiste as $image)
+                      @foreach($galerieExiste as $items)
                        <div class="product_gallery">
-                          <a>
-                            <img width="50" height="90" src="{{asset('/image/'.$image->path)}}" alt="..." />
+                          <a> 
+                            <img width="50" height="90" src="{{asset('/image/'.$items->path )}}" alt="..." />
                           </a>
                         </div>
                       @endforeach

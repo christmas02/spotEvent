@@ -70,8 +70,8 @@
                                             for="first-name">Non de la structure <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input type="text" name="name"
-                                                class="form-control " required>
+                                            <input type="text" name="name" class="form-control " required>
+                                            <input type="text" name="id_user" hidden value="{{ $infoUser->id }}" class="form-control " required>
                                         </div>
                                     </div>
 
@@ -81,6 +81,7 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <select required="required" name="id_prestations" class="form-control " required>
+                                            <option>Choisir votre prestation</option>
                                             @foreach($listPrestation as $items)
                                                 <option value="{{ $items->id }}"> {{ $items->name }}</option>
                                             @endforeach    
@@ -171,19 +172,15 @@
                             <div id="step-3">
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Montant minimum de la prestation
-                                        </label>
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Intervale estimation de votre services
+                                    </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" name="montant_min_prest"  class="form-control" required>
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Montant maximun de la prestation
-                                        </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" name="montant_max_prest"  class="form-control" required>
+                                        <select required="required" name="id_estimation" class="form-control " required>
+                                        <option>Choisir l'intervalle d'estimation</option>
+                                            @foreach($listEstimation as $items)
+                                                <option value="{{ $items->id }}"> {{ $items->libelle }}</option>
+                                            @endforeach    
+                                        </select>
                                     </div>
                                 </div>
                             </div>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
+use App\Favori;
 
 
 class LoginController extends Controller
@@ -54,6 +57,7 @@ class LoginController extends Controller
             }else{
                 if (auth()->user()->role == 3){
                     //return redirect()->route('administrateur');
+                    
                     $user = [
                         'name' => auth()->user()->name,
                         'id'   => auth()->user()->id,
@@ -64,6 +68,7 @@ class LoginController extends Controller
                     return response()->json(['statu'=> 3, 'lien' => $lieu, 'user'=> $user]);
                 }elseif(auth()->user()->role == 2){
                     //return redirect()->route('prestataire');
+
                     $user = [
                         'name' => auth()->user()->name,
                         'id'   => auth()->user()->id,
@@ -74,13 +79,14 @@ class LoginController extends Controller
                     return response()->json(['statu'=> 2, 'lien' => $lieu, 'user'=> $user]);
                 }elseif(auth()->user()->role == 1){
                     $role = 1;
+                    $favoris = Favori::where('id_user',auth()->user()->id)->get();
                     $user = [
                         'name' => auth()->user()->name,
                         'id'   => auth()->user()->id,
                         'email' => auth()->user()->email,
                         'phone' => auth()->user()->phone
                     ];
-                    return response()->json(['statu'=>1, 'role' => $role, 'user'=> $user]);
+                    return response()->json(['statu'=>1, 'role' => $role, 'user'=> $user, 'favoris' => $favoris]);
                 }else{
                     $role = 0;
                     return response()->json(['statu'=>0, 'role' => $role]);

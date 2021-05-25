@@ -44,8 +44,8 @@
                       </div>
                       <h3>{{ $infoUser->name }}</h3>
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-envelope user-profile-icon"></i>[{ $infoUser->email }}</li>
-                        <li><i class="fa fa-phone user-profile-icon"></i> {{ $infoUser->phone }} </li>
+                        <li><i class="fa fa-envelope user-profile-icon"></i> {{ $infoUser->email }}</li>
+                        <li><i class="fa fa-phone user-profile-icon"></i>  {{ $infoUser->phone }} </li>
                       </ul>
 
                     </div>
@@ -161,7 +161,7 @@
                     @if($ficheExiste == null)
                       <div class="alert alert-danger">
                       <h4>Vous devez completez les informations relative a votre comptre prestataire,
-                        pour le fais cliquez cliquer sur ce lien <br> <a href="/infos/compte/prestatire"> Compte prestataire</a> <br>
+                        pour le fais cliquez cliquer sur ce lien <br> <a href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
                         NB : Veiller contacter le services conseil et assistance au besoin</h4>
                       </div>
                     @endif

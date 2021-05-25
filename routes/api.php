@@ -23,3 +23,11 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'authentification'], function (
 	Route::post('/register','RegisterController@register');
 
 });
+
+
+Route::get('liste_categorie','ApiController@getCategorie');
+Route::get('liste_estimation','ApiController@getEstimation');
+Route::get('liste_prestataire','ApiController@getPrestataires');
+Route::post('liste_slides','ApiController@getSlide');
+
+

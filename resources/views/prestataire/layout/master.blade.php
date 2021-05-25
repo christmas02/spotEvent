@@ -65,10 +65,10 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="/welcome/tableau/gesttion"><i class="fa fa-home"></i> Tableau de bord</span></a></li>
-                  <li><a href="/fiche/prestataire"><i class="fa fa-edit"></i> Mon compte</span></a></li>
-                  <li><a href="/list/reservations"><i class="fa fa-table"></i> Liste des reservations </a></li>
-                  <li><a href="/list/messageries"><i class="fa fa-comments"></i> Messagerie</a></li>
+                  <li><a href="/welcome/tableau/gesttion/{{ $infoUser->id }}"><i class="fa fa-home"></i> Tableau de bord</span></a></li>
+                  <li><a href="/fiche/prestataire/{{ $infoUser->id }}"><i class="fa fa-edit"></i> Mon compte</span></a></li>
+                  <li><a href="/list/reservations/{{ $infoUser->id }}"><i class="fa fa-table"></i> Liste des reservations </a></li>
+                  <li><a href="/list/messageries/{{ $infoUser->id }}"><i class="fa fa-comments"></i> Messagerie</a></li>
                   
                   <li><a><i class="fa fa-sign-out"></i> Deconnexion </a></li>
                   
@@ -173,6 +173,7 @@
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Gallerie</label>
                       <div class="col-md-6 col-sm-6 ">
                           <input type="file" name="images[]" class="form-control" multiple>
+                          <input type="text" hidden name="id_user" value="{{ $infoUser->id }}">
                       </div>
                      
                   </div>
