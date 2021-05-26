@@ -29,5 +29,6 @@ Route::get('liste_categorie','ApiController@getCategorie');
 Route::get('liste_estimation','ApiController@getEstimation');
 Route::get('liste_prestataire','ApiController@getPrestataires');
 Route::post('liste_slides','ApiController@getSlide');
+Route::post('first_prestataire','ApiController@fisrtPrestataires');
 
 
