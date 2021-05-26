@@ -43,10 +43,10 @@ class ApiController extends Controller
     public function fisrtPrestataires(Request $request){
         $id = $request['id_user'];
         $firstPrestataire = Fiche::where('id_user',$id)
-        //->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-        //->select('fiches.*','prestations.name as prestation','prestations.path_icone')
+        ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
         ->get();
         //dd($listPrestataire);
         return response()->json(['statu'=>1, 'firstPrestataire' => $firstPrestataire]);
