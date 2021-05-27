@@ -1,22 +1,27 @@
 <template>
     <div class="row">
-        <div class="col-md-4" v-for="n in 6" :key="n">
-            <benefit-card></benefit-card>
+        <div class="col-md-4" v-for="benefit in benefits" :key="benefit.id">
+            <benefit-card :benefit="benefit"></benefit-card>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import Vue from "vue"
-    import BenefitCard from "./BenefitCard.vue"
+import { Benefit } from "@/interfaces/benefit.interface";
+import Vue, { PropType } from "vue";
+import BenefitCard from "./BenefitCard.vue";
 
-    export default Vue.extend({
-        components: {
-            BenefitCard
+export default Vue.extend({
+    props: {
+        benefits: {
+            type: Array as PropType<Benefit[]>,
+            required: true
         }
-    })
+    },
+    components: {
+        BenefitCard
+    }
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

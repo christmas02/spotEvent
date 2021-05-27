@@ -1,6 +1,5 @@
 <template>
        <v-app-bar
-           class="mx-4"
            id="app-navbar"
            color="white"
            :height="height"
@@ -126,8 +125,14 @@
 </script>
 
 <style>
+
+    #app-navbar {
+        width: 90%;;
+        margin: 0 auto;
+    }
     #app-navbar .primary--text{
         border: none;
+        margin: 0 auto;
     }
     #app-navbar .primary--text .v-btn__content {
         color: var(--primary) !important;

@@ -14,13 +14,14 @@
                         <div id="devis">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <v-text-field label="text"></v-text-field>
+                                    <v-select label="Catégories" :items="categories" item-text="name" item-value="id"></v-select>
+
                                 </div>
                                 <div class="col-md-4">
-                                    <v-text-field label="text"></v-text-field>
+                                    <v-text-field label="Lieu"></v-text-field>
                                 </div>
                                 <div class="col-md-4 d-flex align-items-center">
-                                    <v-text-field label="text"></v-text-field>
+                                    <v-select label="Estimation" :items="estimatess" item-text="libelle" item-value="id"></v-select>
                                     <v-btn color="primary" class="ml-5">
                                         <v-icon>mdi-magnify</v-icon>
                                     </v-btn>
@@ -36,20 +37,26 @@
                         <div>
                             <h2 class="section-title">Prestations</h2>
                         </div>
-                        <div class="actions-container">
-                            <v-btn color="primary">Tout</v-btn>
-                            <v-btn>Tout</v-btn>
-                            <v-btn>Tout</v-btn>
+                        <div class="actions-container d-flex">
+                            <div>
+                                <v-btn color="primary" x-large>Toutes les prestations</v-btn>
+                            </div>
+                            <div class="mx-2">
+                                <v-autocomplete label="Catégories" filled :items="categories" item-text="name" item-value="id"></v-autocomplete>
+                            </div>
+                            <div>
+                                <v-autocomplete label="Estimations" filled :items="estimatess" item-text="libelle" item-value="id"></v-autocomplete>
+                            </div>
                         </div>
                     </div>
                     <div style="margin: 50px 0">
-                        <benefits-grid></benefits-grid>
+                        <benefits-grid :benefits="benefits"></benefits-grid>
                     </div>
                     <div class="text-center">
                         <v-btn color="primary">Voir plus</v-btn>
                     </div>
                 </div>
-                <div class="section mt-0">
+                <div class="section mt-0" v-if="false">
                     <div>
                         <h2 class="section-title">Prestataires</h2>
                     </div>
@@ -72,18 +79,39 @@ import Vue from "vue";
 import Jumbotron from "@/components/Jumbotron.vue";
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import ProvidersSlider from "@/components/ProvidersSlider.vue";
+import { Benefit } from "@/interfaces/benefit.interface";
+import {ICategory} from "@/interfaces/category.interface";
+import {IEstimate} from "@/interfaces/estimation.interface";
+
 export default Vue.extend({
     name: "Home",
     components: {
         Jumbotron,
         BenefitsGrid,
         ProvidersSlider
-    }
+    },
+    async beforeMount(): Promise<void> {
+       await Promise.all(
+           [this.$store.dispatch("benefits/fetchAll"),
+                this.$store.dispatch("benefits/fetchCategories"),
+                this.$store.dispatch("benefits/fetchEstimates")
+           ]);
+    },
+    computed: {
+        benefits(): Benefit[] {
+            return this.$store.getters["benefits/all"];
+        },
+        categories(): ICategory[] {
+            return this.$store.getters["benefits/categories"];
+        },
+        estimatess(): IEstimate[] {
+            return this.$store.getters["benefits/estimates"];
+        }
+    },
 });
 </script>
 
 <style>
-
 #devis {
     position: absolute;
     bottom: -33px;

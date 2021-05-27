@@ -62,7 +62,7 @@
                                window.location.href = window.location.origin + "/" + result.lien;
                                break;
                            default:
-                               this.$swal({icon: "warning",  text: "Identifiants invalides"})
+                               this.$swal({icon: "error",  text: "Identifiants invalides"})
                        }
                    }
                    else {
