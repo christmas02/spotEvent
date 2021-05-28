@@ -27,8 +27,10 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'authentification'], function (
 
 Route::get('liste_categorie','ApiController@getCategorie');
 Route::get('liste_estimation','ApiController@getEstimation');
-Route::get('liste_prestataire','ApiController@getPrestataires');
+Route::get('liste_prestation','ApiController@getPrestation');
+Route::get('liste_prestataire','ApiController@getPrestataire');
 Route::post('liste_slides','ApiController@getSlide');
-Route::post('first_prestataire','ApiController@fisrtPrestataires');
+Route::post('first_prestation','ApiController@fisrtPrestation');
+Route::post('first_prestataire','ApiController@firstPrestataire');
 
 
