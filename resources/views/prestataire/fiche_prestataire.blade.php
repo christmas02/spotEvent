@@ -101,6 +101,15 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation <small>Une présentation se 400 mots</small></label>
+
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <textarea rows="4" size="400" name="presentation" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <label for="middle-name"
                                             class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="8" name="description" class="form-control" required></textarea>
@@ -172,13 +181,27 @@
                             <div id="step-3">
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Intervale estimation de votre services
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Estimation min
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <select required="required" name="id_estimation" class="form-control " required>
-                                        <option>Choisir l'intervalle d'estimation</option>
+                                        <select required="required" name="estimation_min" class="form-control " required>
+                                        <option>Choisir l'estimation</option>
                                             @foreach($listEstimation as $items)
-                                                <option value="{{ $items->id }}"> {{ $items->libelle }}</option>
+                                                <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
+                                            @endforeach    
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label for="middle-name"
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Estimation max
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select required="required" name="estimation_max" class="form-control " required>
+                                        <option>Choisir l'estimation</option>
+                                            @foreach($listEstimation as $items)
+                                                <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
                                             @endforeach    
                                         </select>
                                     </div>

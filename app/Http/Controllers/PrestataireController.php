@@ -76,6 +76,7 @@ class PrestataireController extends Controller
             $fiche->localisation = $request->get('localisation');
             $fiche->id_prestations = $request->get('id_prestations');
             $fiche->description = $request->get('description');
+            $fiche->presentation = $request->get('presentation');
             $fiche->path_img = $image_five;
             $fiche->phone_service = $request->get('phone_service');
             $fiche->phone2_service = $request->get('phone2_service');
@@ -83,7 +84,8 @@ class PrestataireController extends Controller
             $fiche->lien_facebook = $request->get('lien_facebook');
             $fiche->lien_instagram = $request->get('lien_instagram');
             $fiche->email_service = $request->get('email_service');
-            $fiche->id_estimation = $request->get('id_estimation');
+            $fiche->estimation_max = $request->get('estimation_max');
+            $fiche->estimation_min = $request->get('estimation_min');
             $fiche->id_user = $request->get('id_user');
             $fiche->statu_fiche = 0;
             $fiche->messagerie = 0;
@@ -105,7 +107,7 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($id);
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
-        //dd($galerieExiste);
+        //dd(!empty($galerieExiste));
 
         return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste'));
     }
@@ -164,9 +166,11 @@ class PrestataireController extends Controller
             $images = array();
             if($files=$request->file('images')){
                 foreach($files as $file){
+                    // $lien = 
                     $name = $file->getClientOriginalName();
                     $file->move('image',$name);
                     $images[]=$name;
+                    
 
                     Galerie::create([
                         'path' => $name,

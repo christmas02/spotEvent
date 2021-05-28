@@ -7,6 +7,11 @@
         return $prestation;
     }
 
+    function getEstimation($id){
+      $estimation = \App\Estimation::where('id',$id)->first();
+      return $estimation;
+    }
+
 ?>
 <!-- page content -->
 <div class="right_col" role="main">
@@ -52,42 +57,19 @@
                   @if($ficheExiste)
                   <div>
 
-                    <div class="col-md-6 col-sm-7 ">
-                      <div class="product-image">
-                        <img src="{{asset('/image/'.$ficheExiste->path_img)}}" alt="..." />
-                      </div>
-                      <br>
-                      
-                      @if($galerieExiste == null)
-                        <div class="alert alert-warning">
-                            <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de presenter vos réalisation,
-                                aux utilisateur qui visiteros votre profil<br> <a class="" data-toggle="modal" data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
-                                NB : Veiller contacter le services conseil et assistance au besoin</h4>
-                        </div>
-                      @else
-                      @foreach($galerieExiste as $items)
-                       <div class="product_gallery">
-                          <a> 
-                            <img width="50" height="90" src="{{asset('/image/'.$items->path )}}" alt="..." />
-                          </a>
-                        </div>
-                      @endforeach
-                      @endif
-                      
-                    </div>
-
-                    <div class="col-md-6 col-sm-5 " style="border:0px solid #e5e5e5;">
+                    <div class="col-md-12 col-sm-12 " style="border:0px solid #e5e5e5;">
                         @if($ficheExiste->statu_fiche == 0 )
-                        <button class="btn btn-warning "> En cours de traitement</button>
+                        <p class="alert alert-warning "> En cours de traitement</p>
                         @elseif($ficheExiste->statu_fiche == 1 )
-                        <button class="btn btn-info "> Actif</button>
+                        <p class="alert alert-info "> Actif</p>
                         @elseif($ficheExiste->statu_fiche == 2 )
-                        <button class="btn btn-danger "> Inactif</button>
+                        <p class="alert alert-danger "> Inactif</p>
                         @endif
                         <h3 style="" class="prod_title">{{ $ficheExiste->name }} / {{ $ficheExiste->localisation }}</h3>
-                        <h4>{{ $ficheExiste->description }}.</h4>
-                        <h4>Interval de facturation de la prestation : {{ number_format($ficheExiste->montant_min_prest) }} .XOF  - {{ number_format($ficheExiste->montant_max_prest) }} .XOF </h4>
-                        <h4>Telephone : {{ $ficheExiste->phone_service }} / {{ $ficheExiste->phone2_service }}</h4>
+                        <h4><strong>Présentation :</strong>{{ $ficheExiste->presentation }}.</h4>
+                        <h4><strong>Description :</strong>{{ $ficheExiste->description }}.</h4>
+                        <h4>Interval de facturation de la prestation : {{ number_format($ficheExiste->estimation_min) }} .XOF  -  {{ number_format($ficheExiste->id_estimation_min) }}.XOF </h4>
+                        <h4><strong>Telephone</strong> : {{ $ficheExiste->phone_service }} / {{ $ficheExiste->phone2_service }}</h4>
                         <h4>Whatsapp : {{ $ficheExiste->phone_whastapp }}</h4>
                         <h4>Facebook : {{ $ficheExiste->lien_facebook }}</h4>
                         <h4>Email : {{ $ficheExiste->email_service }}</h4>
@@ -104,12 +86,42 @@
                         </div>
 
                     </div>
+
+                    <div class="col-md-12 col-sm-12 ">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="product-image">
+                          <img src="{{asset('/image/'.$ficheExiste->path_img)}}" alt="..." />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        @if(!empty($galerieExiste) == true)
+                          <div class="alert alert-warning">
+                              <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de presenter vos réalisation,
+                                  aux utilisateur qui visiteros votre profil<br> <a class="" data-toggle="modal" data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
+                                  NB : Veiller contacter le services conseil et assistance au besoin</h4>
+                          </div>
+                        @else
+                        @foreach($galerieExiste as $items)
+                        <div class="product_gallery">
+                            <div class="col-md-6"> 
+                              <img width="200" height="200" src="{{asset('/image/'.$items->path )}}" alt="..." />
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
+                      </div>
+                    </div>
+                      <div></div>
+                      <br>
+
+                    </div>
                   
                   </div>
                   @else
                     <div class="alert alert-danger">
                     <h4>Vous devez completez les informations relative a votre comptre prestataire,
-                        pour le fais cliquez cliquer sur ce lien <br> <a href="/infos/compte/prestatire"> Compte prestataire</a> <br>
+                        pour le fais cliquez cliquer sur ce lien <br> <a href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
                         NB : Veiller contacter le services conseil et assistance au besoin</h4>
                     </div>
                   @endif
@@ -235,6 +247,13 @@
             </div>
             <div class="item form-group">
                 <label for="middle-name"
+                    class="col-form-label col-md-3 col-sm-3 label-align">Presentation</label>
+                <div class="col-md-6 col-sm-6 ">
+                    <textarea rows="4" name="description" class="form-control">{{$ficheExiste->presentation}}</textarea>
+                </div>
+            </div>
+            <div class="item form-group">
+                <label for="middle-name"
                     class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
                 <div class="col-md-6 col-sm-6 ">
                     <textarea rows="8" name="description" class="form-control">{{$ficheExiste->description}}</textarea>
@@ -242,18 +261,18 @@
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                   Tarification min<span class="required">*</span>
+                  Estimation min<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" name="montant_min_prest" class="form-control" value="{{ $ficheExiste->montant_min_prest }}">
+                    <input type="text" name="montant_min_prest" class="form-control" value="{{ $ficheExiste->id_estimation_min }}">
                 </div>
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                Tarification max<span class="required">*</span>
+                Estimation max<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" name="montant_max_prest" class="form-control" value="{{ $ficheExiste->montant_max_prest }}">
+                    <input type="text" name="montant_max_prest" class="form-control" value="{{ $ficheExiste->id_estimation_max }}">
                 </div>
             </div>
             <div class="item form-group">
