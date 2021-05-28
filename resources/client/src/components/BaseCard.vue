@@ -1,19 +1,19 @@
 <template>
     <v-card class="mx-auto" :max-width="maxWidth" :min-width="minWidth">
         <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            lazy-src="https://picsum.photos/id/11/10/6"
+            :src="image"
             height="250px"
         >
             <slot></slot>
         </v-img>
 
         <v-card-title class="the-title">
-            Top western road trips
+            {{ title }}
         </v-card-title>
 
         <v-card-subtitle class="subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-            cum dolorem voluptatum.
+            <p>{{ description }}</p>
         </v-card-subtitle>
     </v-card>
 </template>
@@ -30,7 +30,19 @@ export default Vue.extend({
         minWidth: {
             type: String,
             default: "auto"
-        }
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
+        image: {
+            type: String,
+            required: true
+        },
     }
 });
 </script>
@@ -39,11 +51,15 @@ export default Vue.extend({
 .the-title {
     font-size: 1.4rem !important;
     color: var(--primary);
+    margin-bottom: 8px;
 }
 
-.subtitle {
+.subtitle p {
     color: #000 !important;
     font-weight: 600;
-    font-size: 0.9em;
+    display: block;/* or inline-block */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4.5em;
 }
 </style>

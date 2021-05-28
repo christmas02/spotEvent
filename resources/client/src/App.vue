@@ -21,7 +21,7 @@
     padding-right: var(--default-padding);
 }
 .my-jumbotron .content-title {
-    font-size: 6rem;
+    font-size: 5rem;
     line-height: 0.9em;
 }
 
@@ -93,5 +93,8 @@ button.v-btn--outlined.primary--text .v-btn__content {
 /*    background: #fbb231;*/
 /*}*/
 
+    #devis .theme--light.v-select .v-select__selection {
+        color: #fff !important;
+    }
 
 </style>

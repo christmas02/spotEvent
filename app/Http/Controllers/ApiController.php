@@ -30,26 +30,56 @@ class ApiController extends Controller
         return response()->json(['statu'=>1, 'listCategorie' => $listEstiomation]);
     }
 
-    public function getPrestataires(){
-        $listPrestataire = Fiche::leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+    public function getPrestation(){
+        $listPrestation = Fiche::leftjoin('prestations','prestations.id','=','fiches.id_prestations')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
         ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
         ->get();
         //dd($listPrestataire);
+        return response()->json(['statu'=>1, 'listPrestation' => $listPrestation]);
+    }
+
+    public function getPrestataire(){
+        $listPrestataire = User::where('role',2)
+        ->where('confirmation_token', NULL)
+        ->leftjoin('fiches','fiches.id_user','=','users.id')
+        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+        ->select('users.*','fiches.name as name_entreprise','fiches.id_user','prestations.name as prestation','prestations.path_icone')
+        ->get();
+        //dd($listPrestataire);
         return response()->json(['statu'=>1, 'listPrestataire' => $listPrestataire]);
     }
 
-    public function fisrtPrestataires(Request $request){
+    public function firstPrestataire(Request $request){
         $id = $request['id_user'];
-        $firstPrestataire = Fiche::where('id_user',$id)
+        $listPrestataire = User::where('users.id',$id)
+        ->where('confirmation_token', NULL)
+        ->leftjoin('fiches','fiches.id_user','=','users.id')
+        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+        ->select('users.*','fiches.name as name_entreprise','fiches.id_user','prestations.name as prestation','prestations.path_icone')
+        ->get();
+        //dd($listPrestataire);
+        //return $id;
+        return response()->json(['statu'=>1, 'listPrestataire' => $listPrestataire]);
+    }
+
+
+
+    public function fisrtPrestation(Request $request){
+        $id = $request['id_user'];
+        $firstPrestation = Fiche::where('id_user',$id)
         ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
         ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
         ->get();
         //dd($listPrestataire);
-        return response()->json(['statu'=>1, 'firstPrestataire' => $firstPrestataire]);
+        return response()->json(['statu'=>1, 'firstPrestation' => $firstPrestation]);
     }
 
 

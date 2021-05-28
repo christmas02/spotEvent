@@ -1,14 +1,27 @@
 <template>
-    <base-card max-width="90%">
-        <v-btn color="primary" class="discover-btn" small :to="{ name: 'benefit', params: { id: '1'}}">Découvrir</v-btn>
+    <base-card max-width="90%" :description="benefit.description" :title="benefit.name" :image="benefit.path_img">
+        <v-btn
+            color="primary"
+            class="discover-btn"
+            small
+            :to="{ name: 'benefit', params: { id: benefit.id } }"
+            >Découvrir</v-btn
+        >
     </base-card>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Benefit } from "@/interfaces/benefit.interface";
+import Vue, { PropType } from "vue";
 import BaseCard from "./BaseCard.vue";
 
 export default Vue.extend({
+    props: {
+        benefit: {
+            type: Object as PropType<Benefit>,
+            required: true
+        }
+    },
     components: {
         BaseCard
     }

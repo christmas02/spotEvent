@@ -2148,7 +2148,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar",
@@ -2257,7 +2256,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n:root {\n    --primary: #fbb231;\n    --secondary: #2f374a;\n    --default-padding: 5%;\n}\n.main {\n    width: 90%;\n}\n.default-padding {\n    padding-left: var(--default-padding);\n    padding-right: var(--default-padding);\n}\n.my-jumbotron .content-title {\n    font-size: 6rem;\n    line-height: 0.9em;\n}\n.my-jumbotron .content-subtitle {\n    font-size: 1.5rem;\n}\n.vh-100 {\n    height: 100vh;\n}\n.vw-100 {\n    width: 100vw;\n}\n.h-100 {\n    height: 100%;\n}\n.w-100 {\n    width: 100%;\n}\n.my-row {\n    --bs-gutter-x: 1.5rem;\n    --bs-gutter-y: 0;\n    display: flex;\n    flex-wrap: wrap;\n    margin: calc(var(--bs-gutter-y) * -1) calc(var(--bs-gutter-x) / -2) 0 !important;\n}\nbutton {\n    text-transform: none !important;\n}\nbutton.primary {\n    color: #000 !important;\n}\nbutton.v-btn--outlined.primary--text .v-btn__content {\n    color: #fff !important;\n}\n.v-input--is-label-active .v-label--active {\n    font-weight: bold;\n    color: #000 !important;\n}\n.section-title {\n    font-size: 2.3rem;\n}\n.section-title::after {\n    content: \"\";\n    display: block;\n    width: 90px;\n    height: 5px;\n    background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text {\n    color: #000 !important;\n    background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text.v-btn--outlined {\n    color: #fff !important;\n}\n\n/*.v-btn--outlined.v-btn--round.v-btn--rounded.primary--text {*/\n/*    background: #fbb231;*/\n/*}*/\n\n\n", ""]);
+exports.push([module.i, "\n:root {\n    --primary: #fbb231;\n    --secondary: #2f374a;\n    --default-padding: 5%;\n}\n.main {\n    width: 90%;\n}\n.default-padding {\n    padding-left: var(--default-padding);\n    padding-right: var(--default-padding);\n}\n.my-jumbotron .content-title {\n    font-size: 5rem;\n    line-height: 0.9em;\n}\n.my-jumbotron .content-subtitle {\n    font-size: 1.5rem;\n}\n.vh-100 {\n    height: 100vh;\n}\n.vw-100 {\n    width: 100vw;\n}\n.h-100 {\n    height: 100%;\n}\n.w-100 {\n    width: 100%;\n}\n.my-row {\n    --bs-gutter-x: 1.5rem;\n    --bs-gutter-y: 0;\n    display: flex;\n    flex-wrap: wrap;\n    margin: calc(var(--bs-gutter-y) * -1) calc(var(--bs-gutter-x) / -2) 0 !important;\n}\nbutton {\n    text-transform: none !important;\n}\nbutton.primary {\n    color: #000 !important;\n}\nbutton.v-btn--outlined.primary--text .v-btn__content {\n    color: #fff !important;\n}\n.v-input--is-label-active .v-label--active {\n    font-weight: bold;\n    color: #000 !important;\n}\n.section-title {\n    font-size: 2.3rem;\n}\n.section-title::after {\n    content: \"\";\n    display: block;\n    width: 90px;\n    height: 5px;\n    background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text {\n    color: #000 !important;\n    background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text.v-btn--outlined {\n    color: #fff !important;\n}\n\n/*.v-btn--outlined.v-btn--round.v-btn--rounded.primary--text {*/\n/*    background: #fbb231;*/\n/*}*/\n#devis .theme--light.v-select .v-select__selection {\n        color: #fff !important;\n}\n\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2275,7 +2274,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.the-title[data-v-5644c1c3] {\r\n    font-size: 1.4rem !important;\r\n    color: var(--primary);\n}\n.subtitle[data-v-5644c1c3] {\r\n    color: #000 !important;\r\n    font-weight: 600;\r\n    font-size: 0.9em;\n}\r\n", ""]);
+exports.push([module.i, "\n.the-title[data-v-5644c1c3] {\n    font-size: 1.4rem !important;\n    color: var(--primary);\n    margin-bottom: 8px;\n}\n.subtitle p[data-v-5644c1c3] {\n    color: #000 !important;\n    font-weight: 600;\n    display: block;/* or inline-block */\n    overflow: hidden;\n    text-overflow: ellipsis;\n    max-height: 4.5em;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2401,7 +2400,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#app-navbar .primary--text{\n    border: none;\n}\n#app-navbar .primary--text .v-btn__content {\n    color: var(--primary) !important;\n}\n.nav-list {\n    display: flex !important;\n    font-weight: bold;\n}\n.nav-list .v-list-item {\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n#app-navbar {\n    width: 90%;;\n    margin: 0 auto;\n}\n#app-navbar .primary--text{\n    border: none;\n    margin: 0 auto;\n}\n#app-navbar .primary--text .v-btn__content {\n    color: var(--primary) !important;\n}\n.nav-list {\n    display: flex !important;\n    font-weight: bold;\n}\n.nav-list .v-list-item {\n    cursor: pointer;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2757,7 +2756,8 @@ var render = function() {
         "v-img",
         {
           attrs: {
-            src: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+            "lazy-src": "https://picsum.photos/id/11/10/6",
+            src: _vm.image,
             height: "250px"
           }
         },
@@ -2766,13 +2766,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("v-card-title", { staticClass: "the-title" }, [
-        _vm._v("\n        Top western road trips\n    ")
+        _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
       ]),
       _vm._v(" "),
       _c("v-card-subtitle", { staticClass: "subtitle" }, [
-        _vm._v(
-          "\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci\n        cum dolorem voluptatum.\n    "
-        )
+        _c("p", [_vm._v(_vm._s(_vm.description))])
       ])
     ],
     1
@@ -2802,7 +2800,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "base-card",
-    { attrs: { "max-width": "90%" } },
+    {
+      attrs: {
+        "max-width": "90%",
+        description: _vm.benefit.description,
+        title: _vm.benefit.name,
+        image: _vm.benefit.path_img
+      }
+    },
     [
       _c(
         "v-btn",
@@ -2811,7 +2816,7 @@ var render = function() {
           attrs: {
             color: "primary",
             small: "",
-            to: { name: "benefit", params: { id: "1" } }
+            to: { name: "benefit", params: { id: _vm.benefit.id } }
           }
         },
         [_vm._v("Découvrir")]
@@ -2845,11 +2850,11 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "row" },
-    _vm._l(6, function(n) {
+    _vm._l(_vm.benefits, function(benefit) {
       return _c(
         "div",
-        { key: n, staticClass: "col-md-4" },
-        [_c("benefit-card")],
+        { key: benefit.id, staticClass: "col-md-4" },
+        [_c("benefit-card", { attrs: { benefit: benefit } })],
         1
       )
     }),
@@ -2884,7 +2889,7 @@ var render = function() {
     [
       _c("img", {
         staticClass: "background",
-        attrs: { src: _vm.image, alt: "" }
+        attrs: { src: "https://picsum.photos/id/11/10/6", alt: "" }
       }),
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [_vm._t("default")], 2),
@@ -3547,7 +3552,6 @@ var render = function() {
   return _c(
     "v-app-bar",
     {
-      staticClass: "mx-4",
       attrs: {
         id: "app-navbar",
         color: "white",
@@ -4023,160 +4027,162 @@ var render = function() {
         _c(
           "div",
           [
-            _c(
-              "jumbotron",
-              { attrs: { image: __webpack_require__(/*! ../assets/images/jmbg2.png */ "./resources/client/src/assets/images/jmbg2.png") } },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "d-md-flex justify-content-md-between align-items-md-center"
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-md-6 h-100 d-flex flex-column justify-content-between"
-                      },
-                      [
-                        _c("div"),
-                        _vm._v(" "),
-                        _c("div", [
-                          _c("h1", { staticClass: "content-title" }, [
-                            _vm._v("Traiteur")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "content-subtitle my-5" }, [
-                            _vm._v(
-                              "\n                                   texte essai oui texte essai"
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                                   texte essai oui texte essai\n                                   texte essai oui texte essai\n                               "
-                            )
-                          ])
+            _c("jumbotron", { attrs: { image: _vm.benefit.path_img } }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "d-md-flex justify-content-md-between align-items-md-center"
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "col-md-6 h-100 d-flex flex-column justify-content-between"
+                    },
+                    [
+                      _c("div"),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("h1", { staticClass: "content-title" }, [
+                          _vm._v(_vm._s(_vm.benefit.name))
                         ]),
                         _vm._v(" "),
-                        _c("h2", { staticClass: "primary--text" }, [
-                          _vm._v("Restauration")
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c(
-                        "div",
-                        { staticClass: "d-md-flex justify-content-md-center" },
-                        [
-                          _c(
-                            "v-carousel",
-                            {
-                              staticClass: "provider-pics",
-                              attrs: {
-                                cycle: "",
-                                "hide-delimiters": "",
-                                height: "400"
-                              },
-                              model: {
-                                value: _vm.model,
-                                callback: function($$v) {
-                                  _vm.model = $$v
-                                },
-                                expression: "model"
-                              }
-                            },
-                            _vm._l(_vm.colors, function(color, i) {
-                              return _c(
-                                "v-carousel-item",
-                                { key: color },
-                                [
-                                  _c(
-                                    "v-sheet",
-                                    {
-                                      attrs: {
-                                        color: color,
-                                        height: "100%",
-                                        tile: ""
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "v-row",
-                                        {
-                                          staticClass: "fill-height",
-                                          attrs: {
-                                            align: "center",
-                                            justify: "center"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "display-3" },
-                                            [
-                                              _vm._v(
-                                                "\n                                                    Slide " +
-                                                  _vm._s(i + 1) +
-                                                  "\n                                                "
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            }),
-                            1
+                        _c("p", { staticClass: "content-subtitle my-5" }, [
+                          _vm._v(
+                            "\n                                  " +
+                              _vm._s(_vm.benefit.description) +
+                              "\n                               "
                           )
-                        ],
-                        1
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "top" },
-                  [
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("h2", { staticClass: "primary--text" }, [
+                        _vm._v(_vm._s(_vm.benefit.prestation))
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
                     _c(
-                      "v-btn",
-                      { attrs: { color: "primary", text: "", "x-large": "" } },
+                      "div",
+                      { staticClass: "d-md-flex justify-content-md-center" },
                       [
-                        _c("v-icon", [_vm._v("mdi-arrow-left")]),
-                        _vm._v(
-                          "\n                            Retour\n                        "
+                        _c(
+                          "v-carousel",
+                          {
+                            staticClass: "provider-pics",
+                            attrs: {
+                              cycle: "",
+                              "hide-delimiters": "",
+                              height: "400"
+                            },
+                            model: {
+                              value: _vm.model,
+                              callback: function($$v) {
+                                _vm.model = $$v
+                              },
+                              expression: "model"
+                            }
+                          },
+                          _vm._l(_vm.colors, function(color, i) {
+                            return _c(
+                              "v-carousel-item",
+                              { key: color },
+                              [
+                                _c(
+                                  "v-sheet",
+                                  {
+                                    attrs: {
+                                      color: color,
+                                      height: "100%",
+                                      tile: ""
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-row",
+                                      {
+                                        staticClass: "fill-height",
+                                        attrs: {
+                                          align: "center",
+                                          justify: "center"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "display-3" },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    Slide " +
+                                                _vm._s(i + 1) +
+                                                "\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          }),
+                          1
                         )
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        staticClass: "btn-icon",
-                        attrs: {
-                          icon: "",
-                          color: "primary",
-                          "x-large": "",
-                          outlined: "",
-                          rounded: ""
-                        }
-                      },
-                      [_c("v-icon", [_vm._v("mdi-heart")])],
-                      1
                     )
-                  ],
-                  1
-                )
-              ]
-            )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "top" },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: {
+                        color: "primary",
+                        text: "",
+                        "x-large": "",
+                        to: "/"
+                      }
+                    },
+                    [
+                      _c("v-icon", [_vm._v("mdi-arrow-left")]),
+                      _vm._v(
+                        "\n                            Retour\n                        "
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "btn-icon",
+                      attrs: {
+                        icon: "",
+                        color: "primary",
+                        "x-large": "",
+                        outlined: "",
+                        rounded: "",
+                        disabled: _vm.benefit.favoris !== 1
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("mdi-heart")])],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
           ],
           1
         ),
@@ -4189,27 +4195,7 @@ var render = function() {
                   _vm._v("Description")
                 ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequuntur nam nostrum quidem,\n                                recusandae reiciendis sapiente unde. A asperiores delectus eius facilis nam nemo, nisi nostrum,\n                                quas quasi, sit ut!\n                            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci blanditiis corporis excepturi nemo officiis pariatur quidem quis tenetur voluptatem voluptatum? Aperiam delectus earum esse explicabo, id minus odit qui quisquam?"
-                  )
-                ]),
-                _c("span", [
-                  _vm._v(
-                    "Aspernatur perspiciatis quae sed voluptatum. Ad at consequatur dignissimos doloremque ducimus, error hic in molestias nam natus neque nihil, optio possimus praesentium quae quasi qui quo recusandae ullam ut. Neque."
-                  )
-                ]),
-                _c("span", [
-                  _vm._v(
-                    "Ab accusamus alias architecto assumenda, aut deserunt distinctio eligendi libero magnam nulla officiis quae qui ratione reiciendis sunt suscipit voluptatibus. Alias facere facilis in quis quisquam repudiandae sed unde, veniam?"
-                  )
-                ])
+                _c("p", [_vm._v(_vm._s(_vm.benefit.description))])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "section" }, [
@@ -4238,7 +4224,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("h3", { staticClass: "location-title" }, [
-                  _vm._v("Cocody, Angré 7è tranche")
+                  _vm._v(_vm._s(_vm.benefit.localisation))
                 ]),
                 _vm._v(" "),
                 _c("p", [
@@ -4271,7 +4257,14 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-btn",
-                      { attrs: { icon: "", color: "primary", "x-large": "" } },
+                      {
+                        attrs: {
+                          icon: "",
+                          color: "primary",
+                          "x-large": "",
+                          disabled: _vm.benefit.messagerie !== 1
+                        }
+                      },
                       [_c("v-icon", [_vm._v("mdi-message-processing")])],
                       1
                     ),
@@ -4303,14 +4296,31 @@ var render = function() {
                   [
                     _c(
                       "v-btn",
-                      { attrs: { icon: "", color: "primary", "x-large": "" } },
+                      {
+                        attrs: {
+                          icon: "",
+                          color: "primary",
+                          "x-large": "",
+                          tag: "a",
+                          href: _vm.benefit.lien_facebook,
+                          target: "_blank"
+                        }
+                      },
                       [_c("v-icon", [_vm._v("mdi-facebook")])],
                       1
                     ),
                     _vm._v(" "),
                     _c(
                       "v-btn",
-                      { attrs: { icon: "", color: "primary", "x-large": "" } },
+                      {
+                        attrs: {
+                          icon: "",
+                          color: "primary",
+                          "x-large": "",
+                          href: _vm.benefit.lien_instagram,
+                          target: "_blank"
+                        }
+                      },
                       [_c("v-icon", [_vm._v("mdi-instagram")])],
                       1
                     ),
@@ -4339,7 +4349,7 @@ var render = function() {
               _vm._v("Autres prestations")
             ]),
             _vm._v(" "),
-            _c("benefits-grid")
+            _c("benefits-grid", { attrs: { benefits: _vm.others } })
           ],
           1
         )
@@ -4698,14 +4708,23 @@ var render = function() {
                           _c(
                             "div",
                             { staticClass: "col-md-4" },
-                            [_c("v-text-field", { attrs: { label: "text" } })],
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  label: "Catégories",
+                                  items: _vm.categories,
+                                  "item-text": "name",
+                                  "item-value": "id"
+                                }
+                              })
+                            ],
                             1
                           ),
                           _vm._v(" "),
                           _c(
                             "div",
                             { staticClass: "col-md-4" },
-                            [_c("v-text-field", { attrs: { label: "text" } })],
+                            [_c("v-text-field", { attrs: { label: "Lieu" } })],
                             1
                           ),
                           _vm._v(" "),
@@ -4715,7 +4734,14 @@ var render = function() {
                               staticClass: "col-md-4 d-flex align-items-center"
                             },
                             [
-                              _c("v-text-field", { attrs: { label: "text" } }),
+                              _c("v-select", {
+                                attrs: {
+                                  label: "Estimation",
+                                  items: _vm.estimatess,
+                                  "item-text": "libelle",
+                                  "item-value": "id"
+                                }
+                              }),
                               _vm._v(" "),
                               _c(
                                 "v-btn",
@@ -4774,24 +4800,56 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "actions-container" },
-              [
-                _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("Tout")]),
-                _vm._v(" "),
-                _c("v-btn", [_vm._v("Tout")]),
-                _vm._v(" "),
-                _c("v-btn", [_vm._v("Tout")])
-              ],
-              1
-            )
+            _c("div", { staticClass: "actions-container d-flex" }, [
+              _c(
+                "div",
+                [
+                  _c("v-btn", { attrs: { color: "primary", "x-large": "" } }, [
+                    _vm._v("Toutes les prestations")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "mx-2" },
+                [
+                  _c("v-autocomplete", {
+                    attrs: {
+                      label: "Catégories",
+                      filled: "",
+                      items: _vm.categories,
+                      "item-text": "name",
+                      "item-value": "id"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _c("v-autocomplete", {
+                    attrs: {
+                      label: "Estimations",
+                      filled: "",
+                      items: _vm.estimatess,
+                      "item-text": "libelle",
+                      "item-value": "id"
+                    }
+                  })
+                ],
+                1
+              )
+            ])
           ]),
           _vm._v(" "),
           _c(
             "div",
             { staticStyle: { margin: "50px 0" } },
-            [_c("benefits-grid")],
+            [_c("benefits-grid", { attrs: { benefits: _vm.benefits } })],
             1
           ),
           _vm._v(" "),
@@ -4807,29 +4865,9 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "section mt-0" }, [
-          _c("div", [
-            _c("h2", { staticClass: "section-title" }, [_vm._v("Prestataires")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { margin: "50px 0" } },
-            [_c("providers-slider")],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center" },
-            [
-              _c("v-btn", { attrs: { color: "primary" } }, [
-                _vm._v("Découvir tous les prestataires")
-              ])
-            ],
-            1
-          )
-        ])
+        false
+          ? undefined
+          : _vm._e()
       ])
     ])
   ])
@@ -10084,7 +10122,19 @@ __webpack_require__.r(__webpack_exports__);
         minWidth: {
             type: String,
             default: "auto"
-        }
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
+        image: {
+            type: String,
+            required: true
+        },
     }
 }));
 
@@ -10105,6 +10155,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    props: {
+        benefit: {
+            type: Object,
+            required: true
+        }
+    },
     components: {
         BaseCard: _BaseCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     }
@@ -10127,6 +10183,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    props: {
+        benefits: {
+            type: Array,
+            required: true
+        }
+    },
     components: {
         BenefitCard: _BenefitCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     }
@@ -10253,7 +10315,7 @@ __webpack_require__.r(__webpack_exports__);
                             window.location.href = window.location.origin + "/" + result.lien;
                             break;
                         default:
-                            this.$swal({ icon: "warning", text: "Identifiants invalides" });
+                            this.$swal({ icon: "error", text: "Identifiants invalides" });
                     }
                 }
                 else {
@@ -10469,11 +10531,22 @@ __webpack_require__.r(__webpack_exports__);
             ],
         };
     },
+    async beforeMount() {
+        await this.$store.dispatch("benefits/fetchAll");
+    },
     components: {
         Jumbotron: _components_Jumbotron_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
         BenefitsGrid: _components_BenefitsGrid_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
         ProvidersSlider: _components_ProvidersSlider_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
-    }
+    },
+    computed: {
+        benefit() {
+            return this.$store.getters["benefits/one"](this.$route.params.id);
+        },
+        others() {
+            return this.$store.getters["benefits/others"](this.$route.params.id);
+        },
+    },
 }));
 
 
@@ -10525,7 +10598,24 @@ __webpack_require__.r(__webpack_exports__);
         Jumbotron: _components_Jumbotron_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
         BenefitsGrid: _components_BenefitsGrid_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
         ProvidersSlider: _components_ProvidersSlider_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
-    }
+    },
+    async beforeMount() {
+        await Promise.all([this.$store.dispatch("benefits/fetchAll"),
+            this.$store.dispatch("benefits/fetchCategories"),
+            this.$store.dispatch("benefits/fetchEstimates")
+        ]);
+    },
+    computed: {
+        benefits() {
+            return this.$store.getters["benefits/all"];
+        },
+        categories() {
+            return this.$store.getters["benefits/categories"];
+        },
+        estimatess() {
+            return this.$store.getters["benefits/estimates"];
+        }
+    },
 }));
 
 
@@ -85197,6 +85287,63 @@ class AuthService extends _services_Common_service__WEBPACK_IMPORTED_MODULE_0__[
 
 /***/ }),
 
+/***/ "./resources/client/src/services/benefit.service.ts":
+/*!**********************************************************!*\
+  !*** ./resources/client/src/services/benefit.service.ts ***!
+  \**********************************************************/
+/*! exports provided: BenefitService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BenefitService", function() { return BenefitService; });
+/* harmony import */ var _Common_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Common.service */ "./resources/client/src/services/Common.service.ts");
+
+class BenefitService extends _Common_service__WEBPACK_IMPORTED_MODULE_0__["CommonService"] {
+    async getAll() {
+        try {
+            const { data } = await this.client.get("liste_prestataire");
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                listPrestataire: []
+            };
+        }
+    }
+    async getCategories() {
+        try {
+            const { data } = await this.client.get("liste_categorie");
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                listCategorie: []
+            };
+        }
+    }
+    async getEstimates() {
+        try {
+            const { data } = await this.client.get("liste_estimation");
+            return data;
+        }
+        catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                listCategorie: []
+            };
+        }
+    }
+}
+
+
+/***/ }),
+
 /***/ "./resources/client/src/store/index.ts":
 /*!*********************************************!*\
   !*** ./resources/client/src/store/index.ts ***!
@@ -85208,6 +85355,8 @@ class AuthService extends _services_Common_service__WEBPACK_IMPORTED_MODULE_0__[
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_benefits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/benefits */ "./resources/client/src/store/modules/benefits/index.ts");
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -85215,8 +85364,164 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_1_
     state: {},
     mutations: {},
     actions: {},
-    modules: {}
+    modules: {
+        benefits: _modules_benefits__WEBPACK_IMPORTED_MODULE_2__["default"]
+    }
 }));
+
+
+/***/ }),
+
+/***/ "./resources/client/src/store/modules/benefits/actions.ts":
+/*!****************************************************************!*\
+  !*** ./resources/client/src/store/modules/benefits/actions.ts ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/services/benefit.service */ "./resources/client/src/services/benefit.service.ts");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    async fetchAll({ commit, state }, force = false) {
+        if (force || state.benefits.length === 0) {
+            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__["BenefitService"]();
+            const result = await benefitService.getAll();
+            if (result.statu == 1) {
+                commit("store", result.listPrestataire);
+            }
+            else {
+                alert("erreur lors de la recuperation des prestataires");
+            }
+        }
+    },
+    async fetchCategories({ commit, state }, force = false) {
+        if (force || state.categories.length === 0) {
+            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__["BenefitService"]();
+            const result = await benefitService.getCategories();
+            if (result.statu == 1) {
+                commit("storeCategories", result.listCategorie);
+            }
+            else {
+                alert("erreur lors de la recuperation des categories");
+            }
+        }
+    },
+    async fetchEstimates({ commit, state }, force = false) {
+        if (force || state.categories.length === 0) {
+            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__["BenefitService"]();
+            const result = await benefitService.getEstimates();
+            if (result.statu == 1) {
+                commit("storeEstimates", result.listCategorie);
+            }
+            else {
+                alert("erreur lors de la recuperation des estimations");
+            }
+        }
+    },
+});
+
+
+/***/ }),
+
+/***/ "./resources/client/src/store/modules/benefits/getters.ts":
+/*!****************************************************************!*\
+  !*** ./resources/client/src/store/modules/benefits/getters.ts ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+    one(state) {
+        return (id) => state.benefits.find(benefit => benefit.id == id);
+    },
+    all(state) {
+        return state.benefits;
+    },
+    others(state) {
+        return (id) => state.benefits.filter(benefit => benefit.id != id);
+    },
+    categories(state) {
+        return state.categories;
+    },
+    estimates(state) {
+        return state.estimates;
+    }
+});
+
+
+/***/ }),
+
+/***/ "./resources/client/src/store/modules/benefits/index.ts":
+/*!**************************************************************!*\
+  !*** ./resources/client/src/store/modules/benefits/index.ts ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/client/src/store/modules/benefits/state.ts");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mutations */ "./resources/client/src/store/modules/benefits/mutations.ts");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./resources/client/src/store/modules/benefits/actions.ts");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getters */ "./resources/client/src/store/modules/benefits/getters.ts");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    namespaced: true,
+    state: _state__WEBPACK_IMPORTED_MODULE_0__["default"],
+    mutations: _mutations__WEBPACK_IMPORTED_MODULE_1__["default"],
+    getters: _getters__WEBPACK_IMPORTED_MODULE_3__["default"],
+    actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+
+/***/ }),
+
+/***/ "./resources/client/src/store/modules/benefits/mutations.ts":
+/*!******************************************************************!*\
+  !*** ./resources/client/src/store/modules/benefits/mutations.ts ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+    store(state, benefits) {
+        state.benefits = benefits;
+    },
+    storeCategories(state, categories) {
+        state.categories = categories;
+    },
+    storeEstimates(state, val) {
+        state.estimates = val;
+    }
+});
+
+
+/***/ }),
+
+/***/ "./resources/client/src/store/modules/benefits/state.ts":
+/*!**************************************************************!*\
+  !*** ./resources/client/src/store/modules/benefits/state.ts ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const state = () => ({
+    benefits: [],
+    categories: [],
+    estimates: []
+});
+/* harmony default export */ __webpack_exports__["default"] = (state);
 
 
 /***/ }),

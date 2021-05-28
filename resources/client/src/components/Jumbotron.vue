@@ -1,6 +1,6 @@
 <template>
     <v-card class="my-jumbotron">
-        <img :src="image" alt="" class="background">
+        <img :src="'https://picsum.photos/id/11/10/6'"  alt="" class="background">
         <div class="content">
             <slot></slot>
         </div>
