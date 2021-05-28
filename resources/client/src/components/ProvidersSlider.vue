@@ -1,59 +1,60 @@
 <template>
-    <carousel-3d height="auto" space="250" autoplay controlsVisible perspective="0" animationSpeed="4000">
-        <slide :index="0">
-            <provider-card></provider-card>
-        </slide>
-        <slide :index="1">
-            <provider-card></provider-card>
-        </slide>
-        <slide :index="2">
-            <provider-card></provider-card>
-        </slide>
-        <slide :index="3">
-            <provider-card></provider-card>
-        </slide>
-        <slide :index="4">
-            <provider-card></provider-card>
-        </slide>
-    </carousel-3d>
+  <carousel-3d
+    height="auto"
+    space="250"
+    autoplay
+    controlsVisible
+    perspective="0"
+    animationSpeed="4000"
+  >
+    <slide :index="i" v-for="(provider, i) in providers" :key="provider.id">
+      <provider-card :provider="provider"></provider-card>
+    </slide>
+  </carousel-3d>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Carousel3d, Slide } from "vue-carousel-3d";
 import ProviderCard from "@/components/ProviderCard.vue";
+import { IProvider } from "@/interfaces/provider.interface";
 
 export default Vue.extend({
-    components: {
-        "carousel-3d": Carousel3d,
-        Slide,
-        ProviderCard
-    }
+  components: {
+    Carousel3d,
+    Slide,
+    ProviderCard,
+  },
+  computed: {
+    providers(): IProvider[] {
+      return this.$store.getters["benefits/providers"];
+    },
+  },
 });
 </script>
 
 <style>
 .carousel-3d-slide.current {
-    background: transparent !important;
-    border: none;
+  background: transparent !important;
+  border: none;
 }
 
 .carousel-3d-slide {
-    min-height: 400px;
-    border-style: none;
-    background-color: transparent;
+  min-height: 400px;
+  border-style: none;
+  background-color: transparent;
 }
 
 .carousel-3d-slider {
-    height: 400px;
+  height: 400px;
 }
 
 .carousel-3d-controls .prev,
 .carousel-3d-controls .next {
-    background-color: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

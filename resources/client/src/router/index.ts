@@ -5,6 +5,7 @@ import LoginScreen from "@/views/auth/login.vue";
 import RegisterScreen from "@/views/auth/register.vue";
 import BenefitScreen from "@/views/benefit.vue";
 import ContactScreen from "@/views/contact.vue";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -36,7 +37,6 @@ const routes: Array<RouteConfig> = [
     }
 ];
 
-
 const router = new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,
@@ -47,21 +47,20 @@ const guarded_routes: string[] = [];
 
 const guest_routes: string[] = ["auth-login", "auth-register"];
 
-const AUTH_KEY = "auth";
+const isConnected = store.getters["auth/isConnected"];
 
 router.beforeEach((to, from, next) => {
     const routeName = to.name as string;
     ///if not connected and want to access routes guarded
-    if(guarded_routes.includes(routeName) && !localStorage.getItem(AUTH_KEY)){
-        next({name: 'auth-login'});
+    if (guarded_routes.includes(routeName) && !isConnected) {
+        next({ name: "auth-login" });
     }
     //else if connected and want to access to guest routes
-    else if(localStorage.getItem(AUTH_KEY) && guest_routes.includes(routeName)){
-        next({name: 'Home'});
+    else if (isConnected && guest_routes.includes(routeName)) {
+        next({ name: "Home" });
     }
     //else good
     else next();
-
 });
 
 export default router;

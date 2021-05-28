@@ -106,7 +106,7 @@
                                     <v-btn icon color="primary" x-large tag="a" :href="benefit.lien_facebook" target="_blank">
                                         <v-icon>mdi-facebook</v-icon>
                                     </v-btn>
-                                    <v-btn icon color="primary" x-large :href="benefit.lien_instagram" target="_blank">
+                                    <v-btn icon color="primary" x-large tag="a" :href="benefit.lien_instagram" target="_blank">
                                         <v-icon>mdi-instagram</v-icon>
                                     </v-btn>
                                     <v-btn icon color="primary" x-large>

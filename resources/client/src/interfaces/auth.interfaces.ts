@@ -3,7 +3,6 @@ export interface ILogin {
     password: string;
 }
 
-
 export interface IRegister {
     name: string;
     email: string;
@@ -13,8 +12,21 @@ export interface IRegister {
     password_confirmation: string;
 }
 
-
 export interface IRegisterResponse {
     statu: number;
     role: string;
+}
+
+export interface IUser {
+    name: string;
+    id: number;
+    email: string;
+    phone: number;
+}
+
+export interface ILoginResponse {
+    statu: number;
+    role: number;
+    user: IUser;
+    favoris: any[];
 }
