@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Fiche;
 use App\Galerie;
@@ -166,14 +167,21 @@ class PrestataireController extends Controller
             $images = array();
             if($files=$request->file('images')){
                 foreach($files as $file){
-                    // $lien = 
-                    $name = $file->getClientOriginalName();
-                    $file->move('image',$name);
-                    $images[]=$name;
-                    
+                    //
+                    //$name = time() . '.' . $extension;
+                    //$name = $file->getClientOriginalName();
+                    //$file->move('image',$name);
+                    //$images[]=$name;
+
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = time() . '.' . $extension;
+                    $storage_data = Storage::disk('public')->put($filename, file_get_contents($file));
+                    $file_path = Storage::url($filename);
+                    $new_path = asset($file_path);
+                    $images[]=$extension;
 
                     Galerie::create([
-                        'path' => $name,
+                        'path' => $file_path,
                         'id_user' => $id,
                     ]);
                 }
