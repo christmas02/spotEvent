@@ -2034,6 +2034,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Footer"
 });
@@ -2258,7 +2283,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.my-footer[data-v-344d30f5] {\n    background-color: #303749 !important;\n    padding-top: 3%;\n    padding-bottom: 5%;\n    color: #fff;\n}\n.footer-list[data-v-344d30f5] {\n    list-style-type: none;\n}\n.footer-link[data-v-344d30f5] {\n    font-weight: 300;\n    color: #fff;\n    text-decoration: none;\n}\nli[data-v-344d30f5] {\n    margin-bottom: 15px;\n}\np[data-v-344d30f5] {\n    margin-top: 40px;\n    font-weight: 300;\n}\n", ""]);
+exports.push([module.i, "\n.my-footer[data-v-344d30f5] {\n  background-color: #303749 !important;\n  padding-top: 3%;\n  padding-bottom: 5%;\n  color: #fff;\n}\n.footer-list[data-v-344d30f5] {\n  list-style-type: none;\n}\n.footer-link[data-v-344d30f5] {\n  font-weight: 300;\n  color: #fff;\n  text-decoration: none;\n}\nli[data-v-344d30f5] {\n  margin-bottom: 15px;\n}\np[data-v-344d30f5] {\n  margin-top: 40px;\n  font-weight: 300;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -3209,14 +3234,14 @@ var render = function() {
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus,\n                alias atque cupiditate debitis dignissimos fuga fugit illum labore laborum nam\n                nostrum odit pariatur perferendis quod quos repellat suscipit, temporibus voluptatem.\n            "
+              "\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus,\n        alias atque cupiditate debitis dignissimos fuga fugit illum labore\n        laborum nam nostrum odit pariatur perferendis quod quos repellat\n        suscipit, temporibus voluptatem.\n      "
             )
           ])
         ],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "offset-md-2 col-md-6" }, [
+      _c("div", { staticClass: "offset-md-2 col-md-6 d-none d-md-block" }, [
         _c("div", { staticClass: "row mt-md-5" }, [
           _c("div", { staticClass: "col-md-4" }, [
             _c("ul", { staticClass: "footer-list" }, [
@@ -3627,12 +3652,12 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-list-item",
-                      { staticClass: "m-0", attrs: { link: "", tag: "p" } },
-                      [
-                        _c("v-list-item-title", { on: { click: _vm.logout } }, [
-                          _vm._v("Deconnexion")
-                        ])
-                      ],
+                      {
+                        staticClass: "m-0",
+                        attrs: { link: "", tag: "p" },
+                        on: { click: _vm.logout }
+                      },
+                      [_c("v-list-item-title", [_vm._v("Deconnexion")])],
                       1
                     )
                   ],
@@ -4767,6 +4792,7 @@ var render = function() {
     _c("div", { attrs: { id: "homepage" } }, [
       _c(
         "div",
+        { staticClass: "d-none d-md-block" },
         [
           _c(
             "jumbotron",
@@ -4885,7 +4911,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "actions-container d-flex" }, [
+            _c("div", { staticClass: "actions-container d-none d-md-flex" }, [
               _c(
                 "div",
                 [
@@ -4967,7 +4993,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "section mt-0" }, [
+        _c("div", { staticClass: "section mt-0 d-none d-md-block" }, [
           _c("div", [
             _c("h2", { staticClass: "section-title" }, [_vm._v("Prestataires")])
           ]),

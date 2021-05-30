@@ -47,8 +47,8 @@
           <v-list-item link tag="p" class="m-0">
             <v-list-item-title>Mon espace</v-list-item-title>
           </v-list-item>
-          <v-list-item link tag="p" class="m-0">
-            <v-list-item-title @click="logout">Deconnexion</v-list-item-title>
+          <v-list-item link tag="p" class="m-0" @click="logout">
+            <v-list-item-title>Deconnexion</v-list-item-title>
           </v-list-item>
         </div>
       </v-menu>
