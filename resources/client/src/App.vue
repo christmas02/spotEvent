@@ -62,6 +62,13 @@
   margin: calc(var(--bs-gutter-y) * -1) calc(var(--bs-gutter-x) / -2) 0 !important;
 }
 
+#benefit-page .my-jumbotron {
+  overflow: hidden;
+}
+#benefit-page .my-jumbotron .content {
+  background: rgba(0, 0, 0, 0.4);
+}
+
 button {
   text-transform: none !important;
 }

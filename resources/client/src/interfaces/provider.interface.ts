@@ -9,6 +9,7 @@ export interface IProvider {
     created_at: string;
     updated_at: string;
     name_entreprise: string;
+    path_user: string;
     id_user?: number;
     prestation: string;
     path_icone: string;

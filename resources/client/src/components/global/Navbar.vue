@@ -36,27 +36,22 @@
     <v-spacer></v-spacer>
 
     <template v-if="auth">
-      <div>
-        <span class="mr-2">{{ user.name }}</span>
-        <v-menu offset-y left bottom>
-          <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </template>
-          <v-card>
-            <v-list-item-content class="justify-center">
-              <div class="mx-auto text-center">
-                <v-btn text color="primary"> Mon espace </v-btn>
-                <v-divider></v-divider>
-                <v-btn text color="primary" @click="logout">
-                  Deconnexion
-                </v-btn>
-              </div>
-            </v-list-item-content>
-          </v-card>
-        </v-menu>
-      </div>
+      <v-menu offset-y bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <p v-bind="attrs" v-on="on" class="m-0">
+            <v-avatar color="primary" size="30" class="mr-2"></v-avatar>
+            {{ user.name }}
+          </p>
+        </template>
+        <div class="my-list">
+          <v-list-item link tag="p" class="m-0">
+            <v-list-item-title>Mon espace</v-list-item-title>
+          </v-list-item>
+          <v-list-item link tag="p" class="m-0">
+            <v-list-item-title @click="logout">Deconnexion</v-list-item-title>
+          </v-list-item>
+        </div>
+      </v-menu>
     </template>
     <template v-else>
       <v-btn color="primary" outlined :to="{ name: 'auth-login' }" exact>
@@ -121,5 +116,13 @@ export default Vue.extend({
 
 .nav-list .v-list-item {
   cursor: pointer;
+}
+
+.my-list {
+  background: #fff;
+}
+
+.v-menu__content.theme--light.v-menu__content--fixed.menuable__content__active {
+  top: 65px !important;
 }
 </style>

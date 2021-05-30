@@ -5,6 +5,7 @@ export interface Benefit {
     localisation: string;
     id_prestations: number;
     description: string;
+    detail_localisation: string;
     path_img: string;
     phone_service: string;
     phone2_service: string;
@@ -20,6 +21,7 @@ export interface Benefit {
     created_at: string;
     updated_at: string;
     prestation: string;
+    presentation: string;
     path_icone: string;
 }
 

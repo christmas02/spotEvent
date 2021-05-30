@@ -153,6 +153,7 @@ export default Vue.extend({
   background: var(--secondary);
   width: 90%;
   left: 5%;
+  border-radius: 0;
   padding: 10px 15px 10px 40px;
 }
 

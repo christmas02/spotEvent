@@ -2073,6 +2073,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       navBarHeight: "90"
     };
+  },
+  computed: {
+    pt: function pt() {
+      return (+this.navBarHeight + 5).toString();
+    }
   }
 });
 
@@ -2108,6 +2113,32 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/capitalize/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/capitalize/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function (string, preserve) {
+  if (!preserve) {
+    string = string.toLowerCase();
+  }
+  return string.charAt(0).toUpperCase() + string.substring(1);
+}
+
+module.exports.words = function (string, preserve) {
+  if (!preserve) {
+    string = string.toLowerCase();
+  }
+  return string.replace(/(?!^[0-9])(^|[^a-zA-Z\u00C0-\u017F\u0400-\u04FF'])([a-zA-Z\u00C0-\u017F\u0400-\u04FF])/g, function (m) {
+    return m.toUpperCase()
+  })
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/App.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/App.vue?vue&type=style&index=0&lang=css& ***!
@@ -2119,7 +2150,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n:root {\n  --primary: #fbb231;\n  --secondary: #2f374a;\n  --default-padding: 5%;\n}\n.main {\n  width: 90%;\n  margin-left: auto;\n  margin-right: auto;\n}\n.text-primary {\n  color: var(--primary) !important;\n}\n.nav-list .v-list-item--active {\n  background: transparent !important;\n  color: var(--primary) !important;\n}\n.default-padding {\n  padding-left: var(--default-padding);\n  padding-right: var(--default-padding);\n}\n.my-jumbotron .content-title {\n  font-size: 4.5rem;\n  line-height: 0.9em;\n}\n.my-jumbotron .content-subtitle {\n  font-size: 1.2rem;\n}\n.vh-100 {\n  height: 100vh;\n}\n.vw-100 {\n  width: 100vw;\n}\n.h-100 {\n  height: 100%;\n}\n.w-100 {\n  width: 100%;\n}\n.my-row {\n  --bs-gutter-x: 1.5rem;\n  --bs-gutter-y: 0;\n  display: flex;\n  flex-wrap: wrap;\n  margin: calc(var(--bs-gutter-y) * -1) calc(var(--bs-gutter-x) / -2) 0 !important;\n}\nbutton {\n  text-transform: none !important;\n}\nbutton.primary {\n  color: #000 !important;\n}\nbutton.v-btn--outlined.primary--text .v-btn__content {\n  color: #fff !important;\n}\n.v-input--is-label-active .v-label--active {\n  font-weight: bold;\n  color: #000 !important;\n}\n.section-title {\n  font-size: 2.3rem;\n}\n.section-title::after {\n  content: \"\";\n  display: block;\n  width: 90px;\n  height: 5px;\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text {\n  color: #000 !important;\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text.v-btn--outlined {\n  color: #fff !important;\n}\n\n/*.v-btn--outlined.v-btn--round.v-btn--rounded.primary--text {*/\n/*    background: #fbb231;*/\n/*}*/\n#devis .theme--light.v-select .v-select__selection {\n  color: #fff !important;\n}\n", ""]);
+exports.push([module.i, "\n:root {\n  --primary: #fbb231;\n  --secondary: #2f374a;\n  --default-padding: 5%;\n}\n.main {\n  width: 90%;\n  margin-left: auto;\n  margin-right: auto;\n}\n.text-primary {\n  color: var(--primary) !important;\n}\n.nav-list .v-list-item--active {\n  background: transparent !important;\n  color: var(--primary) !important;\n}\n.default-padding {\n  padding-left: var(--default-padding);\n  padding-right: var(--default-padding);\n}\n.my-jumbotron .content-title {\n  font-size: 4.5rem;\n  line-height: 0.9em;\n}\n.my-jumbotron .content-subtitle {\n  font-size: 1.2rem;\n}\n.vh-100 {\n  height: 100vh;\n}\n.vw-100 {\n  width: 100vw;\n}\n.h-100 {\n  height: 100%;\n}\n.w-100 {\n  width: 100%;\n}\n.my-row {\n  --bs-gutter-x: 1.5rem;\n  --bs-gutter-y: 0;\n  display: flex;\n  flex-wrap: wrap;\n  margin: calc(var(--bs-gutter-y) * -1) calc(var(--bs-gutter-x) / -2) 0 !important;\n}\n#benefit-page .my-jumbotron {\n  overflow: hidden;\n}\n#benefit-page .my-jumbotron .content {\n  background: rgba(0, 0, 0, 0.4);\n}\nbutton {\n  text-transform: none !important;\n}\nbutton.primary {\n  color: #000 !important;\n}\nbutton.v-btn--outlined.primary--text .v-btn__content {\n  color: #fff !important;\n}\n.v-input--is-label-active .v-label--active {\n  font-weight: bold;\n  color: #000 !important;\n}\n.section-title {\n  font-size: 2.3rem;\n}\n.section-title::after {\n  content: \"\";\n  display: block;\n  width: 90px;\n  height: 5px;\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text {\n  color: #000 !important;\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text.v-btn--outlined {\n  color: #fff !important;\n}\n\n/*.v-btn--outlined.v-btn--round.v-btn--rounded.primary--text {*/\n/*    background: #fbb231;*/\n/*}*/\n#devis .theme--light.v-select .v-select__selection {\n  color: #fff !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2245,7 +2276,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.my-jumbotron[data-v-e17d167c] {\n  position: relative;\n  height: 600px;\n  box-shadow: none !important;\n  border-radius: 50px !important;\n}\n.content[data-v-e17d167c] {\n  position: absolute;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  padding: 0 4%;\n  color: #fff;\n  height: 100%;\n  width: 100%;\n}\n.background[data-v-e17d167c] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  border-radius: 40px;\n}\n", ""]);
+exports.push([module.i, "\n.my-jumbotron[data-v-e17d167c] {\n  position: relative;\n  height: 600px;\n  box-shadow: none !important;\n  border-radius: 50px !important;\n  background-position: center;\n  background-size: cover;\n}\n.content[data-v-e17d167c] {\n  position: absolute;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  padding: 0 4%;\n  color: #fff;\n  height: 100%;\n  width: 100%;\n}\n.background[data-v-e17d167c] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  border-radius: 40px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2263,7 +2294,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#app-navbar {\n  width: 90%;\n  margin: 0 auto;\n}\n#app-navbar .primary--text {\n  border: none;\n  margin: 0 auto;\n}\n#app-navbar .primary--text .v-btn__content {\n  color: var(--primary) !important;\n}\n.nav-list {\n  display: flex !important;\n  font-weight: bold;\n}\n.nav-list .v-list-item {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n#app-navbar {\n  width: 90%;\n  margin: 0 auto;\n}\n#app-navbar .primary--text {\n  border: none;\n  margin: 0 auto;\n}\n#app-navbar .primary--text .v-btn__content {\n  color: var(--primary) !important;\n}\n.nav-list {\n  display: flex !important;\n  font-weight: bold;\n}\n.nav-list .v-list-item {\n  cursor: pointer;\n}\n.my-list {\n  background: #fff;\n}\n.v-menu__content.theme--light.v-menu__content--fixed.menuable__content__active {\n  top: 65px !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2286,7 +2317,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 // Module
-exports.push([module.i, "\n#auth-layout .login {\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\n    background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\n    color: #fff;\n    position: relative;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n}\n#auth-layout  .top {\n    position: absolute;\n    top: 0;\n    left: 0;\n    display: flex;\n    justify-content: space-between;\n    width: 100%;\n}\n#auth-layout .left {\n    padding: 2% 3%;\n}\n#auth-layout .icon {\n    cursor: pointer;\n    margin-left: 10px;\n}\n#auth-layout .page-title {\n    font-size: 3rem;\n    font-weight: 300;\n    margin: 0;\n    padding: 0;\n}\n#auth-layout .page-title::after {\n    content: \"\";\n    display: block;\n    width: 100px;\n    height: 5px;\n    background: var(--primary);\n}\n#auth-layout .auth-title {\n    font-size: 10rem;\n    margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\n    font-weight: 200;\n    font-size: 1.9rem;\n}\n#auth-layout button {\n    font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\n    width: 42%;\n    display: flex;\n    justify-content: space-between;\n    margin-top: 50px;\n}\n#auth-layout .form-container {\n    margin: 4% 15%;\n    height: 90%;\n}\n#auth-layout .logo {\n    height: 75px;\n}\n", ""]);
+exports.push([module.i, "\n#auth-layout .login {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\n  color: #fff;\n  position: relative;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n#auth-layout .top {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n#auth-layout .left {\n  padding: 2% 3%;\n}\n#auth-layout .icon {\n  cursor: pointer;\n  margin-left: 10px;\n}\n#auth-layout .page-title {\n  font-size: 3rem;\n  font-weight: 300;\n  margin: 0;\n  padding: 0;\n}\n#auth-layout .page-title::after {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 5px;\n  background: var(--primary);\n}\n#auth-layout .auth-title {\n  font-size: 150px;\n  margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\n  font-weight: 200;\n  font-size: 1.9rem;\n}\n#auth-layout button {\n  font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\n  width: 42%;\n  display: flex;\n  justify-content: space-between;\n  margin-top: 50px;\n}\n#auth-layout .form-container {\n  margin: 4% 15%;\n  height: 90%;\n}\n#auth-layout .logo {\n  height: 75px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2376,7 +2407,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#devis {\n  position: absolute;\n  bottom: -33px;\n  background: var(--secondary);\n  width: 90%;\n  left: 5%;\n  padding: 10px 15px 10px 40px;\n}\n#devis .v-label,\n#devis .v-input input {\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#homepage .section {\n  margin: 136px 0;\n}\n#homepage .actions-container button {\n  margin-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n#devis {\n  position: absolute;\n  bottom: -33px;\n  background: var(--secondary);\n  width: 90%;\n  left: 5%;\n  border-radius: 0;\n  padding: 10px 15px 10px 40px;\n}\n#devis .v-label,\n#devis .v-input input {\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#homepage .section {\n  margin: 136px 0;\n}\n#homepage .actions-container button {\n  margin-left: 10px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2684,9 +2715,9 @@ var render = function() {
     {
       attrs: {
         "max-width": "90%",
-        description: _vm.benefit.prestation,
+        description: _vm.benefit.presentation,
         title: _vm.benefit.name.toUpperCase(),
-        image: _vm.benefit.path_img
+        image: _vm.createImagePath(_vm.benefit.path_img)
       }
     },
     [
@@ -2770,7 +2801,7 @@ var render = function() {
       attrs: {
         title: _vm.provider.name,
         description: _vm.provider.prestation,
-        image: "ok"
+        image: _vm.createImagePath(_vm.provider.path_user)
       }
     },
     [
@@ -2803,7 +2834,7 @@ var render = function() {
               _c(
                 "v-btn",
                 { attrs: { icon: "", color: "primary", outlined: "" } },
-                [_c("v-icon", [_vm._v("mdi-star")])],
+                [_c("v-icon", [_vm._v("mdi-heart")])],
                 1
               ),
               _vm._v(" "),
@@ -3438,13 +3469,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-card",
-    { staticClass: "my-jumbotron" },
+    {
+      staticClass: "my-jumbotron",
+      style: { backgroundImage: "url(" + _vm.image + ")" }
+    },
     [
-      _c("img", {
-        staticClass: "background",
-        attrs: { src: _vm.image, alt: "" }
-      }),
-      _vm._v(" "),
       _c("div", { staticClass: "content" }, [_vm._t("default")], 2),
       _vm._v(" "),
       _vm._t("append")
@@ -3544,84 +3573,72 @@ var render = function() {
       _vm.auth
         ? [
             _c(
-              "div",
+              "v-menu",
+              {
+                attrs: { "offset-y": "", bottom: "" },
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "p",
+                            _vm._g(
+                              _vm._b({ staticClass: "m-0" }, "p", attrs, false),
+                              on
+                            ),
+                            [
+                              _c("v-avatar", {
+                                staticClass: "mr-2",
+                                attrs: { color: "primary", size: "30" }
+                              }),
+                              _vm._v(
+                                "\n          " +
+                                  _vm._s(_vm.user.name) +
+                                  "\n        "
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      }
+                    }
+                  ],
+                  null,
+                  false,
+                  1070285021
+                )
+              },
               [
-                _c("span", { staticClass: "mr-2" }, [
-                  _vm._v(_vm._s(_vm.user.name))
-                ]),
                 _vm._v(" "),
                 _c(
-                  "v-menu",
-                  {
-                    attrs: { "offset-y": "", left: "", bottom: "" },
-                    scopedSlots: _vm._u(
-                      [
-                        {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            return [
-                              _c(
-                                "v-btn",
-                                _vm._g({ attrs: { icon: "" } }, on),
-                                [_c("v-icon", [_vm._v("mdi-dots-vertical")])],
-                                1
-                              )
-                            ]
-                          }
-                        }
-                      ],
-                      null,
-                      false,
-                      2097855828
-                    )
-                  },
+                  "div",
+                  { staticClass: "my-list" },
                   [
+                    _c(
+                      "v-list-item",
+                      { staticClass: "m-0", attrs: { link: "", tag: "p" } },
+                      [_c("v-list-item-title", [_vm._v("Mon espace")])],
+                      1
+                    ),
                     _vm._v(" "),
                     _c(
-                      "v-card",
+                      "v-list-item",
+                      { staticClass: "m-0", attrs: { link: "", tag: "p" } },
                       [
-                        _c(
-                          "v-list-item-content",
-                          { staticClass: "justify-center" },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "mx-auto text-center" },
-                              [
-                                _c(
-                                  "v-btn",
-                                  { attrs: { text: "", color: "primary" } },
-                                  [_vm._v(" Mon espace ")]
-                                ),
-                                _vm._v(" "),
-                                _c("v-divider"),
-                                _vm._v(" "),
-                                _c(
-                                  "v-btn",
-                                  {
-                                    attrs: { text: "", color: "primary" },
-                                    on: { click: _vm.logout }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                Deconnexion\n              "
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
+                        _c("v-list-item-title", { on: { click: _vm.logout } }, [
+                          _vm._v("Deconnexion")
+                        ])
                       ],
                       1
                     )
                   ],
                   1
                 )
-              ],
-              1
+              ]
             )
           ]
         : [
@@ -3806,7 +3823,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-main",
-            { style: { paddingTop: _vm.navBarHeight + "px" } },
+            { style: { paddingTop: _vm.pt + "px" } },
             [_vm._t("default")],
             2
           )
@@ -4118,7 +4135,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", [
                           _c("h1", { staticClass: "content-title" }, [
-                            _vm._v(_vm._s(_vm.benefit.name))
+                            _vm._v(_vm._s(_vm.capitalize(_vm.benefit.name)))
                           ]),
                           _vm._v(" "),
                           _c("p", { staticClass: "content-subtitle my-5" }, [
@@ -4251,7 +4268,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est\n                hic minus molestias natus necessitatibus porro quidem\n                veritatis voluptas. Aperiam commodi consequuntur\n              "
+                    "\n                " +
+                      _vm._s(_vm.benefit.detail_localisation) +
+                      "\n              "
                   )
                 ])
               ]),
@@ -10296,9 +10315,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _BaseCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseCard.vue */ "./resources/client/src/components/BaseCard.vue");
+/* harmony import */ var _mixins_utils_mixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/utils.mixin */ "./resources/client/src/mixins/utils.mixin.ts");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    mixins: [_mixins_utils_mixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
     props: {
         benefit: {
             type: Object,
@@ -10330,12 +10352,12 @@ __webpack_require__.r(__webpack_exports__);
     props: {
         benefits: {
             type: Array,
-            required: true
-        }
+            required: true,
+        },
     },
     components: {
-        BenefitCard: _BenefitCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-    }
+        BenefitCard: _BenefitCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    },
 }));
 
 
@@ -10352,9 +10374,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _BaseCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseCard.vue */ "./resources/client/src/components/BaseCard.vue");
+/* harmony import */ var _mixins_utils_mixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/utils.mixin */ "./resources/client/src/mixins/utils.mixin.ts");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    mixins: [_mixins_utils_mixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
     props: {
         provider: {
             type: Object,
@@ -10666,11 +10691,11 @@ __webpack_require__.r(__webpack_exports__);
     props: {
         title: {
             type: String,
-            required: true
+            required: true,
         },
         subtitle: {
             type: String,
-            required: true
+            required: true,
         },
         action: {
             type: String,
@@ -10678,13 +10703,13 @@ __webpack_require__.r(__webpack_exports__);
             validator(value) {
                 const accepted = ["login", "register"];
                 return accepted.includes(value);
-            }
-        }
+            },
+        },
     },
     methods: {
         goHome() {
-            this.$router.push('/');
-        }
+            this.$router.push("/");
+        },
     },
 }));
 
@@ -10789,8 +10814,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     async beforeMount() {
         await this.$store.dispatch("benefits/fetchAll");
+        const benefit = this.$store.getters["benefits/one"](this.$route.params.id);
         const service = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_4__["BenefitService"]();
-        const result = await service.getSliders(+this.$route.params.id);
+        const result = await service.getSliders(benefit.id_user);
         if (result.statu == 0) {
             this.$swal({
                 icon: "error",
@@ -85355,11 +85381,15 @@ new vue__WEBPACK_IMPORTED_MODULE_4__["default"]({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var capitalize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! capitalize */ "./node_modules/capitalize/index.js");
+/* harmony import */ var capitalize__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(capitalize__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     methods: {
         createImagePath(path) {
             return window.location.origin + "/storage/" + path;
-        }
+        },
+        capitalize: (capitalize__WEBPACK_IMPORTED_MODULE_0___default())
     }
 });
 

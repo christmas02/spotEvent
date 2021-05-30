@@ -1,9 +1,9 @@
 <template>
   <base-card
     max-width="90%"
-    :description="benefit.prestation"
+    :description="benefit.presentation"
     :title="benefit.name.toUpperCase()"
-    :image="benefit.path_img"
+    :image="createImagePath(benefit.path_img)"
   >
     <v-btn
       color="primary"
@@ -19,8 +19,10 @@
 import { Benefit } from "@/interfaces/benefit.interface";
 import Vue, { PropType } from "vue";
 import BaseCard from "./BaseCard.vue";
+import utilsMixin from "@/mixins/utils.mixin";
 
 export default Vue.extend({
+  mixins: [utilsMixin],
   props: {
     benefit: {
       type: Object as PropType<Benefit>,

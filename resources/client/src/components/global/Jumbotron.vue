@@ -1,6 +1,9 @@
 <template>
-  <v-card class="my-jumbotron">
-    <img :src="image" alt="" class="background" />
+  <v-card
+    class="my-jumbotron"
+    :style="{ backgroundImage: 'url(' + image + ')' }"
+  >
+    <!-- <img :src="image" alt="" class="background" /> -->
     <div class="content">
       <slot></slot>
     </div>
@@ -28,6 +31,8 @@ export default Vue.extend({
   height: 600px;
   box-shadow: none !important;
   border-radius: 50px !important;
+  background-position: center;
+  background-size: cover;
 }
 
 .content {

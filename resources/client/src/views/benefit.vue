@@ -12,7 +12,7 @@
               >
                 <div></div>
                 <div>
-                  <h1 class="content-title">{{ benefit.name }}</h1>
+                  <h1 class="content-title">{{ capitalize(benefit.name) }}</h1>
                   <p class="content-subtitle my-5">
                     {{ benefit.presentation }}
                   </p>
@@ -73,9 +73,7 @@
                 <h2 class="section-title">Localisation</h2>
                 <h3 class="location-title">{{ benefit.localisation }}</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est
-                  hic minus molestias natus necessitatibus porro quidem
-                  veritatis voluptas. Aperiam commodi consequuntur
+                  {{ benefit.detail_localisation }}
                 </p>
               </div>
               <div class="section">
@@ -182,8 +180,10 @@ export default Vue.extend({
   },
   async beforeMount(): Promise<void> {
     await this.$store.dispatch("benefits/fetchAll");
+
+    const benefit = this.$store.getters["benefits/one"](this.$route.params.id);
     const service = new BenefitService();
-    const result = await service.getSliders(+this.$route.params.id);
+    const result = await service.getSliders(benefit.id_user);
 
     if (result.statu == 0) {
       this.$swal({
