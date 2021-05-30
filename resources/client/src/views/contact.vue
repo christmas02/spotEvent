@@ -1,16 +1,18 @@
 <template>
-  <default-layout>
-    <jumbotron :image="require('../assets/images/jmbg2.png')">
-      <p class="more-infos">Pour plus d'infos</p>
-      <h1 class="content-title">Contactez-nous</h1>
-      <div class="description">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-          adipisci, animi doloribus eum fuga ipsam natus odio perferendis
-          quibusdam quisquam rem sapiente totam vitae?
-        </p>
-      </div>
-    </jumbotron>
+  <default-layout :padding="false">
+    <div class="main">
+      <jumbotron :image="require('../assets/images/jmbg2.png')">
+        <p class="more-infos">Pour plus d'infos</p>
+        <h1 class="content-title">Contactez-nous</h1>
+        <div class="description">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
+            adipisci, animi doloribus eum fuga ipsam natus odio perferendis
+            quibusdam quisquam rem sapiente totam vitae?
+          </p>
+        </div>
+      </jumbotron>
+    </div>
 
     <div class="main">
       <section>
@@ -94,8 +96,10 @@
           </div>
         </div>
       </section>
+    </div>
 
-      <section class="maps">
+    <section class="maps">
+      <div class="main">
         <div class="text-center">
           <h3 class="form-titile">Trouvez-nous sur google</h3>
           <p>
@@ -112,8 +116,8 @@
             loading="lazy"
           ></iframe>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </default-layout>
 </template>
 
@@ -133,6 +137,8 @@ export default Vue.extend({
 
 section.maps {
   background: #f9faff;
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
 }
 .main {
   margin: 0 auto;

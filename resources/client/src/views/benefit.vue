@@ -1,7 +1,7 @@
 <template>
   <default-layout :padding="false">
     <div id="benefit-page">
-      <div class="default-padding">
+      <div class="main">
         <div>
           <jumbotron :image="createImagePath(benefit.path_img)">
             <div

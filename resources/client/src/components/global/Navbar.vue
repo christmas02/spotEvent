@@ -98,7 +98,8 @@ export default Vue.extend({
 
 <style>
 #app-navbar {
-  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
   margin: 0 auto;
 }
 #app-navbar .primary--text {
