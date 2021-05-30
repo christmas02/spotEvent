@@ -1,5 +1,9 @@
 <template>
-  <base-card :title="provider.name" description="Son job" image="ok">
+  <base-card
+    :title="provider.name"
+    :description="provider.prestation"
+    image="ok"
+  >
     <div class="d-flex justify-content-between align-items-center img-content">
       <div>
         <v-btn color="primary" class="discover-btn" small

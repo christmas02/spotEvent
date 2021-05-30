@@ -27,6 +27,7 @@ export interface IUser {
 export interface ILoginResponse {
     statu: number;
     role: number;
+    lien: string;
     user: IUser;
     favoris: any[];
 }

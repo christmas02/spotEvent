@@ -22,6 +22,7 @@ export class AuthService extends CommonService {
                 statu: 0,
                 favoris: [],
                 role: 0,
+                lien: "",
                 user: (null as unknown) as IUser
             };
         }

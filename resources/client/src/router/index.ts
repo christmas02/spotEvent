@@ -5,6 +5,8 @@ import LoginScreen from "@/views/auth/login.vue";
 import RegisterScreen from "@/views/auth/register.vue";
 import BenefitScreen from "@/views/benefit.vue";
 import ContactScreen from "@/views/contact.vue";
+import AboutScreen from "@/views/about.vue";
+
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -34,6 +36,11 @@ const routes: Array<RouteConfig> = [
         path: "/contact",
         name: "contact",
         component: ContactScreen
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: AboutScreen
     }
 ];
 

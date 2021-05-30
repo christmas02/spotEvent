@@ -2,7 +2,10 @@ import { BeneftsResponse } from "@/interfaces/benefit.interface";
 import { CommonService } from "./Common.service";
 import { ICategoryResponse } from "@/interfaces/category.interface";
 import { IEstimateResponse } from "@/interfaces/estimation.interface";
-import { ProvidersResponse } from "@/interfaces/provider.interface";
+import {
+    ISlidersResponse,
+    ProvidersResponse
+} from "@/interfaces/provider.interface";
 
 export class BenefitService extends CommonService {
     async getAll(): Promise<BeneftsResponse> {
@@ -50,18 +53,21 @@ export class BenefitService extends CommonService {
         }
     }
 
-    async getSliders(): Promise<ICategoryResponse> {
+    async getSliders(id_user: number): Promise<ISlidersResponse> {
         try {
-            const { data }: { data: ICategoryResponse } = await this.client.get(
-                "liste_slides"
+            const { data }: { data: ISlidersResponse } = await this.client.post(
+                "liste_slides",
+                {
+                    id_user
+                }
             );
             return data;
         } catch (e) {
             console.log(e);
             return {
                 statu: 0,
-                listCategorie: []
-            } as ICategoryResponse;
+                listPrestataire: []
+            } as ISlidersResponse;
         }
     }
 

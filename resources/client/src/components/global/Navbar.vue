@@ -16,7 +16,7 @@
         <v-list-item-title>Acceuil</v-list-item-title>
       </v-list-item>
 
-      <v-list-item>
+      <v-list-item :to="{ name: 'about' }">
         <v-list-item-title>A propos de nous</v-list-item-title>
       </v-list-item>
 

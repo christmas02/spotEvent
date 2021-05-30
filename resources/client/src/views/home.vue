@@ -11,7 +11,7 @@
           <template #append>
             <div id="devis">
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <v-select
                     label="Catégories"
                     :items="categories"
@@ -19,12 +19,18 @@
                     item-value="id"
                   ></v-select>
                 </div>
-                <div class="col-md-4">
-                  <v-text-field label="Lieu"></v-text-field>
+                <div class="col-md-3">
+                  <v-text-field label="Situation géographique"></v-text-field>
                 </div>
-                <div class="col-md-4 d-flex align-items-center">
+                <div class="col-auto d-flex align-items-center">
                   <v-select
-                    label="Estimation"
+                    label="Estimation minimale"
+                    :items="estimatess"
+                    item-text="libelle"
+                    item-value="id"
+                  ></v-select>
+                  <v-select
+                    label="Estimation maximale"
                     :items="estimatess"
                     item-text="libelle"
                     item-value="id"
@@ -57,9 +63,18 @@
                   item-value="id"
                 ></v-autocomplete>
               </div>
+              <div class="mx-2">
+                <v-autocomplete
+                  label="Estimation minimale"
+                  filled
+                  :items="estimatess"
+                  item-text="libelle"
+                  item-value="id"
+                ></v-autocomplete>
+              </div>
               <div>
                 <v-autocomplete
-                  label="Estimations"
+                  label="Estimation maximale"
                   filled
                   :items="estimatess"
                   item-text="libelle"
@@ -93,7 +108,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Jumbotron from "@/components/Jumbotron.vue";
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import ProvidersSlider from "@/components/ProvidersSlider.vue";
 import { Benefit } from "@/interfaces/benefit.interface";
@@ -104,7 +118,6 @@ import { IProvider } from "@/interfaces/provider.interface";
 export default Vue.extend({
   name: "Home",
   components: {
-    Jumbotron,
     BenefitsGrid,
     ProvidersSlider,
   },

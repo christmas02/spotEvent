@@ -1,8 +1,8 @@
 <template>
   <base-card
     max-width="90%"
-    :description="benefit.description"
-    :title="benefit.name"
+    :description="benefit.prestation"
+    :title="benefit.name.toUpperCase()"
     :image="benefit.path_img"
   >
     <v-btn

@@ -14,7 +14,20 @@ export interface IProvider {
     path_icone: string;
 }
 
+export interface ISlider {
+    id: number;
+    id_user: number;
+    path: string;
+    created_at: string;
+    updated_at: string;
+}
+
 export interface ProvidersResponse {
     statu: number;
     listPrestataire: IProvider[];
+}
+
+export interface ISlidersResponse {
+    statu: number;
+    listPrestataire: ISlider[];
 }
