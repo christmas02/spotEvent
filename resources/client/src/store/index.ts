@@ -7,8 +7,19 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    state: {},
-    mutations: {},
+    state: {
+        contactModal: false
+    },
+    mutations: {
+        contactModal(state: any, status: boolean) {
+            state.contactModal = status;
+        },
+    },
+    getters: {
+        contactModal(state: any) {
+            return state.contactModal;
+        }
+    },
     actions: {},
     modules: {
         benefits: benefitsModule,

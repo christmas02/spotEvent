@@ -1,5 +1,6 @@
 <template>
   <default-layout :padding="false">
+    <provider-contact-form-modal></provider-contact-form-modal>
     <div id="benefit-page">
       <div class="main">
         <div>
@@ -13,9 +14,15 @@
                 <div></div>
                 <div>
                   <h1 class="content-title">{{ capitalize(benefit.name) }}</h1>
-                  <p class="content-subtitle my-5">
-                    {{ benefit.presentation }}
-                  </p>
+                  <div class="content-subtitle my-5">
+                    <p>
+                      {{ benefit.presentation }} Lorem, ipsum dolor sit amet
+                      consectetur adipisicing elit. Voluptate commodi illum at
+                      maiores ipsa debitis perferendis exercitationem enim
+                      tempore quae. Neque nostrum perspiciatis suscipit debitis
+                      architecto! Dicta molestias earum officia?
+                    </p>
+                  </div>
                 </div>
                 <div class="d-flex">
                   <img :src="createImagePath(benefit.path_icone)" />
@@ -83,6 +90,7 @@
                   <auth-btn :handler="displayPhoneNumber">
                     <v-icon>mdi-phone</v-icon>
                   </auth-btn>
+
                   <v-btn
                     icon
                     color="primary"
@@ -92,30 +100,9 @@
                     <v-icon>mdi-message-processing</v-icon>
                   </v-btn>
 
-                  <v-dialog v-model="dialog" max-width="600px">
-                    <v-card>
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="dialog = false"
-                        >
-                          Close
-                        </v-btn>
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="dialog = false"
-                        >
-                          Save
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                  <auth-btn :handler="showContactForm">
+                  <v-btn icon color="primary" x-large @click="showContactForm">
                     <v-icon>mdi-email</v-icon>
-                  </auth-btn>
+                  </v-btn>
                 </div>
               </div>
               <div class="section">
@@ -162,11 +149,11 @@
 import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
-import ProvidersSlider from "@/components/ProvidersSlider.vue";
 import utilsMixin from "@/mixins/utils.mixin";
 import { Benefit } from "@/interfaces/benefit.interface";
 import { BenefitService } from "@/services/benefit.service";
 import { ISlider } from "@/interfaces/provider.interface";
+import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
 
 export default Vue.extend({
   name: "Benefit",
@@ -196,7 +183,7 @@ export default Vue.extend({
   },
   components: {
     BenefitsGrid,
-    ProvidersSlider,
+    ProviderContactFormModal,
   },
   computed: {
     benefit(): Benefit {
@@ -211,7 +198,7 @@ export default Vue.extend({
       this.$swal(this.benefit.phone_service);
     },
     showContactForm() {
-      this.dialog = true;
+      this.$store.commit("contactModal", true);
     },
   },
 });

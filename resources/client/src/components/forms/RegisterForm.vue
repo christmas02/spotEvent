@@ -1,114 +1,127 @@
 <template>
-    <v-form
-        ref="registerForm"
-        lazy-validation
-        @submit.prevent="registerUser"
-        class="h-100 d-flex flex-column justify-content-between">
-        <h1 class="page-title">Inscription</h1>
+  <v-form
+    ref="registerForm"
+    lazy-validation
+    @submit.prevent="registerUser"
+    class="h-100 d-flex flex-column justify-content-between"
+  >
+    <h1 class="page-title">Inscription</h1>
 
-        <div class="mt-3">
-            <v-text-field label="Nom et prenoms" v-model="form.name" :rules="requiredRules"></v-text-field>
-            <v-text-field label="Email" type="email" v-model="form.email" :rules="emailRules"></v-text-field>
-            <v-text-field label="N° de téléphone" v-model="form.phone" type="tel" :rules="phoneCiRules"></v-text-field>
-            <v-text-field
-                v-model="form.password"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show1 ? 'text' : 'password'"
-                label="Choisir un mot de passe"
-                @click:append="show1 = !show1"
-                :rules="passwordRules"
-            ></v-text-field>
-            <v-text-field
-                v-model="form.password_confirmation"
-                :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show2 ? 'text' : 'password'"
-                label="Confirmer le mot de passe"
-                @click:append="show2 = !show2"
-                :rules="confirmPasswordRules"
-            ></v-text-field>
-        </div>
-        <div>
-            <v-btn color="primary" type="submit" :disabled="loading">
-                <template v-if="loading">Veuillez patienter ...</template>
-                <v-icon v-else>mdi-arrow-right</v-icon>
-            </v-btn>
-        </div>
-    </v-form>
+    <div class="mt-3">
+      <v-text-field
+        label="Nom et prenoms"
+        v-model="form.name"
+        :rules="requiredRules"
+      ></v-text-field>
+      <v-text-field
+        label="Email"
+        type="email"
+        v-model="form.email"
+        :rules="emailRules"
+      ></v-text-field>
+      <v-text-field
+        label="N° de téléphone"
+        v-model="form.phone"
+        type="tel"
+        :rules="phoneCiRules"
+      ></v-text-field>
+      <v-text-field
+        v-model="form.password"
+        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show1 ? 'text' : 'password'"
+        label="Choisir un mot de passe"
+        @click:append="show1 = !show1"
+        :rules="passwordRules"
+      ></v-text-field>
+      <v-text-field
+        v-model="form.password_confirmation"
+        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show2 ? 'text' : 'password'"
+        label="Confirmer le mot de passe"
+        @click:append="show2 = !show2"
+        :rules="confirmPasswordRules"
+      ></v-text-field>
+    </div>
+    <div>
+      <v-btn color="primary" type="submit" :disabled="loading">
+        <template v-if="loading">Veuillez patienter ...</template>
+        <v-icon v-else>mdi-arrow-right</v-icon>
+      </v-btn>
+    </div>
+  </v-form>
 </template>
 
 <script lang="ts">
-    import Vue from "vue"
-    import { IRegister } from "@/interfaces/auth.interfaces";
-    import ValidationsMixin from "@/mixins/validations.mixin";
-    import {AuthService} from "@/services/auth.service";
+import Vue from "vue";
+import { IRegister } from "@/interfaces/auth.interfaces";
+import ValidationsMixin from "@/mixins/validations.mixin";
+import { AuthService } from "@/services/auth.service";
 
-    export default Vue.extend({
-        mixins: [ValidationsMixin],
-        name: "RegisterForm",
-        props: {
-          role: {
-              type: String,
-              required: true
+export default Vue.extend({
+  mixins: [ValidationsMixin],
+  name: "RegisterForm",
+  props: {
+    role: {
+      type: String,
+      required: true,
+    },
+  },
+  mounted() {
+    console.log(this.role);
+  },
+  data() {
+    return {
+      form: {
+        name: "",
+        email: "",
+        role: "",
+        phone: "",
+        password: "",
+        password_confirmation: "",
+      } as IRegister,
+      show1: false,
+      show2: false,
+      loading: false,
+    };
+  },
+  methods: {
+    async registerUser() {
+      // @ts-ignore
+      if (this.$refs.registerForm.validate()) {
+        this.loading = true;
+        this.form.role = this.role;
+        const authService = new AuthService();
+
+        const result = await authService.initRegister(this.form);
+
+        this.loading = false;
+
+        if (result.statu != 0) {
+          const result = await this.$swal({
+            icon: "info",
+            text: "Vous avez reçu un email de confirmation",
+            allowOutsideClick: false,
+          });
+
+          if (result.isConfirmed) {
+            await this.$router.push({ name: "auth-login" });
           }
-        },
-        mounted() {
-            console.log(this.role)
-        },
-        data() {
-            return {
-                form: {
-                    name: "",
-                    email: "",
-                    role: "",
-                    phone: "",
-                    password: "",
-                    password_confirmation: "",
-                } as IRegister,
-                show1: false,
-                show2: false,
-                loading: false,
-            }
-        },
-        methods: {
-            async registerUser() {
-                // @ts-ignore
-                if (this.$refs.registerForm.validate()) {
-                    this.loading = true;
-                    this.form.role = this.role;
-                    const authService = new AuthService();
-
-                    const result = await authService.initRegister(this.form);
-
-                    this.loading = false;
-
-                    if (result.statu != 0) {
-                        const result = await this.$swal({
-                            icon: "info",
-                            text: "Vous avez reçu un email de confirmation",
-                            allowOutsideClick: false
-                        });
-
-                        if (result.isConfirmed) {
-                            await this.$router.push({name: "auth-login"});
-                        }
-                    } else {
-                        this.$swal({icon: "error", text: "Une erreur est survenue"});
-
-                    }
-
-                }
-            }
-        },
-        computed: {
-            confirmPasswordRules() {
-                return [
-                    (v: string) => v === this!.form.password || "Mots de passes pas identiques",
-                ]
-            }
+        } else {
+          this.$swal({ icon: "error", text: "Une erreur est survenue" });
         }
-    })
+      }
+    },
+  },
+  computed: {
+    confirmPasswordRules() {
+      return [
+        (v: string) =>
+          v === this!.form.password || "Mots de passes pas identiques",
+      ];
+    },
+  },
+});
 </script>
 
 <style scoped>
-
 </style>

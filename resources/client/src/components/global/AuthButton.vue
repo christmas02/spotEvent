@@ -24,7 +24,7 @@ export default Vue.extend({
       if (this.isAuth) {
         this.handler();
       } else {
-        this.$swal({ icon: "info", text: "Vous devez vous connecter" });
+        this.$store.commit("auth/authModalStatus", true);
       }
     },
   },
