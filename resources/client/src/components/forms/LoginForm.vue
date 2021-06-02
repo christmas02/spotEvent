@@ -5,8 +5,6 @@
     lazy-validation
     @submit.prevent="initLogin"
   >
-    <h1 class="page-title">Connexion</h1>
-
     <div>
       <v-text-field
         label="Email"

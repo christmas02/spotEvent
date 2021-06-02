@@ -37,4 +37,6 @@ Route::post('favoris','ApiController@Favoris');
 Route::post('clicfiche','ApiController@clicfiche');
 Route::post('clicphone','ApiController@clicphone');
 
+Route::post('demande','ApiController@saveDemande');
+
 

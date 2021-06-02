@@ -1,9 +1,18 @@
 <template>
   <v-app>
+    <login-modal></login-modal>
     <router-view />
   </v-app>
 </template>
 
+
+<script lang="ts">
+import Vue from "vue";
+import loginModal from "./components/global/loginModal.vue";
+export default Vue.extend({
+  components: { loginModal },
+});
+</script>
 <style>
 :root {
   --primary: #fbb231;

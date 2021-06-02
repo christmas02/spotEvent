@@ -11,6 +11,7 @@ use App\Galerie;
 use App\Favori;
 use App\Clicfiche;
 use App\Clicphone;
+use App\Demande;
 use Input;
 
 class ApiController extends Controller
@@ -148,6 +149,41 @@ class ApiController extends Controller
             $statu = 1;
 
             return response()->json(['statu'=> $statu]);
+
+        } catch (Exception $e) {
+            $statu = 0;
+            return response()->json(['statu'=> $statu ,'erreur' => $e]);
+        }
+
+    }
+
+
+    public function saveDemande(Request $request){
+        
+        try{
+
+            //$request=$request->all();
+            //dd($request);
+           
+            $id_pres = $request['id_pres'];
+            $name = $request['name'];
+            $phone = $request['phone'];
+            $email = $request['email'];
+            $message = $request['message'];
+
+            Demande::create([
+                'id_prestataire' => $id_pres,
+                'name' => $name,
+                'phone' => $phone,
+                'email' => $email,
+                'message' => $message,
+                'statu' => 0,
+            ]);
+
+            $statu = 1;
+            $messages = "Votre demandé a bien été transmit au prèstatire !";
+
+            return response()->json(['statu'=> $statu, 'messages' => $messages]);
 
         } catch (Exception $e) {
             $statu = 0;

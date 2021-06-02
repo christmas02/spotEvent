@@ -5,6 +5,8 @@
     action="login"
   >
     <div class="login-container">
+      <h1 class="page-title">Connexion</h1>
+
       <login-form></login-form>
     </div>
   </auth-layout>

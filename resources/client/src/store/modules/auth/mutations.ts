@@ -9,5 +9,8 @@ export default {
     logout(state: IAuthState): void {
         state.auth = false;
         state.user = (null as unknown) as IUser;
+    },
+    authModalStatus(state: IAuthState, val: boolean): void {
+        state.modal = val;
     }
 };

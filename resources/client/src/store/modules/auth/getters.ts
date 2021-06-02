@@ -7,5 +7,8 @@ export default {
     },
     user(state: IAuthState): IUser {
         return state.user;
+    },
+    modal(state: IAuthState): boolean {
+        return state.modal;
     }
 };

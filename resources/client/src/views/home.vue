@@ -1,7 +1,7 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <div>
+      <div class="d-none d-md-block">
         <jumbotron image="images/jmbg1.png">
           <h1 class="content-title">Lorem ipsum<br />Dolor amet</h1>
           <p class="content-subtitle my-5">texte essai oui texte essai</p>
@@ -50,7 +50,7 @@
             <div>
               <h2 class="section-title">Prestations</h2>
             </div>
-            <div class="actions-container d-flex">
+            <div class="actions-container d-none d-md-flex">
               <div>
                 <v-btn color="primary" x-large>Toutes les prestations</v-btn>
               </div>
@@ -90,7 +90,7 @@
             <v-btn color="primary">Voir plus</v-btn>
           </div>
         </div>
-        <div class="section mt-0">
+        <div class="section mt-0 d-none d-md-block">
           <div>
             <h2 class="section-title">Prestataires</h2>
           </div>
