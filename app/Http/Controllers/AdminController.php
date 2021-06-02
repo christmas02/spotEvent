@@ -29,6 +29,11 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
+    public function Userinfo($id){
+        $infoUser = User::where('id',$id)->first();
+        return  $infoUser;
+    }
+
     public function home($id){
        
         //dd();
@@ -37,7 +42,9 @@ class AdminController extends Controller
         return view('admin.home', compact('infoUser'));
     }
 
-    public function getPrestatire(){
+    public function getPrestatire($id){
+
+        $infoUser = $this->Userinfo($id);
 
         $listePrestation = Db::table('fiches')
                         ->leftjoin('users','users.id','=','fiches.id_user')
@@ -45,7 +52,7 @@ class AdminController extends Controller
                         ->orderBy('fiches.id', 'desc')
                         ->get();
 
-        return view('admin.list_prestataire',compact('listePrestation'));
+        return view('admin.list_prestataire',compact('listePrestation','infoUser'));
     }
 
     public function galerie($id){
@@ -53,8 +60,8 @@ class AdminController extends Controller
         return $galerie;
     }
 
-    public function onePrestatire($id){
-
+    public function onePrestatire($id,$user){
+        $infoUser = $this->Userinfo($user);
         $prestataire = DB::table('fiches')
                         ->where('fiches.id',$id)
                         ->leftjoin('users','users.id','=','fiches.id_user')
@@ -65,7 +72,7 @@ class AdminController extends Controller
         $galerie = $this->galerie($prestataire->id_user);
         //dd( $galerie);
 
-        return view('admin.fiche_prestataire',compact('prestataire','galerie'));
+        return view('admin.fiche_prestataire',compact('prestataire','galerie','infoUser'));
     }
 
     public function getReservation(){
@@ -75,6 +82,46 @@ class AdminController extends Controller
     public function getPrestations(){
         $prestations =  $this->prestations();
         return view('admin.list_prestation',compact('prestations'));
+    }
+
+    public function saveParametre(Request $request){
+        try{
+
+            //dd($request->all());
+            $id_fiche = $request->get('id_fiche');
+
+            $activation = $request->get('activation');
+            $position = $request->get('position');
+            $messagerie = $request->get('messagerie');
+            $favoris = $request->get('favoris');
+            
+
+            $firstFiche = Fiche::where('id',$id_fiche)->first();
+
+            //if($activation AND $activation != $firstFiche->statu_fiche){
+                Fiche::where('id',$id_fiche)->update(['statu_fiche' => $activation]);
+            //}
+
+            //if($position AND $position != $firstFiche->position){
+                Fiche::where('id',$id_fiche)->update(['position' => $position]);
+            //}
+
+            //if($messagerie AND $messagerie != $firstFiche->messagerie){
+                Fiche::where('id',$id_fiche)->update(['messagerie' => $messagerie]);
+            //}
+
+            //if($favoris AND $favoris != $firstFiche->favoris){
+                Fiche::where('id',$id_fiche)->update(['favoris' => $favoris]);
+            //}
+
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+        
+
     }
 
     public function savePrestation(Request $request){

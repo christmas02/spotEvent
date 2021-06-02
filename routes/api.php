@@ -33,4 +33,8 @@ Route::post('liste_slides','ApiController@getSlide');
 Route::post('first_prestation','ApiController@fisrtPrestation');
 Route::post('first_prestataire','ApiController@firstPrestataire');
 
+Route::post('favoris','ApiController@Favoris');
+Route::post('clicfiche','ApiController@clicfiche');
+Route::post('clicphone','ApiController@clicphone');
+
 

@@ -28,11 +28,12 @@ Route::get('/list/messageries/{id}','PrestataireController@getMessagerie');
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
 
 Route::get('/welcome/tableau/administrateur/{id}','AdminController@home')->name('administrateur');
-Route::get('/liste/prestataires','AdminController@getPrestatire');
-Route::get('/fiche/prestataires/{id}','AdminController@onePrestatire');
-Route::get('/liste/reservations','AdminController@getReservation');
-Route::get('/list/prestations','AdminController@getPrestations');
+Route::get('/liste/prestataires/{id}','AdminController@getPrestatire');
+Route::get('/fiche/prestataires/{id}/{user}','AdminController@onePrestatire');
+Route::get('/liste/reservations/{id}','AdminController@getReservation');
+Route::get('/list/prestations/{id}','AdminController@getPrestations');
 Route::post('/save/prestation','AdminController@savePrestation');
+Route::post('/save/parametre','AdminController@saveParametre');
 
 
 Route::get('/connexion','AdminController@login');

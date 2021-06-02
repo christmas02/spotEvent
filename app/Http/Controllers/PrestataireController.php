@@ -181,7 +181,7 @@ class PrestataireController extends Controller
                     $images[]=$extension;
 
                     Galerie::create([
-                        'path' => $file_path,
+                        'path' => $filename,
                         'id_user' => $id,
                     ]);
                 }

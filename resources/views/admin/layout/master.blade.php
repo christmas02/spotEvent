@@ -65,8 +65,8 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="/welcome/tableau/administrateur"><i class="fa fa-home"></i> Tableau de bord</span></a></li>
-                  <li><a href="/liste/prestataires"><i class="fa fa-edit"></i> Prestatires</span></a></li>
+                  <li><a href="/welcome/tableau/administrateur/{{ $infoUser->id }}"><i class="fa fa-home"></i> Tableau de bord</span></a></li>
+                  <li><a href="/liste/prestataires/{{ $infoUser->id }}/{{ $infoUser->user }}"><i class="fa fa-edit"></i> Prestatires</span></a></li>
                   {{--<li><a href="#"><i class="fa fa-edit"></i> Agents / Agences<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Liste des Agents </a></li>
@@ -109,11 +109,8 @@
                       <img src="{{asset('/admin/images/user.png')}}" alt="">{{ $infoUser->name }}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                        <a class="dropdown-item"  href="javascript:;">
-                          <span class="badge bg-red pull-right">50%</span>
-                          <span>Settings</span>
-                        </a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalProfil"> Profile</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalPassword">Modification du mot de passe</a>
                       <a class="dropdown-item" href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
                           {{ __('Déconnexion') }}<i class="fa fa-sign-out pull-right"></i>
@@ -175,6 +172,87 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqqwfoyJERekoo-c243pZUj4azUHqvR_U&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+
+    <div class="modal fade" id="exampleModalProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Gestion Profil</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <h4 class="text-center"></b></h4> 
+          <div class="silde">
+            <form method="POST" action="/save/parametre">
+            @csrf
+
+            <div class="row">
+            <div class="col-md-6"><img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar"> 
+            @if($infoUser->role == 3) Administrateur @elseif($infoUser->role == 2) Prestataire @endif  </div>
+            <div class="col-md-6"></div>
+            </div>
+
+            <div class="row">
+            <div class="col-md-6"><b>Nom et prenom :</b></div>
+            <div class="col-md-6">{{ $infoUser->name }}</div>
+            </div>
+            <div class="row">
+            <div class="col-md-6"><b>Numero de telephone :</b></div>
+            <div class="col-md-6">{{ $infoUser->phone }}</div>
+            </div>
+            <div class="row">
+            <div class="col-md-6"><b>Email :</b></div>
+            <div class="col-md-6">{{ $infoUser->email }}</div>
+            </div>
+            
+                
+
+            
+          </div>
+          </div>
+          <div class="modal-footer-btn">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-success">Valider</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modification de mot de passe</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <h4 class="text-center"></b></h4> 
+          <div class="silde">
+            <form method="POST" action="/save/parametre">
+            @csrf
+
+
+            
+                
+
+            
+          </div>
+          </div>
+          <div class="modal-footer-btn">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-success">Valider</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
     <!-- jQuery -->
