@@ -2360,7 +2360,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.content-subtitle[data-v-69ca11f5] {\r\n  color: var(--primary);\n}\n.w-50[data-v-69ca11f5] {\r\n  width: 50%;\n}\n.more[data-v-69ca11f5] {\r\n  background-color: rgba(244, 245, 247, 0.7);\r\n  padding-bottom: 150px;\n}\n.main[data-v-69ca11f5] {\r\n  padding-top: 90px;\n}\n.section-title[data-v-69ca11f5] {\r\n  margin-bottom: 50px;\n}\n.my-divider[data-v-69ca11f5] {\r\n  background: #000;\r\n  margin: 0 auto 20px auto;\r\n  height: 5px;\r\n  width: 25%;\n}\n.more-info[data-v-69ca11f5] {\r\n  width: 95%;\n}\n.right[data-v-69ca11f5] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: flex-end;\r\n  padding-bottom: 50px;\n}\r\n", ""]);
+exports.push([module.i, "\n.content-subtitle[data-v-69ca11f5] {\r\n  color: var(--primary);\n}\n.w-50[data-v-69ca11f5] {\r\n  width: 50%;\n}\n.more[data-v-69ca11f5] {\r\n  background-color: rgba(244, 245, 247, 0.7);\r\n  padding-bottom: 150px;\n}\n.main[data-v-69ca11f5] {\r\n  padding-top: 90px;\n}\n.section-title[data-v-69ca11f5] {\r\n  margin-bottom: 50px;\n}\n.my-divider[data-v-69ca11f5] {\r\n  background: #000;\r\n  margin: 0 auto 20px auto;\r\n  height: 5px;\r\n  width: 25%;\n}\n.more-info[data-v-69ca11f5] {\r\n  width: 95%;\n}\n.right[data-v-69ca11f5] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: flex-end;\r\n  padding-bottom: 50px;\n}\n.more img[data-v-69ca11f5] {\r\n  width: 30%;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -4104,46 +4104,50 @@ var render = function() {
         "div",
         { staticClass: "default-padding" },
         [
-          _c("jumbotron", [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "d-md-flex justify-content-md-between align-items-md-center"
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "col-md-6 h-100 d-flex flex-column justify-content-between"
-                  },
-                  [
-                    _c("div"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "w-50" }, [
-                      _c("h1", { staticClass: "content-title" }, [
-                        _vm._v("A Propos de Nous")
-                      ]),
+          _c(
+            "jumbotron",
+            { attrs: { image: __webpack_require__(/*! ../assets/about/jmb.png */ "./resources/client/src/assets/about/jmb.png") } },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "d-md-flex justify-content-md-between align-items-md-center"
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "col-md-6 h-100 d-flex flex-column justify-content-between"
+                    },
+                    [
+                      _c("div"),
                       _vm._v(" "),
-                      _c("p", { staticClass: "content-subtitle my-5" }, [
-                        _vm._v(
-                          "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n              "
-                        )
+                      _c("div", { staticClass: "w-50" }, [
+                        _c("h1", { staticClass: "content-title" }, [
+                          _vm._v("A Propos de Nous")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "content-subtitle my-5" }, [
+                          _vm._v(
+                            "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n              "
+                          )
+                        ])
                       ])
-                    ])
-                  ]
-                )
-              ]
-            )
-          ])
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c("div", { staticClass: "main mx-auto pb-4" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "col-12 col-md-6" }, [
             _c("div", { staticClass: "section" }, [
               _c("h2", { staticClass: "section-title" }, [
                 _vm._v("Qui-sommes nous ?")
@@ -4163,54 +4167,92 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 right" }, [
-            _c("img", { attrs: { src: __webpack_require__(/*! ../assets/dark-logo.png */ "./resources/client/src/assets/dark-logo.png") } })
+          _c("div", { staticClass: "d-none d-md-block col-md-6 right" }, [
+            _c("img", {
+              attrs: {
+                src: __webpack_require__(/*! ../assets/about/image.png */ "./resources/client/src/assets/about/image.png"),
+                height: "275"
+              }
+            })
           ])
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "more" }, [
         _c("div", { staticClass: "main mx-auto" }, [
-          _c(
-            "div",
-            { staticClass: "row" },
-            _vm._l(3, function(i) {
-              return _c(
-                "div",
-                { key: i, staticClass: "col-md-4 text-center" },
-                [
-                  _c("div", { staticClass: "more-info" }, [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: {
-                        src: __webpack_require__(/*! ../assets/dark-logo.png */ "./resources/client/src/assets/dark-logo.png"),
-                        alt: "oki"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "h2",
-                      { staticClass: "text-primary text-uppercase mt-2" },
-                      [
-                        _vm._v(
-                          "\n                Lorem ipsum dolor\n              "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "my-divider" }),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Provident aliquam ex dignissimos repudiandae fugiat officiis\n                quisquam natus veniam. Quos temporibus cupiditate libero\n                delectus tempore nesciunt a dolorem qui fuga itaque.\n              "
-                      )
-                    ])
-                  ])
-                ]
-              )
-            }),
-            0
-          )
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-4 text-center" }, [
+              _c("div", { staticClass: "more-info" }, [
+                _c("img", {
+                  staticClass: "img-fluid",
+                  attrs: {
+                    src: __webpack_require__(/*! ../assets/about/about3.png */ "./resources/client/src/assets/about/about3.png"),
+                    alt: "oki"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h2", { staticClass: "text-primary text-uppercase mt-2" }, [
+                  _vm._v("\n                Lorem ipsum dolor\n              ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "my-divider" }),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Provident aliquam ex dignissimos repudiandae fugiat officiis\n                quisquam natus veniam. Quos temporibus cupiditate libero\n                delectus tempore nesciunt a dolorem qui fuga itaque.\n              "
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4 text-center" }, [
+              _c("div", { staticClass: "more-info" }, [
+                _c("img", {
+                  staticClass: "img-fluid",
+                  attrs: {
+                    src: __webpack_require__(/*! ../assets/about/about1.png */ "./resources/client/src/assets/about/about1.png"),
+                    alt: "oki"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h2", { staticClass: "text-primary text-uppercase mt-2" }, [
+                  _vm._v("\n                Lorem ipsum dolor\n              ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "my-divider" }),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Provident aliquam ex dignissimos repudiandae fugiat officiis\n                quisquam natus veniam. Quos temporibus cupiditate libero\n                delectus tempore nesciunt a dolorem qui fuga itaque.\n              "
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4 text-center" }, [
+              _c("div", { staticClass: "more-info" }, [
+                _c("img", {
+                  staticClass: "img-fluid",
+                  attrs: {
+                    src: __webpack_require__(/*! ../assets/about/about2.png */ "./resources/client/src/assets/about/about2.png"),
+                    alt: "oki"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h2", { staticClass: "text-primary text-uppercase mt-2" }, [
+                  _vm._v("\n                Lorem ipsum dolor\n              ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "my-divider" }),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Provident aliquam ex dignissimos repudiandae fugiat officiis\n                quisquam natus veniam. Quos temporibus cupiditate libero\n                delectus tempore nesciunt a dolorem qui fuga itaque.\n              "
+                  )
+                ])
+              ])
+            ])
+          ])
         ])
       ])
     ])
@@ -84437,6 +84479,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_55cda9ca___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/client/src/assets/about/about1.png":
+/*!******************************************************!*\
+  !*** ./resources/client/src/assets/about/about1.png ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/about1.png?3274a35f648b05fa5d33a20c0afe995f";
+
+/***/ }),
+
+/***/ "./resources/client/src/assets/about/about2.png":
+/*!******************************************************!*\
+  !*** ./resources/client/src/assets/about/about2.png ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/about2.png?cba8d8e99a2ddbfc03beb8c6a4257d17";
+
+/***/ }),
+
+/***/ "./resources/client/src/assets/about/about3.png":
+/*!******************************************************!*\
+  !*** ./resources/client/src/assets/about/about3.png ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/about3.png?2767bfcb6038f601f2f8d745f6e01289";
+
+/***/ }),
+
+/***/ "./resources/client/src/assets/about/image.png":
+/*!*****************************************************!*\
+  !*** ./resources/client/src/assets/about/image.png ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/image.png?c2fbd4ae4416b131278dc401846688e8";
+
+/***/ }),
+
+/***/ "./resources/client/src/assets/about/jmb.png":
+/*!***************************************************!*\
+  !*** ./resources/client/src/assets/about/jmb.png ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/jmb.png?840ad1925c587499c03613c1812e2e31";
 
 /***/ }),
 
