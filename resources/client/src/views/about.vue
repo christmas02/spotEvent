@@ -2,7 +2,7 @@
   <default-layout :padding="false">
     <div id="benefit-page">
       <div class="default-padding">
-        <jumbotron>
+        <jumbotron :image="require('../assets/about/jmb.png')">
           <div
             class="d-md-flex justify-content-md-between align-items-md-center"
           >
@@ -23,7 +23,7 @@
       </div>
       <div class="main mx-auto pb-4">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-12 col-md-6">
             <div class="section">
               <h2 class="section-title">Qui-sommes nous ?</h2>
               <p class="font-weight-bold">
@@ -54,18 +54,56 @@
               </p>
             </div>
           </div>
-          <div class="col-md-6 right">
-            <img :src="require('../assets/dark-logo.png')" />
+          <div class="d-none d-md-block col-md-6 right">
+            <img :src="require('../assets/about/image.png')" height="275" />
           </div>
         </div>
       </div>
       <div class="more">
         <div class="main mx-auto">
           <div class="row">
-            <div class="col-md-4 text-center" v-for="i in 3" :key="i">
+            <div class="col-md-4 text-center">
               <div class="more-info">
                 <img
-                  :src="require('../assets/dark-logo.png')"
+                  :src="require('../assets/about/about3.png')"
+                  alt="oki"
+                  class="img-fluid"
+                />
+                <h2 class="text-primary text-uppercase mt-2">
+                  Lorem ipsum dolor
+                </h2>
+                <div class="my-divider"></div>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Provident aliquam ex dignissimos repudiandae fugiat officiis
+                  quisquam natus veniam. Quos temporibus cupiditate libero
+                  delectus tempore nesciunt a dolorem qui fuga itaque.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="more-info">
+                <img
+                  :src="require('../assets/about/about1.png')"
+                  alt="oki"
+                  class="img-fluid"
+                />
+                <h2 class="text-primary text-uppercase mt-2">
+                  Lorem ipsum dolor
+                </h2>
+                <div class="my-divider"></div>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Provident aliquam ex dignissimos repudiandae fugiat officiis
+                  quisquam natus veniam. Quos temporibus cupiditate libero
+                  delectus tempore nesciunt a dolorem qui fuga itaque.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="more-info">
+                <img
+                  :src="require('../assets/about/about2.png')"
                   alt="oki"
                   class="img-fluid"
                 />
@@ -132,5 +170,9 @@ export default Vue.extend({});
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 50px;
+}
+
+.more img {
+  width: 30%;
 }
 </style>
