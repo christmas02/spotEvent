@@ -2840,7 +2840,7 @@ var render = function() {
         "x-large": "",
         outlined: "",
         rounded: "",
-        disabled: _vm.benefit.favoris !== 1
+        disabled: _vm.benefit.favoris !== 1 || !_vm.auth
       },
       on: { click: _vm.toggleFavorite }
     },
@@ -10844,6 +10844,9 @@ __webpack_require__.r(__webpack_exports__);
             return this.$store.getters["auth/isFavorite"](this.benefit.id_user)
                 ? "red"
                 : "white";
+        },
+        auth() {
+            return this.$store.getters["auth/isConnected"];
         },
     },
 }));
