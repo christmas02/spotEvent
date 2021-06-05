@@ -54,36 +54,15 @@
 
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Commentaire</a>
-                          </li>
+                          
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Evolution generale</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste reservation</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste demandes</a>
                           </li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
-                          <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="home-tab">
-
-                            <!-- start recent activity -->
-                            <ul class="messages">
-
-                              <li>
-                                <div class="message_date">
-                                  <h3 class="date text-error">21</h3>
-                                  <p class="month">May</p>
-                                </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">Brian Michaels</h4>
-                                  <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                  <br />
-                                </div>
-                              </li>
-
-                            </ul>
-                            <!-- end recent activity -->
-
-                          </div>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                         
+                          <div role="tabpanel" class="tab-pane active" id="tab_content2" aria-labelledby="profile-tab">
 
                             <!-- start user projects -->
                             <table class="data table table-striped no-margin">
@@ -91,7 +70,7 @@
                                 <tr>
                                   <th>#</th>
                                   <th>Designstion</th>
-                                  <th>Valeurs</th>
+                                  <th>Statistique</th>
                                 
                                 </tr>
                               </thead>
@@ -99,17 +78,17 @@
                                 <tr> 
                                   <td></td>
                                   <td>Nombre total de viste</td>
-                                  <td class="hidden-phone">30</td>
+                                  <td class="hidden-phone">00</td>
                                 </tr>
                                 <tr> 
                                   <td></td>
                                   <td>Nombre total de prise contact</td>
-                                  <td class="hidden-phone">30</td>
+                                  <td class="hidden-phone">00</td>
                                 </tr>
                                 <tr> 
                                   <td></td>
                                   <td>Nombre total de sollicitation</td>
-                                  <td class="hidden-phone">30</td>
+                                  <td class="hidden-phone">00</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -120,7 +99,7 @@
                              <!-- start user projects -->
                              <table class="data table table-striped no-margin">
                               <thead>
-                                <tr>
+                                <tr style="font-size: 20px;">
                                   <th>#</th>
                                   <th>Informateion client</th>
                                   <th>Date</th>

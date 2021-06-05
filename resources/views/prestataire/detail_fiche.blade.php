@@ -68,7 +68,7 @@
                         <h3 style="" class="prod_title">{{ $ficheExiste->name }} / {{ $ficheExiste->localisation }}</h3>
                         <h4><strong>Présentation :</strong>{{ $ficheExiste->presentation }}.</h4>
                         <h4><strong>Description :</strong>{{ $ficheExiste->description }}.</h4>
-                        <h4>Interval de facturation de la prestation : {{ number_format($ficheExiste->estimation_min) }} .XOF  -  {{ number_format($ficheExiste->id_estimation_min) }}.XOF </h4>
+                        <h4>Interval de facturation de la prestation : {{ number_format($ficheExiste->estimation_min) }} .XOF  -  {{ number_format($ficheExiste->estimation_max) }}.XOF </h4>
                         <h4><strong>Telephone</strong> : {{ $ficheExiste->phone_service }} / {{ $ficheExiste->phone2_service }}</h4>
                         <h4>Whatsapp : {{ $ficheExiste->phone_whastapp }}</h4>
                         <h4>Facebook : {{ $ficheExiste->lien_facebook }}</h4>
@@ -84,6 +84,7 @@
                             <i class="fa fa-folder"></i> Modifier mom profil</button>
                             
                         </div>
+                        <hr>
 
                     </div>
 
@@ -247,9 +248,16 @@
             </div>
             <div class="item form-group">
                 <label for="middle-name"
-                    class="col-form-label col-md-3 col-sm-3 label-align">Presentation</label>
+                    class="col-form-label col-md-3 col-sm-3 label-align">Détail localisaton</label>
                 <div class="col-md-6 col-sm-6 ">
-                    <textarea rows="4" name="description" class="form-control">{{$ficheExiste->presentation}}</textarea>
+                    <textarea rows="4" name="detail_localisation" class="form-control">{{$ficheExiste->detail_localisation}}</textarea>
+                </div>
+            </div>
+            <div class="item form-group">
+                <label for="middle-name"
+                    class="col-form-label col-md-3 col-sm-3 label-align">Présentation</label>
+                <div class="col-md-6 col-sm-6 ">
+                    <textarea rows="4" name="presentation" class="form-control">{{$ficheExiste->presentation}}</textarea>
                 </div>
             </div>
             <div class="item form-group">
@@ -264,7 +272,7 @@
                   Estimation min<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" name="montant_min_prest" class="form-control" value="{{ $ficheExiste->id_estimation_min }}">
+                    <input type="text" name="estimation_min" class="form-control" value="{{ $ficheExiste->estimation_min }}">
                 </div>
             </div>
             <div class="item form-group">
@@ -272,12 +280,12 @@
                 Estimation max<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" name="montant_max_prest" class="form-control" value="{{ $ficheExiste->id_estimation_max }}">
+                    <input type="text" name="estimation_max" class="form-control" value="{{ $ficheExiste->estimation_max }}">
                 </div>
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                Telephone <span class="required">*</span>
+                Téléphone <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
                     <input type="text" name="phone_service" class="form-control" value="{{ $ficheExiste->phone_service }} ">
@@ -285,7 +293,7 @@
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                Telephone secondaire<span class="required">*</span>
+                Téléphone secondaire<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
                     <input type="text" name="phone2_service" class="form-control" value="{{ $ficheExiste->phone2_service }}">
@@ -301,10 +309,18 @@
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                 Liens facebook <span class="required">*</span>
+                 Lien facebook <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
                     <input type="text" name="lien_facebook" class="form-control" value="{{ $ficheExiste->lien_facebook }}">
+                </div>
+            </div>
+            <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                 Lien instagram <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                    <input type="text" name="lien_instagram" class="form-control" value="{{ $ficheExiste->lien_instagram }}">
                 </div>
             </div>
             <div class="item form-group">

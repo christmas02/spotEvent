@@ -10,6 +10,7 @@ use App\Fiche;
 use App\Galerie;
 use App\Prestation;
 use App\Estimation;
+use App\Demande;
 
 
 class PrestataireController extends Controller
@@ -26,7 +27,6 @@ class PrestataireController extends Controller
     public function infoUser($id){
         $infoUser = User::where('id',$id)->first();
         return $infoUser;
-
     }
 
     public function ficheExiste($id){
@@ -37,6 +37,13 @@ class PrestataireController extends Controller
     public function galerieExiste($id){
         $galerieExiste = Galerie::where('id_user','=',$id)->get();
         return $galerieExiste;
+    }
+
+    public function getDemande($id)
+    {
+        $listDemande = Demande::where('id_prestataire',$id)->orderBy('id', 'desc')->get();
+        return $listDemande;
+
     }
 
     public function home($id){
@@ -121,13 +128,16 @@ class PrestataireController extends Controller
 
             $name = $request->get('name');
             $localisation = $request->get('localisation');
+            $presentation = $request->get('presentation');
             $description = $request->get('description');
-            $montant_min_prest = $request->get('montant_min_prest');
-            $montant_max_prest = $request->get('montant_max_prest');
+            $detail_localisation = $request->get('detail_localisation');
+            $estimation_min = $request->get('estimation_min');
+            $estimation_max = $request->get('estimation_max');
             $phone_service = $request->get('phone_service');
             $phone2_service = $request->get('phone2_service');
             $phone_whastapp = $request->get('phone_whastapp');
             $lien_facebook = $request->get('lien_facebook');
+            $lien_instagram = $request->get('lien_instagram');
             $email_service = $request->get('email_service');
 
             $id = $request->get('id');
@@ -137,12 +147,15 @@ class PrestataireController extends Controller
                 'name' => $name,
                 'localisation' => $localisation,
                 'description' => $description,
-                'montant_min_prest' => $montant_min_prest,
-                'montant_max_prest' => $montant_max_prest,
+                'presentation' => $presentation,
+                'detail_localisation' => $detail_localisation,
+                'estimation_min' => $estimation_min,
+                'estimation_max' => $estimation_max,
                 'phone_service' => $phone_service,
                 'phone2_service' => $phone2_service,
                 'phone_whastapp' => $phone_whastapp,
                 'lien_facebook' => $lien_facebook,
+                'lien_instagram' => $lien_instagram,
                 'email_service' => $email_service,
             ]);
 
@@ -209,8 +222,9 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($id);
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
+        $listDemande = $this->getDemande($id);
 
-        return view('prestataire.list_reservation', compact('infoUser'));
+        return view('prestataire.list_reservation', compact('infoUser','listDemande'));
     }
 
     public function onePrestatire($id){

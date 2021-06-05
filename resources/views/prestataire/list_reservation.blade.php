@@ -33,16 +33,36 @@
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                            <th> Titre </th>
-                            <th> Pierce </th>
-                            <th> Lit </th>
-                            <th> Salle d'eau </th>
-                            <th> Statu </th>
-                            <th> Localisations </th>
-                            <th> Montant jr </th>
-                            <th> Actions </th>
+                            <th>  </th>
+                            <th> Nom et prenom </th>
+                            <th> Contact Tel</th>
+                            <th> Email </th>
+                            <th> Message </th>
+                            <th>  </th>
+                            
+                           
                         </tr>
                       </thead>
+                      @if($listDemande)
+                         @foreach($listDemande as $items)
+                         <tr>
+                             <td></td>
+                             <td><a href="#" data-toggle="modal" data-target="#exampleModalDemande{{$items->id}}" >{{ $items->name }}</a></td>
+                             <td>{{ $items->phone }}</td>
+                             <td>{{ $items->email }}</td>
+                             <td>{{ $items->message }}</td>
+                             {{--<td style="width: 400px;">
+                             @if( $items->message == 0)
+                             <a href="#"> <span style="font-size: 16px;" class="text-danger">Non lu</span> </a>
+                             @else
+                                 <span class="alert-info">lu</span>
+                             @endif
+                             </td>--}}
+                             <td style="width: 200px;">{{ $items->created_at }}</td>
+                             
+                             </tr>
+                         @endforeach
+                      @endif
 
 
                       <tbody>
@@ -72,24 +92,28 @@
 <!-- /page content -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+@foreach($listDemande as $items)
+<div class="modal fade" id="exampleModalDemande{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Contenus du message</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <strong>Client </strong>
+        <h6>{{ $items->name }} / {{ $items->phone }}</h6>
+        <hr>
+        <strong>Message</strong><h6>{{ $items->message }}</h6>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>
 </div>
+@endforeach
 
 @endsection
