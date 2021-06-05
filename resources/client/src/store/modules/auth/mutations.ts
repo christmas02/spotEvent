@@ -1,10 +1,12 @@
-import { IUser } from "@/interfaces/auth.interfaces";
+import { ILoginResponse, IUser } from "@/interfaces/auth.interfaces";
+import { IFavorite } from "@/interfaces/favorite.interface";
 import { IAuthState } from "./interfaces/state.interface";
 
 export default {
-    login(state: IAuthState, user: IUser): void {
+    login(state: IAuthState, result: ILoginResponse): void {
         state.auth = true;
-        state.user = user;
+        state.user = result.user;
+        state.favorites = result.favoris;
     },
     logout(state: IAuthState): void {
         state.auth = false;
@@ -12,5 +14,8 @@ export default {
     },
     authModalStatus(state: IAuthState, val: boolean): void {
         state.modal = val;
+    },
+    updateFavoritesList(state: IAuthState, val: IFavorite[]): void {
+        state.favorites = val;
     }
 };

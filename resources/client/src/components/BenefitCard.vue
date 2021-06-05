@@ -3,7 +3,7 @@
     max-width="90%"
     :description="benefit.presentation"
     :title="benefit.name.toUpperCase()"
-    :image="createImagePath(benefit.path_img)"
+    :image="benefit.path_img | createImagePath"
   >
     <v-btn color="primary" class="discover-btn" small @click="discover"
       >Découvrir</v-btn
