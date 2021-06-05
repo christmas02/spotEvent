@@ -4695,7 +4695,7 @@ var render = function() {
                                 return _c("v-carousel-item", {
                                   key: slide.id,
                                   attrs: {
-                                    src: _vm.createImagePath(slide.path)
+                                    src: _vm._f("createImagePath")(slide.path)
                                   }
                                 })
                               }),
@@ -5260,7 +5260,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "main mx-auto" }, [
-        _c("div", { staticClass: "d-block d-none" }, [_c("search-form")], 1),
+        _c("div", { staticClass: "d-block d-md-none" }, [_c("search-form")], 1),
         _vm._v(" "),
         _c("div", { staticClass: "section" }, [
           _c("div", { staticClass: "d-flex justify-content-between" }, [

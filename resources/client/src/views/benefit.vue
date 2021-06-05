@@ -49,7 +49,7 @@
                     <v-carousel-item
                       v-for="slide in slides"
                       :key="slide.id"
-                      :src="createImagePath(slide.path)"
+                      :src="slide.path | createImagePath"
                     >
                     </v-carousel-item>
                   </v-carousel>

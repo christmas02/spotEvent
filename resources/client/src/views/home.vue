@@ -17,7 +17,7 @@
       </div>
 
       <div class="main mx-auto">
-        <div class="d-block d-none">
+        <div class="d-block d-md-none">
           <search-form></search-form>
         </div>
         <div class="section">
