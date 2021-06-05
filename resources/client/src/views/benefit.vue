@@ -245,10 +245,6 @@ export default Vue.extend({
   margin-bottom: 10px;
 }
 
-#benefit-page .main {
-  padding: 60px 0;
-}
-
 .section-title {
   margin-bottom: 30px;
 }
