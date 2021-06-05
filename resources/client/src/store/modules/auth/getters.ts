@@ -10,5 +10,8 @@ export default {
     },
     modal(state: IAuthState): boolean {
         return state.modal;
+    },
+    id(state: IAuthState): number {
+        return state.user ? state.user.id : 0;
     }
 };

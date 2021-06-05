@@ -1,6 +1,8 @@
 <template>
   <default-layout :padding="false">
-    <provider-contact-form-modal></provider-contact-form-modal>
+    <provider-contact-form-modal
+      :provider="idProvider"
+    ></provider-contact-form-modal>
     <div id="benefit-page">
       <div class="main">
         <div>
@@ -9,7 +11,13 @@
               class="d-md-flex justify-content-md-between align-items-md-center"
             >
               <div
-                class="col-md-6 h-100 d-flex flex-column justify-content-between"
+                class="
+                  col-md-6
+                  h-100
+                  d-flex
+                  flex-column
+                  justify-content-between
+                "
               >
                 <div></div>
                 <div>
@@ -60,6 +68,7 @@
                 outlined
                 rounded
                 class="btn-icon"
+                @click="toggleFavorite"
                 :disabled="benefit.favoris !== 1"
               >
                 <v-icon>mdi-heart</v-icon>
@@ -91,6 +100,9 @@
                     <v-icon>mdi-phone</v-icon>
                   </auth-btn>
 
+                  <auth-btn :handler="displayWhatsappNumber">
+                    <v-icon>mdi-whatsapp</v-icon>
+                  </auth-btn>
                   <v-btn
                     icon
                     color="primary"
@@ -151,10 +163,10 @@ import Vue from "vue";
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import utilsMixin from "@/mixins/utils.mixin";
 import { Benefit } from "@/interfaces/benefit.interface";
-import { BenefitService } from "@/services/benefit.service";
+import { BenefitService } from "../services/benefit.service";
 import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
-
+import { AppService } from "../services/app.service";
 export default Vue.extend({
   name: "Benefit",
   mixins: [utilsMixin],
@@ -163,12 +175,15 @@ export default Vue.extend({
       model: 0,
       dialog: false,
       slides: [] as ISlider[],
+      idProvider: null,
     };
   },
   async beforeMount(): Promise<void> {
     await this.$store.dispatch("benefits/fetchAll");
 
     const benefit = this.$store.getters["benefits/one"](this.$route.params.id);
+    this.idProvider = benefit.id_user.toString();
+
     const service = new BenefitService();
     const result = await service.getSliders(benefit.id_user);
 
@@ -194,8 +209,38 @@ export default Vue.extend({
     },
   },
   methods: {
-    displayPhoneNumber() {
+    async displayPhoneNumber() {
+      const service = new AppService();
+      const id_user = this.$store.getters["auth/id"];
+      const { statu } = await service.phoneClick({
+        id_user,
+        id_pres: this.benefit.id_user.toString(),
+      });
+
+      console.log(statu);
+
+      if (statu == 1) {
+        this.$swal(this.benefit.phone_service);
+      }
+    },
+    displayWhatsappNumber() {
       this.$swal(this.benefit.phone_service);
+    },
+    async toggleFavorite() {
+      alert("loading");
+      const service = new BenefitService();
+      const id_user = this.$store.getters["auth/id"];
+      const { statu } = await service.toggleFavorite({
+        id_user,
+        id_pres: this.benefit.id_user.toString(),
+        // id_pres: this.benefit.id.toString(),
+      });
+
+      console.log(statu);
+
+      if (statu == 1) {
+        console.log("good");
+      }
     },
     showContactForm() {
       this.$store.commit("contactModal", true);

@@ -20,6 +20,7 @@
           <h3 class="auth-subtitle">{{ subtitle }}</h3>
           <div class="btn-container">
             <v-btn
+              class="mr-2"
               color="primary"
               :to="{ name: 'auth-register' }"
               x-large

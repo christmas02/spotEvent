@@ -87,7 +87,5 @@ export default Vue.extend({
 .login-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 50%;
 }
 </style>

@@ -6,6 +6,8 @@ import {
     ISlidersResponse,
     ProvidersResponse
 } from "@/interfaces/provider.interface";
+import { IClick } from "@/interfaces/app-services.interfaces";
+import { IFavoriteResponse } from "@/interfaces/favorite.interface";
 
 export class BenefitService extends CommonService {
     async getAll(): Promise<BeneftsResponse> {
@@ -83,6 +85,22 @@ export class BenefitService extends CommonService {
                 statu: 0,
                 listCategorie: []
             } as IEstimateResponse;
+        }
+    }
+
+    async toggleFavorite(body: IClick): Promise<IFavoriteResponse> {
+        try {
+            const { data }: { data: IFavoriteResponse } = await this.client.post(
+                "favoris",
+                body
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                listeFavoris: []
+            } as IFavoriteResponse;
         }
     }
 }

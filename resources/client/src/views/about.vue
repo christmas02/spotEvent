@@ -54,7 +54,7 @@
               </p>
             </div>
           </div>
-          <div class="d-none d-md-block col-md-6 right">
+          <div class="d-none d-md-flex col-md-6 right">
             <img :src="require('../assets/about/image.png')" height="275" />
           </div>
         </div>
@@ -166,7 +166,6 @@ export default Vue.extend({});
 }
 
 .right {
-  display: flex;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 50px;

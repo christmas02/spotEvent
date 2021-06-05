@@ -14,16 +14,14 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import { mapGetters } from "vuex";
+import Vue from "vue";
 import ContactForm from "./forms/ContactForm.vue";
-import { IProvider } from "@/interfaces/provider.interface";
 
 export default Vue.extend({
   components: { ContactForm },
   props: {
     provider: {
-      type: Object as PropType<IProvider>,
+      type: String,
       required: false,
     },
   },

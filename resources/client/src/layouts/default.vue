@@ -2,7 +2,7 @@
   <div>
     <div :class="{ 'default-padding': padding }">
       <nav-bar :height="navBarHeight"></nav-bar>
-      <v-main :style="{ paddingTop: pt + 'px' }">
+      <v-main :style="{ marginTop: '120px' }">
         <slot></slot>
       </v-main>
     </div>
@@ -23,11 +23,6 @@ export default {
     return {
       navBarHeight: "90",
     };
-  },
-  computed: {
-    pt() {
-      return (+this.navBarHeight + 5).toString();
-    },
   },
 };
 </script>

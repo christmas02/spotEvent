@@ -13,8 +13,6 @@
 
 //use Illuminate\Routing\Route;
 
-Route::get('/', 'SinglePageController@index')->where('any', '.*');
-
 Route::get('/welcome/tableau/gesttion/{id}','PrestataireController@home')->name('prestataire');
 Route::get('/infos/compte/prestatire/{id}','PrestataireController@getFiche');
 Route::post('/save/compte/prestatire','PrestataireController@postFiche');
@@ -53,3 +51,6 @@ Route::get('/confirm/{id}/{token}','Auth\RegisterController@confirm')->name('con
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
