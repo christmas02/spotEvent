@@ -59,12 +59,10 @@ export default Vue.extend({
 
         this.loading = false;
 
-        console.log(result);
-
         if (result.statu != 0) {
           switch (result.role) {
             case 1:
-              this.$store.commit("auth/login", result.user);
+              this.$store.commit("auth/login", result);
               await this.$router.push({ name: "Home" });
               break;
             case 2:
@@ -87,7 +85,5 @@ export default Vue.extend({
 .login-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 50%;
 }
 </style>

@@ -9,42 +9,17 @@
             <v-btn color="primary">Découvrir</v-btn>
           </div>
           <template #append>
-            <div id="devis">
-              <div class="row">
-                <div class="col-md-3">
-                  <v-select
-                    label="Catégories"
-                    :items="categories"
-                    item-text="name"
-                    item-value="id"
-                  ></v-select>
-                </div>
-                <div class="col-md-3">
-                  <v-text-field label="Situation géographique"></v-text-field>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                  <v-select
-                    label="Estimation minimale"
-                    :items="estimatess"
-                    item-text="libelle"
-                    item-value="id"
-                  ></v-select>
-                  <v-select
-                    label="Estimation maximale"
-                    :items="estimatess"
-                    item-text="libelle"
-                    item-value="id"
-                  ></v-select>
-                  <v-btn color="primary" class="ml-5">
-                    <v-icon>mdi-magnify</v-icon>
-                  </v-btn>
-                </div>
-              </div>
+            <div class="search-container">
+              <search-form></search-form>
             </div>
           </template>
         </jumbotron>
       </div>
+
       <div class="main mx-auto">
+        <div class="d-block d-none">
+          <search-form></search-form>
+        </div>
         <div class="section">
           <div class="d-flex justify-content-between">
             <div>
@@ -114,12 +89,14 @@ import { Benefit } from "@/interfaces/benefit.interface";
 import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
+import SearchForm from "../components/forms/SearchForm.vue";
 
 export default Vue.extend({
   name: "Home",
   components: {
     BenefitsGrid,
     ProvidersSlider,
+    SearchForm,
   },
   async beforeMount(): Promise<void> {
     await Promise.all([
@@ -147,36 +124,22 @@ export default Vue.extend({
 </script>
 
 <style>
-#devis {
-  position: absolute;
-  bottom: -33px;
-  background: var(--secondary);
-  width: 90%;
-  left: 5%;
-  border-radius: 0;
-  padding: 10px 15px 10px 40px;
-}
-
-#devis .v-label,
-#devis .v-input input {
-  color: #fff;
-}
-
-#devis .v-text-field > .v-input__control > .v-input__slot:after,
-#devis .v-text-field > .v-input__control > .v-input__slot:before {
-  background-color: #fff !important;
-}
-
-#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,
-#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {
-  background-color: #fff !important;
-}
-
 #homepage .section {
-  margin: 136px 0;
+  margin: 50px 0;
+}
+@media screen and (min-width: 1264px) {
+  #homepage .section {
+    margin: 136px 0;
+  }
 }
 
 #homepage .actions-container button {
   margin-left: 10px;
+}
+
+#homepage .search-container {
+  position: absolute;
+  bottom: -33px;
+  left: 5%;
 }
 </style>

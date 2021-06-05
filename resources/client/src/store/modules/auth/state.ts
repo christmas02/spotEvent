@@ -5,6 +5,7 @@ const state = (): IAuthState => ({
     auth: false,
     user: (null as unknown) as IUser,
     modal: false,
+    favorites: []
 });
 
 export default state;

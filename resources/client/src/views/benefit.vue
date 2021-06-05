@@ -1,31 +1,39 @@
 <template>
   <default-layout :padding="false">
-    <provider-contact-form-modal></provider-contact-form-modal>
+    <provider-contact-form-modal
+      :provider="idProvider"
+    ></provider-contact-form-modal>
     <div id="benefit-page">
       <div class="main">
         <div>
-          <jumbotron :image="createImagePath(benefit.path_img)">
+          <jumbotron :image="benefit.path_img | createImagePath">
             <div
               class="d-md-flex justify-content-md-between align-items-md-center"
             >
               <div
-                class="col-md-6 h-100 d-flex flex-column justify-content-between"
+                class="
+                  col-md-6
+                  h-100
+                  d-flex
+                  flex-column
+                  justify-content-between
+                "
               >
                 <div></div>
                 <div>
-                  <h1 class="content-title">{{ capitalize(benefit.name) }}</h1>
+                  <h1 class="content-title">{{ benefit.name | capitalize }}</h1>
                   <div class="content-subtitle my-5">
                     <p>
-                      {{ benefit.presentation }} Lorem, ipsum dolor sit amet
-                      consectetur adipisicing elit. Voluptate commodi illum at
-                      maiores ipsa debitis perferendis exercitationem enim
-                      tempore quae. Neque nostrum perspiciatis suscipit debitis
-                      architecto! Dicta molestias earum officia?
+                      {{ benefit.presentation | truncate(80) }}
                     </p>
                   </div>
                 </div>
                 <div class="d-flex">
-                  <img :src="createImagePath(benefit.path_icone)" />
+                  <img
+                    :src="benefit.path_icone | createImagePath"
+                    height="40px"
+                    class="mr-1"
+                  />
                   <h2 class="primary--text">{{ benefit.prestation }}</h2>
                 </div>
               </div>
@@ -53,17 +61,7 @@
                 <v-icon>mdi-arrow-left</v-icon>
                 Retour
               </v-btn>
-              <v-btn
-                icon
-                color="primary"
-                x-large
-                outlined
-                rounded
-                class="btn-icon"
-                :disabled="benefit.favoris !== 1"
-              >
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
+              <favorite-btn :benefit="benefit"></favorite-btn>
             </div>
           </jumbotron>
         </div>
@@ -91,6 +89,9 @@
                     <v-icon>mdi-phone</v-icon>
                   </auth-btn>
 
+                  <auth-btn :handler="displayWhatsappNumber">
+                    <v-icon>mdi-whatsapp</v-icon>
+                  </auth-btn>
                   <v-btn
                     icon
                     color="primary"
@@ -149,11 +150,13 @@
 import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
-import utilsMixin from "@/mixins/utils.mixin";
-import { Benefit } from "@/interfaces/benefit.interface";
-import { BenefitService } from "@/services/benefit.service";
+import utilsMixin from "../mixins/utils.mixin";
+import { Benefit } from "../interfaces/benefit.interface";
+import { BenefitService } from "../services/benefit.service";
 import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
+import FavoriteBtn from "../components/FavoriteBtn.vue";
+import { AppService } from "../services/app.service";
 
 export default Vue.extend({
   name: "Benefit",
@@ -163,12 +166,15 @@ export default Vue.extend({
       model: 0,
       dialog: false,
       slides: [] as ISlider[],
+      idProvider: null,
     };
   },
   async beforeMount(): Promise<void> {
     await this.$store.dispatch("benefits/fetchAll");
 
     const benefit = this.$store.getters["benefits/one"](this.$route.params.id);
+    this.idProvider = benefit.id_user.toString();
+
     const service = new BenefitService();
     const result = await service.getSliders(benefit.id_user);
 
@@ -184,6 +190,7 @@ export default Vue.extend({
   components: {
     BenefitsGrid,
     ProviderContactFormModal,
+    FavoriteBtn,
   },
   computed: {
     benefit(): Benefit {
@@ -194,8 +201,28 @@ export default Vue.extend({
     },
   },
   methods: {
-    displayPhoneNumber() {
-      this.$swal(this.benefit.phone_service);
+    async displayPhoneNumber() {
+      const service = new AppService();
+      const id_user = this.$store.getters["auth/id"];
+      const { statu } = await service.phoneClick({
+        id_user,
+        id_pres: this.benefit.id_user.toString(),
+      });
+
+      console.log(statu);
+
+      if (statu == 1) {
+        const html = `
+          <h2>${this.benefit.phone_service}</h2>
+          <h2>${this.benefit.phone2_service}</h2>
+        `;
+        this.$swal({
+          html,
+        });
+      }
+    },
+    displayWhatsappNumber() {
+      this.$swal(this.benefit.phone_whastapp);
     },
     showContactForm() {
       this.$store.commit("contactModal", true);

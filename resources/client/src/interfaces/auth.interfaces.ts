@@ -1,3 +1,5 @@
+import { IFavorite } from "./favorite.interface";
+
 export interface ILogin {
     email: string;
     password: string;
@@ -29,5 +31,5 @@ export interface ILoginResponse {
     role: number;
     lien: string;
     user: IUser;
-    favoris: any[];
+    favoris: IFavorite[];
 }

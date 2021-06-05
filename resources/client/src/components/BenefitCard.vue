@@ -3,13 +3,9 @@
     max-width="90%"
     :description="benefit.presentation"
     :title="benefit.name.toUpperCase()"
-    :image="createImagePath(benefit.path_img)"
+    :image="benefit.path_img | createImagePath"
   >
-    <v-btn
-      color="primary"
-      class="discover-btn"
-      small
-      :to="{ name: 'benefit', params: { id: benefit.id } }"
+    <v-btn color="primary" class="discover-btn" small @click="discover"
       >Découvrir</v-btn
     >
   </base-card>
@@ -20,7 +16,7 @@ import { Benefit } from "@/interfaces/benefit.interface";
 import Vue, { PropType } from "vue";
 import BaseCard from "./BaseCard.vue";
 import utilsMixin from "@/mixins/utils.mixin";
-
+import { AppService } from "../services/app.service";
 export default Vue.extend({
   mixins: [utilsMixin],
   props: {
@@ -31,6 +27,25 @@ export default Vue.extend({
   },
   components: {
     BaseCard,
+  },
+  methods: {
+    async discover(): Promise<void> {
+      const service = new AppService();
+      const id_user = this.$store.getters["auth/id"];
+      const { statu } = await service.benefitClick({
+        id_user,
+        id_pres: this.benefit.id_user.toString(),
+      });
+
+      console.log(statu);
+
+      if (statu == 1) {
+        this.$router.push({
+          name: "benefit",
+          params: { id: this.benefit.id.toString() },
+        });
+      }
+    },
   },
 });
 </script>

@@ -11,26 +11,20 @@
 
     <v-spacer></v-spacer>
 
-    <v-list class="nav-list">
-      <v-list-item to="/">
-        <v-list-item-title>Acceuil</v-list-item-title>
-      </v-list-item>
-
-      <v-list-item :to="{ name: 'about' }">
-        <v-list-item-title>A propos de nous</v-list-item-title>
-      </v-list-item>
-
-      <v-list-item>
-        <v-list-item-title>Catégories</v-list-item-title>
-      </v-list-item>
-
-      <v-list-item>
-        <v-list-item-title>Prestataires</v-list-item-title>
-      </v-list-item>
-
-      <v-list-item :to="{ name: 'contact' }">
-        <v-list-item-title>Contacts</v-list-item-title>
-      </v-list-item>
+    <v-list class="nav-list d-none d-md-flex">
+      <template v-for="link in links">
+        <v-list-item
+          :key="link.name"
+          v-if="link.name != '#'"
+          exact
+          :to="{ name: link.name }"
+        >
+          <v-list-item-title>{{ link.label }}</v-list-item-title>
+        </v-list-item>
+        <v-list-item :key="link.label" v-else disabled>
+          <v-list-item-title>{{ link.label }}</v-list-item-title>
+        </v-list-item>
+      </template>
     </v-list>
 
     <v-spacer></v-spacer>
@@ -43,7 +37,23 @@
             {{ user.name }}
           </p>
         </template>
+
         <div class="my-list">
+          <div class="d-md-none">
+            <template v-for="link in links">
+              <v-list-item
+                :key="link.name"
+                v-if="link.name != '#'"
+                exact
+                :to="{ name: link.name }"
+              >
+                <v-list-item-title>{{ link.label }}</v-list-item-title>
+              </v-list-item>
+              <v-list-item :key="link.label" v-else disabled>
+                <v-list-item-title>{{ link.label }}</v-list-item-title>
+              </v-list-item>
+            </template>
+          </div>
           <v-list-item link tag="p" class="m-0">
             <v-list-item-title>Mon espace</v-list-item-title>
           </v-list-item>
@@ -82,8 +92,34 @@ export default Vue.extend({
     },
     logout() {
       this.$store.commit("auth/logout");
-      this.$router.push({ name: "auth-login" });
+      this.goHome();
     },
+  },
+  data() {
+    return {
+      links: [
+        {
+          name: "Home",
+          label: "Acceuil",
+        },
+        {
+          name: "about",
+          label: "A propos de nous",
+        },
+        {
+          name: "#",
+          label: "Catégories",
+        },
+        {
+          name: "#",
+          label: "Prestataires",
+        },
+        {
+          name: "contact",
+          label: "Contacts",
+        },
+      ],
+    };
   },
   computed: {
     auth(): boolean {
@@ -111,7 +147,6 @@ export default Vue.extend({
 }
 
 .nav-list {
-  display: flex !important;
   font-weight: bold;
 }
 
