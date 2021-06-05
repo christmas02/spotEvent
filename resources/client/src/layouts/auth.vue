@@ -129,7 +129,7 @@ export default Vue.extend({
 }
 
 #auth-layout .auth-title {
-  font-size: 150px;
+  font-size: 140px;
   margin-bottom: -35px;
 }
 

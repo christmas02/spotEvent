@@ -2355,7 +2355,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 // Module
-exports.push([module.i, "\n#auth-layout .login {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\n  color: #fff;\n  position: relative;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n#auth-layout .top {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n#auth-layout .left {\n  padding: 2% 3%;\n}\n#auth-layout .icon {\n  cursor: pointer;\n  margin-left: 10px;\n}\n#auth-layout .page-title {\n  font-size: 3rem;\n  font-weight: 300;\n  margin: 0;\n  padding: 0;\n}\n#auth-layout .page-title::after {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 5px;\n  background: var(--primary);\n}\n#auth-layout .auth-title {\n  font-size: 150px;\n  margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\n  font-weight: 200;\n  font-size: 1.9rem;\n}\n#auth-layout button {\n  font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\n  width: 42%;\n  display: flex;\n  justify-content: space-between;\n  margin-top: 50px;\n}\n#auth-layout .form-container {\n  margin: 4% 15%;\n  height: 90%;\n}\n#auth-layout .logo {\n  height: 75px;\n}\n", ""]);
+exports.push([module.i, "\n#auth-layout .login {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\n  color: #fff;\n  position: relative;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n#auth-layout .top {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n#auth-layout .left {\n  padding: 2% 3%;\n}\n#auth-layout .icon {\n  cursor: pointer;\n  margin-left: 10px;\n}\n#auth-layout .page-title {\n  font-size: 3rem;\n  font-weight: 300;\n  margin: 0;\n  padding: 0;\n}\n#auth-layout .page-title::after {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 5px;\n  background: var(--primary);\n}\n#auth-layout .auth-title {\n  font-size: 140px;\n  margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\n  font-weight: 200;\n  font-size: 1.9rem;\n}\n#auth-layout button {\n  font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\n  width: 42%;\n  display: flex;\n  justify-content: space-between;\n  margin-top: 50px;\n}\n#auth-layout .form-container {\n  margin: 4% 15%;\n  height: 90%;\n}\n#auth-layout .logo {\n  height: 75px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -4248,7 +4248,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-main",
-            { style: { marginTop: "120px" } },
+            { style: { marginTop: "130px" } },
             [_vm._t("default")],
             2
           )
@@ -11512,19 +11512,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     async beforeMount() {
         await this.$store.dispatch("benefits/fetchAll");
-        const benefit = this.$store.getters["benefits/one"](this.$route.params.id);
-        this.idProvider = benefit.id_user.toString();
-        const service = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_3__["BenefitService"]();
-        const result = await service.getSliders(benefit.id_user);
-        if (result.statu == 0) {
-            this.$swal({
-                icon: "error",
-                title: "Erreur lors de la recuperation des slides",
-            });
-        }
-        else {
-            this.slides = result.listPrestataire;
-        }
+        await this.updateSlder(this.currentId);
     },
     components: {
         BenefitsGrid: _components_BenefitsGrid_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -11538,6 +11526,9 @@ __webpack_require__.r(__webpack_exports__);
         others() {
             return this.$store.getters["benefits/others"](this.$route.params.id);
         },
+        currentId() {
+            return this.$route.params.id;
+        },
     },
     methods: {
         async displayPhoneNumber() {
@@ -11547,7 +11538,6 @@ __webpack_require__.r(__webpack_exports__);
                 id_user,
                 id_pres: this.benefit.id_user.toString(),
             });
-            console.log(statu);
             if (statu == 1) {
                 const html = `
           <h2>${this.benefit.phone_service}</h2>
@@ -11563,6 +11553,26 @@ __webpack_require__.r(__webpack_exports__);
         },
         showContactForm() {
             this.$store.commit("contactModal", true);
+        },
+        async updateSlder(benefitId) {
+            const benefit = this.$store.getters["benefits/one"](benefitId);
+            this.idProvider = benefit.id_user.toString();
+            const service = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_3__["BenefitService"]();
+            const result = await service.getSliders(benefit.id_user);
+            if (result.statu == 0) {
+                this.$swal({
+                    icon: "error",
+                    title: "Erreur lors de la recuperation des slides",
+                });
+            }
+            else {
+                this.slides = result.listPrestataire;
+            }
+        },
+    },
+    watch: {
+        async currentId(val) {
+            await this.updateSlder(val);
         },
     },
 }));
