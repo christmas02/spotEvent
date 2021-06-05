@@ -141,5 +141,6 @@ export default Vue.extend({
   position: absolute;
   bottom: -33px;
   left: 5%;
+  width: 100%;
 }
 </style>

@@ -2278,7 +2278,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#devis {\n  background: var(--secondary);\n  padding: 5% 2.5%;\n  border-radius: 0;\n}\n#devis .submit-btn {\n  width: 100%;\n}\n#devis {\n  width: 90%;\n  padding: 10px 15px 10px 40px;\n}\n/* #devis .second {\n  display: block;\n} */\n@media screen and (min-width: 1264px) {\n  /* #devis {\n    width: 90%;\n    padding: 10px 15px 10px 40px;\n  } */\n#devis .submit-btn {\n    width: auto;\n}\n}\n#devis .v-label,\n#devis .v-input input {\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n", ""]);
+exports.push([module.i, "\n#devis {\n  background: var(--secondary);\n  padding: 5% 2.5%;\n  border-radius: 0;\n}\n#devis .submit-btn {\n  width: 100%;\n}\n\n/* #devis .second {\n  display: block;\n} */\n@media screen and (min-width: 1264px) {\n#devis {\n    width: 90%;\n    padding: 10px 15px 10px 40px;\n}\n#devis .submit-btn {\n    width: auto;\n}\n}\n#devis .v-label,\n#devis .v-input input {\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2445,7 +2445,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#homepage .section {\n  margin: 50px 0;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\n  margin-left: 10px;\n}\n#homepage .search-container {\n  position: absolute;\n  bottom: -33px;\n  left: 5%;\n}\n", ""]);
+exports.push([module.i, "\n#homepage .section {\n  margin: 50px 0;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\n  margin-left: 10px;\n}\n#homepage .search-container {\n  position: absolute;\n  bottom: -33px;\n  left: 5%;\n  width: 100%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -3418,7 +3418,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-auto d-flex align-items-center" },
+        {
+          staticClass:
+            "col-md-auto d-block d-md-flex align-items-md-center second"
+        },
         [
           _c("v-select", {
             attrs: {
