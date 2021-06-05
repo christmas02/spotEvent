@@ -2278,7 +2278,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#devis {\n  background: var(--secondary);\n  padding: 5% 2.5%;\n  border-radius: 0;\n}\n#devis .submit-btn {\n  width: 100%;\n}\n\n/* #devis .second {\n  display: block;\n} */\n@media screen and (min-width: 1264px) {\n#devis {\n    width: 90%;\n    padding: 10px 15px 10px 40px;\n}\n#devis .submit-btn {\n    width: auto;\n}\n}\n#devis .v-label,\n#devis .v-input input {\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n", ""]);
+exports.push([module.i, "\n#devis {\n  background: var(--secondary);\n  padding: 5% 2.5%;\n  border-radius: 0;\n}\n#devis .submit-btn {\n  width: 100%;\n}\n#devis {\n  width: 90%;\n  padding: 10px 15px 10px 40px;\n}\n/* #devis .second {\n  display: block;\n} */\n@media screen and (min-width: 1264px) {\n  /* #devis {\n    width: 90%;\n    padding: 10px 15px 10px 40px;\n  } */\n#devis .submit-btn {\n    width: auto;\n}\n}\n#devis .v-label,\n#devis .v-input input {\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2409,7 +2409,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.section[data-v-025c8c02] {\n  margin-bottom: 40px;\n}\n.provider-pics[data-v-025c8c02] {\n  width: 70%;\n}\n.location-title[data-v-025c8c02] {\n  font-size: 1.4rem;\n  margin-bottom: 10px;\n}\n#benefit-page .main[data-v-025c8c02] {\n  padding: 60px 0;\n}\n.section-title[data-v-025c8c02] {\n  margin-bottom: 30px;\n}\n.top[data-v-025c8c02] {\n  padding: 0 4%;\n  display: flex;\n  position: absolute;\n  top: 20px;\n  left: 0;\n  width: 100%;\n  justify-content: space-between;\n}\n.other-benefits[data-v-025c8c02] {\n  padding: 70px 0;\n  background-color: #f4f5f7;\n}\n", ""]);
+exports.push([module.i, "\n.section[data-v-025c8c02] {\n  margin-bottom: 40px;\n}\n.provider-pics[data-v-025c8c02] {\n  width: 70%;\n}\n.location-title[data-v-025c8c02] {\n  font-size: 1.4rem;\n  margin-bottom: 10px;\n}\n.section-title[data-v-025c8c02] {\n  margin-bottom: 30px;\n}\n.top[data-v-025c8c02] {\n  padding: 0 4%;\n  display: flex;\n  position: absolute;\n  top: 20px;\n  left: 0;\n  width: 100%;\n  justify-content: space-between;\n}\n.other-benefits[data-v-025c8c02] {\n  padding: 70px 0;\n  background-color: #f4f5f7;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2840,7 +2840,7 @@ var render = function() {
         "x-large": "",
         outlined: "",
         rounded: "",
-        disabled: _vm.benefit.favoris !== 1
+        disabled: _vm.benefit.favoris !== 1 || !_vm.auth
       },
       on: { click: _vm.toggleFavorite }
     },
@@ -3418,10 +3418,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        {
-          staticClass:
-            "col-md-auto d-block d-md-flex align-items-md-center second"
-        },
+        { staticClass: "col-auto d-flex align-items-center" },
         [
           _c("v-select", {
             attrs: {
@@ -4695,7 +4692,7 @@ var render = function() {
                                 return _c("v-carousel-item", {
                                   key: slide.id,
                                   attrs: {
-                                    src: _vm.createImagePath(slide.path)
+                                    src: _vm._f("createImagePath")(slide.path)
                                   }
                                 })
                               }),
@@ -5260,7 +5257,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "main mx-auto" }, [
-        _c("div", { staticClass: "d-block d-none" }, [_c("search-form")], 1),
+        _c("div", { staticClass: "d-block d-md-none" }, [_c("search-form")], 1),
         _vm._v(" "),
         _c("div", { staticClass: "section" }, [
           _c("div", { staticClass: "d-flex justify-content-between" }, [
@@ -10844,6 +10841,9 @@ __webpack_require__.r(__webpack_exports__);
             return this.$store.getters["auth/isFavorite"](this.benefit.id_user)
                 ? "red"
                 : "white";
+        },
+        auth() {
+            return this.$store.getters["auth/isConnected"];
         },
     },
 }));

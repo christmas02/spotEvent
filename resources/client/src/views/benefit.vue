@@ -49,7 +49,7 @@
                     <v-carousel-item
                       v-for="slide in slides"
                       :key="slide.id"
-                      :src="createImagePath(slide.path)"
+                      :src="slide.path | createImagePath"
                     >
                     </v-carousel-item>
                   </v-carousel>
@@ -243,10 +243,6 @@ export default Vue.extend({
 .location-title {
   font-size: 1.4rem;
   margin-bottom: 10px;
-}
-
-#benefit-page .main {
-  padding: 60px 0;
 }
 
 .section-title {

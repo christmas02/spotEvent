@@ -7,7 +7,7 @@
     rounded
     class="btn-icon"
     @click="toggleFavorite"
-    :disabled="benefit.favoris !== 1"
+    :disabled="benefit.favoris !== 1 || !auth"
   >
     <v-icon>mdi-heart</v-icon>
   </v-btn>
@@ -44,6 +44,9 @@ export default Vue.extend({
       return this.$store.getters["auth/isFavorite"](this.benefit.id_user)
         ? "red"
         : "white";
+    },
+    auth(): boolean {
+      return this.$store.getters["auth/isConnected"];
     },
   },
 });

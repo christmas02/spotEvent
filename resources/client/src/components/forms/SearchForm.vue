@@ -12,7 +12,7 @@
       <div class="col-md-3">
         <v-text-field label="Situation géographique"></v-text-field>
       </div>
-      <div class="col-md-auto d-block d-md-flex align-items-md-center second">
+      <div class="col-auto d-flex align-items-center">
         <v-select
           label="Estimation minimale"
           :items="estimatess"
@@ -69,15 +69,19 @@ export default Vue.extend({
   width: 100%;
 }
 
+#devis {
+  width: 90%;
+  padding: 10px 15px 10px 40px;
+}
 /* #devis .second {
   display: block;
 } */
 
 @media screen and (min-width: 1264px) {
-  #devis {
+  /* #devis {
     width: 90%;
     padding: 10px 15px 10px 40px;
-  }
+  } */
 
   #devis .submit-btn {
     width: auto;
