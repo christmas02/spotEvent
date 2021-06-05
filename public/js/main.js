@@ -4739,7 +4739,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "main mx-auto" }, [
+          _c("div", { staticClass: "main mx-auto mt-md-5" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-7 left" }, [
                 _c("div", { staticClass: "section" }, [
