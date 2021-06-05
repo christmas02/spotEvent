@@ -65,7 +65,7 @@
             </div>
           </jumbotron>
         </div>
-        <div class="main mx-auto">
+        <div class="main mx-auto mt-md-5">
           <div class="row">
             <div class="col-md-7 left">
               <div class="section">
