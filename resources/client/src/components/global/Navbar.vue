@@ -11,7 +11,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-list class="nav-list">
+    <v-list class="nav-list d-none d-md-flex">
       <template v-for="link in links">
         <v-list-item
           :key="link.name"
@@ -37,7 +37,23 @@
             {{ user.name }}
           </p>
         </template>
+
         <div class="my-list">
+          <div class="d-md-none">
+            <template v-for="link in links">
+              <v-list-item
+                :key="link.name"
+                v-if="link.name != '#'"
+                exact
+                :to="{ name: link.name }"
+              >
+                <v-list-item-title>{{ link.label }}</v-list-item-title>
+              </v-list-item>
+              <v-list-item :key="link.label" v-else disabled>
+                <v-list-item-title>{{ link.label }}</v-list-item-title>
+              </v-list-item>
+            </template>
+          </div>
           <v-list-item link tag="p" class="m-0">
             <v-list-item-title>Mon espace</v-list-item-title>
           </v-list-item>
@@ -131,7 +147,6 @@ export default Vue.extend({
 }
 
 .nav-list {
-  display: flex !important;
   font-weight: bold;
 }
 
