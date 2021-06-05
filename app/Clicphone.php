@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Favori extends Model
+class Clicphone extends Model
 {
     //
 
     protected $fillable = [
         'id_user', 'id_prestataire',
     ];
-    
 }

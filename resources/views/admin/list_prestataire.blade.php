@@ -26,6 +26,11 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                        @if(Session::has('success'))
+                        <div class="alert alert-success">{{ Session::get('success') }}</div>
+                        @elseif(Session::has('danger'))
+                        <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+                        @endif
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
@@ -92,7 +97,7 @@
                                     
                                     <td>
                                         <div class="">
-                                            <a href="/fiche/prestataires/{{ $items->id }}" class="btn btn-modal"><i class="fa fa-eye"></i></a>
+                                            <a href="/fiche/prestataires/{{ $items->id }}/{{ $infoUser->id }}" class="btn btn-modal"><i class="fa fa-eye"></i></a>
                                             <a href="#" data-toggle="modal" data-target="#exampleModalSetting{{$items->id}}" class="btn btn-modal"><i class="fa fa-cog"></i></a>
                                             <a href="#" data-toggle="modal" data-target="#exampleModalMessagerie{{$items->id}}" class="btn btn-modal"><i class="fa fa-envelope"></i></a>
                                             {{--<a href="#" data-toggle="modal" data-target="#exampleModalDelet{{$items->id}}" class="btn btn-modal"><i class="fa fa-trash"></i></a>--}}
@@ -139,58 +144,95 @@
       <div class="modal-body">
       <h4 class="text-center"></b></h4> 
       <div class="silde">
-        <form>
-        @if($items->statu_fiche == 0)
+        <form method="POST" action="/save/parametre">
+        @csrf
+        <input type="text" hidden name="id_fiche" value="{{$items->id}}">
+        
             <div class="form-check form-switch">
-                <input class="flat" type="checkbox" id="flexSwitchCheckDefault">
+              <div class="row">
+                <div class="col-md-8">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Activation du compte</label>
+                </div>
+                <div class="col-md-4">
+                <span style="margin-left: 10px;"> 
+                    @if($items->statu_fiche != 0)
+                    <b>Oui</b> <input class="flat" type="radio" name="activation" value="1" checked id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="activation" value="0" id="flexSwitchCheckDefault">
+                    @else
+                    <b>Oui</b> <input class="flat" type="radio" name="activation" value="1" id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="activation" value="0" checked id="flexSwitchCheckDefault">
+                    @endif
+                </span>
+                </div>
+              </div> 
             </div>
-        @else
-            <div class="form-check form-switch">
-                <input class="flat" type="checkbox" checked id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Désctivation du compte</label>
-            </div>
-        @endif
-        @if($items->position == 0)
+
             <div class="form-check form-switch"">
-                <input class="flat" type="checkbox" id="flexSwitchCheckDefault">
+              <div class="row">
+                <div class="col-md-8">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Mettre a la une</label>
+                </div>
+                <div class="col-md-4">
+                <span style="margin-left: 10px;"> 
+                    @if($items->position != 0)
+                    <b>Oui</b> <input class="flat" type="radio" name="position" value="1" checked id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="position" value="0" id="flexSwitchCheckDefault">
+                    @else
+                    <b>Oui</b> <input class="flat" type="radio" name="position" value="1" id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="position" value="0" checked id="flexSwitchCheckDefault">
+                    @endif
+                </span>
+                </div>
+              </div>
             </div>
-        @else
+
+        
             <div class="form-check form-switch">
-                <input class="flat" type="checkbox" checked id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Retirer de la une</label>
-            </div>
-        @endif
-        @if($items->messagerie == 0)
-            <div class="form-check form-switch">
-                <input class="flat" type="checkbox" id="flexSwitchCheckDefault">
+              <div class="row">
+                <div class="col-md-8">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Activation la messagerie</label>
+                </div>
+                <div class="col-md-4">
+                <span style="margin-left: 10px;"> 
+                    @if($items->messagerie != 0)
+                    <b>Oui</b> <input class="flat" type="radio" name="messagerie" value="1" checked id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="messagerie" value="0" id="flexSwitchCheckDefault">
+                    @else
+                    <b>Oui</b> <input class="flat" type="radio" name="messagerie" value="1" id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="messagerie" value="0" checked id="flexSwitchCheckDefault">
+                    @endif
+                </span>
+                </div>
+              </div>
             </div>
-        @else
+
             <div class="form-check form-switch">
-                <input class="flat" type="checkbox" checked id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Désctivation la messagerie</label>
-            </div>
-        @endif
-        @if($items->favoris == 0)
-            <div class="form-check form-switch">
-                <input class="flat" type="checkbox" id="flexSwitchCheckDefault">
+              <div class="row">
+                <div class="col-md-8">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Activation l'option favorie</label>
+                </div>
+                <div class="col-md-4">
+                <span style="margin-left: 10px;"> 
+                    @if($items->favoris != 0)
+                    <b>Oui</b> <input class="flat" type="radio" name="favoris" value="1" checked id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="favoris" value="0" id="flexSwitchCheckDefault">
+                    @else
+                    <b>Oui</b> <input class="flat" type="radio" name="favoris" value="1" id="flexSwitchCheckDefault">
+                    <b>Non</b> <input class="flat" type="radio" name="favoris" value="0" checked id="flexSwitchCheckDefault">
+                    @endif
+                </span>
+                </div>
+              </div>
             </div>
-        @else
-            <div class="form-check form-switch">
-                <input class="flat" type="checkbox" checked id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Désctivation l'option favorie</label>
-            </div>
-        @endif
-        </form>
+
+        
       </div>
       </div>
       <div class="modal-footer-btn">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-success">Valider</button>
+        <button type="submit" class="btn btn-success">Valider</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

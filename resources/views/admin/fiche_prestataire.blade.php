@@ -184,14 +184,14 @@
 
                     <div class="col-md-6 col-sm-7 ">
                       <div class="product-image">
-                        <img src="{{asset('/image/'.$prestataire->path_img)}}" alt="..." />
+                        <img src="{{asset('/storage/'.$prestataire->path_img)}}" alt="..." />
                       </div>
                       <br>
                     @if($galerie != [])
                      <div class="product_gallery">
                       @foreach($galerie as $image)
                         <a>
-                          <img width="50" height="90" src="{{asset('/image/'.$image->path)}}" alt="..." />
+                          <img width="50" height="90" src="{{asset('/storage/'.$image->path)}}" alt="..." />
                         </a>
                       @endforeach
                       </div>
@@ -211,9 +211,12 @@
                         @elseif($prestataire->statu_fiche == 2 )
                         <button class="btn btn-danger "> Inactif</button>
                         @endif
+                        {{ $prestataire->id_user }}
                         <h3 style="" class="prod_title">{{ $prestataire->name }} / {{ $prestataire->localisation }}</h3>
+                        <h4>{{ $prestataire->presentation }}.</h4>
+                        <br>
                         <h4>{{ $prestataire->description }}.</h4>
-                        <h4>Interval de facturation de la prestation : {{ number_format($prestataire->montant_min_prest) }} .XOF  - {{ number_format($prestataire->montant_max_prest) }} .XOF </h4>
+                        <h4>Interval de facturation de la prestation :  .XOF  -  .XOF </h4>
                         <h4>Telephone : {{ $prestataire->phone_service }} / {{ $prestataire->phone2_service }}</h4>
                         <h4>Whatsapp : {{ $prestataire->phone_whastapp }}</h4>
                         <h4>Facebook : {{ $prestataire->lien_facebook }}</h4>

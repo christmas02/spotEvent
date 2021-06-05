@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Favori extends Model
+class Demande extends Model
 {
     //
-
     protected $fillable = [
-        'id_user', 'id_prestataire',
+        'id_prestataire', 'name', 'phone','email','message','statu',
     ];
+
     
 }

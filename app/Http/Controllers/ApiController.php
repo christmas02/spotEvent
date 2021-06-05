@@ -8,6 +8,10 @@ use App\Fiche;
 use App\Prestation;
 use App\Estimation;
 use App\Galerie;
+use App\Favori;
+use App\Clicfiche;
+use App\Clicphone;
+use App\Demande;
 use Input;
 
 class ApiController extends Controller
@@ -31,10 +35,11 @@ class ApiController extends Controller
     }
 
     public function getPrestation(){
-        $listPrestation = Fiche::leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+        $listPrestation = Fiche::where('statu_fiche', '!=' ,'0')->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
         //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
         ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
+        ->orderBy('fiches.id', 'desc')
         ->get();
         //dd($listPrestataire);
         return response()->json(['statu'=>1, 'listPrestation' => $listPrestation]);
@@ -80,6 +85,111 @@ class ApiController extends Controller
         ->get();
         //dd($listPrestataire);
         return response()->json(['statu'=>1, 'firstPrestation' => $firstPrestation]);
+    }
+
+    public function Favoris(Request $request){
+        
+        $data =  $request->all();
+        // dd($data);
+        $id_user = $request['id_user'];
+        $id_pres = $request['id_pres'];
+
+        $favoris = Favori::where('id_user', $id_user)
+                   ->where('id_prestataire',$id_pres)
+                   ->first();
+
+        //dd($favoris);
+        
+        if($favoris){
+            Favori::where('id_user', $id_user)->where('id_prestataire', $id_pres)->delete();
+            $statu = 2;
+        }else{
+            Favori::create([
+                'id_user' => $id_user,
+                'id_prestataire' => $id_pres,
+            ]);
+            $statu = 1;
+        }
+
+        $listeFavoris = Favori::where('id_user', $id_user)->get();
+
+        return response()->json(['statu'=> $statu, 'listeFavoris' => $listeFavoris]);
+        
+    }
+
+    public function clicfiche(Request $request){
+        try{
+            $id_user = $request['id_user'];
+            $id_pres = $request['id_pres'];
+
+            Clicfiche::create([
+                'id_user' => $id_user,
+                'id_prestataire' => $id_pres,
+            ]);
+            $statu = 1;
+
+            return response()->json(['statu'=> $statu]);
+
+        } catch (Exception $e) {
+            $statu = 0;
+            return response()->json(['statu'=> $statu ,'erreur' => $e]);
+        }
+
+    }
+
+    public function clicphone(Request $request){
+        try{
+            $id_user = $request['id_user'];
+            $id_pres = $request['id_pres'];
+
+            Clicphone::create([
+                'id_user' => $id_user,
+                'id_prestataire' => $id_pres,
+            ]);
+            $statu = 1;
+
+            return response()->json(['statu'=> $statu]);
+
+        } catch (Exception $e) {
+            $statu = 0;
+            return response()->json(['statu'=> $statu ,'erreur' => $e]);
+        }
+
+    }
+
+
+    public function saveDemande(Request $request){
+        
+        try{
+
+            //$request=$request->all();
+            //dd($request);
+           
+            $id_pres = $request['id_pres'];
+            $name = $request['name'];
+            $phone = $request['phone'];
+            $email = $request['email'];
+            $message = $request['message'];
+
+            Demande::create([
+                'id_prestataire' => $id_pres,
+                'name' => $name,
+                'phone' => $phone,
+                'email' => $email,
+                'message' => $message,
+                'statu' => 0,
+            ]);
+
+            $statu = 1;
+            $messages = "Votre demandé a bien été transmit au prèstatire !";
+
+            return response()->json(['statu'=> $statu, 'messages' => $messages]);
+
+        } catch (Exception $e) {
+            $statu = 0;
+            return response()->json(['statu'=> $statu ,'erreur' => $e]);
+        }
+
     }
 
 

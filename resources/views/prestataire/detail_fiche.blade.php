@@ -91,11 +91,11 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="product-image">
-                          <img src="{{asset('/image/'.$ficheExiste->path_img)}}" alt="..." />
+                          <img src="{{asset('/storage/'.$ficheExiste->path_img)}}" alt="..." />
                         </div>
                       </div>
                       <div class="col-md-6">
-                        @if(!empty($galerieExiste) == true)
+                        @if(count($galerieExiste) == 0)
                           <div class="alert alert-warning">
                               <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de presenter vos réalisation,
                                   aux utilisateur qui visiteros votre profil<br> <a class="" data-toggle="modal" data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
@@ -105,7 +105,7 @@
                         @foreach($galerieExiste as $items)
                         <div class="product_gallery">
                             <div class="col-md-6"> 
-                              <img width="200" height="200" src="{{asset('/image/'.$items->path )}}" alt="..." />
+                              <img width="200" height="200" src="{{asset('/storage/'.$items->path )}}" alt="..." />
                             </div>
                         </div>
                         @endforeach

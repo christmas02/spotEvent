@@ -168,7 +168,7 @@
                   </div>
 
                   <div>
-                    @if(!empty($galerieExiste) == true)
+                    @if(count($galerieExiste) == 0)
                       <div class="alert alert-warning">
                       <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de presenter vos réalisation,
                             aux utilisateur qui visiteros votre profil<br> <a class="" data-toggle="modal" data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>

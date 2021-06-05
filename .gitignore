@@ -13,3 +13,4 @@ yarn-error.log
 docker-compose.yml
 .idea
 yarn.lock
+public/.DS_Store
