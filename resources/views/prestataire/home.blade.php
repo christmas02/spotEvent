@@ -24,6 +24,50 @@
             <div class="clearfix"></div>
 
             <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_content">
+                      <div class="row clearfix">
+                          <div class="col-lg-3 col-md-6">
+                              <div class="card">
+                                  <div class="body l-parpl text-center">
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">8,3,2,6,5,9,4,5</div>
+                                      <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078" data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
+                                      <span class="text-white">Visite</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-3 col-md-6">
+                              <div class="card">
+                                  <div class="body l-seagreen text-center">
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">2,3,5,6,9,8,7,8,7</div>
+                                      <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278" data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
+                                      <span class="text-white">Prise contact</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-3 col-md-6">
+                              <div class="card">
+                                  <div class="body l-amber text-center">
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">5,2,8,3,6,9,7,5,1,2</div>
+                                      <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521" data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
+                                      <span class="text-white">Sollicitation</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-3 col-md-6">
+                              <div class="card">
+                                  <div class="body l-blue text-center">
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">9,3,1,6,9,8,1,8,7</div>
+                                      <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="978" data-speed="2000" data-fresh-interval="700">0</h3>
+                                      <span class="text-white">Messagerie</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
           
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
@@ -55,7 +99,7 @@
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Evolution generale</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Évolution générale</a>
                           </li>
                           <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste demandes</a>
                           </li>
@@ -67,28 +111,28 @@
                             <!-- start user projects -->
                             <table class="data table table-striped no-margin">
                               <thead>
-                                <tr>
+                                <tr style="font-size: 20px;">
                                   <th>#</th>
                                   <th>Designstion</th>
                                   <th>Statistique</th>
                                 
                                 </tr>
                               </thead>
-                              <tbody>
+                              <tbody style="font-size: 16px;">
                                 <tr> 
                                   <td></td>
                                   <td>Nombre total de viste</td>
-                                  <td class="hidden-phone">00</td>
+                                  <td class="hidden-phone"><strong>{{ $visiteMonth }}</strong></td>
                                 </tr>
                                 <tr> 
                                   <td></td>
                                   <td>Nombre total de prise contact</td>
-                                  <td class="hidden-phone">00</td>
+                                  <td class="hidden-phone"><strong>{{ $phoneMonth }}</strong></td>
                                 </tr>
                                 <tr> 
                                   <td></td>
                                   <td>Nombre total de sollicitation</td>
-                                  <td class="hidden-phone">00</td>
+                                  <td class="hidden-phone"><strong>{{ $demandeMonth }}</strong></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -107,19 +151,17 @@
                                 
                                 </tr>
                               </thead>
-                              <tbody>
+                              <tbody style="font-size: 16px;">
+                              @if($listDemande)
+                              @foreach($listDemande as $items)
                                 <tr> 
                                   <td></td>
-                                  <td><a href="#">Alexis Djidonou - 07 48 99 79 45 - Abidjan cocody </a></td>
-                                  <td>12 Janvier 2021</td>
-                                  <td>lu</td>
-                                </tr>
-                                <tr> 
+                                  <td><a href="#" data-toggle="modal" data-target="#exampleModalDemande{{$items->id}}">{{ $items->name }} - {{ $items->phone }}</a></td>
+                                  <td>{{ $items->created_at }}</td>
                                   <td></td>
-                                  <td><a href="#">Alexis Djidonou - 07 48 99 79 45 - Abidjan cocody </a></td>
-                                  <td>12 Janvier 2021</td>
-                                  <td>En attante</td>
                                 </tr>
+                              @endforeach
+                              @endif
 
                               </tbody>
                             </table>
@@ -162,7 +204,31 @@
             </div>
           </div>
         </div>
-        <!-- /page content -->
+        
+<!-- /page content -->
+@foreach($listDemande as $items)
+<div class="modal fade" id="exampleModalDemande{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Contenus du message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>Client </strong>
+        <h6>{{ $items->name }} / {{ $items->phone }}</h6>
+        <hr>
+        <strong>Message</strong><h6>{{ $items->message }}</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 
 
     

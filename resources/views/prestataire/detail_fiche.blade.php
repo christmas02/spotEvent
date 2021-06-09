@@ -67,6 +67,7 @@
                         @endif
                         <h3 style="" class="prod_title">{{ $ficheExiste->name }} / {{ $ficheExiste->localisation }}</h3>
                         <h4><strong>Présentation :</strong>{{ $ficheExiste->presentation }}.</h4>
+                        <h4><strong>Detail de localisation :</strong>{{ $ficheExiste->detail_localisation }}.</h4>
                         <h4><strong>Description :</strong>{{ $ficheExiste->description }}.</h4>
                         <h4>Interval de facturation de la prestation : {{ number_format($ficheExiste->estimation_min) }} .XOF  -  {{ number_format($ficheExiste->estimation_max) }}.XOF </h4>
                         <h4><strong>Telephone</strong> : {{ $ficheExiste->phone_service }} / {{ $ficheExiste->phone2_service }}</h4>
@@ -78,8 +79,8 @@
                         <br />
 
                         <div class="">
-                        {{--<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#exampleModalCenter">
-                            <i class="fa fa-pencil"></i> Modifier la gallerie</button>--}}
+                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#exampleModalGalerie">
+                            <i class="fa fa-pencil"></i> Modifier la gallerie</button>
                             <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#exampleModalCenterInfo">
                             <i class="fa fa-folder"></i> Modifier mom profil</button>
                             
@@ -105,8 +106,8 @@
                         @else
                         @foreach($galerieExiste as $items)
                         <div class="product_gallery">
-                            <div class="col-md-6"> 
-                              <img width="200" height="200" src="{{asset('/storage/'.$items->path )}}" alt="..." />
+                            <div class="col-md-3"> 
+                              <img width="100" height="80" style="margin-bottom: 30px;" src="{{asset('/storage/'.$items->path )}}" alt="spotevent" />
                             </div>
                         </div>
                         @endforeach
@@ -150,7 +151,8 @@
 
 
 <!-- Modal  MODIFIER LES IMAGES-->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+<div class="modal fade" id="exampleModalGalerie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -160,60 +162,58 @@
         </button>
       </div>
       <div class="modal-body">
-                    <form method="POST" action="/update/gallerie/appart" enctype="multipart/form-data">
-                            @csrf
-                                <input type="text" hidden name="id" value="">
-                                <div class="item form-group">
-                                   <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        principale</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="image_one" class="form-control">
-                                    </div>
-                                </div>
+       
+            <input type="text" hidden name="id" value="">
+            <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
 
-                                <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        2</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="image_two" class="form-control">
-                                    </div>
-                                </div>
+                            <th class="column-title">Image </th>
+                            <th class="column-title"> </th>
+                            <th class="column-title"> </th>
 
+                            </th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
 
-                                <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        3</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="image_three" class="form-control">
-                                    </div>
-                                </div>
-
-
-                                <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        4</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="image_five" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        5</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="image_for" class="form-control">
-                                    </div>
-                                </div>
+                        <tbody>
+                        @foreach($galerieExiste as $items)
+                          <tr class="even pointer">
+                            <td class="a-center ">
+                            <img width="50" height="50" src="{{asset('/storage/'.$items->path )}}" alt="..." />
+                            </td>
+                            <td> {{ $items->path }}</td>
+                            <td class=" last">
+                              <a href="" class="btn btn-info"><i class="fa fa-pencil"></i> </a>
+                              <a href="" class="btn btn-danger"><i class="fa fa-trash"></i> </a>
+                            </td>
+                          </tr>
+                        @endforeach
+                          
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                                
                     
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-success">Enregistre</button>
+        @if(count($galerieExiste) == 6)
+       
+        @else
+        <button type="" data-toggle="modal" data-target="#exampleModalImages" class="btn btn-success">Ajouter</button>
+        @endif
       </div>
-      </form>
+    
     </div>
   </div>
 </div>
+
 
 @if($ficheExiste)
 <!-- Modal  MODIFIER LES INFORMATION -->
@@ -272,7 +272,12 @@
                   Estimation min<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" name="estimation_min" class="form-control" value="{{ $ficheExiste->estimation_min }}">
+                    <select required="required" name="estimation_min" class="form-control " required>
+                                        <option>Choisir l'estimation</option>
+                                            @foreach($listEstimation as $items)
+                                                <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
+                                            @endforeach    
+                    </select>
                 </div>
             </div>
             <div class="item form-group">
@@ -280,7 +285,12 @@
                 Estimation max<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" name="estimation_max" class="form-control" value="{{ $ficheExiste->estimation_max }}">
+                <select required="required" name="estimation_max" class="form-control " required>
+                                        <option>Choisir l'estimation</option>
+                                            @foreach($listEstimation as $items)
+                                                <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
+                                            @endforeach    
+                </select>
                 </div>
             </div>
             <div class="item form-group">

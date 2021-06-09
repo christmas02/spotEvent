@@ -11,6 +11,8 @@ use App\Galerie;
 use App\Prestation;
 use App\Estimation;
 use App\Demande;
+use App\Clicfiche;
+use App\Clicphone;
 
 
 class PrestataireController extends Controller
@@ -22,6 +24,47 @@ class PrestataireController extends Controller
        $data=[];
 
        return view('template.inscription')->with($data);
+    }
+
+    public function visiteFiche($id){
+        $visite = Clicfiche::where('id_prestataire',$id)->get();
+        return count($visite);
+    }
+
+    public function visiteFicheMonth($id){
+        $month = date('m');
+        $visiteMonth = Clicfiche::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($visiteMonth);
+    }
+
+    public function visitePhone($id){
+
+        $phone = Clicphone::where('id_prestataire',$id)->get();
+        return count($phone);
+    }
+
+    public function visitePhoneMonth($id){
+        $month = date('m');
+        $phoneMonth = Clicphone::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($phoneMonth);
+    }
+
+    public function demande($id){
+
+        $demande = Demande::where('id_prestataire',$id)->get();
+        return count($demande);
+    }
+
+    public function demandeMonth($id){
+        $month = date('m');
+        $demandeMonth = Demande::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($demandeMonth);
     }
 
     public function infoUser($id){
@@ -51,11 +94,19 @@ class PrestataireController extends Controller
         $infoUser = $this->infoUser($id);
         $ficheExiste = $this->ficheExiste($id);
         $galerieExiste = $this->galerieExiste($id);
+        $visite = $this->visiteFiche($id);
+        $phone = $this->visitePhone($id);
+        $demande = $this->demande($id);
+        $listDemande = $this->getDemande($id);
+        $visiteMonth = $this->visiteFicheMonth($id);
+        $phoneMonth = $this->visitePhoneMonth($id);
+        $demandeMonth = $this->demandeMonth($id);
 
         //dd($galerieExiste);
 
         
-        return view('prestataire.home',compact('ficheExiste','galerieExiste','infoUser'));
+        return view('prestataire.home',compact('ficheExiste','galerieExiste','infoUser','visite','phone',
+        'demande','listDemande','visiteMonth','phoneMonth','demandeMonth'));
     }
 
     public function getFiche($id){
@@ -115,9 +166,10 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($id);
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
+        $listEstimation = Estimation::get();
         //dd(!empty($galerieExiste));
 
-        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste'));
+        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listEstimation'));
     }
 
     public function updateFiche(Request $request){
