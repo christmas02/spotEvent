@@ -13,8 +13,7 @@
               <div class="w-50">
                 <h1 class="content-title">A Propos de Nous</h1>
                 <p class="content-subtitle my-5">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Le répertoire des prestataires de l'événementiel
                 </p>
               </div>
             </div>
@@ -27,30 +26,12 @@
             <div class="section">
               <h2 class="section-title">Qui-sommes nous ?</h2>
               <p class="font-weight-bold">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                nobis perspiciatis vitae dolor aperiam animi nulla impedit omnis
-                quas! Id sequi ex nesciunt velit voluptatum. Dicta harum
-                perspiciatis dolorum hic. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Est nobis perspiciatis vitae dolor aperiam
-                animi nulla impedit omnis quas! Id sequi ex nesciunt velit
-                voluptatum. Dicta harum perspiciatis dolorum hic. Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Est nobis
-                perspiciatis vitae dolor aperiam animi nulla impedit omnis quas!
-                Id sequi ex nesciunt velit voluptatum. Dicta harum perspiciatis
-                dolorum hic.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-                nobis perspiciatis vitae dolor aperiam animi nulla impedit omnis
-                quas! Id sequi ex nesciunt velit voluptatum. Dicta harum
-                perspiciatis dolorum hic. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Est nobis perspiciatis vitae dolor aperiam
-                animi nulla impedit omnis quas! Id sequi ex nesciunt velit
-                voluptatum. Dicta harum perspiciatis dolorum hic. Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Est nobis
-                perspiciatis vitae dolor aperiam animi nulla impedit omnis quas!
-                Id sequi ex nesciunt velit voluptatum. Dicta harum perspiciatis
-                dolorum hic.
+                Nous sommes une plateforme de mise en relation entre les acteurs
+                de l'évènementiel et les personnes désireuses de réaliser un
+                évènement. Notre but ultime est de contribuer à la réalisation
+                d'évènements marquants, uniques et réussis. Nous y parvenons
+                grâce à la collaboration de nos partenaires spécialistes du
+                secteur.
               </p>
             </div>
           </div>
@@ -69,15 +50,11 @@
                   alt="oki"
                   class="img-fluid"
                 />
-                <h2 class="text-primary text-uppercase mt-2">
-                  Lorem ipsum dolor
-                </h2>
+                <h2 class="text-primary text-uppercase mt-2">Nos services</h2>
                 <div class="my-divider"></div>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident aliquam ex dignissimos repudiandae fugiat officiis
-                  quisquam natus veniam. Quos temporibus cupiditate libero
-                  delectus tempore nesciunt a dolorem qui fuga itaque.
+                  Un catalogue dynamique permettant à de nombreuses personnes de
+                  découvrir vos services
                 </p>
               </div>
             </div>
@@ -89,14 +66,12 @@
                   class="img-fluid"
                 />
                 <h2 class="text-primary text-uppercase mt-2">
-                  Lorem ipsum dolor
+                  Outil de communication
                 </h2>
                 <div class="my-divider"></div>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident aliquam ex dignissimos repudiandae fugiat officiis
-                  quisquam natus veniam. Quos temporibus cupiditate libero
-                  delectus tempore nesciunt a dolorem qui fuga itaque.
+                  Un outil de communication et de marketing pour vous faire
+                  gagner en visibilité
                 </p>
               </div>
             </div>
@@ -107,15 +82,10 @@
                   alt="oki"
                   class="img-fluid"
                 />
-                <h2 class="text-primary text-uppercase mt-2">
-                  Lorem ipsum dolor
-                </h2>
+                <h2 class="text-primary text-uppercase mt-2">Notre équipe</h2>
                 <div class="my-divider"></div>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident aliquam ex dignissimos repudiandae fugiat officiis
-                  quisquam natus veniam. Quos temporibus cupiditate libero
-                  delectus tempore nesciunt a dolorem qui fuga itaque.
+                  Une équipe disponible pour vous assister et vous accompagner
                 </p>
               </div>
             </div>

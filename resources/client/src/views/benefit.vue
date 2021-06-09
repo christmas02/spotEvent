@@ -171,21 +171,7 @@ export default Vue.extend({
   },
   async beforeMount(): Promise<void> {
     await this.$store.dispatch("benefits/fetchAll");
-
-    const benefit = this.$store.getters["benefits/one"](this.$route.params.id);
-    this.idProvider = benefit.id_user.toString();
-
-    const service = new BenefitService();
-    const result = await service.getSliders(benefit.id_user);
-
-    if (result.statu == 0) {
-      this.$swal({
-        icon: "error",
-        title: "Erreur lors de la recuperation des slides",
-      });
-    } else {
-      this.slides = result.listPrestataire;
-    }
+    await this.updateSlder(this.currentId);
   },
   components: {
     BenefitsGrid,
@@ -199,6 +185,9 @@ export default Vue.extend({
     others(): Benefit[] {
       return this.$store.getters["benefits/others"](this.$route.params.id);
     },
+    currentId(): string {
+      return this.$route.params.id;
+    },
   },
   methods: {
     async displayPhoneNumber() {
@@ -208,8 +197,6 @@ export default Vue.extend({
         id_user,
         id_pres: this.benefit.id_user.toString(),
       });
-
-      console.log(statu);
 
       if (statu == 1) {
         const html = `
@@ -226,6 +213,28 @@ export default Vue.extend({
     },
     showContactForm() {
       this.$store.commit("contactModal", true);
+    },
+    async updateSlder(benefitId: string) {
+      const benefit = this.$store.getters["benefits/one"](benefitId);
+
+      this.idProvider = benefit.id_user.toString();
+
+      const service = new BenefitService();
+      const result = await service.getSliders(benefit.id_user);
+
+      if (result.statu == 0) {
+        this.$swal({
+          icon: "error",
+          title: "Erreur lors de la recuperation des slides",
+        });
+      } else {
+        this.slides = result.listPrestataire;
+      }
+    },
+  },
+  watch: {
+    async currentId(val) {
+      await this.updateSlder(val);
     },
   },
 });

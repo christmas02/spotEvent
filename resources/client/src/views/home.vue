@@ -3,8 +3,12 @@
     <div id="homepage">
       <div class="d-none d-md-block">
         <jumbotron image="images/jmbg1.png">
-          <h1 class="content-title">Lorem ipsum<br />Dolor amet</h1>
-          <p class="content-subtitle my-5">texte essai oui texte essai</p>
+          <h1 class="content-title">
+            L' organisation zen <br />de vos événements
+          </h1>
+          <p class="content-subtitle my-5">
+            les prestataires n'attendent que vous
+          </p>
           <div>
             <v-btn color="primary">Découvrir</v-btn>
           </div>

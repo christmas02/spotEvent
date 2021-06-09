@@ -2,7 +2,7 @@
   <div>
     <div :class="{ 'default-padding': padding }">
       <nav-bar :height="navBarHeight"></nav-bar>
-      <v-main :style="{ marginTop: '120px' }">
+      <v-main :style="{ marginTop: '130px' }">
         <slot></slot>
       </v-main>
     </div>

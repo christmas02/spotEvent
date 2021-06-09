@@ -2056,11 +2056,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Footer"
+  name: "Footer",
+  data: function data() {
+    return {
+      categories: ["Mariages", "Baptêmes", "Anniversaires"],
+      providers: ["Salles / Lieux de réception", "Photographe", "Vidéaste", "Sonorisation", "Voiture", "Décoration", "Logistique", "Faire part", "Fleuristes", "Mise en beauté", "Traiteur", "Cambuse", "Tenues", "Mise au vert", "Lune de miel "]
+    };
+  }
 });
 
 /***/ }),
@@ -2355,7 +2358,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 // Module
-exports.push([module.i, "\n#auth-layout .login {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\n  color: #fff;\n  position: relative;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n#auth-layout .top {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n#auth-layout .left {\n  padding: 2% 3%;\n}\n#auth-layout .icon {\n  cursor: pointer;\n  margin-left: 10px;\n}\n#auth-layout .page-title {\n  font-size: 3rem;\n  font-weight: 300;\n  margin: 0;\n  padding: 0;\n}\n#auth-layout .page-title::after {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 5px;\n  background: var(--primary);\n}\n#auth-layout .auth-title {\n  font-size: 150px;\n  margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\n  font-weight: 200;\n  font-size: 1.9rem;\n}\n#auth-layout button {\n  font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\n  width: 42%;\n  display: flex;\n  justify-content: space-between;\n  margin-top: 50px;\n}\n#auth-layout .form-container {\n  margin: 4% 15%;\n  height: 90%;\n}\n#auth-layout .logo {\n  height: 75px;\n}\n", ""]);
+exports.push([module.i, "\n#auth-layout .login {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\n  color: #fff;\n  position: relative;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n#auth-layout .top {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n#auth-layout .left {\n  padding: 2% 3%;\n}\n#auth-layout .icon {\n  cursor: pointer;\n  margin-left: 10px;\n}\n#auth-layout .page-title {\n  font-size: 3rem;\n  font-weight: 300;\n  margin: 0;\n  padding: 0;\n}\n#auth-layout .page-title::after {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 5px;\n  background: var(--primary);\n}\n#auth-layout .auth-title {\n  font-size: 140px;\n  margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\n  font-weight: 200;\n  font-size: 1.9rem;\n}\n#auth-layout button {\n  font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\n  width: 42%;\n  display: flex;\n  justify-content: space-between;\n  margin-top: 50px;\n}\n#auth-layout .form-container {\n  margin: 4% 15%;\n  height: 90%;\n}\n#auth-layout .logo {\n  height: 75px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -3531,143 +3534,135 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "offset-md-2 col-md-6 d-none d-md-block" }, [
+      _c("div", { staticClass: "offset-md-1 col-md-7 d-none d-md-block" }, [
         _c("div", { staticClass: "row mt-md-5" }, [
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("ul", { staticClass: "footer-list" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
+          _c("div", { staticClass: "col-md-3" }, [
+            _c(
+              "ul",
+              { staticClass: "footer-list" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._l(_vm.categories, function(link) {
+                  return _c(
+                    "li",
+                    { key: link },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "footer-link",
+                          attrs: { to: "/", exact: "" }
+                        },
+                        [_vm._v(_vm._s(link))]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              )
-            ])
+                })
+              ],
+              2
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("ul", { staticClass: "footer-list" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
+          _c("div", { staticClass: "col-md-3" }, [
+            _c(
+              "ul",
+              { staticClass: "footer-list" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._l(_vm.providers, function(link) {
+                  return _c(
+                    "li",
+                    { key: link },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "footer-link",
+                          attrs: { to: "/", exact: "" }
+                        },
+                        [_vm._v(_vm._s(link))]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              )
-            ])
+                })
+              ],
+              2
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "col-md-3" }, [
             _c("ul", { staticClass: "footer-list" }, [
               _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "footer-link",
+                      attrs: { to: "/", exact: "" }
+                    },
+                    [_vm._v("un lien")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "footer-link",
+                      attrs: { to: "/", exact: "" }
+                    },
+                    [_vm._v("un lien")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "footer-link",
+                      attrs: { to: "/", exact: "" }
+                    },
+                    [_vm._v("un lien")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "footer-link",
+                      attrs: { to: "/", exact: "" }
+                    },
+                    [_vm._v("un lien")]
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("ul", { staticClass: "footer-list" }, [
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "li",
@@ -3749,7 +3744,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("h4", { staticClass: "list-title" }, [_vm._v("Categories")])
+      _c("h4", { staticClass: "list-title" }, [_vm._v("Prestataires")])
     ])
   },
   function() {
@@ -3757,7 +3752,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("h4", { staticClass: "list-title" }, [_vm._v("Categories")])
+      _c("h4", { staticClass: "list-title" }, [_vm._v("Contacts")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("h4", { staticClass: "list-title" }, [_vm._v("Réseaux sociaux")])
     ])
   }
 ]
@@ -4248,7 +4251,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-main",
-            { style: { marginTop: "120px" } },
+            { style: { marginTop: "130px" } },
             [_vm._t("default")],
             2
           )
@@ -4316,7 +4319,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", { staticClass: "content-subtitle my-5" }, [
                           _vm._v(
-                            "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n              "
+                            "\n                Le répertoire des prestataires de l'événementiel\n              "
                           )
                         ])
                       ])
@@ -4340,13 +4343,7 @@ var render = function() {
               _vm._v(" "),
               _c("p", { staticClass: "font-weight-bold" }, [
                 _vm._v(
-                  "\n              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est\n              nobis perspiciatis vitae dolor aperiam animi nulla impedit omnis\n              quas! Id sequi ex nesciunt velit voluptatum. Dicta harum\n              perspiciatis dolorum hic. Lorem ipsum dolor sit amet consectetur\n              adipisicing elit. Est nobis perspiciatis vitae dolor aperiam\n              animi nulla impedit omnis quas! Id sequi ex nesciunt velit\n              voluptatum. Dicta harum perspiciatis dolorum hic. Lorem ipsum\n              dolor sit amet consectetur adipisicing elit. Est nobis\n              perspiciatis vitae dolor aperiam animi nulla impedit omnis quas!\n              Id sequi ex nesciunt velit voluptatum. Dicta harum perspiciatis\n              dolorum hic.\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "\n              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est\n              nobis perspiciatis vitae dolor aperiam animi nulla impedit omnis\n              quas! Id sequi ex nesciunt velit voluptatum. Dicta harum\n              perspiciatis dolorum hic. Lorem ipsum dolor sit amet consectetur\n              adipisicing elit. Est nobis perspiciatis vitae dolor aperiam\n              animi nulla impedit omnis quas! Id sequi ex nesciunt velit\n              voluptatum. Dicta harum perspiciatis dolorum hic. Lorem ipsum\n              dolor sit amet consectetur adipisicing elit. Est nobis\n              perspiciatis vitae dolor aperiam animi nulla impedit omnis quas!\n              Id sequi ex nesciunt velit voluptatum. Dicta harum perspiciatis\n              dolorum hic.\n            "
+                  "\n              Nous sommes une plateforme de mise en relation entre les acteurs\n              de l'évènementiel et les personnes désireuses de réaliser un\n              évènement. Notre but ultime est de contribuer à la réalisation\n              d'évènements marquants, uniques et réussis. Nous y parvenons\n              grâce à la collaboration de nos partenaires spécialistes du\n              secteur.\n            "
                 )
               ])
             ])
@@ -4377,14 +4374,14 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("h2", { staticClass: "text-primary text-uppercase mt-2" }, [
-                  _vm._v("\n                Lorem ipsum dolor\n              ")
+                  _vm._v("Nos services")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "my-divider" }),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Provident aliquam ex dignissimos repudiandae fugiat officiis\n                quisquam natus veniam. Quos temporibus cupiditate libero\n                delectus tempore nesciunt a dolorem qui fuga itaque.\n              "
+                    "\n                Un catalogue dynamique permettant à de nombreuses personnes de\n                découvrir vos services\n              "
                   )
                 ])
               ])
@@ -4401,14 +4398,16 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("h2", { staticClass: "text-primary text-uppercase mt-2" }, [
-                  _vm._v("\n                Lorem ipsum dolor\n              ")
+                  _vm._v(
+                    "\n                Outil de communication\n              "
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "my-divider" }),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Provident aliquam ex dignissimos repudiandae fugiat officiis\n                quisquam natus veniam. Quos temporibus cupiditate libero\n                delectus tempore nesciunt a dolorem qui fuga itaque.\n              "
+                    "\n                Un outil de communication et de marketing pour vous faire\n                gagner en visibilité\n              "
                   )
                 ])
               ])
@@ -4425,14 +4424,14 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("h2", { staticClass: "text-primary text-uppercase mt-2" }, [
-                  _vm._v("\n                Lorem ipsum dolor\n              ")
+                  _vm._v("Notre équipe")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "my-divider" }),
                 _vm._v(" "),
                 _c("p", [
                   _vm._v(
-                    "\n                Lorem, ipsum dolor sit amet consectetur adipisicing elit.\n                Provident aliquam ex dignissimos repudiandae fugiat officiis\n                quisquam natus veniam. Quos temporibus cupiditate libero\n                delectus tempore nesciunt a dolorem qui fuga itaque.\n              "
+                    "\n                Une équipe disponible pour vous assister et vous accompagner\n              "
                   )
                 ])
               ])
@@ -4933,7 +4932,7 @@ var render = function() {
             _c("div", { staticClass: "description" }, [
               _c("p", [
                 _vm._v(
-                  "\n          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus\n          adipisci, animi doloribus eum fuga ipsam natus odio perferendis\n          quibusdam quisquam rem sapiente totam vitae?\n        "
+                  "\n          Notre équipe bienveillante se tient à votre disposition pour vous\n          aider\n        "
                 )
               ])
             ])
@@ -5235,13 +5234,15 @@ var render = function() {
             },
             [
               _c("h1", { staticClass: "content-title" }, [
-                _vm._v("Lorem ipsum"),
+                _vm._v("\n          L' organisation zen "),
                 _c("br"),
-                _vm._v("Dolor amet")
+                _vm._v("de vos événements\n        ")
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "content-subtitle my-5" }, [
-                _vm._v("texte essai oui texte essai")
+                _vm._v(
+                  "\n          les prestataires n'attendent que vous\n        "
+                )
               ]),
               _vm._v(" "),
               _c(
@@ -11512,19 +11513,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     async beforeMount() {
         await this.$store.dispatch("benefits/fetchAll");
-        const benefit = this.$store.getters["benefits/one"](this.$route.params.id);
-        this.idProvider = benefit.id_user.toString();
-        const service = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_3__["BenefitService"]();
-        const result = await service.getSliders(benefit.id_user);
-        if (result.statu == 0) {
-            this.$swal({
-                icon: "error",
-                title: "Erreur lors de la recuperation des slides",
-            });
-        }
-        else {
-            this.slides = result.listPrestataire;
-        }
+        await this.updateSlder(this.currentId);
     },
     components: {
         BenefitsGrid: _components_BenefitsGrid_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -11538,6 +11527,9 @@ __webpack_require__.r(__webpack_exports__);
         others() {
             return this.$store.getters["benefits/others"](this.$route.params.id);
         },
+        currentId() {
+            return this.$route.params.id;
+        },
     },
     methods: {
         async displayPhoneNumber() {
@@ -11547,7 +11539,6 @@ __webpack_require__.r(__webpack_exports__);
                 id_user,
                 id_pres: this.benefit.id_user.toString(),
             });
-            console.log(statu);
             if (statu == 1) {
                 const html = `
           <h2>${this.benefit.phone_service}</h2>
@@ -11563,6 +11554,26 @@ __webpack_require__.r(__webpack_exports__);
         },
         showContactForm() {
             this.$store.commit("contactModal", true);
+        },
+        async updateSlder(benefitId) {
+            const benefit = this.$store.getters["benefits/one"](benefitId);
+            this.idProvider = benefit.id_user.toString();
+            const service = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_3__["BenefitService"]();
+            const result = await service.getSliders(benefit.id_user);
+            if (result.statu == 0) {
+                this.$swal({
+                    icon: "error",
+                    title: "Erreur lors de la recuperation des slides",
+                });
+            }
+            else {
+                this.slides = result.listPrestataire;
+            }
+        },
+    },
+    watch: {
+        async currentId(val) {
+            await this.updateSlder(val);
         },
     },
 }));

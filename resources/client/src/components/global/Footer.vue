@@ -13,12 +13,36 @@
           suscipit, temporibus voluptatem.
         </p>
       </div>
-      <div class="offset-md-2 col-md-6 d-none d-md-block">
+      <div class="offset-md-1 col-md-7 d-none d-md-block">
         <div class="row mt-md-5">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <ul class="footer-list">
               <li>
                 <h4 class="list-title">Categories</h4>
+              </li>
+              <li v-for="link in categories" :key="link">
+                <router-link class="footer-link" to="/" exact>{{
+                  link
+                }}</router-link>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="footer-list">
+              <li>
+                <h4 class="list-title">Prestataires</h4>
+              </li>
+              <li v-for="link in providers" :key="link">
+                <router-link class="footer-link" to="/" exact>{{
+                  link
+                }}</router-link>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="footer-list">
+              <li>
+                <h4 class="list-title">Contacts</h4>
               </li>
               <li>
                 <router-link class="footer-link" to="/" exact
@@ -42,37 +66,10 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <ul class="footer-list">
               <li>
-                <h4 class="list-title">Categories</h4>
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="footer-list">
-              <li>
-                <h4 class="list-title">Categories</h4>
+                <h4 class="list-title">Réseaux sociaux</h4>
               </li>
               <li>
                 <router-link class="footer-link" to="/" exact
@@ -105,6 +102,28 @@
 <script>
 export default {
   name: "Footer",
+  data() {
+    return {
+      categories: ["Mariages", "Baptêmes", "Anniversaires"],
+      providers: [
+        "Salles / Lieux de réception",
+        "Photographe",
+        "Vidéaste",
+        "Sonorisation",
+        "Voiture",
+        "Décoration",
+        "Logistique",
+        "Faire part",
+        "Fleuristes",
+        "Mise en beauté",
+        "Traiteur",
+        "Cambuse",
+        "Tenues",
+        "Mise au vert",
+        "Lune de miel ",
+      ],
+    };
+  },
 };
 </script>
 

@@ -6,9 +6,8 @@
         <h1 class="content-title">Contactez-nous</h1>
         <div class="description">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-            adipisci, animi doloribus eum fuga ipsam natus odio perferendis
-            quibusdam quisquam rem sapiente totam vitae?
+            Notre équipe bienveillante se tient à votre disposition pour vous
+            aider
           </p>
         </div>
       </jumbotron>
