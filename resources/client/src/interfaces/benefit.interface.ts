@@ -23,6 +23,8 @@ export interface Benefit {
     prestation: string;
     presentation: string;
     path_icone: string;
+    actif_whatsapp: number;
+    actif_phone: number;
 }
 
 export interface BeneftsResponse {

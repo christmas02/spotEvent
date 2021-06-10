@@ -2010,58 +2010,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Footer",
   data: function data() {
     return {
       categories: ["Mariages", "Baptêmes", "Anniversaires"],
-      providers: ["Salles / Lieux de réception", "Photographe", "Vidéaste", "Sonorisation", "Voiture", "Décoration", "Logistique", "Faire part", "Fleuristes", "Mise en beauté", "Traiteur", "Cambuse", "Tenues", "Mise au vert", "Lune de miel "]
+      providers: [["Salles / Lieux de réception", "Photographe", "Vidéaste", "Sonorisation", "Voiture"], ["Décoration", "Logistique", "Faire part", "Fleuristes", "Mise en beauté"], ["Traiteur", "Cambuse", "Tenues", "Mise au vert", "Lune de miel "]]
     };
   }
 });
@@ -2376,7 +2330,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.content-subtitle[data-v-69ca11f5] {\n  color: var(--primary);\n}\n.w-50[data-v-69ca11f5] {\n  width: 50%;\n}\n.more[data-v-69ca11f5] {\n  background-color: rgba(244, 245, 247, 0.7);\n  padding-bottom: 150px;\n}\n.main[data-v-69ca11f5] {\n  padding-top: 90px;\n}\n.section-title[data-v-69ca11f5] {\n  margin-bottom: 50px;\n}\n.my-divider[data-v-69ca11f5] {\n  background: #000;\n  margin: 0 auto 20px auto;\n  height: 5px;\n  width: 25%;\n}\n.more-info[data-v-69ca11f5] {\n  width: 95%;\n}\n.right[data-v-69ca11f5] {\n  justify-content: center;\n  align-items: flex-end;\n  padding-bottom: 50px;\n}\n.more img[data-v-69ca11f5] {\n  width: 30%;\n}\n", ""]);
+exports.push([module.i, "\n.content-subtitle[data-v-69ca11f5] {\n  color: var(--primary);\n}\n.w-50[data-v-69ca11f5] {\n  width: 50%;\n}\n.more[data-v-69ca11f5] {\n  background-color: rgba(244, 245, 247, 0.7);\n  padding-bottom: 150px;\n}\n.main[data-v-69ca11f5] {\n  padding-top: 90px;\n}\n.section-title[data-v-69ca11f5] {\n  margin-bottom: 50px;\n}\n.my-divider[data-v-69ca11f5] {\n  background: #000;\n  margin: 0 auto 20px auto;\n  height: 5px;\n  width: 25%;\n}\n.more-info[data-v-69ca11f5] {\n  width: 95%;\n}\n.right[data-v-69ca11f5] {\n  justify-content: center;\n  align-items: flex-end;\n  padding-bottom: 50px;\n}\n.more img[data-v-69ca11f5] {\n  width: 30%;\n}\n.title-container[data-v-69ca11f5] {\n  width: 60%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -3565,163 +3519,38 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c(
-              "ul",
-              { staticClass: "footer-list" },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._l(_vm.providers, function(link) {
+          _c("div", { staticClass: "col-md-9" }, [
+            _c("ul", { staticClass: "footer-list" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(_vm.providers, function(col, i) {
                   return _c(
-                    "li",
-                    { key: link },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "footer-link",
-                          attrs: { to: "/", exact: "" }
-                        },
-                        [_vm._v(_vm._s(link))]
+                    "div",
+                    { key: col.length.toString() + i, staticClass: "col-md-4" },
+                    _vm._l(col, function(link) {
+                      return _c(
+                        "li",
+                        { key: link },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "footer-link",
+                              attrs: { to: "/", exact: "" }
+                            },
+                            [_vm._v(_vm._s(link))]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
+                    }),
+                    0
                   )
-                })
-              ],
-              2
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c("ul", { staticClass: "footer-list" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c("ul", { staticClass: "footer-list" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "footer-link",
-                      attrs: { to: "/", exact: "" }
-                    },
-                    [_vm._v("un lien")]
-                  )
-                ],
-                1
+                }),
+                0
               )
             ])
           ])
@@ -3745,22 +3574,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", [
       _c("h4", { staticClass: "list-title" }, [_vm._v("Prestataires")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("h4", { staticClass: "list-title" }, [_vm._v("Contacts")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("h4", { staticClass: "list-title" }, [_vm._v("Réseaux sociaux")])
     ])
   }
 ]
@@ -4312,7 +4125,7 @@ var render = function() {
                     [
                       _c("div"),
                       _vm._v(" "),
-                      _c("div", { staticClass: "w-50" }, [
+                      _c("div", { staticClass: "title-container" }, [
                         _c("h1", { staticClass: "content-title" }, [
                           _vm._v("A Propos de Nous")
                         ]),
@@ -4781,14 +4594,24 @@ var render = function() {
                     [
                       _c(
                         "auth-btn",
-                        { attrs: { handler: _vm.displayPhoneNumber } },
+                        {
+                          attrs: {
+                            handler: _vm.displayPhoneNumber,
+                            disabled: _vm.benefit.actif_phone == 0
+                          }
+                        },
                         [_c("v-icon", [_vm._v("mdi-phone")])],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "auth-btn",
-                        { attrs: { handler: _vm.displayWhatsappNumber } },
+                        {
+                          attrs: {
+                            handler: _vm.displayWhatsappNumber == 0,
+                            disabled: _vm.benefit.actif_whatsapp
+                          }
+                        },
                         [_c("v-icon", [_vm._v("mdi-whatsapp")])],
                         1
                       ),
@@ -11549,8 +11372,16 @@ __webpack_require__.r(__webpack_exports__);
                 });
             }
         },
-        displayWhatsappNumber() {
-            this.$swal(this.benefit.phone_whastapp);
+        async displayWhatsappNumber() {
+            const service = new _services_app_service__WEBPACK_IMPORTED_MODULE_6__["AppService"]();
+            const id_user = this.$store.getters["auth/id"];
+            const { statu } = await service.phoneClick({
+                id_user,
+                id_pres: this.benefit.id_user.toString(),
+            });
+            if (statu == 1) {
+                this.$swal(this.benefit.phone_whastapp);
+            }
         },
         showContactForm() {
             this.$store.commit("contactModal", true);

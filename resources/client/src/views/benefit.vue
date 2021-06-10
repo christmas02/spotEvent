@@ -85,11 +85,17 @@
                 <h2 class="section-title">Contacts</h2>
                 <p>Entrez en contact avec le prestataire.</p>
                 <div>
-                  <auth-btn :handler="displayPhoneNumber">
+                  <auth-btn
+                    :handler="displayPhoneNumber"
+                    :disabled="benefit.actif_phone == 0"
+                  >
                     <v-icon>mdi-phone</v-icon>
                   </auth-btn>
 
-                  <auth-btn :handler="displayWhatsappNumber">
+                  <auth-btn
+                    :handler="displayWhatsappNumber == 0"
+                    :disabled="benefit.actif_whatsapp"
+                  >
                     <v-icon>mdi-whatsapp</v-icon>
                   </auth-btn>
                   <v-btn
@@ -190,7 +196,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    async displayPhoneNumber() {
+    async displayPhoneNumber(): Promise<void> {
       const service = new AppService();
       const id_user = this.$store.getters["auth/id"];
       const { statu } = await service.phoneClick({
@@ -208,8 +214,17 @@ export default Vue.extend({
         });
       }
     },
-    displayWhatsappNumber() {
-      this.$swal(this.benefit.phone_whastapp);
+    async displayWhatsappNumber(): Promise<void> {
+      const service = new AppService();
+      const id_user = this.$store.getters["auth/id"];
+      const { statu } = await service.phoneClick({
+        id_user,
+        id_pres: this.benefit.id_user.toString(),
+      });
+
+      if (statu == 1) {
+        this.$swal(this.benefit.phone_whastapp);
+      }
     },
     showContactForm() {
       this.$store.commit("contactModal", true);

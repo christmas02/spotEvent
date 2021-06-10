@@ -10,7 +10,7 @@
               class="col-md-6 h-100 d-flex flex-column justify-content-between"
             >
               <div></div>
-              <div class="w-50">
+              <div class="title-container">
                 <h1 class="content-title">A Propos de Nous</h1>
                 <p class="content-subtitle my-5">
                   Le répertoire des prestataires de l'événementiel
@@ -143,5 +143,9 @@ export default Vue.extend({});
 
 .more img {
   width: 30%;
+}
+
+.title-container {
+  width: 60%;
 }
 </style>
