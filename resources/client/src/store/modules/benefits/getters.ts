@@ -2,6 +2,7 @@ import { Benefit } from "@/interfaces/benefit.interface";
 import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
+import { ISearchForm } from "@/interfaces/app-services.interfaces";
 import { IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
 
 export default {
@@ -23,5 +24,20 @@ export default {
     },
     providers(state: IBenefitState): IProvider[] {
         return state.providers;
+    },
+    choiceCategorie(state: IBenefitState): String {
+        return state.choiceCategorie;
+    },
+    choiceEstimateMin(state: IBenefitState): String {
+        return state.choiceEstimateMin;
+    },
+    choiceEstimateMax(state: IBenefitState): String {
+        return state.choiceEstimateMax;
+    },
+    choiceLocalisation(state: IBenefitState): String {
+        return state.choiceLocalisation;
+    },
+    prestationsSearch(state: IBenefitState): ISearchForm {
+        return state.prestations;
     }
 };

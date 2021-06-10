@@ -6,6 +6,7 @@ import RegisterScreen from "@/views/auth/register.vue";
 import BenefitScreen from "@/views/benefit.vue";
 import ContactScreen from "@/views/contact.vue";
 import AboutScreen from "@/views/about.vue";
+import Search from "@/views/search.vue";
 
 import store from "@/store";
 
@@ -16,6 +17,11 @@ const routes: Array<RouteConfig> = [
         path: "/",
         name: "Home",
         component: HomeScreen
+    },
+    {
+        path: "/search",
+        name: "Search",
+        component: Search
     },
     {
         path: "/login",
@@ -47,7 +53,7 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
     mode: "history",
     scrollBehavior(to, from, savedPosition) {
-        return { x: 0, y: 0 }
+        return { x: 0, y: 0 };
     },
     base: process.env.BASE_URL,
     routes

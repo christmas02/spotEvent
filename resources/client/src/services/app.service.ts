@@ -1,10 +1,38 @@
 import { CommonService } from "./Common.service";
-import { IClick, IClickResponse, IContactForm, IContactFormResponse } from "@/interfaces/app-services.interfaces";
+import {
+    IClick,
+    IClickResponse,
+    IContactForm,
+    IContactFormResponse,
+    IPrestationsSearchFormResponse,
+    ISearchForm
+} from "@/interfaces/app-services.interfaces";
 
 export class AppService extends CommonService {
+    async getPrestationsSearchForm(
+        body: ISearchForm
+    ): Promise<IPrestationsSearchFormResponse> {
+        try {
+            const {
+                data
+            }: {
+                data: IPrestationsSearchFormResponse;
+            } = await this.client.post("recherche", body);
+
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: ""
+            } as IPrestationsSearchFormResponse;
+        }
+    }
     async contactForm(body: IContactForm): Promise<IContactFormResponse> {
         try {
-            const { data }: { data: IContactFormResponse } = await this.client.post(
+            const {
+                data
+            }: { data: IContactFormResponse } = await this.client.post(
                 "demande",
                 body
             );
@@ -30,7 +58,7 @@ export class AppService extends CommonService {
         } catch (e) {
             console.log(e);
             return {
-                statu: 0,
+                statu: 0
             } as IClickResponse;
         }
     }
@@ -46,9 +74,8 @@ export class AppService extends CommonService {
         } catch (e) {
             console.log(e);
             return {
-                statu: 0,
+                statu: 0
             } as IClickResponse;
         }
     }
 }
-

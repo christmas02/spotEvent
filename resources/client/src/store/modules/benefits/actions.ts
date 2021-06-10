@@ -1,7 +1,38 @@
+import { AppService } from "@/services/app.service";
 import { BenefitService } from "@/services/benefit.service";
+import store from "@/store";
 import { IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
 
 export default {
+    async prestationsSearchForm({
+        commit,
+        state
+    }: {
+        commit: any;
+        state: IBenefitState;
+    }): // force = false
+    Promise<void> {
+        //  state.prestations.length === 0
+        console.log("ici");
+
+        const prestationsSearch = new AppService();
+        store.commit("benefits/updatePrestationSearch");
+
+        const result = await prestationsSearch.getPrestationsSearchForm(
+            store.getters["benefits/prestationsSearch"]
+            // state.prestations
+        );
+
+        if (result.statu == 1) {
+            console.log("resultat");
+
+            console.log(result.resultat);
+
+            // commit("store", result.resultat);
+        } else {
+            alert("erreur lors de la recherche  des prestations");
+        }
+    },
     async fetchAll(
         { commit, state }: { commit: any; state: IBenefitState },
         force = false
@@ -12,7 +43,7 @@ export default {
             const result = await benefitService.getAll();
 
             if (result.statu == 1) {
-                commit("store", result.listPrestation);
+                commit("prestations", result.listPrestation);
             } else {
                 alert("erreur lors de la recuperation des prestations");
             }
