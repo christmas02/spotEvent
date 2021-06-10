@@ -39,4 +39,8 @@ Route::post('clicphone','ApiController@clicphone');
 
 Route::post('demande','ApiController@saveDemande');
 
+Route::post('recherche','ApiController@serch');
+Route::post('filtreEstimation','ApiController@filtreEstimation');
+Route::post('filtreCategorie','ApiController@filtreCategorie');
+
 

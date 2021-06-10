@@ -10,6 +10,9 @@ use App\Fiche;
 use App\Galerie;
 use App\Prestation;
 use App\Estimation;
+use App\Demande;
+use App\Clicfiche;
+use App\Clicphone;
 
 
 class PrestataireController extends Controller
@@ -23,10 +26,50 @@ class PrestataireController extends Controller
        return view('template.inscription')->with($data);
     }
 
+    public function visiteFiche($id){
+        $visite = Clicfiche::where('id_prestataire',$id)->get();
+        return count($visite);
+    }
+
+    public function visiteFicheMonth($id){
+        $month = date('m');
+        $visiteMonth = Clicfiche::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($visiteMonth);
+    }
+
+    public function visitePhone($id){
+
+        $phone = Clicphone::where('id_prestataire',$id)->get();
+        return count($phone);
+    }
+
+    public function visitePhoneMonth($id){
+        $month = date('m');
+        $phoneMonth = Clicphone::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($phoneMonth);
+    }
+
+    public function demande($id){
+
+        $demande = Demande::where('id_prestataire',$id)->get();
+        return count($demande);
+    }
+
+    public function demandeMonth($id){
+        $month = date('m');
+        $demandeMonth = Demande::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($demandeMonth);
+    }
+
     public function infoUser($id){
         $infoUser = User::where('id',$id)->first();
         return $infoUser;
-
     }
 
     public function ficheExiste($id){
@@ -39,16 +82,31 @@ class PrestataireController extends Controller
         return $galerieExiste;
     }
 
+    public function getDemande($id)
+    {
+        $listDemande = Demande::where('id_prestataire',$id)->orderBy('id', 'desc')->get();
+        return $listDemande;
+
+    }
+
     public function home($id){
         
         $infoUser = $this->infoUser($id);
         $ficheExiste = $this->ficheExiste($id);
         $galerieExiste = $this->galerieExiste($id);
+        $visite = $this->visiteFiche($id);
+        $phone = $this->visitePhone($id);
+        $demande = $this->demande($id);
+        $listDemande = $this->getDemande($id);
+        $visiteMonth = $this->visiteFicheMonth($id);
+        $phoneMonth = $this->visitePhoneMonth($id);
+        $demandeMonth = $this->demandeMonth($id);
 
         //dd($galerieExiste);
 
         
-        return view('prestataire.home',compact('ficheExiste','galerieExiste','infoUser'));
+        return view('prestataire.home',compact('ficheExiste','galerieExiste','infoUser','visite','phone',
+        'demande','listDemande','visiteMonth','phoneMonth','demandeMonth'));
     }
 
     public function getFiche($id){
@@ -108,9 +166,10 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($id);
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
+        $listEstimation = Estimation::get();
         //dd(!empty($galerieExiste));
 
-        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste'));
+        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listEstimation'));
     }
 
     public function updateFiche(Request $request){
@@ -121,13 +180,16 @@ class PrestataireController extends Controller
 
             $name = $request->get('name');
             $localisation = $request->get('localisation');
+            $presentation = $request->get('presentation');
             $description = $request->get('description');
-            $montant_min_prest = $request->get('montant_min_prest');
-            $montant_max_prest = $request->get('montant_max_prest');
+            $detail_localisation = $request->get('detail_localisation');
+            $estimation_min = $request->get('estimation_min');
+            $estimation_max = $request->get('estimation_max');
             $phone_service = $request->get('phone_service');
             $phone2_service = $request->get('phone2_service');
             $phone_whastapp = $request->get('phone_whastapp');
             $lien_facebook = $request->get('lien_facebook');
+            $lien_instagram = $request->get('lien_instagram');
             $email_service = $request->get('email_service');
 
             $id = $request->get('id');
@@ -137,12 +199,15 @@ class PrestataireController extends Controller
                 'name' => $name,
                 'localisation' => $localisation,
                 'description' => $description,
-                'montant_min_prest' => $montant_min_prest,
-                'montant_max_prest' => $montant_max_prest,
+                'presentation' => $presentation,
+                'detail_localisation' => $detail_localisation,
+                'estimation_min' => $estimation_min,
+                'estimation_max' => $estimation_max,
                 'phone_service' => $phone_service,
                 'phone2_service' => $phone2_service,
                 'phone_whastapp' => $phone_whastapp,
                 'lien_facebook' => $lien_facebook,
+                'lien_instagram' => $lien_instagram,
                 'email_service' => $email_service,
             ]);
 
@@ -209,8 +274,9 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($id);
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
+        $listDemande = $this->getDemande($id);
 
-        return view('prestataire.list_reservation', compact('infoUser'));
+        return view('prestataire.list_reservation', compact('infoUser','listDemande'));
     }
 
     public function onePrestatire($id){

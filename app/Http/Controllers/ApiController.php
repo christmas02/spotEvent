@@ -12,7 +12,11 @@ use App\Favori;
 use App\Clicfiche;
 use App\Clicphone;
 use App\Demande;
+use App\Mail\notifixation;
 use Input;
+use Illuminate\Support\Facades\Mail;
+use DB;
+
 
 class ApiController extends Controller
 {
@@ -180,8 +184,21 @@ class ApiController extends Controller
                 'statu' => 0,
             ]);
 
+            $infoPrestataire  = DB::table('users')->where('id',$id_pres)->first();
+
             $statu = 1;
             $messages = "Votre demandé a bien été transmit au prèstatire !";
+
+            $data = [
+                'name' => $infoPrestataire->name,
+                'email' => $infoPrestataire->email,
+                'phone' => $infoPrestataire->phone,
+            ];
+
+            // communication mail pas defaut
+            Mail::to($infoPrestataire->email)->send(new notifixation($data));
+
+            // communication sms pour ceux dont l'option telephon est Activité 
 
             return response()->json(['statu'=> $statu, 'messages' => $messages]);
 
@@ -206,6 +223,91 @@ class ApiController extends Controller
         $listSlide = Galerie::where('id_user',$id)->get();
         //dd($listPrestataire);
         return response()->json(['statu'=>1, 'listPrestataire' => $listSlide]);
+    }
+
+    public function serch(Request $request){
+
+        $id_prestation = $request['id_prestation'];
+        $localisation = $request['localisation'];
+        $estmation_max = $request['estmation_max'];
+        $estmation_min = $request['estmation_min'];
+
+        $resultat = Fiche::where('statu_fiche', '!=' ,'0')
+        ->where('id_prestations',$id_prestation)
+        ->where('localisation','like','%'.$localisation.'%')
+        //->whereBetween('estimation_min', [$estmation_min,$estmation_max])
+        //->whereBetween('estimation_max', [$estmation_min, $estmation_max])
+        //->where('estimation_max','<=',$estmation_max)
+        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+        ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
+        ->orderBy('fiches.id', 'desc')
+        ->get();
+
+        if(count($resultat) == '0'){
+            $message = "resultat disponible";
+            return response()->json(['statu'=>1,'message' => $message, 'resultat' => $resultat]);
+        }else{
+            $message = "resultat vide";
+            return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
+        }
+        
+
+
+    }
+
+    public function filtreCategorie(Request $request){
+
+        $id_prestation = $request['id_prestation'];
+       
+        $resultat = Fiche::where('statu_fiche', '!=' ,'0')
+        ->where('id_prestations',$id_prestation)
+        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+        ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
+        ->orderBy('fiches.id', 'desc')
+        ->get();
+
+        //dd(count($resultat));
+
+        if(count($resultat) != '0'){
+            $message = "resultat disponible";
+            return response()->json(['statu'=>1,'message' => $message, 'resultat' => $resultat]);
+        }else{
+            $message = "resultat vide";
+            return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
+        }
+        
+
+
+    }
+
+    public function filtreEstimation(Request $request){
+
+        $estmation_max = $request['estmation_max'];
+        $estmation_min = $request['estmation_min'];
+
+        $resultat = Fiche::select('*')
+        ->where('statu_fiche', '!=' ,'0')
+        ->where('estimation_min', '=', $estmation_min)
+        ->where('estimation_max', '<=', $estmation_max)
+        //->whereBetween('estimation_max', [$estmation_min, $estmation_max])
+        //->where('estimation_max','<=',$estmation_max)
+        //->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+        //->select('fiches.*','prestations.name as prestation','prestations.path_icone')
+        ->orderBy('fiches.id', 'desc')
+        ->get();
+
+        if(count($resultat) == '0'){
+            $message = "resultat disponible";
+            return response()->json(['statu'=>1,'message' => $message, 'resultat' => $resultat]);
+        }else{
+            $message = "resultat vide";
+            return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
+        }
+        
+
+
     }
 
 

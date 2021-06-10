@@ -74,9 +74,9 @@
                     </ul>
                   </li>--}}
   
-                  <li><a href="/liste/reservations"><i class="fa fa-table"></i> Liste des reservations </a></li>
-                  <li><a><i class="fa fa-comments"></i> Messageries </a></li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Statistique </a></li>
+                  <li><a href="/liste/demandes/{{ $infoUser->id }}"><i class="fa fa-table"></i> Liste des demandes </a></li>
+                  <li><a href="#"><i class="fa fa-comments"></i> Messageries </a></li>
+                  <li><a href="/statistique/{{ $infoUser->id }}"><i class="fa fa-bar-chart-o"></i> Statistique </a></li>
                   <li><a href="#"><i class="fa fa-cog"></i> Parametre<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/list/prestations">Prestations</a></li>

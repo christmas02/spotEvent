@@ -67,7 +67,7 @@
                 <ul class="nav side-menu">
                   <li><a href="/welcome/tableau/gesttion/{{ $infoUser->id }}"><i class="fa fa-home"></i> Tableau de bord</span></a></li>
                   <li><a href="/fiche/prestataire/{{ $infoUser->id }}"><i class="fa fa-edit"></i> Mon compte</span></a></li>
-                  <li><a href="/list/reservations/{{ $infoUser->id }}"><i class="fa fa-table"></i> Liste des reservations </a></li>
+                  <li><a href="/list/demande/{{ $infoUser->id }}"><i class="fa fa-table"></i> Liste des demandes </a></li>
                   <li><a href="/list/messageries/{{ $infoUser->id }}"><i class="fa fa-comments"></i> Messagerie</a></li>
                   
                   <li><a><i class="fa fa-sign-out"></i> Deconnexion </a></li>

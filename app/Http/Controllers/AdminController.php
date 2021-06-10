@@ -8,11 +8,61 @@ use App\Prestation;
 use App\Fiche;
 use App\User;
 use App\Galerie;
+use App\Demande;
+use App\Clicfiche;
+use App\Clicphone;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     //
+    public function visiteFiche($id){
+        $visite = Clicfiche::where('id_prestataire',$id)->get();
+        return count($visite);
+    }
+
+    public function visiteFicheMonth($id){
+        $month = date('m');
+        $visiteMonth = Clicfiche::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($visiteMonth);
+    }
+
+    public function visitePhone($id){
+
+        $phone = Clicphone::where('id_prestataire',$id)->get();
+        return count($phone);
+    }
+
+    public function visitePhoneMonth($id){
+        $month = date('m');
+        $phoneMonth = Clicphone::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($phoneMonth);
+    }
+
+    public function getDemande($id)
+    {
+        $listDemande = Demande::where('id_prestataire',$id)->orderBy('id', 'desc')->get();
+        return $listDemande;
+
+    }
+
+    public function demande($id){
+
+        $demande = Demande::where('id_prestataire',$id)->get();
+        return count($demande);
+    }
+
+    public function demandeMonth($id){
+        $month = date('m');
+        $demandeMonth = Demande::where('id_prestataire',$id)
+        ->whereMonth('created_at', $month)
+        ->get();
+        return count($demandeMonth);
+    }
 
     public function prestataire(){
         $listePrestation = Fiche::all();
@@ -23,6 +73,7 @@ class AdminController extends Controller
         $listePrestation = Prestation::all();
         return $listePrestation;
     }
+
 
     public function login(){
         //$listePrestation = Prestation::get();
@@ -61,6 +112,8 @@ class AdminController extends Controller
     }
 
     public function onePrestatire($id,$user){
+
+        //dd($user);
         $infoUser = $this->Userinfo($user);
         $prestataire = DB::table('fiches')
                         ->where('fiches.id',$id)
@@ -69,14 +122,34 @@ class AdminController extends Controller
                         ->select('users.name as nom','users.email as adresse','users.id as id_user','users.phone as numero','fiches.*')
                         ->first();
 
-        $galerie = $this->galerie($prestataire->id_user);
-        //dd( $galerie);
+                        $visite = $this->visiteFiche($prestataire->id_user);
+                        $phone = $this->visitePhone($prestataire->id_user);
+                        $demande = $this->demande($prestataire->id_user);
+                        $listDemande = $this->getDemande($prestataire->id_user);
+                        $visiteMonth = $this->visiteFicheMonth($prestataire->id_user);
+                        $phoneMonth = $this->visitePhoneMonth($prestataire->id_user);
+                        $demandeMonth = $this->demandeMonth($prestataire->id_user);
 
-        return view('admin.fiche_prestataire',compact('prestataire','galerie','infoUser'));
+        $galerie = $this->galerie($prestataire->id_user);
+        //dd($prestataire->id_user);
+
+        return view('admin.fiche_prestataire',compact('prestataire','galerie','infoUser',
+        'visite','phone','demande','listDemande','visiteMonth','phoneMonth','demandeMonth'));
     }
 
-    public function getReservation(){
-        return view('admin.list_reservations');
+    public function statiatique($id){
+        
+        $infoUser = $this->Userinfo($id);
+        return view('admin.statiatique',compact('infoUser'));
+    }
+
+    public function getAlldemande($id){
+        $infoUser = $this->Userinfo($id);
+        $allDemande = Demande::leftjoin('fiches','fiches.id_user','=','demandes.id_prestataire')
+        ->leftjoin('users','users.id','=','fiches.id_user')
+        ->select('demandes.*','fiches.name as prestation','users.name as prestataire')
+        ->get();
+        return view('admin.list_demande',compact('allDemande','infoUser'));
     }
 
     public function getPrestations(){

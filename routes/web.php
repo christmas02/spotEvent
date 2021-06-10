@@ -20,7 +20,7 @@ Route::get('/fiche/prestataire/{id}','PrestataireController@Fiche');
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
 
 Route::post('/save/gallerie','PrestataireController@saveGalerie');
-Route::get('/list/reservations/{id}','PrestataireController@getReservation');
+Route::get('/list/demande/{id}','PrestataireController@getReservation');
 Route::get('/list/messageries/{id}','PrestataireController@getMessagerie');
 
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
@@ -28,8 +28,9 @@ Route::post('/save/gallerie/','PrestataireController@saveGalerie');
 Route::get('/welcome/tableau/administrateur/{id}','AdminController@home')->name('administrateur');
 Route::get('/liste/prestataires/{id}','AdminController@getPrestatire');
 Route::get('/fiche/prestataires/{id}/{user}','AdminController@onePrestatire');
-Route::get('/liste/reservations/{id}','AdminController@getReservation');
+Route::get('/liste/demandes/{id}','AdminController@getAlldemande');
 Route::get('/list/prestations/{id}','AdminController@getPrestations');
+Route::get('/statistique/{id}','AdminController@statiatique');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
 
