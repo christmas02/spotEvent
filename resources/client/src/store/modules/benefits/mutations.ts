@@ -8,9 +8,9 @@ export default {
     store(state: IBenefitState, benefits: Benefit[]): void {
         state.benefits = benefits;
     },
-    storeResult(state: IBenefitState, benefits: Benefit[]): void {
-        state.benefits = benefits;
-    },
+    // storeResult(state: IBenefitState, benefits: Benefit[]): void {
+    //     state.benefits = benefits;
+    // },
     storeCategories(state: IBenefitState, categories: ICategory[]): void {
         state.categories = categories;
     },

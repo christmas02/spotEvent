@@ -2,7 +2,7 @@
   <default-layout>
     <div id="homepage">
       <div class="main psearch">
-        <prestation-search-form></prestation-search-form>
+        <search-form></search-form>
       </div>
 
       <div class="main mx-auto">
@@ -45,21 +45,13 @@
             </div>
           </div>
           <div style="margin: 50px 0">
-            <benefits-grid :benefits="benefits"></benefits-grid>
-          </div>
-          <div class="text-center">
-            <v-btn color="primary">Voir plus</v-btn>
-          </div>
-        </div>
-        <div class="section mt-0 d-none d-md-block">
-          <div>
-            <h2 class="section-title">Prestataires</h2>
-          </div>
-          <div style="margin: 50px 0">
-            <providers-slider></providers-slider>
-          </div>
-          <div class="text-center">
-            <v-btn color="primary">Découvir tous les prestataires</v-btn>
+            <benefits-grid
+              :benefits="results"
+              v-if="results.length >= 1"
+            ></benefits-grid>
+            <div class="nothing" v-else>
+              <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
+            </div>
           </div>
         </div>
       </div>
@@ -77,6 +69,8 @@ import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import PrestationSearchForm from "../components/forms/PrestationSearchForm.vue";
+import { ISearchForm } from "@/interfaces/app-services.interfaces";
+import { AppService } from "@/services/app.service";
 
 export default Vue.extend({
   name: "Home",
@@ -86,14 +80,49 @@ export default Vue.extend({
     SearchForm,
     PrestationSearchForm,
   },
+  data() {
+    return {
+      results: [] as Benefit[],
+    };
+  },
   async beforeMount(): Promise<void> {
     await Promise.all([
+      this.prestationsSearchForm(),
+
       // this.$store.dispatch("benefits/prestationsSearchForm"),
-      this.$store.dispatch("benefits/fetchAll"),
       this.$store.dispatch("benefits/fetchCategories"),
       this.$store.dispatch("benefits/fetchEstimates"),
-      this.$store.dispatch("benefits/fetchProviders"),
+      // this.$store.dispatch("benefits/fetchProviders"),
     ]);
+  },
+  methods: {
+    async prestationsSearchForm(): Promise<void> {
+      const prestationsSearch = new AppService();
+      // this.$store.commit("benefits/updatePrestationSearch");
+
+      const data = new Object() as ISearchForm;
+
+      data.localisation = this.$store.getters["benefits/choiceLocalisation"];
+      data.estmation_max = this.$store.getters["benefits/choiceEstimateMax"];
+      data.estmation_min = this.$store.getters["benefits/choiceEstimateMin"];
+      data.id_prestation = "";
+      if (this.$store.getters["benefits/choiceCategorie"]) {
+        data.id_prestation =
+          this.$store.getters["benefits/choiceCategorie"].toString();
+      }
+
+      const result = await prestationsSearch.getPrestationsSearchForm(data);
+      console.log(result);
+
+      if (result.statu == 0) {
+        console.log("resultat");
+
+        console.log(result.resultat);
+
+        // commit("storeSearchResult", result.resultat);
+        this.results = result.resultat;
+      }
+    },
   },
   computed: {
     benefits(): Benefit[] {
@@ -113,6 +142,12 @@ export default Vue.extend({
 </script>
 
 <style>
+#homepage .nothing {
+  text-align: center;
+  vertical-align: middle;
+}
+#homepage .nothing p {
+}
 #homepage .section {
   margin: 50px 0;
 }

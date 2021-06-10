@@ -2493,7 +2493,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#homepage .section {\r\n  margin: 50px 0;\n}\n#homepage .psearch {\r\n  margin-top: 80px;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\r\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\r\n  margin-left: 10px;\n}\n#homepage .search-container {\r\n  position: absolute;\r\n  bottom: -33px;\r\n  left: 5%;\r\n  width: 100%;\n}\r\n", ""]);
+exports.push([module.i, "\n#homepage .nothing {\r\n  text-align: center;\r\n  vertical-align: middle;\n}\n#homepage .nothing p {\n}\n#homepage .section {\r\n  margin: 50px 0;\n}\n#homepage .psearch {\r\n  margin-top: 80px;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\r\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\r\n  margin-left: 10px;\n}\n#homepage .search-container {\r\n  position: absolute;\r\n  bottom: -33px;\r\n  left: 5%;\r\n  width: 100%;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -5543,12 +5543,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("default-layout", [
     _c("div", { attrs: { id: "homepage" } }, [
-      _c(
-        "div",
-        { staticClass: "main psearch" },
-        [_c("prestation-search-form")],
-        1
-      ),
+      _c("div", { staticClass: "main psearch" }, [_c("search-form")], 1),
       _vm._v(" "),
       _c("div", { staticClass: "main mx-auto" }, [
         _c("div", { staticClass: "d-block d-md-none" }, [_c("search-form")], 1),
@@ -5621,41 +5616,14 @@ var render = function() {
           _c(
             "div",
             { staticStyle: { margin: "50px 0" } },
-            [_c("benefits-grid", { attrs: { benefits: _vm.benefits } })],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center" },
             [
-              _c("v-btn", { attrs: { color: "primary" } }, [
-                _vm._v("Voir plus")
-              ])
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "section mt-0 d-none d-md-block" }, [
-          _c("div", [
-            _c("h2", { staticClass: "section-title" }, [_vm._v("Prestataires")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { margin: "50px 0" } },
-            [_c("providers-slider")],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center" },
-            [
-              _c("v-btn", { attrs: { color: "primary" } }, [
-                _vm._v("Découvir tous les prestataires")
-              ])
+              _vm.results.length >= 1
+                ? _c("benefits-grid", { attrs: { benefits: _vm.results } })
+                : _c("div", { staticClass: "nothing" }, [
+                    _c("p", { staticClass: "display-2 font-weight-bold" }, [
+                      _vm._v("Aucun resultat trouvé")
+                    ])
+                  ])
             ],
             1
           )
@@ -11517,7 +11485,6 @@ __webpack_require__.r(__webpack_exports__);
                 return this.$store.getters["benefits/choiceCategorie"];
             },
             set(value) {
-                console.log("tat");
                 this.$store.commit("benefits/updateChoiceCategorie", value);
             },
         },
@@ -11530,18 +11497,18 @@ __webpack_require__.r(__webpack_exports__);
             },
         },
         choiceEstimateMax: {
-            get: function () {
+            get() {
                 return this.$store.getters["benefits/choiceEstimateMax"];
             },
-            set: function (value) {
+            set(value) {
                 this.$store.commit("benefits/updateChoiceEstimateMax", value);
             },
         },
         choiceEstimateMin: {
-            get: function () {
+            get() {
                 return this.$store.getters["benefits/choiceEstimateMin"];
             },
-            set: function (value) {
+            set(value) {
                 this.$store.commit("benefits/updateChoiceEstimateMin", value);
             },
         },
@@ -12016,6 +11983,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ProvidersSlider_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ProvidersSlider.vue */ "./resources/client/src/components/ProvidersSlider.vue");
 /* harmony import */ var _components_forms_SearchForm_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/forms/SearchForm.vue */ "./resources/client/src/components/forms/SearchForm.vue");
 /* harmony import */ var _components_forms_PrestationSearchForm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/forms/PrestationSearchForm.vue */ "./resources/client/src/components/forms/PrestationSearchForm.vue");
+/* harmony import */ var _services_app_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/services/app.service */ "./resources/client/src/services/app.service.ts");
+
 
 
 
@@ -12029,14 +11998,41 @@ __webpack_require__.r(__webpack_exports__);
         SearchForm: _components_forms_SearchForm_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
         PrestationSearchForm: _components_forms_PrestationSearchForm_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     },
+    data() {
+        return {
+            results: [],
+        };
+    },
     async beforeMount() {
         await Promise.all([
+            this.prestationsSearchForm(),
             // this.$store.dispatch("benefits/prestationsSearchForm"),
-            this.$store.dispatch("benefits/fetchAll"),
             this.$store.dispatch("benefits/fetchCategories"),
             this.$store.dispatch("benefits/fetchEstimates"),
-            this.$store.dispatch("benefits/fetchProviders"),
         ]);
+    },
+    methods: {
+        async prestationsSearchForm() {
+            const prestationsSearch = new _services_app_service__WEBPACK_IMPORTED_MODULE_5__["AppService"]();
+            // this.$store.commit("benefits/updatePrestationSearch");
+            const data = new Object();
+            data.localisation = this.$store.getters["benefits/choiceLocalisation"];
+            data.estmation_max = this.$store.getters["benefits/choiceEstimateMax"];
+            data.estmation_min = this.$store.getters["benefits/choiceEstimateMin"];
+            data.id_prestation = "";
+            if (this.$store.getters["benefits/choiceCategorie"]) {
+                data.id_prestation =
+                    this.$store.getters["benefits/choiceCategorie"].toString();
+            }
+            const result = await prestationsSearch.getPrestationsSearchForm(data);
+            console.log(result);
+            if (result.statu == 0) {
+                console.log("resultat");
+                console.log(result.resultat);
+                // commit("storeSearchResult", result.resultat);
+                this.results = result.resultat;
+            }
+        },
     },
     computed: {
         benefits() {
@@ -88225,36 +88221,44 @@ const state = () => ({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _services_app_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/services/app.service */ "./resources/client/src/services/app.service.ts");
-/* harmony import */ var _services_benefit_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/services/benefit.service */ "./resources/client/src/services/benefit.service.ts");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/store */ "./resources/client/src/store/index.ts");
-
-
+/* harmony import */ var _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/services/benefit.service */ "./resources/client/src/services/benefit.service.ts");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    async prestationsSearchForm({ commit, state }) {
-        //  state.prestations.length === 0
-        console.log("ici");
-        const prestationsSearch = new _services_app_service__WEBPACK_IMPORTED_MODULE_0__["AppService"]();
-        _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit("benefits/updatePrestationSearch");
-        const result = await prestationsSearch.getPrestationsSearchForm(_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters["benefits/prestationsSearch"]
-        // state.prestations
-        );
-        if (result.statu == 1) {
-            console.log("resultat");
-            console.log(result.resultat);
-            // commit("store", result.resultat);
-        }
-        else {
-            alert("erreur lors de la recherche  des prestations");
-        }
-    },
+    // async prestationsSearchForm({
+    //     commit,
+    //     state
+    // }: {
+    //     commit: any;
+    //     state: IBenefitState;
+    // }): Promise<void> {
+    //     //  state.prestations.length === 0
+    //     console.log("ici");
+    //     const prestationsSearch = new AppService();
+    //     // await commit("updatePrestationSearch");
+    //     const data = new Object() as ISearchForm;
+    //     data.localisation = state.choiceLocalisation;
+    //     data.estmation_max = state.choiceEstimateMax;
+    //     data.estmation_min = state.choiceEstimateMin;
+    //     data.id_prestation = state.choiceCategorie.toString();
+    //     const result = await prestationsSearch.getPrestationsSearchForm(data);
+    //     console.log(result);
+    //     if (result.statu == 0) {
+    //         console.log("resultat");
+    //         console.log(result.resultat);
+    //         commit("storeSearchResult", result.resultat);
+    //     } else if (result.statu == 1) {
+    //         alert("Aucun resultat trouvé");
+    //     } else {
+    //         alert("erreur lors de la recherche  des prestations");
+    //     }
+    // },
     async fetchAll({ commit, state }, force = false) {
         if (force || state.benefits.length === 0) {
-            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_1__["BenefitService"]();
+            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__["BenefitService"]();
             const result = await benefitService.getAll();
             if (result.statu == 1) {
-                commit("prestations", result.listPrestation);
+                commit("store", result.listPrestation);
+                // console.log("fit fit");
             }
             else {
                 alert("erreur lors de la recuperation des prestations");
@@ -88263,7 +88267,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     async fetchProviders({ commit, state }, force = false) {
         if (force || state.providers.length === 0) {
-            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_1__["BenefitService"]();
+            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__["BenefitService"]();
             const result = await benefitService.getProviders();
             if (result.statu == 1) {
                 commit("storeProviders", result.listPrestataire);
@@ -88275,7 +88279,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     async fetchCategories({ commit, state }, force = false) {
         if (force || state.categories.length === 0) {
-            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_1__["BenefitService"]();
+            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__["BenefitService"]();
             const result = await benefitService.getCategories();
             if (result.statu == 1) {
                 commit("storeCategories", result.listCategorie);
@@ -88287,7 +88291,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     async fetchEstimates({ commit, state }, force = false) {
         if (force || state.categories.length === 0) {
-            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_1__["BenefitService"]();
+            const benefitService = new _services_benefit_service__WEBPACK_IMPORTED_MODULE_0__["BenefitService"]();
             const result = await benefitService.getEstimates();
             if (result.statu == 1) {
                 commit("storeEstimates", result.listCategorie);
@@ -88391,9 +88395,9 @@ __webpack_require__.r(__webpack_exports__);
     store(state, benefits) {
         state.benefits = benefits;
     },
-    storeResult(state, benefits) {
-        state.benefits = benefits;
-    },
+    // storeResult(state: IBenefitState, benefits: Benefit[]): void {
+    //     state.benefits = benefits;
+    // },
     storeCategories(state, categories) {
         state.categories = categories;
     },

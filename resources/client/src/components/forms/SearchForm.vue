@@ -69,8 +69,7 @@ export default Vue.extend({
       get(): string {
         return this.$store.getters["benefits/choiceCategorie"];
       },
-      set(value: string) {
-        console.log("tat");
+      set(value: string): void {
         this.$store.commit("benefits/updateChoiceCategorie", value);
       },
     },
@@ -78,23 +77,23 @@ export default Vue.extend({
       get(): string {
         return this.$store.getters["benefits/choiceLocalisation"];
       },
-      set(value: string) {
+      set(value: string): void {
         this.$store.commit("benefits/updateChoiceLocalisation", value);
       },
     },
     choiceEstimateMax: {
-      get: function () {
+      get(): string {
         return this.$store.getters["benefits/choiceEstimateMax"];
       },
-      set: function (value: string) {
+      set(value: string): void {
         this.$store.commit("benefits/updateChoiceEstimateMax", value);
       },
     },
     choiceEstimateMin: {
-      get: function () {
+      get(): string {
         return this.$store.getters["benefits/choiceEstimateMin"];
       },
-      set: function (value: string) {
+      set(value: string): void {
         this.$store.commit("benefits/updateChoiceEstimateMin", value);
       },
     },

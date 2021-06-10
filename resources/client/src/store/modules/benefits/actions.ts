@@ -1,38 +1,45 @@
+import { ISearchForm } from "@/interfaces/app-services.interfaces";
 import { AppService } from "@/services/app.service";
 import { BenefitService } from "@/services/benefit.service";
 import store from "@/store";
 import { IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
 
 export default {
-    async prestationsSearchForm({
-        commit,
-        state
-    }: {
-        commit: any;
-        state: IBenefitState;
-    }): // force = false
-    Promise<void> {
-        //  state.prestations.length === 0
-        console.log("ici");
+    // async prestationsSearchForm({
+    //     commit,
+    //     state
+    // }: {
+    //     commit: any;
+    //     state: IBenefitState;
+    // }): Promise<void> {
+    //     //  state.prestations.length === 0
+    //     console.log("ici");
 
-        const prestationsSearch = new AppService();
-        store.commit("benefits/updatePrestationSearch");
+    //     const prestationsSearch = new AppService();
+    //     // await commit("updatePrestationSearch");
 
-        const result = await prestationsSearch.getPrestationsSearchForm(
-            store.getters["benefits/prestationsSearch"]
-            // state.prestations
-        );
+    //     const data = new Object() as ISearchForm;
 
-        if (result.statu == 1) {
-            console.log("resultat");
+    //     data.localisation = state.choiceLocalisation;
+    //     data.estmation_max = state.choiceEstimateMax;
+    //     data.estmation_min = state.choiceEstimateMin;
+    //     data.id_prestation = state.choiceCategorie.toString();
 
-            console.log(result.resultat);
+    //     const result = await prestationsSearch.getPrestationsSearchForm(data);
+    //     console.log(result);
 
-            // commit("store", result.resultat);
-        } else {
-            alert("erreur lors de la recherche  des prestations");
-        }
-    },
+    //     if (result.statu == 0) {
+    //         console.log("resultat");
+
+    //         console.log(result.resultat);
+
+    //         commit("storeSearchResult", result.resultat);
+    //     } else if (result.statu == 1) {
+    //         alert("Aucun resultat trouvé");
+    //     } else {
+    //         alert("erreur lors de la recherche  des prestations");
+    //     }
+    // },
     async fetchAll(
         { commit, state }: { commit: any; state: IBenefitState },
         force = false
@@ -43,7 +50,8 @@ export default {
             const result = await benefitService.getAll();
 
             if (result.statu == 1) {
-                commit("prestations", result.listPrestation);
+                commit("store", result.listPrestation);
+                // console.log("fit fit");
             } else {
                 alert("erreur lors de la recuperation des prestations");
             }
