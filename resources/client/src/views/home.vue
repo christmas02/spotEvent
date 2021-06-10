@@ -31,10 +31,13 @@
             </div>
             <div class="actions-container d-none d-md-flex">
               <div>
-                <v-btn color="primary" x-large>Toutes les prestations</v-btn>
+                <v-btn color="primary" @click="resetBenefits()" x-large
+                  >Toutes les prestations</v-btn
+                >
               </div>
               <div class="mx-2">
                 <v-autocomplete
+                  v-model="categorie"
                   label="Catégories"
                   filled
                   :items="categories"
@@ -63,10 +66,16 @@
             </div>
           </div>
           <div style="margin: 50px 0">
-            <benefits-grid :benefits="benefits"></benefits-grid>
+            <benefits-grid
+              :benefits="benefits"
+              v-if="benefits.length >= 1"
+            ></benefits-grid>
+            <div class="nothing" v-else-if="benefits.length == 0 && isFilter">
+              <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
+            </div>
           </div>
           <div class="text-center">
-            <v-btn color="primary">Voir plus</v-btn>
+            <v-btn color="primary" v-if="benefits.length >= 1">Voir plus</v-btn>
           </div>
         </div>
         <div class="section mt-0 d-none d-md-block">
@@ -94,6 +103,8 @@ import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
+import { AppService } from "@/services/app.service";
+import { IIdPrestation } from "@/interfaces/app-services.interfaces";
 
 export default Vue.extend({
   name: "Home",
@@ -101,6 +112,12 @@ export default Vue.extend({
     BenefitsGrid,
     ProvidersSlider,
     SearchForm,
+  },
+  data() {
+    return {
+      categorie: null as unknown as string,
+      isFilter: false,
+    };
   },
   async beforeMount(): Promise<void> {
     await Promise.all([
@@ -124,6 +141,44 @@ export default Vue.extend({
       return this.$store.getters["benefits/providers"];
     },
   },
+  methods: {
+    async getfilterByCategory(): Promise<void> {
+      this.isFilter = true;
+      const prestationsSearch = new AppService();
+
+      const Cat = new Object() as IIdPrestation;
+      Cat.id_prestation = this.categorie;
+
+      const result = await prestationsSearch.filterByCategory(Cat);
+      console.log(result);
+
+      if (result.statu == 1) {
+        console.log("resultat");
+
+        console.log(result.resultat);
+        this.$store.commit("benefits/store", result.resultat);
+      } else {
+        console.log(result.resultat);
+        this.$store.commit("benefits/store", result.resultat);
+      }
+    },
+    resetBenefits: function () {
+      this.isFilter = false;
+      console.log("reset");
+      this.categorie = "";
+      this.$store.commit("benefits/store", []);
+
+      this.$store.dispatch("benefits/fetchAll");
+    },
+  },
+  watch: {
+    categorie: function (newValue, oldValue) {
+      // console.log(newValue);
+      if (newValue) {
+        this.getfilterByCategory();
+      }
+    },
+  },
 });
 </script>
 
@@ -131,6 +186,11 @@ export default Vue.extend({
 #homepage .section {
   margin: 50px 0;
 }
+#homepage .nothing {
+  text-align: center;
+  vertical-align: middle;
+}
+
 @media screen and (min-width: 1264px) {
   #homepage .section {
     margin: 136px 0;

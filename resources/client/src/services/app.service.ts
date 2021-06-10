@@ -5,10 +5,30 @@ import {
     IContactForm,
     IContactFormResponse,
     IPrestationsSearchFormResponse,
-    ISearchForm
+    ISearchForm,
+    IIdPrestation
 } from "@/interfaces/app-services.interfaces";
 
 export class AppService extends CommonService {
+    async filterByCategory(
+        body: IIdPrestation
+    ): Promise<IPrestationsSearchFormResponse> {
+        try {
+            const {
+                data
+            }: {
+                data: IPrestationsSearchFormResponse;
+            } = await this.client.post("filtreCategorie", body);
+
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: ""
+            } as IPrestationsSearchFormResponse;
+        }
+    }
     async getPrestationsSearchForm(
         body: ISearchForm
     ): Promise<IPrestationsSearchFormResponse> {

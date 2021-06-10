@@ -15,6 +15,10 @@ export default {
     authModalStatus(state: IAuthState, val: boolean): void {
         state.modal = val;
     },
+    authFavoritesModalStatus(state: IAuthState, val: boolean): void {
+        state.favoritesModal = val;
+    },
+
     updateFavoritesList(state: IAuthState, val: IFavorite[]): void {
         state.favorites = val;
     }

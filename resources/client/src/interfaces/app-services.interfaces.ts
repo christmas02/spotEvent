@@ -19,6 +19,10 @@ export interface ISearchForm {
     estmation_min: String;
 }
 
+export interface IIdPrestation {
+    id_prestation: String;
+}
+
 export interface IContactFormResponse {
     statu: number;
     messages: string;

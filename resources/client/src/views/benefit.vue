@@ -93,8 +93,8 @@
                   </auth-btn>
 
                   <auth-btn
-                    :handler="displayWhatsappNumber == 0"
-                    :disabled="benefit.actif_whatsapp"
+                    :handler="displayWhatsappNumber"
+                    :disabled="benefit.actif_whatsapp == 0"
                   >
                     <v-icon>mdi-whatsapp</v-icon>
                   </auth-btn>
@@ -102,7 +102,7 @@
                     icon
                     color="primary"
                     x-large
-                    :disabled="benefit.messagerie !== 1"
+                    :disabled="benefit.messagerie == 0"
                   >
                     <v-icon>mdi-message-processing</v-icon>
                   </v-btn>

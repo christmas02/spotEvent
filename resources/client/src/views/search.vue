@@ -114,7 +114,7 @@ export default Vue.extend({
       const result = await prestationsSearch.getPrestationsSearchForm(data);
       console.log(result);
 
-      if (result.statu == 0) {
+      if (result.statu == 1) {
         console.log("resultat");
 
         console.log(result.resultat);
@@ -146,8 +146,7 @@ export default Vue.extend({
   text-align: center;
   vertical-align: middle;
 }
-#homepage .nothing p {
-}
+
 #homepage .section {
   margin: 50px 0;
 }
