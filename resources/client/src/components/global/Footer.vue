@@ -27,70 +27,24 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-9">
             <ul class="footer-list">
               <li>
                 <h4 class="list-title">Prestataires</h4>
               </li>
-              <li v-for="link in providers" :key="link">
-                <router-link class="footer-link" to="/" exact>{{
-                  link
-                }}</router-link>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <ul class="footer-list">
-              <li>
-                <h4 class="list-title">Contacts</h4>
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
+              <div class="row">
+                <div
+                  class="col-md-4"
+                  v-for="(col, i) in providers"
+                  :key="col.length.toString() + i"
                 >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <ul class="footer-list">
-              <li>
-                <h4 class="list-title">Réseaux sociaux</h4>
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
-              <li>
-                <router-link class="footer-link" to="/" exact
-                  >un lien</router-link
-                >
-              </li>
+                  <li v-for="link in col" :key="link">
+                    <router-link class="footer-link" to="/" exact>{{
+                      link
+                    }}</router-link>
+                  </li>
+                </div>
+              </div>
             </ul>
           </div>
         </div>
@@ -106,21 +60,21 @@ export default {
     return {
       categories: ["Mariages", "Baptêmes", "Anniversaires"],
       providers: [
-        "Salles / Lieux de réception",
-        "Photographe",
-        "Vidéaste",
-        "Sonorisation",
-        "Voiture",
-        "Décoration",
-        "Logistique",
-        "Faire part",
-        "Fleuristes",
-        "Mise en beauté",
-        "Traiteur",
-        "Cambuse",
-        "Tenues",
-        "Mise au vert",
-        "Lune de miel ",
+        [
+          "Salles / Lieux de réception",
+          "Photographe",
+          "Vidéaste",
+          "Sonorisation",
+          "Voiture",
+        ],
+        [
+          "Décoration",
+          "Logistique",
+          "Faire part",
+          "Fleuristes",
+          "Mise en beauté",
+        ],
+        ["Traiteur", "Cambuse", "Tenues", "Mise au vert", "Lune de miel "],
       ],
     };
   },
