@@ -16,7 +16,7 @@
           v-model="choiceLocalisation"
         ></v-text-field>
       </div>
-      <div class="col-md-auto d-block d-md-flex align-items-md-center second">
+      <div class="col-md-6 d-block d-md-flex align-items-md-center second">
         <v-select
           v-model="choiceEstimateMin"
           label="Estimation minimale"
