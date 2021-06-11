@@ -57,6 +57,11 @@
           <v-list-item link tag="p" class="m-0">
             <v-list-item-title>Mon espace</v-list-item-title>
           </v-list-item>
+          <v-list-item link tag="p" class="m-0">
+            <v-list-item-title @click="activeFavoriteModal()"
+              >Mes Favoris</v-list-item-title
+            >
+          </v-list-item>
           <v-list-item link tag="p" class="m-0" @click="logout">
             <v-list-item-title>Deconnexion</v-list-item-title>
           </v-list-item>
@@ -93,6 +98,9 @@ export default Vue.extend({
     logout() {
       this.$store.commit("auth/logout");
       this.goHome();
+    },
+    activeFavoriteModal() {
+      this.$store.commit("auth/authFavoritesModalStatus", true);
     },
   },
   data() {

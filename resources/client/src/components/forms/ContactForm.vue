@@ -27,7 +27,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { IUser } from "@/interfaces/auth.interfaces";
 import {
   IContactForm,
   IContactFormResponse,

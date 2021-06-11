@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <favorite-modal></favorite-modal>
     <login-modal></login-modal>
     <router-view />
   </v-app>
@@ -9,8 +10,9 @@
 <script lang="ts">
 import Vue from "vue";
 import loginModal from "./components/global/loginModal.vue";
+import favoriteModal from "./components/global/favoriteModal.vue";
 export default Vue.extend({
-  components: { loginModal },
+  components: { loginModal, favoriteModal },
 });
 </script>
 <style>

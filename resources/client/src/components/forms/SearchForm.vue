@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-md-3">
         <v-select
+          v-model="choiceCategorie"
           label="Catégories"
           :items="categories"
           item-text="name"
@@ -10,23 +11,28 @@
         ></v-select>
       </div>
       <div class="col-md-3">
-        <v-text-field label="Situation géographique"></v-text-field>
+        <v-text-field
+          label="Situation géographique"
+          v-model="choiceLocalisation"
+        ></v-text-field>
       </div>
       <div class="col-md-auto d-block d-md-flex align-items-md-center second">
         <v-select
+          v-model="choiceEstimateMin"
           label="Estimation minimale"
           :items="estimatess"
           item-text="libelle"
-          item-value="id"
+          item-value="libelle"
         ></v-select>
         <v-select
+          v-model="choiceEstimateMax"
           label="Estimation maximale"
           :items="estimatess"
           item-text="libelle"
-          item-value="id"
+          item-value="libelle"
         ></v-select>
         <v-btn color="primary" class="ml-md-5 submit-btn">
-          <v-icon>mdi-magnify</v-icon>
+          <v-icon @click="search()">mdi-magnify</v-icon>
         </v-btn>
       </div>
     </div>
@@ -41,6 +47,11 @@ import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 
 export default Vue.extend({
+  methods: {
+    search() {
+      this.$router.push({ name: "Search" });
+    },
+  },
   computed: {
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"];
@@ -53,6 +64,38 @@ export default Vue.extend({
     },
     providers(): IProvider[] {
       return this.$store.getters["benefits/providers"];
+    },
+    choiceCategorie: {
+      get(): string {
+        return this.$store.getters["benefits/choiceCategorie"];
+      },
+      set(value: string): void {
+        this.$store.commit("benefits/updateChoiceCategorie", value);
+      },
+    },
+    choiceLocalisation: {
+      get(): string {
+        return this.$store.getters["benefits/choiceLocalisation"];
+      },
+      set(value: string): void {
+        this.$store.commit("benefits/updateChoiceLocalisation", value);
+      },
+    },
+    choiceEstimateMax: {
+      get(): string {
+        return this.$store.getters["benefits/choiceEstimateMax"];
+      },
+      set(value: string): void {
+        this.$store.commit("benefits/updateChoiceEstimateMax", value);
+      },
+    },
+    choiceEstimateMin: {
+      get(): string {
+        return this.$store.getters["benefits/choiceEstimateMin"];
+      },
+      set(value: string): void {
+        this.$store.commit("benefits/updateChoiceEstimateMin", value);
+      },
     },
   },
 });
@@ -68,10 +111,6 @@ export default Vue.extend({
 #devis .submit-btn {
   width: 100%;
 }
-
-/* #devis .second {
-  display: block;
-} */
 
 @media screen and (min-width: 1264px) {
   #devis {
