@@ -8,12 +8,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        contactModal: false
+        contactModal: false,
+        loading: false
     },
     mutations: {
         contactModal(state: any, status: boolean) {
             state.contactModal = status;
         },
+        startLoading(state: any) {
+            state.loading = true;
+        },
+        stopLoading(state: any) {
+            state.loading = false;
+        }
     },
     getters: {
         contactModal(state: any) {

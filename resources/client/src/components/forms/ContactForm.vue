@@ -20,7 +20,10 @@
       ></v-text-field>
       <v-textarea label="Message" v-model="message"></v-textarea>
       <!-- <v-text-area :label="'Message adressé à ' + provider.name"></v-text-area> -->
-      <v-btn color="primary" block type="submit">Envoyer</v-btn>
+      <!-- <v-btn color="primary" block type="submit" :disabled="loading">{{
+        loading ? "Veuillez patienter ..." : "Envoyer"
+      }}</v-btn> -->
+      <loading-btn type="submit" block>Envoyer</loading-btn>
     </v-form>
   </div>
 </template>
@@ -49,8 +52,9 @@ export default Vue.extend({
     } as IContactForm;
   },
   methods: {
-    async submit() {
+    async submit(): Promise<void> {
       const service = new AppService();
+      this.$store.commit("startLoading");
       const result: IContactFormResponse = await service.contactForm(
         this.$data as IContactForm
       );
@@ -68,6 +72,8 @@ export default Vue.extend({
         // @ts-ignore
         this.message = "";
         this.$store.commit("contactModal", false);
+
+        this.$store.commit("stopLoading");
       }
     },
   },
