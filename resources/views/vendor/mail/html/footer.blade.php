@@ -22,7 +22,7 @@
                 <td align="left" valign="top"
                     style="direction:ltr;padding:0 24px 0 24px">
                     <p style="margin:0;padding:0;color:#131313;font-family:Roboto,Arial,Helvetica,sans-serif;font-size:16px;font-weight:400;line-height:24px;letter-spacing:0.1px">
-                        <a href="http://yesimmo.ci/">www.sportevent.ci</a>
+                        <a href="">www.sportevent.ci</a>
                     </p>
                 </td>
             </tr>
@@ -67,7 +67,7 @@
                     <a href="#"
                         style="display:block;width:88px;height:20px"
                         aria-hidden="true"><img title="" alt=""
-                            src="http://yesimmo.ci/immobilier/public/img/footer-email.png"
+                            src=""
                             height="auto" width="88"
                             style="border:none;display:block;outline:none;text-decoration:none;width:88px;height:20px"
                             class="CToWUd"></a>
