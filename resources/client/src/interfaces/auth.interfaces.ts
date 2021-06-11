@@ -24,6 +24,7 @@ export interface IUser {
     id: number;
     email: string;
     phone: number;
+    path_user: string;
 }
 
 export interface ILoginResponse {

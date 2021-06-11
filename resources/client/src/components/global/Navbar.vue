@@ -33,7 +33,9 @@
       <v-menu offset-y bottom>
         <template v-slot:activator="{ on, attrs }">
           <p v-bind="attrs" v-on="on" class="m-0">
-            <v-avatar color="primary" size="30" class="mr-2"></v-avatar>
+            <v-avatar size="30" class="mr-2">
+              <img :src="user.path_user | createImagePath" />
+            </v-avatar>
             {{ user.name }}
           </p>
         </template>
@@ -82,6 +84,8 @@
 
 <script lang="ts">
 import { IUser } from "@/interfaces/auth.interfaces";
+import utilsMixin from "@/mixins/utils.mixin";
+
 import Vue from "vue";
 export default Vue.extend({
   name: "navbar",
@@ -91,6 +95,7 @@ export default Vue.extend({
       default: "90",
     },
   },
+  mixins: [utilsMixin],
   methods: {
     goHome() {
       this.$router.push("/");

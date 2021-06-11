@@ -4077,10 +4077,19 @@ var render = function() {
                               on
                             ),
                             [
-                              _c("v-avatar", {
-                                staticClass: "mr-2",
-                                attrs: { color: "primary", size: "30" }
-                              }),
+                              _c(
+                                "v-avatar",
+                                { staticClass: "mr-2", attrs: { size: "30" } },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: _vm._f("createImagePath")(
+                                        _vm.user.path_user
+                                      )
+                                    }
+                                  })
+                                ]
+                              ),
                               _vm._v(
                                 "\n          " +
                                   _vm._s(_vm.user.name) +
@@ -4095,7 +4104,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  1070285021
+                  1316166923
                 )
               },
               [
@@ -11826,9 +11835,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _mixins_utils_mixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/utils.mixin */ "./resources/client/src/mixins/utils.mixin.ts");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_1__["default"].extend({
     name: "navbar",
     props: {
         height: {
@@ -11836,6 +11847,7 @@ __webpack_require__.r(__webpack_exports__);
             default: "90",
         },
     },
+    mixins: [_mixins_utils_mixin__WEBPACK_IMPORTED_MODULE_0__["default"]],
     methods: {
         goHome() {
             this.$router.push("/");
