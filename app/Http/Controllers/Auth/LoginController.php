@@ -62,7 +62,8 @@ class LoginController extends Controller
                         'name' => auth()->user()->name,
                         'id'   => auth()->user()->id,
                         'email' => auth()->user()->email,
-                        'phone' => auth()->user()->phone
+                        'phone' => auth()->user()->phone,
+                        'path_user' => auth()->user()->path_user
                     ];
                     $lien = 'welcome/tableau/administrateur/'.auth()->user()->id;
                     return response()->json(['statu'=> 1, 'lien' => $lien, 'user'=> $user, 'role' => $role]);
@@ -73,18 +74,23 @@ class LoginController extends Controller
                         'name' => auth()->user()->name,
                         'id'   => auth()->user()->id,
                         'email' => auth()->user()->email,
-                        'phone' => auth()->user()->phone
+                        'phone' => auth()->user()->phone,
+                        'path_user' => auth()->user()->path_user
                     ];
                     $lien = 'welcome/tableau/gesttion/'.auth()->user()->id;
                     return response()->json(['statu'=> 1, 'lien' => $lien, 'user'=> $user, 'role' => $role]);
                 }elseif(auth()->user()->role == 1){
                     $role = 1;
-                    $favoris = Favori::where('id_user',auth()->user()->id)->get();
+                    $favoris = Favori::where('favoris.id_user',auth()->user()->id)
+                    ->leftjoin('fiches','fiches.id_user','=','favoris.id_prestataire')
+                    ->select('favoris.*','fiches.path_img','fiches.presentation','fiches.name')
+                    ->get();
                     $user = [
                         'name' => auth()->user()->name,
                         'id'   => auth()->user()->id,
                         'email' => auth()->user()->email,
-                        'phone' => auth()->user()->phone
+                        'phone' => auth()->user()->phone,
+                        'path_user' => auth()->user()->path_user
                     ];
                     $lien = '';
                     return response()->json(['statu'=>1, 'role' => $role,'lien' => $lien, 'user'=> $user, 'favoris' => $favoris]);
