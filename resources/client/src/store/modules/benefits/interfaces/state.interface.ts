@@ -15,3 +15,11 @@ export interface IBenefitState {
     prestations: ISearchForm;
     choiceLocalisation: String;
 }
+
+
+export interface FilterPayload {
+    prestation: String;
+    min: String;
+    max: String;
+    localisation?: String;
+}

@@ -6,7 +6,7 @@ const state = (): IAuthState => ({
     user: (null as unknown) as IUser,
     modal: false,
     favoritesModal: false,
-    workerSpaceModal: true,
+    workerSpaceModal: false,
     favorites: []
 });
 

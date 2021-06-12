@@ -3,7 +3,7 @@ import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import { ISearchForm } from "@/interfaces/app-services.interfaces";
-import { IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
+import { FilterPayload, IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
 
 export default {
     one(state: IBenefitState) {
@@ -41,5 +41,6 @@ export default {
     },
     prestationsSearch(state: IBenefitState): ISearchForm {
         return state.prestations;
-    }
+    },
+
 };

@@ -32,7 +32,7 @@
           item-value="libelle"
         ></v-select>
         <v-btn color="primary" class="ml-md-5 submit-btn">
-          <v-icon @click="search()">mdi-magnify</v-icon>
+          <v-icon @click="handler">mdi-magnify</v-icon>
         </v-btn>
       </div>
     </div>
@@ -47,9 +47,10 @@ import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 
 export default Vue.extend({
-  methods: {
-    search() {
-      this.$router.push({ name: "Search" });
+  props: {
+    handler: {
+      type: Function,
+      required: true,
     },
   },
   computed: {

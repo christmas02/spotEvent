@@ -2,12 +2,12 @@
   <default-layout>
     <div id="homepage">
       <div class="main psearch">
-        <search-form></search-form>
+        <search-form :handler="prestationsSearchForm"></search-form>
       </div>
 
       <div class="main mx-auto">
         <div class="d-block d-md-none mx-auto">
-          <search-form></search-form>
+          <search-form :handler="prestationsSearchForm"></search-form>
         </div>
         <div class="section">
           <div class="d-flex justify-content-between">
@@ -20,6 +20,7 @@
                   label="Catégories"
                   filled
                   :items="categories"
+                  v-model="form.prestation"
                   item-text="name"
                   item-value="id"
                 ></v-autocomplete>
@@ -27,8 +28,9 @@
               <div class="mx-2">
                 <v-autocomplete
                   label="Estimation minimale"
+                  v-model="form.min"
                   filled
-                  :items="estimatess"
+                  :items="estimates"
                   item-text="libelle"
                   item-value="id"
                 ></v-autocomplete>
@@ -36,8 +38,9 @@
               <div>
                 <v-autocomplete
                   label="Estimation maximale"
+                  v-model="form.max"
                   filled
-                  :items="estimatess"
+                  :items="estimates"
                   item-text="libelle"
                   item-value="id"
                 ></v-autocomplete>
@@ -52,10 +55,13 @@
               ></v-progress-circular>
             </div>
             <benefits-grid
-              :benefits="results"
+              :benefits="isFilter ? filterResults : results"
               v-else-if="results.length >= 1"
             ></benefits-grid>
-            <div class="nothing" v-else-if="benefits.length == 0 && isFilter">
+            <div
+              class="nothing"
+              v-else-if="filterResults.length == 0 && isFilter"
+            >
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
           </div>
@@ -77,9 +83,10 @@ import SearchForm from "../components/forms/SearchForm.vue";
 import PrestationSearchForm from "../components/forms/PrestationSearchForm.vue";
 import { ISearchForm } from "@/interfaces/app-services.interfaces";
 import { AppService } from "@/services/app.service";
+import { FilterPayload } from "../store/modules/benefits/interfaces/state.interface";
 
 export default Vue.extend({
-  name: "Home",
+  name: "Search",
   components: {
     BenefitsGrid,
     ProvidersSlider,
@@ -89,7 +96,14 @@ export default Vue.extend({
   data() {
     return {
       results: [] as Benefit[],
+      filterResults: [] as Benefit[],
       isFilter: false,
+      form: {
+        prestation: null as unknown as string,
+        min: null as unknown as string,
+        max: null as unknown as string,
+        // localisation: null as unknown as string,
+      } as FilterPayload,
       loading: false,
     };
   },
@@ -135,6 +149,7 @@ export default Vue.extend({
       }
       this.loading = false;
     },
+    makeFilter() {},
   },
   computed: {
     benefits(): Benefit[] {
@@ -143,11 +158,42 @@ export default Vue.extend({
     categories(): ICategory[] {
       return this.$store.getters["benefits/categories"];
     },
-    estimatess(): IEstimate[] {
+    estimates(): IEstimate[] {
       return this.$store.getters["benefits/estimates"];
     },
     providers(): IProvider[] {
       return this.$store.getters["benefits/providers"];
+    },
+  },
+  watch: {
+    form: {
+      handler(val: FilterPayload) {
+        const filterValues = ["prestation"];
+        let validKeys: string[] = [];
+        for (const key of filterValues) {
+          // @ts-ignore
+          if (val[key]) validKeys = [...validKeys, key];
+        }
+
+        const mark = validKeys.length;
+
+        if (mark > 0) this.isFilter = true;
+
+        this.filterResults = this.results.filter((benefit) => {
+          let myMark = 0;
+          for (const key in validKeys) {
+            // @ts-ignore
+            if (benefit[key] == val[key]) {
+              myMark++;
+            }
+          }
+          if (myMark === mark) {
+            return true;
+          }
+          return false;
+        });
+      },
+      deep: true,
     },
   },
 });

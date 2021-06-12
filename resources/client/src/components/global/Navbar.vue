@@ -57,12 +57,12 @@
             </template>
           </div>
           <v-list-item link tag="p" class="m-0">
-            <v-list-item-title @click="activeWorkerSpaceModal()"
+            <v-list-item-title @click="activeWorkerSpaceModal"
               >Mon espace</v-list-item-title
             >
           </v-list-item>
           <v-list-item link tag="p" class="m-0">
-            <v-list-item-title @click="activeFavoriteModal()"
+            <v-list-item-title @click="activeFavoriteModal"
               >Mes Favoris</v-list-item-title
             >
           </v-list-item>

@@ -27,6 +27,7 @@ export interface Benefit {
     actif_phone: number;
 }
 
+
 export interface BeneftsResponse {
     statu: number;
     listPrestation: Benefit[];

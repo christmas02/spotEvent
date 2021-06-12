@@ -2,10 +2,22 @@
   <footer class="my-footer default-padding">
     <div class="row">
       <div class="col-md-4">
-        <v-img
-          width="200"
-          :src="require('../../assets/light-logo.png')"
-        ></v-img>
+        <div class="d-flex justify-content-between align-items-end">
+          <div>
+            <v-img
+              width="180"
+              :src="require('../../assets/light-logo.png')"
+            ></v-img>
+          </div>
+          <div>
+            <v-btn icon color="white" x-large
+              ><v-icon>mdi-facebook</v-icon></v-btn
+            >
+            <v-btn icon color="white" x-large
+              ><v-icon>mdi-instagram</v-icon></v-btn
+            >
+          </div>
+        </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus,
           alias atque cupiditate debitis dignissimos fuga fugit illum labore

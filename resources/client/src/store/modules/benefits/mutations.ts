@@ -37,5 +37,11 @@ export default {
         state.prestations.estmation_max = state.choiceEstimateMax;
         state.prestations.estmation_min = state.choiceEstimateMin;
         state.prestations.id_prestation = state.choiceCategorie.toString();
+    },
+    resetSearchForm(state: IBenefitState): void {
+        state.choiceCategorie = (null as unknown) as string;
+        state.choiceEstimateMin = (null as unknown) as string;
+        state.choiceEstimateMax = (null as unknown) as string;
+        state.choiceLocalisation = (null as unknown) as string;
     }
 };

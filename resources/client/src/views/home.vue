@@ -14,7 +14,7 @@
           </div>
           <template #append>
             <div class="search-container">
-              <search-form></search-form>
+              <search-form :handler="initSearch"></search-form>
             </div>
           </template>
         </jumbotron>
@@ -22,7 +22,7 @@
 
       <div class="main mx-auto">
         <div class="d-block d-md-none">
-          <search-form></search-form>
+          <search-form :handler="initSearch"></search-form>
         </div>
         <div class="section">
           <div class="d-flex justify-content-between">
@@ -127,6 +127,7 @@ export default Vue.extend({
     };
   },
   async beforeMount(): Promise<void> {
+    this.$store.commit("benefits/resetSearchForm");
     this.loading = true;
     await Promise.all([
       this.$store.dispatch("benefits/fetchAll"),
@@ -150,6 +151,9 @@ export default Vue.extend({
     },
   },
   methods: {
+    initSearch(): void {
+      this.$router.push({ name: "Search" });
+    },
     async getfilterByCategory(): Promise<void> {
       this.isFilter = true;
       this.loading = true;

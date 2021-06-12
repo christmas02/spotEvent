@@ -15,6 +15,10 @@ import favoriteModal from "./components/global/favoriteModal.vue";
 // import WorkerSpaceModal from "./components/global/WorkerSpaceModal.vue";
 export default Vue.extend({
   components: { loginModal, favoriteModal },
+  beforeMount() {
+    this.$store.commit("auth/authFavoritesModalStatus", false);
+    this.$store.commit("auth/authWorkerSpaceModalStatus", false);
+  },
 });
 </script>
 <style>
