@@ -1,21 +1,21 @@
 <template>
   <v-row justify="center" v-if="isAuth">
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog" width="450">
       <v-toolbar dark color="primary">
         <v-btn icon dark @click="dialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>Settings</v-toolbar-title>
+        <!-- <v-toolbar-title>Settings</v-toolbar-title> -->
         <v-spacer></v-spacer>
-        <v-toolbar-items>
+        <!-- <v-toolbar-items>
           <v-btn dark text @click="dialog = false"> Save </v-btn>
-        </v-toolbar-items>
+        </v-toolbar-items> -->
       </v-toolbar>
       <v-card>
         <!-- <v-card-title><h5>Connexion</h5></v-card-title> -->
         <v-card-text>
-          <v-container>
-            <p>Un text</p>
+          <v-container class="test">
+            <my-space-card></my-space-card>
             <!-- <favorites-grid :favorites="favorites"></favorites-grid> -->
           </v-container>
         </v-card-text>
@@ -26,6 +26,7 @@
 <script lang="ts">
 import Vue from "vue";
 import FavoriteForm from "../forms/FavoriteForm.vue";
+import MySpaceCard from "@/components/MySpaceCard.vue";
 import FavoritesGrid from "@/components/FavoritesGrid.vue";
 import { IFavorite } from "@/interfaces/favorite.interface";
 import { INewFavorite } from "@/interfaces/favorite.interface";
@@ -33,10 +34,11 @@ import { IProvider } from "@/interfaces/provider.interface";
 import { mapGetters } from "vuex";
 
 export default Vue.extend({
+  components: { MySpaceCard },
   computed: {
     ...mapGetters({
       isAuth: "auth/isConnected",
-      dialog: "auth/workerSpaceModal",
+      // dialog: "auth/workerSpaceModal",
     }),
     dialog: {
       get(): boolean {
@@ -48,8 +50,13 @@ export default Vue.extend({
       },
     },
   },
-  beforeDestroy() {
-    this.$store.commit("auth/authWorkerSpaceModalStatus", false);
-  },
+  // beforeDestroy() {
+  //   this.$store.commit("auth/authWorkerSpaceModalStatus", false);
+  // },
 });
 </script>
+<style>
+.test {
+  width: 500px;
+}
+</style>

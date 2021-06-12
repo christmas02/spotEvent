@@ -38,7 +38,7 @@ export default Vue.extend({
       notifications: false,
       sound: true,
       widgets: false,
-      favorites: [] as INewFavorite[],
+      // favorites: [] as INewFavorite[],
     };
   },
   methods: {
@@ -65,7 +65,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       isAuth: "auth/isConnected",
-      dialog: "auth/favoritesModal",
+      // dialog: "auth/favoritesModal",
     }),
     dialog: {
       get(): boolean {
@@ -75,15 +75,24 @@ export default Vue.extend({
         this.$store.commit("auth/authFavoritesModalStatus", val);
       },
     },
-  },
-  // beforeMount() {
-  //   console.log(this.$store.getters["benefits/providers"], "before");
-  // },
-  watch: {
-    dialog: function (n, o) {
-      if (n == true) {
-        this.favorites = this.myFavorites();
-      }
+    favorites() {
+      const final = [] as INewFavorite[];
+      const favorites = this.$store.getters["auth/favorites"];
+      const providers = this.$store.getters["benefits/providers"];
+      // console.log(final);
+      favorites.forEach((favori: INewFavorite) => {
+        // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
+        providers.forEach((provider: IProvider) => {
+          if (provider.id === favori.id) {
+            favori.prestation = provider.prestation;
+            favori.name = provider.name;
+            favori.name_entreprise = provider.name_entreprise;
+            favori.path_user = provider.path_user;
+            final.push(favori);
+          }
+        });
+      });
+      return final;
     },
   },
   beforeDestroy() {

@@ -9,6 +9,8 @@
     <v-btn color="primary" class="discover-btn" small @click="discover"
       >Découvrir</v-btn
     >
+
+    <!-- <favorite-btn :benefit="benefit"></favorite-btn> -->
   </favorite-base-card>
 </template>
 

@@ -9,7 +9,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         contactModal: false,
-        loading: false
+        loading: false,
+        favoritesModal: false
     },
     mutations: {
         contactModal(state: any, status: boolean) {
@@ -20,11 +21,17 @@ export default new Vuex.Store({
         },
         stopLoading(state: any) {
             state.loading = false;
+        },
+        authFavoritesModalStatus(state: any, val: boolean) {
+            state.favoritesModal = val;
         }
     },
     getters: {
         contactModal(state: any) {
             return state.contactModal;
+        },
+        favoritesModal(state: any): boolean {
+            return state.favoritesModal;
         }
     },
     actions: {},

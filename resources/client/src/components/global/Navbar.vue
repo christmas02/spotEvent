@@ -107,7 +107,9 @@ export default Vue.extend({
       this.goHome();
     },
     activeFavoriteModal() {
-      this.$store.commit("auth/authFavoritesModalStatus", true);
+      console.log("click");
+      console.log(this.$store.getters["auth/favoritesModal"]);
+      // this.$store.commit("authFavoritesModalStatus", true);
     },
     activeWorkerSpaceModal() {
       this.$store.commit("auth/authWorkerSpaceModalStatus", true);
