@@ -2822,6 +2822,8 @@ var render = function() {
   return _c(
     "v-app",
     [
+      _c("worker-space-modal"),
+      _vm._v(" "),
       _c("favorite-modal"),
       _vm._v(" "),
       _c("login-modal"),
@@ -4366,6 +4368,24 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=template&id=54255982&":
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=template&id=54255982& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {}
+var staticRenderFns = []
+
+
+
+/***/ }),
+
 /***/ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/global/favoriteModal.vue?vue&type=template&id=70db0fb2&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/global/favoriteModal.vue?vue&type=template&id=70db0fb2&scoped=true& ***!
@@ -4417,28 +4437,9 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("v-toolbar-title", [_vm._v("Settings")]),
+                  _c("v-toolbar-title", [_vm._v("Mes Favoris")]),
                   _vm._v(" "),
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-toolbar-items",
-                    [
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { dark: "", text: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.dialog = false
-                            }
-                          }
-                        },
-                        [_vm._v(" Save ")]
-                      )
-                    ],
-                    1
-                  )
+                  _c("v-spacer")
                 ],
                 1
               ),
@@ -11408,12 +11409,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _components_global_loginModal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/global/loginModal.vue */ "./resources/client/src/components/global/loginModal.vue");
 /* harmony import */ var _components_global_favoriteModal_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/global/favoriteModal.vue */ "./resources/client/src/components/global/favoriteModal.vue");
+/* harmony import */ var _components_global_WorkerSpaceModal_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/global/WorkerSpaceModal.vue */ "./resources/client/src/components/global/WorkerSpaceModal.vue");
 
 
 
-// import WorkerSpaceModal from "./components/global/WorkerSpaceModal.vue";
+
 /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
-    components: { loginModal: _components_global_loginModal_vue__WEBPACK_IMPORTED_MODULE_1__["default"], favoriteModal: _components_global_favoriteModal_vue__WEBPACK_IMPORTED_MODULE_2__["default"] },
+    components: { loginModal: _components_global_loginModal_vue__WEBPACK_IMPORTED_MODULE_1__["default"], favoriteModal: _components_global_favoriteModal_vue__WEBPACK_IMPORTED_MODULE_2__["default"], WorkerSpaceModal: _components_global_WorkerSpaceModal_vue__WEBPACK_IMPORTED_MODULE_3__["default"] },
 }));
 
 
@@ -12236,7 +12238,6 @@ __webpack_require__.r(__webpack_exports__);
             this.$store.commit("auth/authFavoritesModalStatus", true);
         },
         activeWorkerSpaceModal() {
-            console.log("active");
             this.$store.commit("auth/authWorkerSpaceModalStatus", true);
         },
     },
@@ -12275,6 +12276,41 @@ __webpack_require__.r(__webpack_exports__);
         },
     },
 }));
+
+
+/***/ }),
+
+/***/ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=script&lang=ts&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/ts-loader??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    computed: {
+        ...Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+            isAuth: "auth/isConnected",
+            dialog: "auth/workerSpaceModal",
+        }),
+        dialog: {
+            get() {
+                console.log(this.$store.getters["auth/workerSpaceModal"]);
+                return this.$store.getters["auth/workerSpaceModal"];
+            },
+            set(val) {
+                this.$store.commit("auth/authWorkerSpaceModalStatus", val);
+            },
+        },
+    },
+    beforeDestroy() {
+        this.$store.commit("auth/authWorkerSpaceModalStatus", false);
+    },
+});
 
 
 /***/ }),
@@ -88415,6 +88451,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_5a01562c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_5a01562c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/client/src/components/global/WorkerSpaceModal.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/client/src/components/global/WorkerSpaceModal.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WorkerSpaceModal_vue_vue_type_template_id_54255982___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WorkerSpaceModal.vue?vue&type=template&id=54255982& */ "./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=template&id=54255982&");
+/* harmony import */ var _WorkerSpaceModal_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WorkerSpaceModal.vue?vue&type=script&lang=ts& */ "./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _WorkerSpaceModal_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WorkerSpaceModal_vue_vue_type_template_id_54255982___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WorkerSpaceModal_vue_vue_type_template_id_54255982___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/client/src/components/global/WorkerSpaceModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=script&lang=ts&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_WorkerSpaceModal_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/ts-loader??ref--5!../../../../../node_modules/vue-loader/lib??vue-loader-options!./WorkerSpaceModal.vue?vue&type=script&lang=ts& */ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_WorkerSpaceModal_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=template&id=54255982&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=template&id=54255982& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WorkerSpaceModal_vue_vue_type_template_id_54255982___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./WorkerSpaceModal.vue?vue&type=template&id=54255982& */ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/global/WorkerSpaceModal.vue?vue&type=template&id=54255982&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WorkerSpaceModal_vue_vue_type_template_id_54255982___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WorkerSpaceModal_vue_vue_type_template_id_54255982___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

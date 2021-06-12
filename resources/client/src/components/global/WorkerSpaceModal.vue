@@ -15,6 +15,7 @@
         <!-- <v-card-title><h5>Connexion</h5></v-card-title> -->
         <v-card-text>
           <v-container>
+            <p>Un text</p>
             <!-- <favorites-grid :favorites="favorites"></favorites-grid> -->
           </v-container>
         </v-card-text>
@@ -37,6 +38,8 @@ export default {
     }),
     dialog: {
       get(): boolean {
+        console.log(this.$store.getters["auth/workerSpaceModal"]);
+
         return this.$store.getters["auth/workerSpaceModal"];
       },
       set(val: boolean) {
@@ -44,9 +47,6 @@ export default {
       },
     },
   },
-  // beforeMount() {
-  //   console.log(this.$store.getters["benefits/providers"], "before");
-  // },
   beforeDestroy() {
     this.$store.commit("auth/authWorkerSpaceModalStatus", false);
   },

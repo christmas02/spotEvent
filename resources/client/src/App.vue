@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <!-- <worker-space-modal></worker-space-modal> -->
+    <worker-space-modal></worker-space-modal>
     <favorite-modal></favorite-modal>
     <login-modal></login-modal>
     <router-view />
@@ -12,9 +12,9 @@
 import Vue from "vue";
 import loginModal from "./components/global/loginModal.vue";
 import favoriteModal from "./components/global/favoriteModal.vue";
-// import WorkerSpaceModal from "./components/global/WorkerSpaceModal.vue";
+import WorkerSpaceModal from "./components/global/WorkerSpaceModal.vue";
 export default Vue.extend({
-  components: { loginModal, favoriteModal },
+  components: { loginModal, favoriteModal, WorkerSpaceModal },
 });
 </script>
 <style>
