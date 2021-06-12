@@ -110,8 +110,6 @@ export default Vue.extend({
       this.$store.commit("auth/authFavoritesModalStatus", true);
     },
     activeWorkerSpaceModal() {
-      console.log("active");
-
       this.$store.commit("auth/authWorkerSpaceModalStatus", true);
     },
   },

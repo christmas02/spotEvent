@@ -1,5 +1,5 @@
 <template>
-   <v-row justify="center" v-if="isAuth">
+  <v-row justify="center" v-if="isAuth">
     <v-dialog v-model="dialog">
       <v-toolbar dark color="primary">
         <v-btn icon dark @click="dialog = false">
@@ -15,11 +15,13 @@
         <!-- <v-card-title><h5>Connexion</h5></v-card-title> -->
         <v-card-text>
           <v-container>
+            <p>Un text</p>
             <!-- <favorites-grid :favorites="favorites"></favorites-grid> -->
           </v-container>
         </v-card-text>
       </v-card>
     </v-dialog>
+  </v-row>
 </template>
 <script lang="ts">
 import Vue from "vue";
@@ -29,7 +31,8 @@ import { IFavorite } from "@/interfaces/favorite.interface";
 import { INewFavorite } from "@/interfaces/favorite.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import { mapGetters } from "vuex";
-export default {
+
+export default Vue.extend({
   computed: {
     ...mapGetters({
       isAuth: "auth/isConnected",
@@ -37,6 +40,7 @@ export default {
     }),
     dialog: {
       get(): boolean {
+        console.log(this.$store.getters["auth/workerSpaceModal"]);
         return this.$store.getters["auth/workerSpaceModal"];
       },
       set(val: boolean) {
@@ -44,11 +48,8 @@ export default {
       },
     },
   },
-  // beforeMount() {
-  //   console.log(this.$store.getters["benefits/providers"], "before");
-  // },
   beforeDestroy() {
     this.$store.commit("auth/authWorkerSpaceModalStatus", false);
   },
-};
+});
 </script>
