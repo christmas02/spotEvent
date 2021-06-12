@@ -18,6 +18,9 @@ export default {
     favoritesModal(state: IAuthState): boolean {
         return state.favoritesModal;
     },
+    workerSpaceModal(state: IAuthState): boolean {
+        return state.workerSpaceModal;
+    },
     id(state: IAuthState): number {
         return state.user ? state.user.id : 0;
     },

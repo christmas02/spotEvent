@@ -66,9 +66,15 @@
             </div>
           </div>
           <div style="margin: 50px 0">
+            <div class="loading" v-if="loading && benefits.length == 0">
+              <v-progress-circular
+                indeterminate
+                color="amber"
+              ></v-progress-circular>
+            </div>
             <benefits-grid
               :benefits="benefits"
-              v-if="benefits.length >= 1"
+              v-else-if="benefits.length >= 1"
             ></benefits-grid>
             <div class="nothing" v-else-if="benefits.length == 0 && isFilter">
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
@@ -117,9 +123,11 @@ export default Vue.extend({
     return {
       categorie: null as unknown as string,
       isFilter: false,
+      loading: false,
     };
   },
   async beforeMount(): Promise<void> {
+    this.loading = true;
     await Promise.all([
       this.$store.dispatch("benefits/fetchAll"),
       this.$store.dispatch("benefits/fetchCategories"),
@@ -144,6 +152,7 @@ export default Vue.extend({
   methods: {
     async getfilterByCategory(): Promise<void> {
       this.isFilter = true;
+      this.loading = true;
       const prestationsSearch = new AppService();
 
       const Cat = new Object() as IIdPrestation;
@@ -160,6 +169,7 @@ export default Vue.extend({
       } else {
         console.log(result.resultat);
         this.$store.commit("benefits/store", result.resultat);
+        this.loading = false;
       }
     },
     resetBenefits: function () {
@@ -206,5 +216,18 @@ export default Vue.extend({
   bottom: -33px;
   left: 5%;
   width: 100%;
+}
+
+#homepage .v-progress-circular {
+  margin: 1rem;
+  text-align: center;
+}
+#homepage .loading {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 }
 </style>

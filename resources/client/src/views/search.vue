@@ -6,7 +6,7 @@
       </div>
 
       <div class="main mx-auto">
-        <div class="d-block d-md-none">
+        <div class="d-block d-md-none mx-auto">
           <search-form></search-form>
         </div>
         <div class="section">
@@ -45,11 +45,17 @@
             </div>
           </div>
           <div style="margin: 50px 0">
+            <div class="loading" v-if="loading && benefits.length == 0">
+              <v-progress-circular
+                indeterminate
+                color="amber"
+              ></v-progress-circular>
+            </div>
             <benefits-grid
               :benefits="results"
-              v-if="results.length >= 1"
+              v-else-if="results.length >= 1"
             ></benefits-grid>
-            <div class="nothing" v-else>
+            <div class="nothing" v-else-if="benefits.length == 0 && isFilter">
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
           </div>
@@ -83,9 +89,12 @@ export default Vue.extend({
   data() {
     return {
       results: [] as Benefit[],
+      isFilter: false,
+      loading: false,
     };
   },
   async beforeMount(): Promise<void> {
+    this.loading = true;
     await Promise.all([
       this.prestationsSearchForm(),
 
@@ -97,7 +106,9 @@ export default Vue.extend({
   },
   methods: {
     async prestationsSearchForm(): Promise<void> {
+      this.loading = true;
       const prestationsSearch = new AppService();
+
       // this.$store.commit("benefits/updatePrestationSearch");
 
       const data = new Object() as ISearchForm;
@@ -122,6 +133,7 @@ export default Vue.extend({
         // commit("storeSearchResult", result.resultat);
         this.results = result.resultat;
       }
+      this.loading = false;
     },
   },
   computed: {
@@ -152,6 +164,8 @@ export default Vue.extend({
 }
 #homepage .psearch {
   margin-top: 80px;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 1264px) {
@@ -169,5 +183,17 @@ export default Vue.extend({
   bottom: -33px;
   left: 5%;
   width: 100%;
+}
+#homepage .v-progress-circular {
+  margin: 1rem;
+  text-align: center;
+}
+#homepage .loading {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 }
 </style>

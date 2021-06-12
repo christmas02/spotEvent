@@ -57,7 +57,9 @@
             </template>
           </div>
           <v-list-item link tag="p" class="m-0">
-            <v-list-item-title>Mon espace</v-list-item-title>
+            <v-list-item-title @click="activeWorkerSpaceModal()"
+              >Mon espace</v-list-item-title
+            >
           </v-list-item>
           <v-list-item link tag="p" class="m-0">
             <v-list-item-title @click="activeFavoriteModal()"
@@ -106,6 +108,11 @@ export default Vue.extend({
     },
     activeFavoriteModal() {
       this.$store.commit("auth/authFavoritesModalStatus", true);
+    },
+    activeWorkerSpaceModal() {
+      console.log("active");
+
+      this.$store.commit("auth/authWorkerSpaceModalStatus", true);
     },
   },
   data() {

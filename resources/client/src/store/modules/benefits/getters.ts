@@ -23,6 +23,8 @@ export default {
         return state.estimates;
     },
     providers(state: IBenefitState): IProvider[] {
+        console.log("ici");
+
         return state.providers;
     },
     choiceCategorie(state: IBenefitState): String {

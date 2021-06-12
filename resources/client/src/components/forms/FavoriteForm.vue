@@ -1,15 +1,8 @@
 <template>
   <v-list three-line>
-    <template v-for="(item, index) in favories">
-      <!-- <v-subheader
-        v-if="item.id"
-        :key="item.id"
-        v-text="item.name_entreprise"
-      ></v-subheader> -->
-
-      <!-- <v-divider v-if="item.id" :key="index" :inset="item.id"></v-divider> -->
-
-      <v-list-item :key="item.id">
+    <!-- <template v-for="(item, index) in favories"
+      >>
+      <v-list-item :key="index">
         <v-list-item-avatar>
           <v-img :src="item.avatar"></v-img>
         </v-list-item-avatar>
@@ -24,7 +17,7 @@
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-    </template>
+    </template> -->
   </v-list>
 </template>
 
@@ -76,7 +69,7 @@ export default {
       const providers = this.$store.getters["benefits/providers"];
       favorites.forEach((favori) => {
         const items = providers.filter((provider) => provider.id === favori.id);
-        favori.avatar = "https://cdn.vuetifyjs.com/images/lists/1.jpg";
+        // favori.avatar = "https://cdn.vuetifyjs.com/images/lists/1.jpg";
         final.push({ ...favori, ...items[0] });
       });
 
@@ -84,17 +77,17 @@ export default {
       return [final[1]];
     },
   },
-  //   beforeMount() {
-  //     const final = [];
-  //     const favorites = this.$store.getters["auth/favorites"];
-  //     const providers = this.$store.getters["benefits/providers"];
-  //     favorites.forEach((favori) => {
-  //       const items = providers.filter((provider) => provider.id === favori.id);
-  //       final.push({ ...favori, ...items[0] });
-  //     });
+  beforeMount() {
+    const final = [];
+    const favorites = this.$store.getters["auth/favorites"];
+    const providers = this.$store.getters["benefits/providers"];
+    favorites.forEach((favori) => {
+      const items = providers.filter((provider) => provider.id === favori.id);
+      final.push({ ...favori, ...items[0] });
+    });
 
-  //     console.log(final);
-  //   },
+    console.log(final);
+  },
 };
 </script>
 

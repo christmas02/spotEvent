@@ -18,6 +18,9 @@ export default {
     authFavoritesModalStatus(state: IAuthState, val: boolean): void {
         state.favoritesModal = val;
     },
+    authWorkerSpaceModalStatus(state: IAuthState, val: boolean): void {
+        state.workerSpaceModal = val;
+    },
 
     updateFavoritesList(state: IAuthState, val: IFavorite[]): void {
         state.favorites = val;

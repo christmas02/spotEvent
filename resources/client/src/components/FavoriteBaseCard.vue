@@ -9,11 +9,12 @@
     </v-img>
 
     <v-card-title class="the-title">
-      {{ title }}
+      {{ name }}
     </v-card-title>
 
     <v-card-subtitle class="subtitle">
-      <p>{{ description }}</p>
+      <p>ENTREPRISE : {{ entreprise }}</p>
+      <p>PRESTATION: {{ prestation }}</p>
     </v-card-subtitle>
   </v-card>
 </template>
@@ -31,11 +32,15 @@ export default Vue.extend({
       type: String,
       default: "auto",
     },
-    title: {
+    name: {
       type: String,
       required: true,
     },
-    description: {
+    entreprise: {
+      type: String,
+      required: true,
+    },
+    prestation: {
       type: String,
       required: true,
     },
