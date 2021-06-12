@@ -79,7 +79,7 @@ export default Vue.extend({
       const final = [] as INewFavorite[];
       const favorites = this.$store.getters["auth/favorites"];
       const providers = this.$store.getters["benefits/providers"];
-      // console.log(final);
+      console.log(final);
       favorites.forEach((favori: INewFavorite) => {
         // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
         providers.forEach((provider: IProvider) => {
@@ -95,6 +95,16 @@ export default Vue.extend({
       return final;
     },
   },
+  // beforeMount() {
+  //   console.log(this.$store.getters["benefits/providers"], "before");
+  // },
+  // watch: {
+  //   dialog: function (n, o) {
+  //     if (n == true) {
+  //       this.favorites = this.myFavorites();
+  //     }
+  //   },
+  // },
   beforeDestroy() {
     this.$store.commit("auth/authFavoritesModalStatus", false);
   },

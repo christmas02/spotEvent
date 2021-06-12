@@ -12705,9 +12705,7 @@ __webpack_require__.r(__webpack_exports__);
             this.goHome();
         },
         activeFavoriteModal() {
-            console.log("click");
-            console.log(this.$store.getters["auth/favoritesModal"]);
-            // this.$store.commit("authFavoritesModalStatus", true);
+            this.$store.commit("auth/authFavoritesModalStatus", true);
         },
         activeWorkerSpaceModal() {
             this.$store.commit("auth/authWorkerSpaceModalStatus", true);
@@ -12851,7 +12849,7 @@ __webpack_require__.r(__webpack_exports__);
             const final = [];
             const favorites = this.$store.getters["auth/favorites"];
             const providers = this.$store.getters["benefits/providers"];
-            // console.log(final);
+            console.log(final);
             favorites.forEach((favori) => {
                 // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
                 providers.forEach((provider) => {
@@ -12867,6 +12865,16 @@ __webpack_require__.r(__webpack_exports__);
             return final;
         },
     },
+    // beforeMount() {
+    //   console.log(this.$store.getters["benefits/providers"], "before");
+    // },
+    // watch: {
+    //   dialog: function (n, o) {
+    //     if (n == true) {
+    //       this.favorites = this.myFavorites();
+    //     }
+    //   },
+    // },
     beforeDestroy() {
         this.$store.commit("auth/authFavoritesModalStatus", false);
     },
