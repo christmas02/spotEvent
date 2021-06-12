@@ -138,9 +138,17 @@ class AdminController extends Controller
     }
 
     public function statiatique($id){
+
+        $allvisite = Clicfiche::all();
+        $allphone = Clicphone::all();
+        $allDemande = Demande::all();
+
+        $visite = count($allvisite);
+        $phone = count($allphone);
+        $demande = count($allDemande);
         
         $infoUser = $this->Userinfo($id);
-        return view('admin.statiatique',compact('infoUser'));
+        return view('admin.statiatique',compact('infoUser','visite','phone','demande'));
     }
 
     public function getAlldemande($id){
@@ -167,6 +175,8 @@ class AdminController extends Controller
             $position = $request->get('position');
             $messagerie = $request->get('messagerie');
             $favoris = $request->get('favoris');
+            $telephone = $request->get('telephone');
+            $whatsapp = $request->get('whatsapp');
             
 
             $firstFiche = Fiche::where('id',$id_fiche)->first();
@@ -185,6 +195,14 @@ class AdminController extends Controller
 
             //if($favoris AND $favoris != $firstFiche->favoris){
                 Fiche::where('id',$id_fiche)->update(['favoris' => $favoris]);
+            //}
+
+            //if($favoris AND $favoris != $firstFiche->favoris){
+                Fiche::where('id',$id_fiche)->update(['actif_phone' => $telephone]);
+            //}
+
+            //if($favoris AND $favoris != $firstFiche->favoris){
+                Fiche::where('id',$id_fiche)->update(['actif_whatsapp' => $whatsapp]);
             //}
 
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');

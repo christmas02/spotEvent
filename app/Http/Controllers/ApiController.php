@@ -163,7 +163,6 @@ class ApiController extends Controller
 
 
     public function saveDemande(Request $request){
-        
         try{
 
             //$request=$request->all();
@@ -245,10 +244,10 @@ class ApiController extends Controller
 
         if(count($resultat) == '0'){
             $message = "resultat disponible";
-            return response()->json(['statu'=>1,'message' => $message, 'resultat' => $resultat]);
+            return response()->json(['statu'=>0,'message' => $message, 'resultat' => $resultat]);
         }else{
             $message = "resultat vide";
-            return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
+            return response()->json(['statu'=>1, 'message' => $message,'resultat' => $resultat]);
         }
         
 
