@@ -1,10 +1,9 @@
 <template>
   <favorite-base-card
     max-width="90%"
-    :entreprise="favorite.name_entreprise"
-    :name="favorite.name"
-    :prestation="favorite.prestation"
-    :image="favorite.path_user | createImagePath"
+    :title="favorite.name"
+    :description="favorite.description"
+    :image="favorite.path_img | createImagePath"
   >
     <div class="d-flex postion">
       <v-btn color="primary" class="discover-btn" small @click="discover"
@@ -12,7 +11,7 @@
       >
       <div>
         <favorite-modal-btn
-          :idPrestataire="favorite.id_prestataire"
+          :idPrestataire="favorite.id_user"
         ></favorite-modal-btn>
       </div>
     </div>
@@ -26,11 +25,12 @@ import FavoriteBaseCard from "./FavoriteBaseCard.vue";
 import FavoriteModalBtn from "./FavoriteModalBtn.vue";
 import utilsMixin from "@/mixins/utils.mixin";
 import { AppService } from "../services/app.service";
+import { Benefit } from "../interfaces/benefit.interface";
 export default Vue.extend({
   mixins: [utilsMixin],
   props: {
     favorite: {
-      type: Object as PropType<INewFavorite>,
+      type: Object as PropType<Benefit>,
       required: true,
     },
   },
@@ -44,7 +44,7 @@ export default Vue.extend({
       const id_user = this.$store.getters["auth/id"];
       const { statu } = await service.benefitClick({
         id_user,
-        id_pres: this.favorite.id_prestataire.toString(),
+        id_pres: this.favorite.id_user.toString(),
       });
 
       console.log(statu);
@@ -52,7 +52,7 @@ export default Vue.extend({
       if (statu == 1) {
         this.$router.push({
           name: "benefit",
-          params: { id: this.favorite.id_prestataire.toString() },
+          params: { id: this.favorite.id.toString() },
         });
       }
     },

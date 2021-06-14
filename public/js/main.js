@@ -3192,13 +3192,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("v-card-title", { staticClass: "the-title" }, [
-        _vm._v("\n    " + _vm._s(_vm.name) + "\n  ")
+        _vm._v("\n    " + _vm._s(_vm.title) + "\n  ")
       ]),
       _vm._v(" "),
       _c("v-card-subtitle", { staticClass: "subtitle" }, [
-        _c("p", [_vm._v("ENTREPRISE : " + _vm._s(_vm.entreprise))]),
-        _vm._v(" "),
-        _c("p", [_vm._v("PRESTATION: " + _vm._s(_vm.prestation))])
+        _c("p", [_vm._v(_vm._s(_vm.description))])
       ])
     ],
     1
@@ -3271,10 +3269,9 @@ var render = function() {
     {
       attrs: {
         "max-width": "90%",
-        entreprise: _vm.favorite.name_entreprise,
-        name: _vm.favorite.name,
-        prestation: _vm.favorite.prestation,
-        image: _vm._f("createImagePath")(_vm.favorite.path_user)
+        title: _vm.favorite.name,
+        description: _vm.favorite.description,
+        image: _vm._f("createImagePath")(_vm.favorite.path_img)
       }
     },
     [
@@ -3296,7 +3293,7 @@ var render = function() {
             "div",
             [
               _c("favorite-modal-btn", {
-                attrs: { idPrestataire: _vm.favorite.id_prestataire }
+                attrs: { idPrestataire: _vm.favorite.id_user }
               })
             ],
             1
@@ -11993,6 +11990,7 @@ __webpack_require__.r(__webpack_exports__);
     beforeMount() {
         this.$store.commit("auth/authFavoritesModalStatus", false);
         this.$store.commit("auth/authWorkerSpaceModalStatus", false);
+        //test
     },
 }));
 
@@ -12137,15 +12135,11 @@ __webpack_require__.r(__webpack_exports__);
             type: String,
             default: "auto",
         },
-        name: {
+        description: {
             type: String,
             required: true,
         },
-        entreprise: {
-            type: String,
-            required: true,
-        },
-        prestation: {
+        title: {
             type: String,
             required: true,
         },
@@ -12244,13 +12238,13 @@ __webpack_require__.r(__webpack_exports__);
             const id_user = this.$store.getters["auth/id"];
             const { statu } = await service.benefitClick({
                 id_user,
-                id_pres: this.favorite.id_prestataire.toString(),
+                id_pres: this.favorite.id_user.toString(),
             });
             console.log(statu);
             if (statu == 1) {
                 this.$router.push({
                     name: "benefit",
-                    params: { id: this.favorite.id_prestataire.toString() },
+                    params: { id: this.favorite.id.toString() },
                 });
             }
         },
@@ -12993,26 +12987,19 @@ __webpack_require__.r(__webpack_exports__);
             const final = [];
             const favorites = this.$store.getters["auth/favorites"];
             const providers = this.$store.getters["benefits/providers"];
-            console.log(favorites, providers);
+            const benefits = this.$store.getters["benefits/all"];
+            console.log(favorites, benefits);
             favorites.forEach((favori) => {
                 // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
-                providers.forEach((provider) => {
-                    if (provider.id === favori.id_prestataire) {
-                        favori.prestation = provider.prestation;
-                        favori.name = provider.name;
-                        favori.name_entreprise = provider.name_entreprise;
-                        favori.path_user = provider.path_user;
-                        final.push(favori);
+                benefits.forEach((benefit) => {
+                    if (benefit.id_user === favori.id_prestataire) {
+                        final.push(benefit);
                     }
                 });
             });
             console.log(final);
             return final;
         },
-    },
-    async beforeMount() {
-        console.log("fait fait");
-        await Promise.all([this.$store.dispatch("benefits/fetchProviders")]);
     },
 }));
 

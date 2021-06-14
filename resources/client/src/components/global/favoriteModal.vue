@@ -33,6 +33,7 @@ import { IFavorite } from "@/interfaces/favorite.interface";
 import { INewFavorite } from "@/interfaces/favorite.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import { mapGetters } from "vuex";
+import { Benefit } from "../../interfaces/benefit.interface";
 export default Vue.extend({
   components: { FavoriteForm, FavoritesGrid },
   data() {
@@ -57,20 +58,17 @@ export default Vue.extend({
       },
     },
     favorites() {
-      const final = [] as INewFavorite[];
+      const final = [] as Benefit[];
       const favorites = this.$store.getters["auth/favorites"];
       const providers = this.$store.getters["benefits/providers"];
+      const benefits = this.$store.getters["benefits/all"];
 
-      console.log(favorites, providers);
+      console.log(favorites, benefits);
       favorites.forEach((favori: INewFavorite) => {
         // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
-        providers.forEach((provider: IProvider) => {
-          if (provider.id === favori.id_prestataire) {
-            favori.prestation = provider.prestation;
-            favori.name = provider.name;
-            favori.name_entreprise = provider.name_entreprise;
-            favori.path_user = provider.path_user;
-            final.push(favori);
+        benefits.forEach((benefit: Benefit) => {
+          if (benefit.id_user === favori.id_prestataire) {
+            final.push(benefit);
           }
         });
       });
@@ -78,11 +76,11 @@ export default Vue.extend({
       return final;
     },
   },
-  async beforeMount(): Promise<void> {
-    console.log("fait fait");
+  // async beforeMount(): Promise<void> {
+  //   console.log("fait fait");
 
-    await Promise.all([this.$store.dispatch("benefits/fetchProviders")]);
-  },
+  //   await Promise.all([this.$store.dispatch("benefits/fetchProviders")]);
+  // },
 });
 </script>
 
