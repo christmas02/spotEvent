@@ -106,11 +106,15 @@ export default Vue.extend({
       this.$store.commit("auth/logout");
       this.goHome();
     },
-    activeFavoriteModal() {
-      this.$store.commit("auth/authFavoritesModalStatus", true);
+    async activeFavoriteModal() {
+      console.log("test");
+      await this.$store.commit("auth/authFavoritesModalStatus", true);
+      console.log("boom");
     },
-    activeWorkerSpaceModal() {
-      this.$store.commit("auth/authWorkerSpaceModalStatus", true);
+    async activeWorkerSpaceModal() {
+      console.log("okii");
+      await this.$store.commit("auth/authWorkerSpaceModalStatus", true);
+      console.log("test");
     },
   },
   data() {

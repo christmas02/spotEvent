@@ -25,12 +25,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import FavoriteForm from "../forms/FavoriteForm.vue";
 import MySpaceCard from "@/components/MySpaceCard.vue";
-import FavoritesGrid from "@/components/FavoritesGrid.vue";
-import { IFavorite } from "@/interfaces/favorite.interface";
-import { INewFavorite } from "@/interfaces/favorite.interface";
-import { IProvider } from "@/interfaces/provider.interface";
 import { mapGetters } from "vuex";
 
 export default Vue.extend({
