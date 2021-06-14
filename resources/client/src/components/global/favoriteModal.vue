@@ -7,15 +7,17 @@
         </v-btn>
         <v-toolbar-title>Mes Favoris</v-toolbar-title>
         <v-spacer></v-spacer>
-        <!-- <v-toolbar-items>
-          <v-btn dark text @click="dialog = false"> Save </v-btn>
-        </v-toolbar-items> -->
       </v-toolbar>
       <v-card>
-        <!-- <v-card-title><h5>Connexion</h5></v-card-title> -->
         <v-card-text>
           <v-container>
-            <favorites-grid :favorites="favorites"></favorites-grid>
+            <favorites-grid
+              :favorites="favorites"
+              v-if="favorites.length >= 1"
+            ></favorites-grid>
+            <div v-else class="nothing">
+              <p>Votre liste de favori est vide</p>
+            </div>
           </v-container>
         </v-card-text>
       </v-card>
@@ -41,27 +43,6 @@ export default Vue.extend({
       // favorites: [] as INewFavorite[],
     };
   },
-  methods: {
-    myFavorites() {
-      const final = [] as INewFavorite[];
-      const favorites = this.$store.getters["auth/favorites"];
-      const providers = this.$store.getters["benefits/providers"];
-      console.log(final);
-      favorites.forEach((favori: INewFavorite) => {
-        // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
-        providers.forEach((provider: IProvider) => {
-          if (provider.id === favori.id) {
-            favori.prestation = provider.prestation;
-            favori.name = provider.name;
-            favori.name_entreprise = provider.name_entreprise;
-            favori.path_user = provider.path_user;
-            final.push(favori);
-          }
-        });
-      });
-      return final;
-    },
-  },
   computed: {
     ...mapGetters({
       isAuth: "auth/isConnected",
@@ -79,11 +60,12 @@ export default Vue.extend({
       const final = [] as INewFavorite[];
       const favorites = this.$store.getters["auth/favorites"];
       const providers = this.$store.getters["benefits/providers"];
-      console.log(final);
+
+      console.log(favorites, providers);
       favorites.forEach((favori: INewFavorite) => {
         // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
         providers.forEach((provider: IProvider) => {
-          if (provider.id === favori.id) {
+          if (provider.id === favori.id_prestataire) {
             favori.prestation = provider.prestation;
             favori.name = provider.name;
             favori.name_entreprise = provider.name_entreprise;
@@ -92,24 +74,24 @@ export default Vue.extend({
           }
         });
       });
+      console.log(final);
       return final;
     },
   },
-  // beforeMount() {
-  //   console.log(this.$store.getters["benefits/providers"], "before");
-  // },
-  // watch: {
-  //   dialog: function (n, o) {
-  //     if (n == true) {
-  //       this.favorites = this.myFavorites();
-  //     }
-  //   },
-  // },
-  beforeDestroy() {
-    this.$store.commit("auth/authFavoritesModalStatus", false);
+  async beforeMount(): Promise<void> {
+    console.log("fait fait");
+
+    await Promise.all([this.$store.dispatch("benefits/fetchProviders")]);
   },
 });
 </script>
 
 <style scoped>
+.nothing {
+  text-align: center;
+  padding-top: 20px;
+  width: 100%;
+  height: 100vh;
+  font-size: 20px;
+}
 </style>

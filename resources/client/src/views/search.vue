@@ -48,6 +48,7 @@
             </div>
           </div>
           <div style="margin: 50px 0">
+            <!-- <div class="loading" v-if="loading && benefits.length == 0"> -->
             <div class="loading" v-if="loading && benefits.length == 0">
               <v-progress-circular
                 indeterminate
@@ -58,10 +59,11 @@
               :benefits="isFilter ? filterResults : results"
               v-else-if="results.length >= 1"
             ></benefits-grid>
-            <div
+            <div class="nothing" v-else-if="nothingFinded">
+              <!-- <div
               class="nothing"
               v-else-if="filterResults.length == 0 && isFilter"
-            >
+            > -->
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
           </div>
@@ -95,6 +97,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      nothingFinded: false,
       results: [] as Benefit[],
       filterResults: [] as Benefit[],
       isFilter: false,
@@ -108,6 +111,7 @@ export default Vue.extend({
     };
   },
   async beforeMount(): Promise<void> {
+    this.nothingFinded = false;
     this.loading = true;
     await Promise.all([
       this.prestationsSearchForm(),
@@ -121,6 +125,7 @@ export default Vue.extend({
   methods: {
     async prestationsSearchForm(): Promise<void> {
       this.loading = true;
+      this.nothingFinded = false;
       const prestationsSearch = new AppService();
 
       // this.$store.commit("benefits/updatePrestationSearch");
@@ -146,6 +151,10 @@ export default Vue.extend({
 
         // commit("storeSearchResult", result.resultat);
         this.results = result.resultat;
+      } else {
+        this.nothingFinded = true;
+        this.results = [] as Benefit[];
+        console.log("aucun resultat trouvé");
       }
       this.loading = false;
     },
