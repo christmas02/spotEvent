@@ -5,7 +5,15 @@
         <v-btn icon dark @click="dialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <v-toolbar-title>Mes Favoris</v-toolbar-title>
+        <v-toolbar-title>
+          <div class="d-flex">
+            <img
+             style="width: 60px; margin-right: 5px;"
+              :src="require('../../assets/light-logo.png')"
+            ></img>
+            <h3>Mes Favoris</h3>
+          </div>
+        </v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card>

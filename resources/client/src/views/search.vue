@@ -10,43 +10,6 @@
           <search-form :handler="prestationsSearchForm"></search-form>
         </div>
         <div class="section">
-          <div class="d-flex justify-content-between">
-            <div class="actions-container d-none d-md-flex">
-              <div>
-                <v-btn color="primary" x-large>Toutes les prestations</v-btn>
-              </div>
-              <div class="mx-2">
-                <v-autocomplete
-                  label="Catégories"
-                  filled
-                  :items="categories"
-                  v-model="form.prestation"
-                  item-text="name"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-              <div class="mx-2">
-                <v-autocomplete
-                  label="Estimation minimale"
-                  v-model="form.min"
-                  filled
-                  :items="estimates"
-                  item-text="libelle"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-              <div>
-                <v-autocomplete
-                  label="Estimation maximale"
-                  v-model="form.max"
-                  filled
-                  :items="estimates"
-                  item-text="libelle"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-            </div>
-          </div>
           <div style="margin: 50px 0">
             <!-- <div class="loading" v-if="loading && benefits.length == 0"> -->
             <div class="loading" v-if="loading && benefits.length == 0">

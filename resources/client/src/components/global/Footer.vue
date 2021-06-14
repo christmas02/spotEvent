@@ -2,21 +2,11 @@
   <footer class="my-footer default-padding">
     <div class="row">
       <div class="col-md-4">
-        <div class="d-flex justify-content-between align-items-end">
-          <div>
-            <v-img
-              width="180"
-              :src="require('../../assets/light-logo.png')"
-            ></v-img>
-          </div>
-          <div>
-            <v-btn icon color="white" x-large
-              ><v-icon>mdi-facebook</v-icon></v-btn
-            >
-            <v-btn icon color="white" x-large
-              ><v-icon>mdi-instagram</v-icon></v-btn
-            >
-          </div>
+        <div>
+          <v-img
+            style="width: 50%"
+            :src="require('../../assets/light-logo.png')"
+          ></v-img>
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus,
@@ -24,6 +14,10 @@
           laborum nam nostrum odit pariatur perferendis quod quos repellat
           suscipit, temporibus voluptatem.
         </p>
+        <div>
+          <v-btn icon color="primary"><v-icon>mdi-facebook</v-icon></v-btn>
+          <v-btn icon color="primary"><v-icon>mdi-instagram</v-icon></v-btn>
+        </div>
       </div>
       <div class="offset-md-1 col-md-7 d-none d-md-block">
         <div class="row mt-md-5">
