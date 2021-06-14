@@ -18,6 +18,7 @@ export default Vue.extend({
   beforeMount() {
     this.$store.commit("auth/authFavoritesModalStatus", false);
     this.$store.commit("auth/authWorkerSpaceModalStatus", false);
+    //test
   },
 });
 </script>
