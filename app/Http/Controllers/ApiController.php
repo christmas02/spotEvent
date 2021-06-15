@@ -114,7 +114,7 @@ class ApiController extends Controller
             $statu = 1;
         }
 
-        $listeFavoris = Favori::where('id_user', $id_user)
+        $listeFavoris = Favori::where('favoris.id_user', $id_user)
                     ->leftjoin('fiches','fiches.id_user','=','favoris.id_prestataire')
                     ->select('favoris.*','fiches.path_img','fiches.presentation','fiches.name')
                     ->get();
