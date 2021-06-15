@@ -36,10 +36,12 @@ export default Vue.extend({
     description: {
       type: String,
       required: true,
+      default: "Aucune description",
     },
     title: {
       type: String,
       required: true,
+      default: "Aucune titre",
     },
     image: {
       type: String,

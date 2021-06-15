@@ -74,22 +74,22 @@ export default Vue.extend({
       // dialog: "auth/favoritesModal",
     }),
     favorites() {
-      const final = [] as Benefit[];
+      // const final = [] as Benefit[];
       const favorites = this.$store.getters["auth/favorites"];
-      const providers = this.$store.getters["benefits/providers"];
-      const benefits = this.$store.getters["benefits/all"];
+      // const providers = this.$store.getters["benefits/providers"];
+      // const benefits = this.$store.getters["benefits/all"];
 
-      console.log(favorites, benefits);
-      favorites.forEach((favori: INewFavorite) => {
-        // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
-        benefits.forEach((benefit: Benefit) => {
-          if (benefit.id_user === favori.id_prestataire) {
-            final.push(benefit);
-          }
-        });
-      });
-      console.log(final);
-      return final;
+      // console.log(favorites, benefits);
+      // favorites.forEach((favori: INewFavorite) => {
+      //   // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
+      //   benefits.forEach((benefit: Benefit) => {
+      //     if (benefit.id_user === favori.id_prestataire) {
+      //       final.push(benefit);
+      //     }
+      //   });
+      // });
+      // console.log(final);
+      return favorites;
     },
   },
 });

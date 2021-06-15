@@ -2,7 +2,7 @@
   <favorite-base-card
     max-width="90%"
     :title="favorite.name"
-    :description="favorite.description"
+    :description="favorite.presentation"
     :image="favorite.path_img | createImagePath"
   >
     <div class="d-flex postion">

@@ -4,6 +4,9 @@ export interface IFavorite {
     id_prestataire: number;
     created_at: string;
     updated_at: string;
+    name: string;
+    path_img: string;
+    presentation: string;
 }
 export interface INewFavorite {
     id: number;

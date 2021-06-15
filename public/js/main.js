@@ -3254,7 +3254,7 @@ var render = function() {
       attrs: {
         "max-width": "90%",
         title: _vm.favorite.name,
-        description: _vm.favorite.description,
+        description: _vm.favorite.presentation,
         image: _vm._f("createImagePath")(_vm.favorite.path_img)
       }
     },
@@ -4715,25 +4715,33 @@ var render = function() {
             )
           ],
       _vm._v(" "),
-      _c("worker-space-modal", {
-        model: {
-          value: _vm.statusWorkerDialog,
-          callback: function($$v) {
-            _vm.statusWorkerDialog = $$v
-          },
-          expression: "statusWorkerDialog"
-        }
-      }),
-      _vm._v(" "),
-      _c("favorite-modal", {
-        model: {
-          value: _vm.statusFavoriteDialog,
-          callback: function($$v) {
-            _vm.statusFavoriteDialog = $$v
-          },
-          expression: "statusFavoriteDialog"
-        }
-      })
+      [
+        _c(
+          "div",
+          [
+            _c("worker-space-modal", {
+              model: {
+                value: _vm.statusWorkerDialog,
+                callback: function($$v) {
+                  _vm.statusWorkerDialog = $$v
+                },
+                expression: "statusWorkerDialog"
+              }
+            }),
+            _vm._v(" "),
+            _c("favorite-modal", {
+              model: {
+                value: _vm.statusFavoriteDialog,
+                callback: function($$v) {
+                  _vm.statusFavoriteDialog = $$v
+                },
+                expression: "statusFavoriteDialog"
+              }
+            })
+          ],
+          1
+        )
+      ]
     ],
     2
   )
@@ -4805,6 +4813,17 @@ var render = function() {
                     [_c("v-icon", [_vm._v("mdi-close")])],
                     1
                   ),
+                  _vm._v(" "),
+                  _c("v-toolbar-title", [
+                    _c("div", { staticClass: "d-flex" }, [
+                      _c("img", {
+                        staticStyle: { width: "60px", "margin-right": "5px" },
+                        attrs: { src: __webpack_require__(/*! ../../assets/light-logo.png */ "./resources/client/src/assets/light-logo.png") }
+                      }),
+                      _vm._v(" "),
+                      _c("h3", [_vm._v("Mon profil")])
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("v-spacer")
                 ],
@@ -12047,10 +12066,12 @@ __webpack_require__.r(__webpack_exports__);
         description: {
             type: String,
             required: true,
+            default: "Aucune description",
         },
         title: {
             type: String,
             required: true,
+            default: "Aucune titre",
         },
         image: {
             type: String,
@@ -12917,21 +12938,21 @@ __webpack_require__.r(__webpack_exports__);
             isAuth: "auth/isConnected",
         }),
         favorites() {
-            const final = [];
+            // const final = [] as Benefit[];
             const favorites = this.$store.getters["auth/favorites"];
-            const providers = this.$store.getters["benefits/providers"];
-            const benefits = this.$store.getters["benefits/all"];
-            console.log(favorites, benefits);
-            favorites.forEach((favori) => {
-                // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
-                benefits.forEach((benefit) => {
-                    if (benefit.id_user === favori.id_prestataire) {
-                        final.push(benefit);
-                    }
-                });
-            });
-            console.log(final);
-            return final;
+            // const providers = this.$store.getters["benefits/providers"];
+            // const benefits = this.$store.getters["benefits/all"];
+            // console.log(favorites, benefits);
+            // favorites.forEach((favori: INewFavorite) => {
+            //   // const items = providers.filter((provider: IProvider) => provider.id === favori.id);
+            //   benefits.forEach((benefit: Benefit) => {
+            //     if (benefit.id_user === favori.id_prestataire) {
+            //       final.push(benefit);
+            //     }
+            //   });
+            // });
+            // console.log(final);
+            return favorites;
         },
     },
 }));

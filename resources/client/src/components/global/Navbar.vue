@@ -77,6 +77,7 @@
           </v-list-item>
         </div>
       </v-menu>
+      <!-- <worker-space-modal v-model="statusWorkerDialog"></worker-space-modal> -->
     </template>
     <template v-else>
       <v-btn color="primary" outlined :to="{ name: 'auth-login' }" exact>
@@ -87,8 +88,12 @@
         Inscription
       </v-btn>
     </template>
-    <worker-space-modal v-model="statusWorkerDialog"></worker-space-modal>
-    <favorite-modal v-model="statusFavoriteDialog"></favorite-modal>
+    <template>
+      <div>
+        <worker-space-modal v-model="statusWorkerDialog"></worker-space-modal>
+        <favorite-modal v-model="statusFavoriteDialog"></favorite-modal>
+      </div>
+    </template>
   </v-app-bar>
 </template>
 

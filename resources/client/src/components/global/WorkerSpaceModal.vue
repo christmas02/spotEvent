@@ -1,24 +1,24 @@
 <template>
   <v-row justify="center" v-if="isAuth">
     <v-dialog v-model="dialog" @keydown.esc="closeDialog" width="450">
+
       <v-toolbar dark color="primary">
         <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <!-- <v-toolbar-title>Settings</v-toolbar-title> -->
+        <v-toolbar-title>
+          <div class="d-flex">
+            <img
+             style="width: 60px; margin-right: 5px;"
+              :src="require('../../assets/light-logo.png')"
+            ></img>
+            <h3>Mon profil</h3>
+          </div>
+        </v-toolbar-title>
         <v-spacer></v-spacer>
-        <!-- <v-toolbar-items>
-          <v-btn dark text @click="dialog = false"> Save </v-btn>
-        </v-toolbar-items> -->
       </v-toolbar>
       <v-card>
-        <!-- <v-card-title><h5>Connexion</h5></v-card-title> -->
-        <!-- <v-card-text> -->
-        <!-- <v-container class="test"> -->
         <my-space-card></my-space-card>
-        <!-- <favorites-grid :favorites="favorites"></favorites-grid> -->
-        <!-- </v-container> -->
-        <!-- </v-card-text> -->
       </v-card>
     </v-dialog>
   </v-row>
