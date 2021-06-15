@@ -1,9 +1,9 @@
 <template>
-  <v-card max-width="375" class="mx-auto">
+  <v-card class="mx-auto">
     <v-img
       lazy-src="https://picsum.photos/id/11/10/6"
       :src="user.path_user"
-      height="300px"
+      height="340px"
       dark
     >
       <!-- name: string;
@@ -13,15 +13,15 @@
     path_user: string; -->
       <v-row class="fill-height">
         <v-card-title>
-          <v-btn dark icon>
+          <!-- <v-btn dark icon>
             <v-icon>mdi-chevron-left</v-icon>
-          </v-btn>
+          </v-btn> -->
 
           <v-spacer></v-spacer>
 
-          <v-btn dark icon class="mr-4">
+          <!-- <v-btn dark icon class="mr-4">
             <v-icon>mdi-pencil</v-icon>
-          </v-btn>
+          </v-btn> -->
 
           <v-btn dark icon>
             <v-icon>mdi-dots-vertical</v-icon>
@@ -46,10 +46,10 @@
           <v-list-item-title>(+225) {{ user.phone }}</v-list-item-title>
           <v-list-item-subtitle>Mobile</v-list-item-subtitle>
         </v-list-item-content>
-
+        <!-- 
         <v-list-item-icon>
           <v-icon>mdi-message-text</v-icon>
-        </v-list-item-icon>
+        </v-list-item-icon> -->
       </v-list-item>
 
       <!-- <v-list-item>
@@ -79,11 +79,13 @@
       </v-list-item> -->
 
       <v-list-item>
-        <v-list-item-action></v-list-item-action>
+        <v-list-item-icon>
+          <v-icon color="indigo"> mdi-mail </v-icon>
+        </v-list-item-icon>
 
         <v-list-item-content>
           <v-list-item-title>{{ user.email }}</v-list-item-title>
-          <v-list-item-subtitle>Work</v-list-item-subtitle>
+          <v-list-item-subtitle>Email</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 

@@ -60,11 +60,17 @@
             <v-list-item-title @click="activeWorkerSpaceModal"
               >Mon espace</v-list-item-title
             >
+
+            <!-- <worker-space-modal
+              v-model="statusWorkerDialog"
+            ></worker-space-modal> -->
           </v-list-item>
           <v-list-item link tag="p" class="m-0">
             <v-list-item-title @click="activeFavoriteModal"
               >Mes Favoris</v-list-item-title
             >
+
+            <!-- <favorite-modal v-model="statusFavoriteDialog"></favorite-modal> -->
           </v-list-item>
           <v-list-item link tag="p" class="m-0" @click="logout">
             <v-list-item-title>Deconnexion</v-list-item-title>
@@ -81,15 +87,20 @@
         Inscription
       </v-btn>
     </template>
+    <worker-space-modal v-model="statusWorkerDialog"></worker-space-modal>
+    <favorite-modal v-model="statusFavoriteDialog"></favorite-modal>
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import { IUser } from "@/interfaces/auth.interfaces";
 import utilsMixin from "@/mixins/utils.mixin";
+import favoriteModal from "@/components/global/favoriteModal.vue";
+import WorkerSpaceModal from "@/components/global/WorkerSpaceModal.vue";
 
 import Vue from "vue";
 export default Vue.extend({
+  components: { favoriteModal, WorkerSpaceModal },
   name: "navbar",
   props: {
     height: {
@@ -106,19 +117,19 @@ export default Vue.extend({
       this.$store.commit("auth/logout");
       this.goHome();
     },
-    async activeFavoriteModal() {
-      console.log("test");
-      await this.$store.commit("auth/authFavoritesModalStatus", true);
-      console.log("boom");
+    activeFavoriteModal() {
+      this.statusFavoriteDialog = true;
+      // this.$store.commit("auth/authFavoritesModalStatus", true);
     },
-    async activeWorkerSpaceModal() {
-      console.log("okii");
-      await this.$store.commit("auth/authWorkerSpaceModalStatus", true);
-      console.log("test");
+    activeWorkerSpaceModal() {
+      this.statusWorkerDialog = true;
+      // this.$store.commit("auth/authWorkerSpaceModalStatus", true);
     },
   },
   data() {
     return {
+      statusWorkerDialog: false,
+      statusFavoriteDialog: false,
       links: [
         {
           name: "Home",

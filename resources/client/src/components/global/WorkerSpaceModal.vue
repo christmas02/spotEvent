@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center" v-if="isAuth">
-    <v-dialog v-model="dialog" width="450">
+    <v-dialog v-model="dialog" @keydown.esc="closeDialog" width="450">
       <v-toolbar dark color="primary">
-        <v-btn icon dark @click="dialog = false">
+        <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <!-- <v-toolbar-title>Settings</v-toolbar-title> -->
@@ -13,12 +13,12 @@
       </v-toolbar>
       <v-card>
         <!-- <v-card-title><h5>Connexion</h5></v-card-title> -->
-        <v-card-text>
-          <v-container class="test">
-            <my-space-card></my-space-card>
-            <!-- <favorites-grid :favorites="favorites"></favorites-grid> -->
-          </v-container>
-        </v-card-text>
+        <!-- <v-card-text> -->
+        <!-- <v-container class="test"> -->
+        <my-space-card></my-space-card>
+        <!-- <favorites-grid :favorites="favorites"></favorites-grid> -->
+        <!-- </v-container> -->
+        <!-- </v-card-text> -->
       </v-card>
     </v-dialog>
   </v-row>
@@ -30,28 +30,32 @@ import { mapGetters } from "vuex";
 
 export default Vue.extend({
   components: { MySpaceCard },
+  model: {
+    prop: "dialog",
+    event: "change",
+  },
+  props: {
+    dialog: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+  },
+  methods: {
+    closeDialog() {
+      this.$emit("change", false);
+    },
+  },
   computed: {
     ...mapGetters({
       isAuth: "auth/isConnected",
       // dialog: "auth/workerSpaceModal",
     }),
-    dialog: {
-      get(): boolean {
-        console.log(this.$store.getters["auth/workerSpaceModal"]);
-        return this.$store.getters["auth/workerSpaceModal"];
-      },
-      set(val: boolean) {
-        this.$store.commit("auth/authWorkerSpaceModalStatus", val);
-      },
-    },
   },
-  // beforeDestroy() {
-  //   this.$store.commit("auth/authWorkerSpaceModalStatus", false);
-  // },
 });
 </script>
 <style>
 .test {
-  width: 500px;
+  width: min-content;
 }
 </style>

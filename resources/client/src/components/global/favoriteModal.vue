@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center" v-if="isAuth">
-    <v-dialog fullscreen v-model="dialog">
+    <v-dialog fullscreen v-model="dialog" @keydown.esc="closeDialog">
       <v-toolbar dark color="primary">
-        <v-btn icon dark @click="dialog = false">
+        <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-toolbar-title>
@@ -44,6 +44,22 @@ import { mapGetters } from "vuex";
 import { Benefit } from "../../interfaces/benefit.interface";
 export default Vue.extend({
   components: { FavoriteForm, FavoritesGrid },
+  model: {
+    prop: "dialog",
+    event: "change",
+  },
+  props: {
+    dialog: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+  },
+  methods: {
+    closeDialog() {
+      this.$emit("change", false);
+    },
+  },
   data() {
     return {
       notifications: false,
@@ -57,14 +73,6 @@ export default Vue.extend({
       isAuth: "auth/isConnected",
       // dialog: "auth/favoritesModal",
     }),
-    dialog: {
-      get(): boolean {
-        return this.$store.getters["auth/favoritesModal"];
-      },
-      set(val: boolean) {
-        this.$store.commit("auth/authFavoritesModalStatus", val);
-      },
-    },
     favorites() {
       const final = [] as Benefit[];
       const favorites = this.$store.getters["auth/favorites"];
@@ -84,11 +92,6 @@ export default Vue.extend({
       return final;
     },
   },
-  // async beforeMount(): Promise<void> {
-  //   console.log("fait fait");
-
-  //   await Promise.all([this.$store.dispatch("benefits/fetchProviders")]);
-  // },
 });
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <worker-space-modal></worker-space-modal>
-    <favorite-modal></favorite-modal>
+    <!-- <worker-space-modal></worker-space-modal>
+    <favorite-modal></favorite-modal> -->
     <login-modal></login-modal>
     <router-view />
   </v-app>
@@ -14,7 +14,10 @@ import loginModal from "./components/global/loginModal.vue";
 import favoriteModal from "./components/global/favoriteModal.vue";
 import WorkerSpaceModal from "./components/global/WorkerSpaceModal.vue";
 export default Vue.extend({
-  components: { loginModal, favoriteModal, WorkerSpaceModal },
+  components: {
+    loginModal,
+    // , favoriteModal, WorkerSpaceModal
+  },
   beforeMount() {
     this.$store.commit("auth/authFavoritesModalStatus", false);
     this.$store.commit("auth/authWorkerSpaceModalStatus", false);
