@@ -49,7 +49,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       isAuth: "auth/isConnected",
-      // dialog: "auth/workerSpaceModal",
+      user: "auth/user",
     }),
   },
 });

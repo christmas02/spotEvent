@@ -120,7 +120,7 @@ export default Vue.extend({
     },
     logout() {
       this.$store.commit("auth/logout");
-      this.goHome();
+      if (this.$route.path != "/") this.goHome();
     },
     activeFavoriteModal() {
       this.statusFavoriteDialog = true;
