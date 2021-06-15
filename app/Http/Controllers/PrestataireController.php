@@ -13,6 +13,7 @@ use App\Estimation;
 use App\Demande;
 use App\Clicfiche;
 use App\Clicphone;
+use Illuminate\Support\Facades\Response;
 
 
 class PrestataireController extends Controller
@@ -222,44 +223,49 @@ class PrestataireController extends Controller
     }
 
     public function saveGalerie(Request $request){
-
         //dd($request->all());
-
         $user = Auth::user();
         try {
             $input = $request->all();
             $id = $request->get('id_user');
+
+            $infosPrestataire = Fiche::where('id_user',$id)->first();
+            $cotaImage = $infosPrestataire->nbre_image;
+
             $images = array();
             if($files=$request->file('images')){
-                foreach($files as $file){
+
+                if(count($files) <= $cotaImage){
                     //
-                    //$name = time() . '.' . $extension;
-                    //$name = $file->getClientOriginalName();
-                    //$file->move('image',$name);
-                    //$images[]=$name;
+                    foreach($files as $file){
+                        //
+                        $name = $file->getClientOriginalName();
+                        //$name = time() . '.' . $file->getClientOriginalExtension();
+                        //$file->move('image',$name);
+                        $storage_data = Storage::disk('public')->put($name, file_get_contents($file));
+                        $images[]=$name;
+                        //
+                        //$extension = $file->getClientOriginalExtension();
+                        //$image_two = time(). '.' . $image->getClientOriginalname();
+                        //$filename = time() . '.' . $file->getClientOriginalExtension();
+                        //$storage_data = Storage::disk('public')->put($filename, file_get_contents($file));
+                        //$file_path = Storage::url($filename);
+                        //$new_path = asset($file_path);
+                        //$images[]=$filename;
+                      
+                        Galerie::create([
+                            'path' => $name,
+                            'id_user' => $id,
+                        ]);
+                    }
 
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = time() . '.' . $extension;
-                    $storage_data = Storage::disk('public')->put($filename, file_get_contents($file));
-                    $file_path = Storage::url($filename);
-                    $new_path = asset($file_path);
-                    $images[]=$extension;
-
-                    Galerie::create([
-                        'path' => $filename,
-                        'id_user' => $id,
-                    ]);
+                }else{
+                    $cotaValide = count($files) - 1 ;
+                    return redirect()->back()->with('danger', "Enregistrement impossible vous disposer d'un cota de ".$cotaImage);
                 }
+
             }
-            /*Insert your data*/
-
-            //$user = User::find($id)
-            //$user->name = $request->name;
-            //$user->email = $request->email;
-            //$user->update();
-
             
-
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
 
         } catch (\Throwable $th) {
@@ -296,5 +302,14 @@ class PrestataireController extends Controller
 
     public function getMessagerie(){
         
+    }
+
+    public function editImage($id)
+    {
+        //
+        $where = array('id' => $id);
+        $post  = User::where($where)->first();
+ 
+        return Response::json($post);
     }
 }

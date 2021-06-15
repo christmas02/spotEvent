@@ -78,7 +78,6 @@ class ApiController extends Controller
     }
 
 
-
     public function fisrtPrestation(Request $request){
         $id = $request['id_user'];
         $firstPrestation = Fiche::where('id_user',$id)
@@ -115,7 +114,10 @@ class ApiController extends Controller
             $statu = 1;
         }
 
-        $listeFavoris = Favori::where('id_user', $id_user)->get();
+        $listeFavoris = Favori::where('id_user', $id_user)
+                    ->leftjoin('fiches','fiches.id_user','=','favoris.id_prestataire')
+                    ->select('favoris.*','fiches.path_img','fiches.presentation','fiches.name')
+                    ->get();
 
         return response()->json(['statu'=> $statu, 'listeFavoris' => $listeFavoris]);
         
