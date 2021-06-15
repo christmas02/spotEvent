@@ -306,9 +306,20 @@ class ApiController extends Controller
             $message = "resultat vide";
             return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
         }
+
+    }
+
+
+    public function saveImage(){
+
+    }
+
+    public function saveProfile(){
         
+    }
 
-
+    public function newPassword(){
+        
     }
 
 

@@ -40,7 +40,11 @@ Route::post('clicphone','ApiController@clicphone');
 Route::post('demande','ApiController@saveDemande');
 
 Route::post('recherche','ApiController@serch');
-Route::post('filtreEstimation','ApiController@filtreEstimation');
+Route::post('filtreEstimation','ApiController@filtreEstimation'); // en cours
 Route::post('filtreCategorie','ApiController@filtreCategorie');
+
+Route::post('saveimage','ApiController@saveImage');
+Route::post('saveprofile','ApiController@saveProfile');
+Route::post('newpassword','ApiController@newPassword');
 
 
