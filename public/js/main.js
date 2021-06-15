@@ -5193,7 +5193,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-main",
-            { style: { marginTop: "130px" } },
+            { style: { marginTop: "105px" } },
             [_vm._t("default")],
             2
           )
