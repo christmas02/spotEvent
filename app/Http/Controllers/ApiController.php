@@ -114,7 +114,7 @@ class ApiController extends Controller
             $statu = 1;
         }
 
-        $listeFavoris = Favori::where('id_user', $id_user)
+        $listeFavoris = Favori::where('favoris.id_user', $id_user)
                     ->leftjoin('fiches','fiches.id_user','=','favoris.id_prestataire')
                     ->select('favoris.*','fiches.path_img','fiches.presentation','fiches.name')
                     ->get();
@@ -306,9 +306,20 @@ class ApiController extends Controller
             $message = "resultat vide";
             return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
         }
+
+    }
+
+
+    public function saveImage(){
+
+    }
+
+    public function saveProfile(){
         
+    }
 
-
+    public function newPassword(){
+        
     }
 
 
