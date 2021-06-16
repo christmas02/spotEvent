@@ -31,7 +31,7 @@
             </div>
             <div class="actions-container d-none d-md-flex">
               <div>
-                <v-btn color="primary" @click="resetBenefits()" x-large
+                <v-btn color="primary" @click="resetBenefits" x-large
                   >Toutes les prestations</v-btn
                 >
               </div>
@@ -173,7 +173,6 @@ export default Vue.extend({
       if (result.statu == 1) {
         console.log("resultat");
 
-        console.log(result.resultat);
         this.$store.commit("benefits/store", result.resultat);
       } else {
         console.log(result.resultat);
@@ -183,7 +182,6 @@ export default Vue.extend({
     },
     resetBenefits: function () {
       this.isFilter = false;
-      console.log("reset");
       this.categorie = "";
       this.$store.commit("benefits/store", []);
 

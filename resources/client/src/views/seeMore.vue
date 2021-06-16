@@ -75,17 +75,6 @@
             <v-btn color="primary" v-if="benefits.length >= 1">Voir plus</v-btn>
           </div>
         </div>
-        <div class="section mt-0 d-none d-md-block">
-          <div>
-            <h2 class="section-title">Prestataires</h2>
-          </div>
-          <div style="margin: 50px 0">
-            <providers-slider></providers-slider>
-          </div>
-          <div class="text-center">
-            <v-btn color="primary">Découvir tous les prestataires</v-btn>
-          </div>
-        </div>
       </div>
     </div>
   </default-layout>
@@ -155,7 +144,7 @@ export default Vue.extend({
     providers(): IProvider[] {
       return this.$store.getters["benefits/providers"];
     },
-    visiblePages() {
+    visiblePages(): number[] {
       return this.pages.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage

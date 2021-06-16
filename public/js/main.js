@@ -2270,7 +2270,7 @@ module.exports.words = function (string, preserve) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n:root {\r\n  --primary: #fbb231;\r\n  --secondary: #2f374a;\r\n  --default-padding: 5%;\n}\n.main {\r\n  width: 90%;\r\n  margin-left: auto;\r\n  margin-right: auto;\n}\n.text-primary {\r\n  color: var(--primary) !important;\n}\n.nav-list .v-list-item--active {\r\n  background: transparent !important;\r\n  color: var(--primary) !important;\n}\n.default-padding {\r\n  padding-left: var(--default-padding);\r\n  padding-right: var(--default-padding);\n}\n.my-jumbotron .content-title {\r\n  font-size: 4.5rem;\r\n  line-height: 0.9em;\n}\n.my-jumbotron .content-subtitle {\r\n  font-size: 1.2rem;\n}\n.vh-100 {\r\n  height: 100vh;\n}\n.vw-100 {\r\n  width: 100vw;\n}\n.h-100 {\r\n  height: 100%;\n}\n.w-100 {\r\n  width: 100%;\n}\n.my-row {\r\n  --bs-gutter-x: 1.5rem;\r\n  --bs-gutter-y: 0;\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  margin: calc(var(--bs-gutter-y) * -1) calc(var(--bs-gutter-x) / -2) 0 !important;\n}\n#benefit-page .my-jumbotron {\r\n  overflow: hidden;\n}\n#benefit-page .my-jumbotron .content {\r\n  background: rgba(0, 0, 0, 0.4);\n}\nbutton {\r\n  text-transform: none !important;\n}\nbutton.primary {\r\n  color: #000 !important;\n}\nbutton.v-btn--outlined.primary--text .v-btn__content {\r\n  color: #fff !important;\n}\n.v-input--is-label-active .v-label--active {\r\n  font-weight: bold;\r\n  color: #000 !important;\n}\n.section-title {\r\n  font-size: 2.3rem;\n}\n.section-title::after {\r\n  content: \"\";\r\n  display: block;\r\n  width: 90px;\r\n  height: 5px;\r\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text {\r\n  color: #000 !important;\r\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text.v-btn--outlined {\r\n  color: #fff !important;\n}\r\n\r\n/*.v-btn--outlined.v-btn--round.v-btn--rounded.primary--text {*/\r\n/*    background: #fbb231;*/\r\n/*}*/\n#devis .theme--light.v-select .v-select__selection {\r\n  color: #fff !important;\n}\r\n", ""]);
+exports.push([module.i, "\n:root {\n  --primary: #fbb231;\n  --secondary: #2f374a;\n  --default-padding: 5%;\n}\n.main {\n  width: 90%;\n  margin-left: auto;\n  margin-right: auto;\n}\n.text-primary {\n  color: var(--primary) !important;\n}\n.nav-list .v-list-item--active {\n  background: transparent !important;\n  color: var(--primary) !important;\n}\n.default-padding {\n  padding-left: var(--default-padding);\n  padding-right: var(--default-padding);\n}\n.my-jumbotron .content-title {\n  font-size: 4.5rem;\n  line-height: 0.9em;\n}\n.my-jumbotron .content-subtitle {\n  font-size: 1.2rem;\n}\n.vh-100 {\n  height: 100vh;\n}\n.vw-100 {\n  width: 100vw;\n}\n.h-100 {\n  height: 100%;\n}\n.w-100 {\n  width: 100%;\n}\n.my-row {\n  --bs-gutter-x: 1.5rem;\n  --bs-gutter-y: 0;\n  display: flex;\n  flex-wrap: wrap;\n  margin: calc(var(--bs-gutter-y) * -1) calc(var(--bs-gutter-x) / -2) 0 !important;\n}\n#benefit-page .my-jumbotron {\n  overflow: hidden;\n}\n#benefit-page .my-jumbotron .content {\n  background: rgba(0, 0, 0, 0.4);\n}\nbutton {\n  text-transform: none !important;\n}\nbutton.primary {\n  color: #000 !important;\n}\nbutton.v-btn--outlined.primary--text .v-btn__content {\n  color: #fff !important;\n}\n.v-input--is-label-active .v-label--active {\n  font-weight: bold;\n  color: #000 !important;\n}\n.section-title {\n  font-size: 2.3rem;\n}\n.section-title::after {\n  content: \"\";\n  display: block;\n  width: 90px;\n  height: 5px;\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text {\n  color: #000 !important;\n  background: var(--primary);\n}\n.v-btn.v-btn--icon.primary--text.v-btn--outlined {\n  color: #fff !important;\n}\n\n/*.v-btn--outlined.v-btn--round.v-btn--rounded.primary--text {*/\n/*    background: #fbb231;*/\n/*}*/\n#devis .theme--light.v-select .v-select__selection {\n  color: #fff !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2288,7 +2288,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.the-title[data-v-5644c1c3] {\r\n  font-size: 1.4rem !important;\r\n  color: var(--primary);\r\n  margin-bottom: 8px;\n}\n.subtitle p[data-v-5644c1c3] {\r\n  color: #000 !important;\r\n  font-weight: 600;\r\n  display: block; /* or inline-block */\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  max-height: 4.5em;\n}\r\n", ""]);
+exports.push([module.i, "\n.the-title[data-v-5644c1c3] {\n  font-size: 1.4rem !important;\n  color: var(--primary);\n  margin-bottom: 8px;\n}\n.subtitle p[data-v-5644c1c3] {\n  color: #000 !important;\n  font-weight: 600;\n  display: block; /* or inline-block */\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-height: 4.5em;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2306,7 +2306,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.discover-btn[data-v-4e4dfcf5] {\r\n  position: absolute;\r\n  top: 8%;\r\n  left: 6%;\r\n  color: #000 !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.discover-btn[data-v-4e4dfcf5] {\n  position: absolute;\n  top: 8%;\n  left: 6%;\n  color: #000 !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2324,7 +2324,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.the-title[data-v-54a6e902] {\r\n  font-size: 1.4rem !important;\r\n  color: var(--primary);\r\n  margin-bottom: 8px;\n}\n.subtitle p[data-v-54a6e902] {\r\n  color: #000 !important;\r\n  font-weight: 600;\r\n  display: block; /* or inline-block */\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  max-height: 4.5em;\n}\r\n", ""]);
+exports.push([module.i, "\n.the-title[data-v-54a6e902] {\n  font-size: 1.4rem !important;\n  color: var(--primary);\n  margin-bottom: 8px;\n}\n.subtitle p[data-v-54a6e902] {\n  color: #000 !important;\n  font-weight: 600;\n  display: block; /* or inline-block */\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-height: 4.5em;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2342,7 +2342,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.discover-btn[data-v-72d1648e] {\r\n  position: absolute;\r\n  top: 8%;\r\n  left: 6%;\r\n  color: #000 !important;\n}\n.postion[data-v-72d1648e] {\r\n  justify-content: flex-end;\r\n  padding: 5px;\n}\r\n", ""]);
+exports.push([module.i, "\n.discover-btn[data-v-72d1648e] {\n  position: absolute;\n  top: 8%;\n  left: 6%;\n  color: #000 !important;\n}\n.postion[data-v-72d1648e] {\n  justify-content: flex-end;\n  padding: 5px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2360,7 +2360,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.img-content[data-v-c7df083a] {\r\n  margin: 4% 4% 0% 4%;\n}\r\n", ""]);
+exports.push([module.i, "\n.img-content[data-v-c7df083a] {\n  margin: 4% 4% 0% 4%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2378,7 +2378,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.carousel-3d-slide.current {\r\n  background: transparent !important;\r\n  border: none;\n}\n.carousel-3d-slide {\r\n  min-height: 400px;\r\n  border-style: none;\r\n  background-color: transparent;\n}\n.carousel-3d-slider {\r\n  height: 400px;\n}\n.carousel-3d-controls .prev,\r\n.carousel-3d-controls .next {\r\n  background-color: var(--primary);\r\n  border-radius: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\r\n", ""]);
+exports.push([module.i, "\n.carousel-3d-slide.current {\n  background: transparent !important;\n  border: none;\n}\n.carousel-3d-slide {\n  min-height: 400px;\n  border-style: none;\n  background-color: transparent;\n}\n.carousel-3d-slider {\n  height: 400px;\n}\n.carousel-3d-controls .prev,\n.carousel-3d-controls .next {\n  background-color: var(--primary);\n  border-radius: 50%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2396,7 +2396,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.login-form[data-v-c226c6ca] {\r\n  display: flex;\r\n  flex-direction: column;\n}\r\n", ""]);
+exports.push([module.i, "\n.login-form[data-v-c226c6ca] {\n  display: flex;\n  flex-direction: column;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2414,7 +2414,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#devis {\r\n  background: var(--secondary);\r\n  padding: 5% 2.5%;\r\n  border-radius: 0;\n}\n#devis .submit-btn {\r\n  width: 100%;\n}\n@media screen and (min-width: 1264px) {\n#devis {\r\n    width: 90%;\r\n    padding: 10px 15px 10px 40px;\n}\n#devis .submit-btn {\r\n    width: auto;\n}\n}\n#devis .v-label,\r\n#devis .v-input input {\r\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\r\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\r\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\r\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\r\n  background-color: #fff !important;\n}\r\n", ""]);
+exports.push([module.i, "\n#devis {\n  background: var(--secondary);\n  padding: 5% 2.5%;\n  border-radius: 0;\n}\n#devis .submit-btn {\n  width: 100%;\n}\n@media screen and (min-width: 1264px) {\n#devis {\n    width: 90%;\n    padding: 10px 15px 10px 40px;\n}\n#devis .submit-btn {\n    width: auto;\n}\n}\n#devis .v-label,\n#devis .v-input input {\n  color: #fff;\n}\n#devis .v-text-field > .v-input__control > .v-input__slot:after,\n#devis .v-text-field > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:after,\n#devis .v-text-field:hover > .v-input__control > .v-input__slot:before {\n  background-color: #fff !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2432,7 +2432,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.my-footer[data-v-344d30f5] {\r\n  background-color: #303749 !important;\r\n  padding-top: 3%;\r\n  padding-bottom: 5%;\r\n  color: #fff;\n}\n.footer-list[data-v-344d30f5] {\r\n  list-style-type: none;\n}\n.footer-link[data-v-344d30f5] {\r\n  font-weight: 300;\r\n  color: #fff;\r\n  text-decoration: none;\n}\nli[data-v-344d30f5] {\r\n  margin-bottom: 15px;\n}\np[data-v-344d30f5] {\r\n  margin-top: 40px;\r\n  font-weight: 300;\n}\r\n", ""]);
+exports.push([module.i, "\n.my-footer[data-v-344d30f5] {\n  background-color: #303749 !important;\n  padding-top: 3%;\n  padding-bottom: 5%;\n  color: #fff;\n}\n.footer-list[data-v-344d30f5] {\n  list-style-type: none;\n}\n.footer-link[data-v-344d30f5] {\n  font-weight: 300;\n  color: #fff;\n  text-decoration: none;\n}\nli[data-v-344d30f5] {\n  margin-bottom: 15px;\n}\np[data-v-344d30f5] {\n  margin-top: 40px;\n  font-weight: 300;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2450,7 +2450,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.my-jumbotron[data-v-e17d167c] {\r\n  position: relative;\r\n  height: 600px;\r\n  box-shadow: none !important;\r\n  border-radius: 50px !important;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.content[data-v-e17d167c] {\r\n  position: absolute;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  top: 0;\r\n  left: 0;\r\n  padding: 0 4%;\r\n  color: #fff;\r\n  height: 100%;\r\n  width: 100%;\n}\n.background[data-v-e17d167c] {\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  height: 100%;\r\n  width: 100%;\r\n  border-radius: 40px;\n}\r\n", ""]);
+exports.push([module.i, "\n.my-jumbotron[data-v-e17d167c] {\n  position: relative;\n  height: 600px;\n  box-shadow: none !important;\n  border-radius: 50px !important;\n  background-position: center;\n  background-size: cover;\n}\n.content[data-v-e17d167c] {\n  position: absolute;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  padding: 0 4%;\n  color: #fff;\n  height: 100%;\n  width: 100%;\n}\n.background[data-v-e17d167c] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  border-radius: 40px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2468,7 +2468,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#app-navbar {\r\n  padding-left: 5%;\r\n  padding-right: 5%;\r\n  margin: 0 auto;\n}\n#app-navbar .primary--text {\r\n  border: none;\r\n  margin: 0 auto;\n}\n#app-navbar .primary--text .v-btn__content {\r\n  color: var(--primary) !important;\n}\n.nav-list {\r\n  font-weight: bold;\n}\n.nav-list .v-list-item {\r\n  cursor: pointer;\n}\n.my-list {\r\n  background: #fff;\n}\n.v-menu__content.theme--light.v-menu__content--fixed.menuable__content__active {\r\n  top: 65px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n#app-navbar {\n  padding-left: 5%;\n  padding-right: 5%;\n  margin: 0 auto;\n}\n#app-navbar .primary--text {\n  border: none;\n  margin: 0 auto;\n}\n#app-navbar .primary--text .v-btn__content {\n  color: var(--primary) !important;\n}\n.nav-list {\n  font-weight: bold;\n}\n.nav-list .v-list-item {\n  cursor: pointer;\n}\n.my-list {\n  background: #fff;\n}\n.v-menu__content.theme--light.v-menu__content--fixed.menuable__content__active {\n  top: 65px !important;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2486,7 +2486,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.test {\r\n  width: min-content;\n}\r\n", ""]);
+exports.push([module.i, "\n.test {\n  width: min-content;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2504,7 +2504,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.nothing[data-v-70db0fb2] {\r\n  text-align: center;\r\n  padding-top: 20px;\r\n  width: 100%;\r\n  height: 100vh;\r\n  font-size: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.nothing[data-v-70db0fb2] {\n  text-align: center;\n  padding-top: 20px;\n  width: 100%;\n  height: 100vh;\n  font-size: 20px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2527,7 +2527,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 // Module
-exports.push([module.i, "\n#auth-layout .login {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\r\n  color: #fff;\r\n  position: relative;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\n}\n#auth-layout .top {\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  width: 100%;\n}\n#auth-layout .left {\r\n  padding: 2% 3%;\n}\n#auth-layout .icon {\r\n  cursor: pointer;\r\n  margin-left: 10px;\n}\n#auth-layout .page-title {\r\n  font-size: 3rem;\r\n  font-weight: 300;\r\n  margin: 0;\r\n  padding: 0;\n}\n#auth-layout .page-title::after {\r\n  content: \"\";\r\n  display: block;\r\n  width: 100px;\r\n  height: 5px;\r\n  background: var(--primary);\n}\n#auth-layout .auth-title {\r\n  font-size: 140px;\r\n  margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\r\n  font-weight: 200;\r\n  font-size: 1.9rem;\n}\n#auth-layout button {\r\n  font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\r\n  width: 42%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  margin-top: 50px;\n}\n#auth-layout .form-container {\r\n  margin: 4% 15%;\r\n  height: 90%;\n}\n#auth-layout .logo {\r\n  height: 75px;\n}\r\n", ""]);
+exports.push([module.i, "\n#auth-layout .login {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n}\n#auth-layout .register {\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\n}\n#auth-layout .welcome {\n  color: #fff;\n  position: relative;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n#auth-layout .top {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n#auth-layout .left {\n  padding: 2% 3%;\n}\n#auth-layout .icon {\n  cursor: pointer;\n  margin-left: 10px;\n}\n#auth-layout .page-title {\n  font-size: 3rem;\n  font-weight: 300;\n  margin: 0;\n  padding: 0;\n}\n#auth-layout .page-title::after {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 5px;\n  background: var(--primary);\n}\n#auth-layout .auth-title {\n  font-size: 140px;\n  margin-bottom: -35px;\n}\n#auth-layout .auth-subtitle {\n  font-weight: 200;\n  font-size: 1.9rem;\n}\n#auth-layout button {\n  font-size: 1.2rem !important;\n}\n#auth-layout .btn-container {\n  width: 42%;\n  display: flex;\n  justify-content: space-between;\n  margin-top: 50px;\n}\n#auth-layout .form-container {\n  margin: 4% 15%;\n  height: 90%;\n}\n#auth-layout .logo {\n  height: 75px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2545,7 +2545,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#homepage .section {\r\n  margin: 50px 0;\n}\n#homepage .nothing {\r\n  text-align: center;\r\n  vertical-align: middle;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\r\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\r\n  margin-left: 10px;\n}\n#homepage .search-container {\r\n  position: absolute;\r\n  bottom: -33px;\r\n  left: 5%;\r\n  width: 100%;\n}\n#homepage .v-progress-circular {\r\n  margin: 1rem;\r\n  text-align: center;\n}\n#homepage .loading {\r\n  width: 100%;\r\n  height: 40vh;\r\n  display: flex;\r\n  flex-flow: column nowrap;\r\n  align-items: center;\r\n  justify-content: center;\n}\r\n", ""]);
+exports.push([module.i, "\n#homepage .section {\n  margin: 50px 0;\n}\n#homepage .nothing {\n  text-align: center;\n  vertical-align: middle;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\n  margin-left: 10px;\n}\n#homepage .search-container {\n  position: absolute;\n  bottom: -33px;\n  left: 5%;\n  width: 100%;\n}\n#homepage .v-progress-circular {\n  margin: 1rem;\n  text-align: center;\n}\n#homepage .loading {\n  width: 100%;\n  height: 40vh;\n  display: flex;\n  flex-flow: column nowrap;\n  align-items: center;\n  justify-content: center;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2563,7 +2563,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.content-subtitle[data-v-69ca11f5] {\r\n  color: var(--primary);\n}\n.w-50[data-v-69ca11f5] {\r\n  width: 50%;\n}\n.more[data-v-69ca11f5] {\r\n  background-color: rgba(244, 245, 247, 0.7);\r\n  padding-bottom: 150px;\n}\n.main[data-v-69ca11f5] {\r\n  padding-top: 90px;\n}\n.section-title[data-v-69ca11f5] {\r\n  margin-bottom: 50px;\n}\n.my-divider[data-v-69ca11f5] {\r\n  background: #000;\r\n  margin: 0 auto 20px auto;\r\n  height: 5px;\r\n  width: 25%;\n}\n.more-info[data-v-69ca11f5] {\r\n  width: 95%;\n}\n.right[data-v-69ca11f5] {\r\n  justify-content: center;\r\n  align-items: flex-end;\r\n  padding-bottom: 50px;\n}\n.more img[data-v-69ca11f5] {\r\n  width: 30%;\n}\n.title-container[data-v-69ca11f5] {\r\n  width: 60%;\n}\r\n", ""]);
+exports.push([module.i, "\n.content-subtitle[data-v-69ca11f5] {\n  color: var(--primary);\n}\n.w-50[data-v-69ca11f5] {\n  width: 50%;\n}\n.more[data-v-69ca11f5] {\n  background-color: rgba(244, 245, 247, 0.7);\n  padding-bottom: 150px;\n}\n.main[data-v-69ca11f5] {\n  padding-top: 90px;\n}\n.section-title[data-v-69ca11f5] {\n  margin-bottom: 50px;\n}\n.my-divider[data-v-69ca11f5] {\n  background: #000;\n  margin: 0 auto 20px auto;\n  height: 5px;\n  width: 25%;\n}\n.more-info[data-v-69ca11f5] {\n  width: 95%;\n}\n.right[data-v-69ca11f5] {\n  justify-content: center;\n  align-items: flex-end;\n  padding-bottom: 50px;\n}\n.more img[data-v-69ca11f5] {\n  width: 30%;\n}\n.title-container[data-v-69ca11f5] {\n  width: 60%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2581,7 +2581,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.login-container[data-v-75809d8a] {\r\n  display: flex;\r\n  height: 100%;\r\n  flex-direction: column;\r\n  justify-content: center;\n}\r\n", ""]);
+exports.push([module.i, "\n.login-container[data-v-75809d8a] {\n  display: flex;\n  height: 100%;\n  flex-direction: column;\n  justify-content: center;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2599,7 +2599,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.section[data-v-025c8c02] {\r\n  margin-bottom: 40px;\n}\n.provider-pics[data-v-025c8c02] {\r\n  width: 70%;\n}\n.location-title[data-v-025c8c02] {\r\n  font-size: 1.4rem;\r\n  margin-bottom: 10px;\n}\n.section-title[data-v-025c8c02] {\r\n  margin-bottom: 30px;\n}\n.top[data-v-025c8c02] {\r\n  padding: 0 4%;\r\n  display: flex;\r\n  position: absolute;\r\n  top: 20px;\r\n  left: 0;\r\n  width: 100%;\r\n  justify-content: space-between;\n}\n.other-benefits[data-v-025c8c02] {\r\n  padding: 70px 0;\r\n  background-color: #f4f5f7;\n}\r\n", ""]);
+exports.push([module.i, "\n.section[data-v-025c8c02] {\n  margin-bottom: 40px;\n}\n.provider-pics[data-v-025c8c02] {\n  width: 70%;\n}\n.location-title[data-v-025c8c02] {\n  font-size: 1.4rem;\n  margin-bottom: 10px;\n}\n.section-title[data-v-025c8c02] {\n  margin-bottom: 30px;\n}\n.top[data-v-025c8c02] {\n  padding: 0 4%;\n  display: flex;\n  position: absolute;\n  top: 20px;\n  left: 0;\n  width: 100%;\n  justify-content: space-between;\n}\n.other-benefits[data-v-025c8c02] {\n  padding: 70px 0;\n  background-color: #f4f5f7;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2617,7 +2617,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.main section[data-v-220a3d08] {\r\n  padding-top: 80px;\r\n  padding-bottom: 80px;\n}\nsection.maps[data-v-220a3d08] {\r\n  background: #f9faff;\r\n  padding-top: 40px !important;\r\n  padding-bottom: 40px !important;\n}\n.main[data-v-220a3d08] {\r\n  margin: 0 auto;\n}\n.my-info[data-v-220a3d08] {\r\n  background: #f9faff;\r\n  margin-bottom: 30px;\r\n  width: 90%;\n}\n.my-info .title[data-v-220a3d08] {\r\n  font-size: 25px;\n}\n.my-info .subtitle[data-v-220a3d08] {\r\n  font-size: 15px;\n}\n.more-infos[data-v-220a3d08] {\r\n  font-size: 45px;\r\n  margin: 0;\r\n  font-weight: bolder;\n}\n.content-title[data-v-220a3d08] {\r\n  margin-bottom: 20px;\n}\n.content-title[data-v-220a3d08]::after {\r\n  content: \"\";\r\n  display: block;\r\n  width: 200px;\r\n  height: 6px;\r\n  background: var(--primary);\r\n  border-radius: 10px;\n}\n.description[data-v-220a3d08] {\r\n  width: 35%;\n}\n.form-titile[data-v-220a3d08] {\r\n  font-weight: bold;\r\n  font-size: 2.8rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.main section[data-v-220a3d08] {\n  padding-top: 80px;\n  padding-bottom: 80px;\n}\nsection.maps[data-v-220a3d08] {\n  background: #f9faff;\n  padding-top: 40px !important;\n  padding-bottom: 40px !important;\n}\n.main[data-v-220a3d08] {\n  margin: 0 auto;\n}\n.my-info[data-v-220a3d08] {\n  background: #f9faff;\n  margin-bottom: 30px;\n  width: 90%;\n}\n.my-info .title[data-v-220a3d08] {\n  font-size: 25px;\n}\n.my-info .subtitle[data-v-220a3d08] {\n  font-size: 15px;\n}\n.more-infos[data-v-220a3d08] {\n  font-size: 45px;\n  margin: 0;\n  font-weight: bolder;\n}\n.content-title[data-v-220a3d08] {\n  margin-bottom: 20px;\n}\n.content-title[data-v-220a3d08]::after {\n  content: \"\";\n  display: block;\n  width: 200px;\n  height: 6px;\n  background: var(--primary);\n  border-radius: 10px;\n}\n.description[data-v-220a3d08] {\n  width: 35%;\n}\n.form-titile[data-v-220a3d08] {\n  font-weight: bold;\n  font-size: 2.8rem;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2635,7 +2635,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#homepage .section {\r\n  margin: 50px 0;\n}\n#homepage .nothing {\r\n  text-align: center;\r\n  vertical-align: middle;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\r\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\r\n  margin-left: 10px;\n}\n#homepage .search-container {\r\n  position: absolute;\r\n  bottom: -33px;\r\n  left: 5%;\r\n  width: 100%;\n}\n#homepage .v-progress-circular {\r\n  margin: 1rem;\r\n  text-align: center;\n}\n#homepage .loading {\r\n  width: 100%;\r\n  height: 40vh;\r\n  display: flex;\r\n  flex-flow: column nowrap;\r\n  align-items: center;\r\n  justify-content: center;\n}\r\n", ""]);
+exports.push([module.i, "\n#homepage .section {\n  margin: 50px 0;\n}\n#homepage .nothing {\n  text-align: center;\n  vertical-align: middle;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\n  margin-left: 10px;\n}\n#homepage .search-container {\n  position: absolute;\n  bottom: -33px;\n  left: 5%;\n  width: 100%;\n}\n#homepage .v-progress-circular {\n  margin: 1rem;\n  text-align: center;\n}\n#homepage .loading {\n  width: 100%;\n  height: 40vh;\n  display: flex;\n  flex-flow: column nowrap;\n  align-items: center;\n  justify-content: center;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2653,7 +2653,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#homepage .nothing {\r\n  text-align: center;\r\n  vertical-align: middle;\n}\n#homepage .section {\r\n  margin: 50px 0;\n}\n#homepage .psearch {\r\n  margin-top: 80px;\r\n  display: flex;\r\n  justify-content: center;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\r\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\r\n  margin-left: 10px;\n}\n#homepage .search-container {\r\n  position: absolute;\r\n  bottom: -33px;\r\n  left: 5%;\r\n  width: 100%;\n}\n#homepage .v-progress-circular {\r\n  margin: 1rem;\r\n  text-align: center;\n}\n#homepage .loading {\r\n  width: 100%;\r\n  height: 40vh;\r\n  display: flex;\r\n  flex-flow: column nowrap;\r\n  align-items: center;\r\n  justify-content: center;\n}\r\n", ""]);
+exports.push([module.i, "\n#homepage .nothing {\n  text-align: center;\n  vertical-align: middle;\n}\n#homepage .section {\n  margin: 50px 0;\n}\n#homepage .psearch {\n  margin-top: 80px;\n  display: flex;\n  justify-content: center;\n}\n@media screen and (min-width: 1264px) {\n#homepage .section {\n    margin: 136px 0;\n}\n}\n#homepage .actions-container button {\n  margin-left: 10px;\n}\n#homepage .search-container {\n  position: absolute;\n  bottom: -33px;\n  left: 5%;\n  width: 100%;\n}\n#homepage .v-progress-circular {\n  margin: 1rem;\n  text-align: center;\n}\n#homepage .loading {\n  width: 100%;\n  height: 40vh;\n  display: flex;\n  flex-flow: column nowrap;\n  align-items: center;\n  justify-content: center;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -5495,30 +5495,6 @@ var render = function() {
             ],
             1
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "section mt-0 d-none d-md-block" }, [
-          _c("div", [
-            _c("h2", { staticClass: "section-title" }, [_vm._v("Prestataires")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticStyle: { margin: "50px 0" } },
-            [_c("providers-slider")],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center" },
-            [
-              _c("v-btn", { attrs: { color: "primary" } }, [
-                _vm._v("Découvir tous les prestataires")
-              ])
-            ],
-            1
-          )
         ])
       ])
     ])
@@ -6558,11 +6534,7 @@ var render = function() {
                     "v-btn",
                     {
                       attrs: { color: "primary", "x-large": "" },
-                      on: {
-                        click: function($event) {
-                          return _vm.resetBenefits()
-                        }
-                      }
+                      on: { click: _vm.resetBenefits }
                     },
                     [_vm._v("Toutes les prestations")]
                   )
@@ -14008,7 +13980,6 @@ __webpack_require__.r(__webpack_exports__);
             console.log(result);
             if (result.statu == 1) {
                 console.log("resultat");
-                console.log(result.resultat);
                 this.$store.commit("benefits/store", result.resultat);
             }
             else {
@@ -14019,7 +13990,6 @@ __webpack_require__.r(__webpack_exports__);
         },
         resetBenefits: function () {
             this.isFilter = false;
-            console.log("reset");
             this.categorie = "";
             this.$store.commit("benefits/store", []);
             this.$store.dispatch("benefits/fetchAll");
@@ -28781,7 +28751,7 @@ var VueSweetalert2 = (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.14
+ * Vue.js v2.6.13
  * (c) 2014-2021 Evan You
  * Released under the MIT License.
  */
@@ -31396,7 +31366,7 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     var vnode = res && res[0];
     return res && (
       !vnode ||
-      (res.length === 1 && vnode.isComment && !isAsyncPlaceholder(vnode)) // #9658, #10391
+      (vnode.isComment && !isAsyncPlaceholder(vnode)) // #9658, #10391
     ) ? undefined
       : res
   };
@@ -34274,7 +34244,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.14';
+Vue.version = '2.6.13';
 
 /*  */
 
@@ -92253,7 +92223,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\laragon\www\vue\spotEvent\resources\client\src\main.ts */"./resources/client/src/main.ts");
+module.exports = __webpack_require__(/*! /Users/marc-henrynanguy/Documents/perso/spotEvent/resources/client/src/main.ts */"./resources/client/src/main.ts");
 
 
 /***/ })

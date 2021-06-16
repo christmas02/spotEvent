@@ -24,7 +24,6 @@
 <script lang="ts">
 import Vue from "vue";
 import validationsMixin from "@/mixins/validations.mixin";
-import { required, maxLength, email } from "vuelidate/lib/validators";
 export default Vue.extend({
   mixins: [validationsMixin],
   name: "form",
