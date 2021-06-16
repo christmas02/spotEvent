@@ -155,16 +155,13 @@
 <div class="modal fade" id="exampleModalGalerie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modifier la gallerie</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+
       <div class="modal-body">
        
             <input type="text" hidden name="id" value="">
+            <center><h3>Modifier la gallerie</h3></center>
             <div class="table-responsive">
+                     @if(count($galerieExiste) != 0)
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
@@ -181,6 +178,7 @@
                         </thead>
 
                         <tbody>
+                        
                         @foreach($galerieExiste as $items)
                           <tr class="even pointer">
                             <td class="a-center ">
@@ -188,11 +186,15 @@
                             </td>
                             <td> {{ $items->path }}</td>
                             <td class=" last">
-                              <a href="" class="btn btn-info"><i class="fa fa-pencil"></i> </a>
-                              <a href="" class="btn btn-danger"><i class="fa fa-trash"></i> </a>
+                              <a href="#" data-toggle="modal" data-target="#exampleModalFirstImage{{$items->id}}" class="btn btn-info"><i class="fa fa-pencil"></i> </a>
+                              <a href="#" data-toggle="modal" data-target="#exampleModalDeletImage{{$items->id}}" class="btn btn-danger"><i class="fa fa-trash"></i> </a>
                             </td>
                           </tr>
                         @endforeach
+                        @else
+
+                          <center> <h4>Vous ne disposer pas d'image dans votre gallerie</h4> </center> 
+                        @endif
                           
                           
                         </tbody>
@@ -201,8 +203,8 @@
                                 
                     
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+      <div class="modal-footer-btn">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
         @if(count($galerieExiste) == 6)
        
         @else
@@ -220,13 +222,9 @@
 <div class="modal fade" id="exampleModalCenterInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modifier mon compte</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      
       <div class="modal-body">
+      <center><h3>Modification des informations</h3></center> <hr>
         <form method="POST" action="/update/compte/prestatire" enctype="">
             @csrf
             <input type="text" hidden name="id" value="{{$ficheExiste->id}}">
@@ -350,15 +348,63 @@
 
                     
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer-btn">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="submit" class="btn btn-success">Enregistre</button>
+        <button type="submit" class="btn btn-success">Valider</button>
       </div>
       </form>
     </div>
   </div>
 </div>
 @endif
+
+@foreach($galerieExiste as $items)
+<!-- Modal  Modification une image -->
+<div class="modal fade" id="exampleModalFirstImage{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form method="POST" action="" enctype="">
+            @csrf
+            <center> <h4>Modification d'une image de la gallerie !</h4> </center>
+            <input type="text" name="id" value="{{$items->id}}">
+            <input type="file" name="id" value="{{$items->id}}">
+                
+      </div>
+      <div class="modal-footer-btn">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-success">Valider</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endforeach
+
+
+@foreach($galerieExiste as $items)
+<!-- Modal  Modification une image -->
+<div class="modal fade" id="exampleModalDeletImage{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <form method="POST" action="" enctype="">
+            @csrf
+            <div class="trash"><i class="fa fa-trash"></i></div>
+            <center> <h3>Voulez-vous vraiment supprimer !</h3> </center>
+            <input type="text" hidden name="id" value="{{$items->id}}">
+                
+      </div>
+      <div class="modal-footer-btn">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-success">Valider</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endforeach
 
 
 @endsection

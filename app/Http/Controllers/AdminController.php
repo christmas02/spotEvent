@@ -177,6 +177,7 @@ class AdminController extends Controller
             $favoris = $request->get('favoris');
             $telephone = $request->get('telephone');
             $whatsapp = $request->get('whatsapp');
+            $cotaimage = $request->get('cotaimage');
             
 
             $firstFiche = Fiche::where('id',$id_fiche)->first();
@@ -204,6 +205,8 @@ class AdminController extends Controller
             //if($favoris AND $favoris != $firstFiche->favoris){
                 Fiche::where('id',$id_fiche)->update(['actif_whatsapp' => $whatsapp]);
             //}
+
+            Fiche::where('id',$id_fiche)->update(['nbre_image' => $cotaimage]);
 
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
 

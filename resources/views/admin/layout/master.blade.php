@@ -79,7 +79,7 @@
                   <li><a href="/statistique/{{ $infoUser->id }}"><i class="fa fa-bar-chart-o"></i> Statistique </a></li>
                   <li><a href="#"><i class="fa fa-cog"></i> Parametre<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/list/prestations">Prestations</a></li>
+                      <li><a href="/Categorie">Categories</a></li>
                     </ul>
                   </li>
                   
@@ -178,45 +178,43 @@
     <div class="modal fade" id="exampleModalProfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Gestion Profil</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          
           <div class="modal-body">
           <h4 class="text-center"></b></h4> 
-          <div class="silde">
-            <form method="POST" action="/save/parametre">
+          <center><h3>Profile</h3></center> <hr>
+          <div class="" style="margin: 0 80px;">
+            <div method="POST" action="/save/parametre">
             @csrf
-
-            <div class="row">
-            <div class="col-md-6"><img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar"> 
-            @if($infoUser->role == 3) Administrateur @elseif($infoUser->role == 2) Prestataire @endif  </div>
-            <div class="col-md-6"></div>
-            </div>
-
-            <div class="row">
-            <div class="col-md-6"><b>Nom et prenom :</b></div>
-            <div class="col-md-6">{{ $infoUser->name }}</div>
-            </div>
-            <div class="row">
-            <div class="col-md-6"><b>Numero de telephone :</b></div>
-            <div class="col-md-6">{{ $infoUser->phone }}</div>
-            </div>
-            <div class="row">
-            <div class="col-md-6"><b>Email :</b></div>
-            <div class="col-md-6">{{ $infoUser->email }}</div>
-            </div>
             
-                
+            <div class="row">
+                <div class="col-md-3">
+                  <div class="profil">
+                      <img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar"> 
+                  </div>
+                </div>
+                <div class="col-md-9" style="padding: 0 30px;">
+                   <b>Acces :</b> @if($infoUser->role == 3) Administrateur @elseif($infoUser->role == 2) Prestataire @endif  
+                   <hr>
+                  <div class="row">
+                    
+                      <div class="col-md-4 col-sm-3">Nom et prenom :</div>
+                      <div class="col-md-6 col-sm-6">{{$infoUser->name }}</div>
+                    
+                      <div class="col-md-4 col-sm-3">Telephone :</div>
+                      <div class="col-md-6 col-sm-6">{{$infoUser->phone }}</div>
+                    
+                      <div class="col-md-4 col-sm-3">Email :</div>
+                      <div class="col-md-6 col-sm-6">{{$infoUser->email }}</div>
+                  
+                  </div> 
+                </div>
+            </div>
 
-            
           </div>
           </div>
           <div class="modal-footer-btn">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button type="submit" class="btn btn-success">Valider</button>
+            
           </div>
           </form>
         </div>

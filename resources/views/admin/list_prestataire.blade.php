@@ -135,17 +135,15 @@
 <div class="modal fade" id="exampleModalSetting{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Parametre du prestataire <b>{{ $items->name }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
       <h4 class="text-center"></b></h4> 
+      <center><h3>Parametre du prestataire <b>{{ $items->name }}</b></h3></center>
+      <hr>
       <div class="silde">
+      
         <form method="POST" action="/save/parametre">
         @csrf
+        
         <input type="text" hidden name="id_fiche" value="{{$items->id}}">
         
             <div class="form-check form-switch">
@@ -263,6 +261,25 @@
               </div>
             </div>
 
+            <div class="form-check form-switch">
+              <div class="row">
+                <div class="col-md-8">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Acces au nombre d'image</label>
+                </div>
+                <div class="col-md-4">
+                <span style="margin-left: 0px;"> 
+                    @if($items->nbre_image == 3)
+                    <b>3 img</b> <input class="flat" type="radio" name="cotaimage" value="3" checked id="flexSwitchCheckDefault">
+                    <b>6 img</b> <input class="flat" type="radio" name="cotaimage" value="6" id="flexSwitchCheckDefault">
+                    @elseif($items->nbre_image == 6)
+                    <b>6 img</b> <input class="flat" type="radio" name="cotaimage" checked value="6" id="flexSwitchCheckDefault">
+                    <b>3 img</b> <input class="flat" type="radio" name="cotaimage" value="3"  id="flexSwitchCheckDefault">
+                    @endif
+                </span>
+                </div>
+              </div>
+            </div>
+
         
       </div>
       </div>
@@ -281,12 +298,7 @@
 <div class="modal fade" id="exampleModalMessagerie{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Messagerie</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+     
       <div class="modal-body">
       <form>
         <label>Message</label>

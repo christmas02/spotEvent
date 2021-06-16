@@ -22,6 +22,13 @@
             </div>
 
             <div class="clearfix"></div>
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @elseif(Session::has('danger'))
+            <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+            @elseif(Session::has('warning'))
+            <div class="alert alert-warning">{{ Session::get('warning') }}</div>
+            @endif
 
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
@@ -153,7 +160,7 @@
                               </thead>
                               <tbody style="font-size: 16px;">
                               @if($listDemande)
-                              @foreach($listDemande as $items)
+                              @foreach($listDemande->slice(0, 10) as $items)
                                 <tr> 
                                   <td></td>
                                   <td><a href="#" data-toggle="modal" data-target="#exampleModalDemande{{$items->id}}">{{ $items->name }} - {{ $items->phone }}</a></td>
@@ -210,12 +217,7 @@
 <div class="modal fade" id="exampleModalDemande{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Contenus du message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      
       <div class="modal-body">
         <strong>Client </strong>
         <h6>{{ $items->name }} / {{ $items->phone }}</h6>

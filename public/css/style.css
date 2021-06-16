@@ -6,6 +6,45 @@
 .form-check-input{
 
 }
+.trash i{
+    font-size: 90px;
+    border: 1px solid #dc3545;;
+    color: #dc3545;;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 10px;
+}
+.trash{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 30px;
+}
+
+.profil img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid #dc3545;
+    margin: 0 auto;
+    text-align: center;
+   
+    margin-bottom: 30px;
+    
+}
+
+.modal-content{
+    border-radius: 20px;
+}
+.close span{
+    padding: 100px 20px;
+}
 input:checked + .slider {
   background-color: #2196F3;
 }
@@ -14,7 +53,7 @@ label{
     text-align: center;
 }
 .silde{
-    margin: 0 190px;
+    margin: 0 140px;
 }
 .modal-title{
     

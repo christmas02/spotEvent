@@ -25,6 +25,8 @@ Route::get('/list/messageries/{id}','PrestataireController@getMessagerie');
 
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
 
+Route::get('mise_a_jour_image/{id}','PrestataireController@editImage');
+
 Route::get('/welcome/tableau/administrateur/{id}','AdminController@home')->name('administrateur');
 Route::get('/liste/prestataires/{id}','AdminController@getPrestatire');
 Route::get('/fiche/prestataires/{id}/{user}','AdminController@onePrestatire');

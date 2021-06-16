@@ -159,18 +159,14 @@
     <div class="modal fade" id="exampleModalImages" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Création de ma galerie</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
           <div class="modal-body">
               <form method="POST" action="/save/gallerie" enctype="multipart/form-data">
               @csrf
-                  <h5>Vous avez la possibilité de choisir plusieur images (shift + le clique sur l'image), vous devez choisir moin de 6 images</h5>
+              <center> <h4>Création de ma galerie !</h4> </center>
+                  <h5>Vous avez la possibilité de choisir plusieur images (shift + le clique sur l'image).</h5>
+                  <br>
                   <div class="item form-group">
-                      <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Gallerie</label>
+                      <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Ajouter les images</label>
                       <div class="col-md-6 col-sm-6 ">
                           <input type="file" name="images[]" class="form-control" multiple>
                           <input type="text" hidden name="id_user" value="{{ $infoUser->id }}">
@@ -193,16 +189,15 @@
     <div class="modal fade" id="exampleModalProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modification du profile</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          
           <div class="modal-body">
               <form method="POST" action="/save/gallerie/" enctype="multipart/form-data">
               @csrf
+              <center> <h4>Modification du profile</h4> </center> <hr>
                   <input type="text" hidden name="id" value="">
+                  <div class="item form-group">
+                      <center class="img_profil"><img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar"></center> 
+                  </div>
                   <div class="item form-group">
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Nom et prenom</label>
                       <div class="col-md-6 col-sm-6 ">
@@ -235,15 +230,10 @@
     <div class="modal fade" id="exampleModalmdp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modification du profile</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
           <div class="modal-body">
               <form method="POST" action="/save/gallerie/" enctype="multipart/form-data">
               @csrf
+              <center> <h4>Modification du mot de passe</h4> </center> <hr>
                   <input type="text" hidden name="id" value="">
                   <div class="item form-group">
                       <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Mot de passe</label>
@@ -367,5 +357,6 @@
         }); 
       }
 	 </script>
+
   </body>
 </html>
