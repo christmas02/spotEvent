@@ -7,6 +7,7 @@ import BenefitScreen from "@/views/benefit.vue";
 import ContactScreen from "@/views/contact.vue";
 import AboutScreen from "@/views/about.vue";
 import Search from "@/views/search.vue";
+import SeeMore from "@/views/SeeMore.vue";
 
 import store from "@/store";
 
@@ -22,6 +23,11 @@ const routes: Array<RouteConfig> = [
         path: "/search",
         name: "Search",
         component: Search
+    },
+    {
+        path: "/seemore",
+        name: "SeeMore",
+        component: SeeMore
     },
     {
         path: "/login",

@@ -1,23 +1,8 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <div class="d-none d-md-block">
-        <jumbotron image="images/jmbg1.png">
-          <h1 class="content-title">
-            L' organisation zen <br />de vos événements
-          </h1>
-          <p class="content-subtitle my-5">
-            les prestataires n'attendent que vous
-          </p>
-          <div>
-            <v-btn color="primary">Découvrir</v-btn>
-          </div>
-          <template #append>
-            <div class="search-container">
-              <search-form :handler="initSearch"></search-form>
-            </div>
-          </template>
-        </jumbotron>
+      <div class="main psearch">
+        <search-form :handler="initSearch"></search-form>
       </div>
 
       <div class="main mx-auto">
@@ -25,7 +10,7 @@
           <search-form :handler="initSearch"></search-form>
         </div>
         <div class="section">
-          <div class="d-flex justify-content-between">
+          <!-- <div class="d-flex justify-content-between">
             <div>
               <h2 class="section-title">Prestations</h2>
             </div>
@@ -64,7 +49,7 @@
                 ></v-autocomplete>
               </div>
             </div>
-          </div>
+          </div> -->
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
               <v-progress-circular
@@ -72,18 +57,22 @@
                 color="amber"
               ></v-progress-circular>
             </div>
-            <benefits-grid
-              :benefits="benefits"
-              v-else-if="benefits.length >= 1"
-            ></benefits-grid>
+            <div v-else-if="allBenefits.length >= 1">
+              <benefits-grid :benefits="allBenefits"></benefits-grid>
+              <v-pagination
+                class="py-5"
+                v-model="page"
+                :length="paginateLength"
+                prev-icon="mdi-menu-left"
+                next-icon="mdi-menu-right"
+              ></v-pagination>
+            </div>
             <div class="nothing" v-else-if="benefits.length == 0 && isFilter">
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
           </div>
           <div class="text-center">
-            <v-btn color="primary" v-if="benefits.length >= 1" @click="seeMore"
-              >Voir plus</v-btn
-            >
+            <v-btn color="primary" v-if="benefits.length >= 1">Voir plus</v-btn>
           </div>
         </div>
         <div class="section mt-0 d-none d-md-block">
@@ -126,6 +115,14 @@ export default Vue.extend({
       categorie: null as unknown as string,
       isFilter: false,
       loading: false,
+
+      allBenefits: [] as Benefit[],
+      myBenefits: [] as Benefit[],
+      page: 1,
+      perPage: 2,
+      benefitsLength: 0,
+      paginateLength: 0,
+      pages: [] as number[],
     };
   },
   async beforeMount(): Promise<void> {
@@ -137,9 +134,16 @@ export default Vue.extend({
       this.$store.dispatch("benefits/fetchEstimates"),
       this.$store.dispatch("benefits/fetchProviders"),
     ]);
+    this.benefitsLength = this.$store.getters["benefits/all"].length;
+    this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+    this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
+      Number
+    );
   },
   computed: {
     benefits(): Benefit[] {
+      this.allBenefits = this.$store.getters["benefits/all"];
+      this.myBenefits = this.$store.getters["benefits/all"];
       return this.$store.getters["benefits/all"];
     },
     categories(): ICategory[] {
@@ -151,13 +155,16 @@ export default Vue.extend({
     providers(): IProvider[] {
       return this.$store.getters["benefits/providers"];
     },
+    visiblePages() {
+      return this.pages.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );
+    },
   },
   methods: {
     initSearch(): void {
       this.$router.push({ name: "Search" });
-    },
-    seeMore(): void {
-      this.$router.push({ name: "SeeMore" });
     },
     async getfilterByCategory(): Promise<void> {
       this.isFilter = true;
@@ -197,7 +204,19 @@ export default Vue.extend({
         this.getfilterByCategory();
       }
     },
+    visiblePages: function (value, prevValue) {
+      this.allBenefits = this.myBenefits.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );
+    },
   },
+  // watch(visiblePages, (value, prevValue) => {
+  //     state.allOrders = state.myOrders.slice(
+  //       (state.page - 1) * state.perPage,
+  //       state.page * state.perPage
+  //     );
+  //   });
 });
 </script>
 
