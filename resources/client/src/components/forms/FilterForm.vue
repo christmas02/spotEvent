@@ -67,12 +67,6 @@ export default Vue.extend({
     },
   },
   methods: {
-    initSearch(): void {
-      this.$router.push({ name: "Search" });
-    },
-    seeMore(): void {
-      this.$router.push({ name: "SeeMore" });
-    },
     async getfilterByCategory(): Promise<void> {
       this.isFilter = true;
       this.loading = true;
