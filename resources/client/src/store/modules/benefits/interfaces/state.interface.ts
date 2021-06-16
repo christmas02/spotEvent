@@ -14,8 +14,10 @@ export interface IBenefitState {
     choiceEstimateMax: String;
     prestations: ISearchForm;
     choiceLocalisation: String;
+    statusFormUpdateProfil: Boolean;
+    statusFormUpdatePhoto: Boolean;
+    statusFormUpdatePassword: Boolean;
 }
-
 
 export interface FilterPayload {
     prestation: String;

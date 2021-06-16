@@ -1946,141 +1946,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  computed: {
-    user: function user() {
-      return this.$store.getters["auth/user"];
-    }
-  },
-  watch: {
-    user: {
-      // This will let Vue know to look inside the array
-      deep: true,
-      // We have to move our method to a handler field
-      handler: function handler() {
-        console.log("The list of colours has changed!");
-      }
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/FavoriteForm.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/forms/FavoriteForm.vue?vue&type=script&lang=js& ***!
@@ -3385,121 +3250,189 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-card",
-    { staticClass: "mx-auto" },
-    [
-      _c(
-        "v-img",
-        {
-          attrs: {
-            "lazy-src": "https://picsum.photos/id/11/10/6",
-            src: _vm.user.path_user,
-            height: "340px",
-            dark: ""
-          }
-        },
-        [
-          _c(
-            "v-row",
-            { staticClass: "fill-height" },
-            [
-              _c(
-                "v-card-title",
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    { attrs: { dark: "", icon: "" } },
-                    [_c("v-icon", [_vm._v("mdi-dots-vertical")])],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _c("v-card-title", { staticClass: "white--text pl-12 pt-12" }, [
-                _c("div", { staticClass: "text-h4 pl-12 pt-12" }, [
-                  _vm._v(_vm._s(_vm.user.name))
-                ])
-              ])
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-list",
-        { attrs: { "two-line": "" } },
-        [
-          _c(
-            "v-list-item",
-            [
-              _c(
-                "v-list-item-icon",
-                [
-                  _c("v-icon", { attrs: { color: "indigo" } }, [
-                    _vm._v(" mdi-phone ")
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c("v-list-item-title", [
-                    _vm._v("(+225) " + _vm._s(_vm.user.phone))
-                  ]),
-                  _vm._v(" "),
-                  _c("v-list-item-subtitle", [_vm._v("Mobile")])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider", { attrs: { inset: "" } }),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            [
-              _c(
-                "v-list-item-icon",
-                [
-                  _c("v-icon", { attrs: { color: "indigo" } }, [
-                    _vm._v(" mdi-mail ")
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c("v-list-item-title", [_vm._v(_vm._s(_vm.user.email))]),
-                  _vm._v(" "),
-                  _c("v-list-item-subtitle", [_vm._v("Email")])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider", { attrs: { inset: "" } })
-        ],
-        1
-      )
-    ],
-    1
-  )
+  return _c("v-card", { staticClass: "mx-auto" }, [
+    !_vm.statusFormUpdateProfil &&
+    !_vm.statusFormUpdatePhoto &&
+    !_vm.statusFormUpdatePassword
+      ? _c(
+          "div",
+          [
+            _c(
+              "v-img",
+              {
+                attrs: {
+                  "lazy-src": "https://picsum.photos/id/11/10/6",
+                  src: _vm.user.path_user,
+                  height: "340px",
+                  dark: ""
+                }
+              },
+              [
+                _c(
+                  "v-row",
+                  { staticClass: "fill-height" },
+                  [
+                    _c(
+                      "v-card-title",
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { color: "primary", icon: "" },
+                            on: { click: _vm.showPhoto }
+                          },
+                          [_c("v-icon", [_vm._v("mdi-pencil")])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-spacer"),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          { attrs: { dark: "", icon: "" } },
+                          [_c("v-icon", [_vm._v("mdi-dots-vertical")])],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-spacer"),
+                    _vm._v(" "),
+                    _c(
+                      "v-card-title",
+                      { staticClass: "white--text pl-12 pt-12" },
+                      [
+                        _c("div", { staticClass: "text-h4 pl-12 pt-12" }, [
+                          _vm._v(_vm._s(_vm.user.name))
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-list",
+              { attrs: { "two-line": "" } },
+              [
+                _c(
+                  "v-list-item",
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [
+                        _c("v-icon", { attrs: { color: "indigo" } }, [
+                          _vm._v(" mdi-phone ")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c("v-list-item-title", [
+                          _vm._v("(+225) " + _vm._s(_vm.user.phone))
+                        ]),
+                        _vm._v(" "),
+                        _c("v-list-item-subtitle", [_vm._v("Mobile")])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider", { attrs: { inset: "" } }),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [
+                        _c("v-icon", { attrs: { color: "indigo" } }, [
+                          _vm._v(" mdi-mail ")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c("v-list-item-title", [
+                          _vm._v(_vm._s(_vm.user.email))
+                        ]),
+                        _vm._v(" "),
+                        _c("v-list-item-subtitle", [_vm._v("Email")])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-divider", { attrs: { inset: "" } })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "d-flex justify-content-center py-3" },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "mr-2",
+                    attrs: { depressed: "", color: "primary" },
+                    on: { click: _vm.showProfil }
+                  },
+                  [_vm._v("\n        Modifier mon profil\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    attrs: { depressed: "", color: "primary" },
+                    on: { click: _vm.showPassword }
+                  },
+                  [_vm._v("\n        Modifier mon mot de passe\n      ")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      : _vm.statusFormUpdateProfil
+      ? _c(
+          "div",
+          { staticClass: "px-5 mt-0 py-2" },
+          [_c("update-profil-form")],
+          1
+        )
+      : _vm.statusFormUpdatePhoto
+      ? _c(
+          "div",
+          { staticClass: "px-5 mt-0 py-2" },
+          [_c("update-photo-form")],
+          1
+        )
+      : _vm.statusFormUpdatePassword
+      ? _c(
+          "div",
+          { staticClass: "px-5 mt-0 py-2" },
+          [_c("update-password-form")],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -4220,6 +4153,243 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=template&id=6023c40a&":
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=template&id=6023c40a& ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-form",
+    {
+      ref: "form",
+      attrs: { "lazy-validation": "" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.validate.apply(null, arguments)
+        }
+      }
+    },
+    [
+      _c("v-card-title", [_vm._v("Modification mot de passe")]),
+      _vm._v(" "),
+      _c("v-text-field", {
+        attrs: { label: "Ancien mot de passe" },
+        model: {
+          value: _vm.oldPassword,
+          callback: function($$v) {
+            _vm.oldPassword = $$v
+          },
+          expression: "oldPassword"
+        }
+      }),
+      _vm._v(" "),
+      _c("v-text-field", {
+        attrs: {
+          label: "Nouveau mot de passe",
+          type: "password",
+          rules: _vm.passwordRules
+        },
+        model: {
+          value: _vm.NewPassword,
+          callback: function($$v) {
+            _vm.NewPassword = $$v
+          },
+          expression: "NewPassword"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "mr-4",
+          attrs: { disabled: _vm.valid, color: "primary", type: "submit" }
+        },
+        [_vm._v("\n    Modifier\n  ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "mr-4",
+          attrs: { color: "success", type: "submit" },
+          on: { click: _vm.comeBack }
+        },
+        [_vm._v("\n    Retour\n  ")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=template&id=07e7779b&":
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=template&id=07e7779b& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("v-card-title", [_vm._v("Modification photo")]),
+      _vm._v(" "),
+      _c("v-file-input", {
+        attrs: {
+          rules: _vm.rules,
+          accept: "image/png, image/jpeg, image/bmp",
+          placeholder: "Pick an avatar",
+          "prepend-icon": "mdi-camera",
+          label: "Avatar"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "mr-4",
+          attrs: { color: "primary" },
+          on: { click: _vm.modify }
+        },
+        [_vm._v(" Modifier ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "mr-4",
+          attrs: { color: "success" },
+          on: { click: _vm.comeBack }
+        },
+        [_vm._v(" Retour ")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=template&id=3430376b&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=template&id=3430376b& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-form",
+    {
+      ref: "form",
+      attrs: { "lazy-validation": "" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.validate.apply(null, arguments)
+        }
+      }
+    },
+    [
+      _c("v-card-title", [_vm._v("Modification profil")]),
+      _vm._v(" "),
+      _c("v-text-field", {
+        attrs: { label: "Nom", rules: _vm.nameRules },
+        model: {
+          value: _vm.name,
+          callback: function($$v) {
+            _vm.name = $$v
+          },
+          expression: "name"
+        }
+      }),
+      _vm._v(" "),
+      _c("v-text-field", {
+        attrs: { label: "phone", type: "number", rules: _vm.phoneCiRules },
+        model: {
+          value: _vm.phone,
+          callback: function($$v) {
+            _vm.phone = $$v
+          },
+          expression: "phone"
+        }
+      }),
+      _vm._v(" "),
+      _c("v-text-field", {
+        attrs: { rules: _vm.emailRules, label: "E-mail" },
+        model: {
+          value: _vm.email,
+          callback: function($$v) {
+            _vm.email = $$v
+          },
+          expression: "email"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "mr-4",
+          attrs: { disabled: _vm.valid, color: "primary", type: "submit" }
+        },
+        [_vm._v("\n    Modifier\n  ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          staticClass: "mr-4",
+          attrs: { color: "success", type: "submit" },
+          on: { click: _vm.comeBack }
+        },
+        [_vm._v("\n    Retour\n  ")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/global/AuthButton.vue?vue&type=template&id=c7e05458&scoped=true&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/global/AuthButton.vue?vue&type=template&id=c7e05458&scoped=true& ***!
@@ -4789,7 +4959,8 @@ var render = function() {
                     return null
                   }
                   return _vm.closeDialog.apply(null, arguments)
-                }
+                },
+                "click:outside": _vm.closeDialog
               },
               model: {
                 value: _vm.dialog,
@@ -4882,7 +5053,8 @@ var render = function() {
                     return null
                   }
                   return _vm.closeDialog.apply(null, arguments)
-                }
+                },
+                "click:outside": _vm.closeDialog
               },
               model: {
                 value: _vm.dialog,
@@ -12264,6 +12436,87 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=ts&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/ts-loader??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _components_forms_UpdatePhotoForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/forms/UpdatePhotoForm */ "./resources/client/src/components/forms/UpdatePhotoForm.vue");
+/* harmony import */ var _components_forms_UpdateProfilForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/forms/UpdateProfilForm */ "./resources/client/src/components/forms/UpdateProfilForm.vue");
+/* harmony import */ var _components_forms_UpdatePasswordForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/forms/UpdatePasswordForm */ "./resources/client/src/components/forms/UpdatePasswordForm.vue");
+
+
+
+
+// import UpdatePhoto from
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    components: { UpdatePhotoForm: _components_forms_UpdatePhotoForm__WEBPACK_IMPORTED_MODULE_1__["default"], UpdateProfilForm: _components_forms_UpdateProfilForm__WEBPACK_IMPORTED_MODULE_2__["default"], UpdatePasswordForm: _components_forms_UpdatePasswordForm__WEBPACK_IMPORTED_MODULE_3__["default"] },
+    // data() {
+    //   return {
+    //     statusFormUpdateProfil: false,
+    //     statusFormUpdatePhoto: false,
+    //   };
+    // },
+    methods: {
+        showProfil() {
+            this.$store.commit("benefits/changeStatusFormUpdateProfil", true);
+        },
+        showPhoto() {
+            this.$store.commit("benefits/changeStatusFormUpdatePhoto", true);
+        },
+        showPassword() {
+            this.$store.commit("benefits/changeStatusFormUpdatePassword", true);
+        },
+    },
+    computed: {
+        user: function () {
+            return this.$store.getters["auth/user"];
+        },
+        statusFormUpdateProfil: {
+            get() {
+                return this.$store.getters["benefits/statusFormUpdateProfil"];
+            },
+            set(val) {
+                this.$store.commit("benefits/changeStatusFormUpdateProfil", val);
+            },
+        },
+        statusFormUpdatePhoto: {
+            get() {
+                return this.$store.getters["benefits/statusFormUpdatePhoto"];
+            },
+            set(val) {
+                this.$store.commit("benefits/changeStatusFormUpdatePhoto", val);
+            },
+        },
+        statusFormUpdatePassword: {
+            get() {
+                return this.$store.getters["benefits/statusFormUpdatePassword"];
+            },
+            set(val) {
+                this.$store.commit("benefits/changeStatusFormUpdatePassword", val);
+            },
+        },
+    },
+    watch: {
+        user: {
+            // This will let Vue know to look inside the array
+            deep: true,
+            // We have to move our method to a handler field
+            handler() {
+                console.log("The list of colours has changed!");
+            },
+        },
+    },
+}));
+
+
+/***/ }),
+
 /***/ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/ProviderCard.vue?vue&type=script&lang=ts&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/ts-loader??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/ProviderCard.vue?vue&type=script&lang=ts& ***!
@@ -12648,6 +12901,153 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=script&lang=ts&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/ts-loader??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=script&lang=ts& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _mixins_validations_mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/validations.mixin */ "./resources/client/src/mixins/validations.mixin.ts");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    mixins: [_mixins_validations_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+    name: "form",
+    data() {
+        return {
+            NewPassword: "",
+            oldPassword: "",
+            //   email: "",
+            valid: false,
+        };
+    },
+    methods: {
+        validate() {
+            //@ts-ignore
+            if (this.$refs.form.validate()) {
+                console.log("Valide");
+            }
+            else {
+                console.log("non valide");
+                // this.CredentialStatus = true;
+            }
+        },
+        comeBack() {
+            this.$store.commit("benefits/resetStatusFormUpdatePhotoAndProfil");
+        },
+    },
+    computed: {
+        name() {
+            return this.$store.getters["auth/user"].name.toString();
+        },
+        phone() {
+            return this.$store.getters["auth/user"].phone.toString();
+        },
+        email() {
+            return this.$store.getters["auth/user"].email.toString();
+        },
+    },
+}));
+
+
+/***/ }),
+
+/***/ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=script&lang=ts&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/ts-loader??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=script&lang=ts& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    data() {
+        return {
+            rules: [
+                (value) => !value ||
+                    value.size < 2000000 ||
+                    "Avatar size should be less than 2 MB!",
+            ],
+        };
+    },
+    methods: {
+        modify() {
+            //action
+            //after all action
+            this.$store.commit("benefits/resetStatusFormUpdatePhotoAndProfil");
+        },
+        comeBack() {
+            this.$store.commit("benefits/resetStatusFormUpdatePhotoAndProfil");
+        },
+    },
+}));
+
+
+/***/ }),
+
+/***/ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=script&lang=ts&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/ts-loader??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=script&lang=ts& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _mixins_validations_mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/validations.mixin */ "./resources/client/src/mixins/validations.mixin.ts");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+    mixins: [_mixins_validations_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
+    name: "form",
+    data() {
+        return {
+            //   name: "",
+            //   phone: "",
+            //   email: "",
+            valid: false,
+        };
+    },
+    methods: {
+        validate() {
+            //   this.$refs.form.validate();
+            //@ts-ignore
+            if (this.$refs.form.validate()) {
+                console.log("Valide");
+            }
+            else {
+                console.log("non valide");
+                // this.CredentialStatus = true;
+            }
+        },
+        comeBack() {
+            this.$store.commit("benefits/resetStatusFormUpdatePhotoAndProfil");
+        },
+    },
+    computed: {
+        name() {
+            return this.$store.getters["auth/user"].name.toString();
+        },
+        phone() {
+            return this.$store.getters["auth/user"].phone.toString();
+        },
+        email() {
+            return this.$store.getters["auth/user"].email.toString();
+        },
+    },
+}));
+
+
+/***/ }),
+
 /***/ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/global/AuthButton.vue?vue&type=script&lang=ts&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/ts-loader??ref--5!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/src/components/global/AuthButton.vue?vue&type=script&lang=ts& ***!
@@ -12879,6 +13279,7 @@ __webpack_require__.r(__webpack_exports__);
     methods: {
         closeDialog() {
             this.$emit("change", false);
+            this.$store.commit("benefits/resetStatusFormUpdatePhotoAndProfil");
         },
     },
     computed: {
@@ -87391,12 +87792,13 @@ else {
 /*!**********************************************!*\
   !*** ./resources/client/src/common/rules.ts ***!
   \**********************************************/
-/*! exports provided: emailRules, requiredRules, phoneCiRules, passwordRules */
+/*! exports provided: emailRules, nameRules, requiredRules, phoneCiRules, passwordRules */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emailRules", function() { return emailRules; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nameRules", function() { return nameRules; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "requiredRules", function() { return requiredRules; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "phoneCiRules", function() { return phoneCiRules; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "passwordRules", function() { return passwordRules; });
@@ -87404,20 +87806,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_0__);
 
 const emailRules = [
-    (v) => (v && validator__WEBPACK_IMPORTED_MODULE_0___default.a.isEmail(v)) || "Email non valide",
+    (v) => (v && validator__WEBPACK_IMPORTED_MODULE_0___default.a.isEmail(v)) || "Email non valide"
+];
+const nameRules = [
+    (v) => (v && !validator__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(v)) || "Le champ nom est requis",
+    (v) => (v && validator__WEBPACK_IMPORTED_MODULE_0___default.a.isAlpha(v)) ||
+        "Le champ nom ne doit pas contenir des chiffres"
 ];
 const requiredRules = [
-    (v) => (v && !validator__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(v)) || "Ce champ est requis",
+    (v) => (v && !validator__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(v)) || "Ce champ est requis"
 ];
 const phoneCiRules = [
     (v) => {
         const phone = v ? v.split(" ").join("") : null;
         return ((phone && /^(07|05|01|21|25|27)([0-9]{8})$/.test(phone)) ||
             "Numero de téléphone invalide");
-    },
+    }
 ];
 const passwordRules = [
-    (v) => (v && v.length >= 8) || "Minimum 8 caracteres",
+    (v) => (v && v.length >= 8) || "Minimum 8 caracteres"
 ];
 
 
@@ -88057,7 +88464,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MySpaceCard_vue_vue_type_template_id_aaa5d7d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MySpaceCard.vue?vue&type=template&id=aaa5d7d0& */ "./resources/client/src/components/MySpaceCard.vue?vue&type=template&id=aaa5d7d0&");
-/* harmony import */ var _MySpaceCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MySpaceCard.vue?vue&type=script&lang=js& */ "./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=js&");
+/* harmony import */ var _MySpaceCard_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MySpaceCard.vue?vue&type=script&lang=ts& */ "./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=ts&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -88067,7 +88474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _MySpaceCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MySpaceCard_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
   _MySpaceCard_vue_vue_type_template_id_aaa5d7d0___WEBPACK_IMPORTED_MODULE_0__["render"],
   _MySpaceCard_vue_vue_type_template_id_aaa5d7d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -88084,17 +88491,17 @@ component.options.__file = "resources/client/src/components/MySpaceCard.vue"
 
 /***/ }),
 
-/***/ "./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=js&":
+/***/ "./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=ts&":
 /*!**********************************************************************************!*\
-  !*** ./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=ts& ***!
   \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MySpaceCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MySpaceCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MySpaceCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_MySpaceCard_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/ts-loader??ref--5!../../../../node_modules/vue-loader/lib??vue-loader-options!./MySpaceCard.vue?vue&type=script&lang=ts& */ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/MySpaceCard.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_MySpaceCard_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -88804,6 +89211,213 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_template_id_2484f12e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchForm_vue_vue_type_template_id_2484f12e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdatePasswordForm.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdatePasswordForm.vue ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UpdatePasswordForm_vue_vue_type_template_id_6023c40a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdatePasswordForm.vue?vue&type=template&id=6023c40a& */ "./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=template&id=6023c40a&");
+/* harmony import */ var _UpdatePasswordForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdatePasswordForm.vue?vue&type=script&lang=ts& */ "./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdatePasswordForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdatePasswordForm_vue_vue_type_template_id_6023c40a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdatePasswordForm_vue_vue_type_template_id_6023c40a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/client/src/components/forms/UpdatePasswordForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=script&lang=ts&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=script&lang=ts& ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePasswordForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/ts-loader??ref--5!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdatePasswordForm.vue?vue&type=script&lang=ts& */ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePasswordForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=template&id=6023c40a&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=template&id=6023c40a& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePasswordForm_vue_vue_type_template_id_6023c40a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdatePasswordForm.vue?vue&type=template&id=6023c40a& */ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePasswordForm.vue?vue&type=template&id=6023c40a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePasswordForm_vue_vue_type_template_id_6023c40a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePasswordForm_vue_vue_type_template_id_6023c40a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdatePhotoForm.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdatePhotoForm.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UpdatePhotoForm_vue_vue_type_template_id_07e7779b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdatePhotoForm.vue?vue&type=template&id=07e7779b& */ "./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=template&id=07e7779b&");
+/* harmony import */ var _UpdatePhotoForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdatePhotoForm.vue?vue&type=script&lang=ts& */ "./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdatePhotoForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdatePhotoForm_vue_vue_type_template_id_07e7779b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdatePhotoForm_vue_vue_type_template_id_07e7779b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/client/src/components/forms/UpdatePhotoForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=script&lang=ts&":
+/*!********************************************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=script&lang=ts& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePhotoForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/ts-loader??ref--5!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdatePhotoForm.vue?vue&type=script&lang=ts& */ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePhotoForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=template&id=07e7779b&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=template&id=07e7779b& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePhotoForm_vue_vue_type_template_id_07e7779b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdatePhotoForm.vue?vue&type=template&id=07e7779b& */ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdatePhotoForm.vue?vue&type=template&id=07e7779b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePhotoForm_vue_vue_type_template_id_07e7779b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdatePhotoForm_vue_vue_type_template_id_07e7779b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdateProfilForm.vue":
+/*!********************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdateProfilForm.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UpdateProfilForm_vue_vue_type_template_id_3430376b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateProfilForm.vue?vue&type=template&id=3430376b& */ "./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=template&id=3430376b&");
+/* harmony import */ var _UpdateProfilForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateProfilForm.vue?vue&type=script&lang=ts& */ "./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdateProfilForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateProfilForm_vue_vue_type_template_id_3430376b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdateProfilForm_vue_vue_type_template_id_3430376b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/client/src/components/forms/UpdateProfilForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=script&lang=ts&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=script&lang=ts& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfilForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/ts-loader??ref--5!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateProfilForm.vue?vue&type=script&lang=ts& */ "./node_modules/ts-loader/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=script&lang=ts&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_ts_loader_index_js_ref_5_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfilForm_vue_vue_type_script_lang_ts___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=template&id=3430376b&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=template&id=3430376b& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfilForm_vue_vue_type_template_id_3430376b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateProfilForm.vue?vue&type=template&id=3430376b& */ "./node_modules/laravel-mix/node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/src/components/forms/UpdateProfilForm.vue?vue&type=template&id=3430376b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfilForm_vue_vue_type_template_id_3430376b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_laravel_mix_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateProfilForm_vue_vue_type_template_id_3430376b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -89692,9 +90306,10 @@ __webpack_require__.r(__webpack_exports__);
             passwordRules: _common_rules__WEBPACK_IMPORTED_MODULE_0__["passwordRules"],
             requiredRules: _common_rules__WEBPACK_IMPORTED_MODULE_0__["requiredRules"],
             phoneCiRules: _common_rules__WEBPACK_IMPORTED_MODULE_0__["phoneCiRules"],
-            emailRules: _common_rules__WEBPACK_IMPORTED_MODULE_0__["emailRules"]
+            emailRules: _common_rules__WEBPACK_IMPORTED_MODULE_0__["emailRules"],
+            nameRules: _common_rules__WEBPACK_IMPORTED_MODULE_0__["nameRules"]
         };
-    },
+    }
 });
 
 
@@ -90506,6 +91121,15 @@ __webpack_require__.r(__webpack_exports__);
     prestationsSearch(state) {
         return state.prestations;
     },
+    statusFormUpdateProfil(state) {
+        return state.statusFormUpdateProfil;
+    },
+    statusFormUpdatePhoto(state) {
+        return state.statusFormUpdatePhoto;
+    },
+    statusFormUpdatePassword(state) {
+        return state.statusFormUpdatePassword;
+    }
 });
 
 
@@ -90587,6 +91211,20 @@ __webpack_require__.r(__webpack_exports__);
         state.choiceEstimateMin = null;
         state.choiceEstimateMax = null;
         state.choiceLocalisation = null;
+    },
+    changeStatusFormUpdateProfil(state, val) {
+        state.statusFormUpdateProfil = val;
+    },
+    changeStatusFormUpdatePhoto(state, val) {
+        state.statusFormUpdatePhoto = val;
+    },
+    changeStatusFormUpdatePassword(state, val) {
+        state.statusFormUpdatePassword = val;
+    },
+    resetStatusFormUpdatePhotoAndProfil(state) {
+        state.statusFormUpdatePhoto = false;
+        state.statusFormUpdateProfil = false;
+        state.statusFormUpdatePassword = false;
     }
 });
 
@@ -90611,7 +91249,10 @@ const state = () => ({
     choiceCategorie: null,
     choiceEstimateMin: null,
     choiceEstimateMax: null,
-    choiceLocalisation: null
+    choiceLocalisation: null,
+    statusFormUpdateProfil: false,
+    statusFormUpdatePhoto: false,
+    statusFormUpdatePassword: false
 });
 /* harmony default export */ __webpack_exports__["default"] = (state);
 

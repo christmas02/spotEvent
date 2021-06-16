@@ -11,7 +11,10 @@ const state: () => IBenefitState = () => ({
     choiceCategorie: (null as unknown) as string,
     choiceEstimateMin: (null as unknown) as string,
     choiceEstimateMax: (null as unknown) as string,
-    choiceLocalisation: (null as unknown) as string
+    choiceLocalisation: (null as unknown) as string,
+    statusFormUpdateProfil: false,
+    statusFormUpdatePhoto: false,
+    statusFormUpdatePassword: false
 });
 
 export default state;

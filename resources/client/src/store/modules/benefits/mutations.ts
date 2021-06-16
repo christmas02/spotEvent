@@ -43,5 +43,19 @@ export default {
         state.choiceEstimateMin = (null as unknown) as string;
         state.choiceEstimateMax = (null as unknown) as string;
         state.choiceLocalisation = (null as unknown) as string;
+    },
+    changeStatusFormUpdateProfil(state: IBenefitState, val: boolean): void {
+        state.statusFormUpdateProfil = val;
+    },
+    changeStatusFormUpdatePhoto(state: IBenefitState, val: boolean): void {
+        state.statusFormUpdatePhoto = val;
+    },
+    changeStatusFormUpdatePassword(state: IBenefitState, val: boolean): void {
+        state.statusFormUpdatePassword = val;
+    },
+    resetStatusFormUpdatePhotoAndProfil(state: IBenefitState): void {
+        state.statusFormUpdatePhoto = false;
+        state.statusFormUpdateProfil = false;
+        state.statusFormUpdatePassword = false;
     }
 };

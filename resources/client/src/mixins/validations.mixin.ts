@@ -1,13 +1,19 @@
-import { passwordRules, emailRules, phoneCiRules, requiredRules  } from "@/common/rules";
-
+import {
+    passwordRules,
+    emailRules,
+    phoneCiRules,
+    requiredRules,
+    nameRules
+} from "@/common/rules";
 
 export default {
     data() {
         return {
-           passwordRules,
+            passwordRules,
             requiredRules,
             phoneCiRules,
-            emailRules
-        }
-    },
+            emailRules,
+            nameRules
+        };
+    }
 };

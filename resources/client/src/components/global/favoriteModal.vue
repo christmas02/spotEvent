@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" v-if="isAuth">
-    <v-dialog fullscreen v-model="dialog" @keydown.esc="closeDialog">
+    <v-dialog fullscreen v-model="dialog" @keydown.esc="closeDialog" @click:outside="closeDialog">
       <v-toolbar dark color="primary">
         <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>

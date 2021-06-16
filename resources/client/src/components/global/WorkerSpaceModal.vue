@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" v-if="isAuth">
-    <v-dialog v-model="dialog" @keydown.esc="closeDialog" width="450">
+    <v-dialog v-model="dialog" @keydown.esc="closeDialog" @click:outside="closeDialog" width="450">
 
       <v-toolbar dark color="primary">
         <v-btn icon dark @click="closeDialog">
@@ -44,6 +44,7 @@ export default Vue.extend({
   methods: {
     closeDialog() {
       this.$emit("change", false);
+      this.$store.commit("benefits/resetStatusFormUpdatePhotoAndProfil");
     },
   },
   computed: {
