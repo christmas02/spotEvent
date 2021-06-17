@@ -13,8 +13,6 @@
     </v-card-title>
 
     <v-card-subtitle class="subtitle">
-      <!-- <p>ENTREPRISE : {{ entreprise }}</p>
-      <p>PRESTATION: {{ prestation }}</p> -->
       <p>{{ description }}</p>
     </v-card-subtitle>
   </v-card>

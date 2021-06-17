@@ -44,6 +44,8 @@ export default Vue.extend({
   },
   computed: {
     color(): string {
+      console.log(this.idPrestataire);
+
       return this.$store.getters["auth/isFavorite"](this.idPrestataire)
         ? "red"
         : "white";

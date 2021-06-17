@@ -98,12 +98,8 @@
                   >
                     <v-icon>mdi-whatsapp</v-icon>
                   </auth-btn>
-                  <v-btn
-                    icon
-                    color="primary"
-                    x-large
-                    :disabled="benefit.messagerie == 0"
-                  >
+                  <v-btn icon color="primary" x-large>
+                    <!-- :disabled="benefit.messagerie == 0" -->
                     <v-icon>mdi-message-processing</v-icon>
                   </v-btn>
 
@@ -163,6 +159,7 @@ import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
 import FavoriteBtn from "../components/FavoriteBtn.vue";
 import { AppService } from "../services/app.service";
+// import ChatBot from "../components/ChatBot.vue";
 
 export default Vue.extend({
   name: "Benefit",
@@ -173,6 +170,7 @@ export default Vue.extend({
       dialog: false,
       slides: [] as ISlider[],
       idProvider: null,
+      isChat: true,
     };
   },
   async beforeMount(): Promise<void> {
@@ -183,6 +181,7 @@ export default Vue.extend({
     BenefitsGrid,
     ProviderContactFormModal,
     FavoriteBtn,
+    chatBot,
   },
   computed: {
     benefit(): Benefit {

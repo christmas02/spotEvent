@@ -11,7 +11,7 @@
       >
       <div>
         <favorite-modal-btn
-          :idPrestataire="favorite.id_user"
+          :idPrestataire="favorite.id_prestataire"
         ></favorite-modal-btn>
       </div>
     </div>
