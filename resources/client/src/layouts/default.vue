@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :class="{ 'default-padding': padding }">
-      <nav-bar :height="navBarHeight"></nav-bar>
+      <nav-bar :height="navBarHeight" class="mybar"></nav-bar>
       <v-main :style="{ marginTop: '105px' }">
         <slot></slot>
       </v-main>
@@ -26,3 +26,8 @@ export default {
   },
 };
 </script>
+<style>
+.mybar * {
+  z-index: 100;
+}
+</style>
