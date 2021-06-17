@@ -41,18 +41,18 @@
 <script lang="ts">
 import Vue, { PropType } from "vue";
 import { Benefit } from "../../interfaces/benefit.interface";
+import { AppService } from "@/services/app.service";
+import { ICategory } from "@/interfaces/category.interface";
+import { IEstimate } from "@/interfaces/estimation.interface";
+import { IProvider } from "@/interfaces/provider.interface";
+import { IIdPrestation } from "@/interfaces/app-services.interfaces";
 
 export default Vue.extend({
-  props: {
-    benefits: {
-      type: Object as PropType<Benefit[]>,
-      required: true,
-    },
-  },
   data() {
     return {
       categorie: null as unknown as string,
       isFilter: false,
+      // loading: false,
     };
   },
   computed: {
@@ -68,8 +68,9 @@ export default Vue.extend({
   },
   methods: {
     async getfilterByCategory(): Promise<void> {
-      this.isFilter = true;
-      this.loading = true;
+      // this.isFilter = true;
+      // this.loading = true;
+      this.$store.commit("benefits/changeLoading", true);
       const prestationsSearch = new AppService();
 
       const Cat = new Object() as IIdPrestation;
@@ -79,17 +80,26 @@ export default Vue.extend({
       console.log(result);
 
       if (result.statu == 1) {
-        console.log("resultat");
+        console.log("resultatatcha");
+        console.log("watcha");
 
         this.$store.commit("benefits/store", result.resultat);
       } else {
         console.log(result.resultat);
         this.$store.commit("benefits/store", result.resultat);
-        this.loading = false;
+        // this.loading = false;
+        this.$store.commit("benefits/changeLoading", false);
       }
+      this.$store.commit("benefits/changeIsFilter", true);
+      // this.benefitsLength = this.$store.getters["benefits/all"].length;
+      // this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+      // this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
+      //   Number
+      // );
     },
     resetBenefits() {
-      this.isFilter = false;
+      // this.isFilter = false;
+      this.$store.commit("benefits/changeIsFilter", false);
       this.categorie = "";
       this.$store.commit("benefits/store", []);
 

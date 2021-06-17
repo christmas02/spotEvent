@@ -53,5 +53,11 @@ export default {
     },
     statusFormUpdatePassword(state: IBenefitState): Boolean {
         return state.statusFormUpdatePassword;
+    },
+    loading(state: IBenefitState): Boolean {
+        return state.loading;
+    },
+    isFilter(state: IBenefitState): Boolean {
+        return state.isFilter;
     }
 };

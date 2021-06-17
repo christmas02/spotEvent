@@ -18,14 +18,24 @@
                 color="amber"
               ></v-progress-circular>
             </div>
-            <benefits-grid
-              :benefits="isFilter ? filterResults : results"
-              v-else-if="results.length >= 1"
-            ></benefits-grid>
+            <div v-else-if="results.length >= 1">
+              <benefits-grid
+                :benefits="isFilter ? allBenefits : results"
+              ></benefits-grid>
+              <v-pagination
+                v-if="results.length > perPage"
+                class="py-5"
+                v-model="page"
+                :length="paginateLength"
+                prev-icon="mdi-menu-left"
+                next-icon="mdi-menu-right"
+              ></v-pagination>
+            </div>
+
             <div class="nothing" v-else-if="nothingFinded">
               <!-- <div
               class="nothing"
-              v-else-if="filterResults.length == 0 && isFilter"
+              v-else-if="allBenefits.length == 0 && isFilter"
             > -->
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
@@ -62,20 +72,27 @@ export default Vue.extend({
     return {
       nothingFinded: false,
       results: [] as Benefit[],
-      filterResults: [] as Benefit[],
-      isFilter: false,
+      allBenefits: [] as Benefit[],
+      // isFilter: false,
       form: {
         prestation: null as unknown as string,
         min: null as unknown as string,
         max: null as unknown as string,
         // localisation: null as unknown as string,
       } as FilterPayload,
-      loading: false,
+      // loading: false,
+      // allBenefits: [] as Benefit[],
+      myBenefits: [] as Benefit[],
+      page: 1,
+      perPage: 2,
+      benefitsLength: 0,
+      paginateLength: 0,
+      pages: [] as number[],
     };
   },
   async beforeMount(): Promise<void> {
-    this.nothingFinded = false;
-    this.loading = true;
+    this.$store.commit("benefits/changeLoading", true);
+    this.$store.commit("benefits/changeIsFilter", false);
     await Promise.all([
       this.prestationsSearchForm(),
 
@@ -84,10 +101,18 @@ export default Vue.extend({
       this.$store.dispatch("benefits/fetchEstimates"),
       // this.$store.dispatch("benefits/fetchProviders"),
     ]);
+    this.benefitsLength = this.results.length;
+    this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+    this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
+      Number
+    );
   },
   methods: {
     async prestationsSearchForm(): Promise<void> {
-      this.loading = true;
+      console.log("wano kuni");
+
+      // this.loading = true;
+      this.$store.commit("benefits/changeLoading", true);
       this.nothingFinded = false;
       const prestationsSearch = new AppService();
 
@@ -119,7 +144,12 @@ export default Vue.extend({
         this.results = [] as Benefit[];
         console.log("aucun resultat trouvé");
       }
-      this.loading = false;
+      this.benefitsLength = this.results.length;
+      this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+      this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
+        Number
+      );
+      this.$store.commit("benefits/changeLoading", false);
     },
     makeFilter() {},
   },
@@ -136,6 +166,18 @@ export default Vue.extend({
     providers(): IProvider[] {
       return this.$store.getters["benefits/providers"];
     },
+    visiblePages(): number[] {
+      return this.pages.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );
+    },
+    isFilter(): IProvider[] {
+      return this.$store.getters["benefits/isFilter"];
+    },
+    loading(): IProvider[] {
+      return this.$store.getters["benefits/loading"];
+    },
   },
   watch: {
     form: {
@@ -149,9 +191,9 @@ export default Vue.extend({
 
         const mark = validKeys.length;
 
-        if (mark > 0) this.isFilter = true;
+        if (mark > 0) this.$store.commit("benefits/changeIsFilter", true);
 
-        this.filterResults = this.results.filter((benefit) => {
+        this.allBenefits = this.results.filter((benefit) => {
           let myMark = 0;
           for (const key in validKeys) {
             // @ts-ignore

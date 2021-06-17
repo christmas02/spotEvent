@@ -24,8 +24,9 @@
         <div class="d-block d-md-none">
           <search-form :handler="initSearch"></search-form>
         </div>
+
         <div class="section">
-          <div class="d-flex justify-content-between">
+          <!-- <div class="d-flex justify-content-between">
             <div>
               <h2 class="section-title">Prestations</h2>
             </div>
@@ -64,7 +65,8 @@
                 ></v-autocomplete>
               </div>
             </div>
-          </div>
+          </div> -->
+          <filter-form></filter-form>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
               <v-progress-circular
@@ -86,6 +88,7 @@
             >
           </div>
         </div>
+
         <div class="section mt-0 d-none d-md-block">
           <div>
             <h2 class="section-title">Prestataires</h2>
@@ -111,6 +114,7 @@ import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
+import FilterForm from "@/components/forms/FilterForm.vue";
 import { AppService } from "@/services/app.service";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
 
@@ -120,17 +124,19 @@ export default Vue.extend({
     BenefitsGrid,
     ProvidersSlider,
     SearchForm,
+    FilterForm,
   },
   data() {
     return {
       categorie: null as unknown as string,
-      isFilter: false,
-      loading: false,
+      // isFilter: false,
     };
   },
   async beforeMount(): Promise<void> {
     this.$store.commit("benefits/resetSearchForm");
-    this.loading = true;
+    // this.loading = true;
+    this.$store.commit("benefits/changeLoading", true);
+    this.$store.commit("benefits/changeIsFilter", false);
     await Promise.all([
       this.$store.dispatch("benefits/fetchAll"),
       this.$store.dispatch("benefits/fetchCategories"),
@@ -151,6 +157,12 @@ export default Vue.extend({
     providers(): IProvider[] {
       return this.$store.getters["benefits/providers"];
     },
+    loading(): IProvider[] {
+      return this.$store.getters["benefits/loading"];
+    },
+    isFilter(): IProvider[] {
+      return this.$store.getters["benefits/isFilter"];
+    },
   },
   methods: {
     initSearch(): void {
@@ -160,8 +172,10 @@ export default Vue.extend({
       this.$router.push({ name: "SeeMore" });
     },
     async getfilterByCategory(): Promise<void> {
-      this.isFilter = true;
-      this.loading = true;
+      // this.isFilter = true;
+      this.$store.commit("benefits/changeIsFilter", true);
+      // this.loading = true;
+      this.$store.commit("benefits/changeLoading", true);
       const prestationsSearch = new AppService();
 
       const Cat = new Object() as IIdPrestation;
@@ -177,11 +191,13 @@ export default Vue.extend({
       } else {
         console.log(result.resultat);
         this.$store.commit("benefits/store", result.resultat);
-        this.loading = false;
+        // this.loading = false;
+        this.$store.commit("benefits/changeLoading", false);
       }
     },
     resetBenefits: function () {
-      this.isFilter = false;
+      // this.isFilter = false;
+      this.$store.commit("benefits/changeIsFilter", false);
       this.categorie = "";
       this.$store.commit("benefits/store", []);
 

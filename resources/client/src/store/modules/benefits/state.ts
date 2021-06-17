@@ -14,7 +14,9 @@ const state: () => IBenefitState = () => ({
     choiceLocalisation: (null as unknown) as string,
     statusFormUpdateProfil: false,
     statusFormUpdatePhoto: false,
-    statusFormUpdatePassword: false
+    statusFormUpdatePassword: false,
+    loading: false,
+    isFilter: false
 });
 
 export default state;

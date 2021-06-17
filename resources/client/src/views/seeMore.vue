@@ -10,46 +10,7 @@
           <search-form :handler="initSearch"></search-form>
         </div>
         <div class="section">
-          <!-- <div class="d-flex justify-content-between">
-            <div>
-              <h2 class="section-title">Prestations</h2>
-            </div>
-            <div class="actions-container d-none d-md-flex">
-              <div>
-                <v-btn color="primary" @click="resetBenefits()" x-large
-                  >Toutes les prestations</v-btn
-                >
-              </div>
-              <div class="mx-2">
-                <v-autocomplete
-                  v-model="categorie"
-                  label="Catégories"
-                  filled
-                  :items="categories"
-                  item-text="name"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-              <div class="mx-2">
-                <v-autocomplete
-                  label="Estimation minimale"
-                  filled
-                  :items="estimatess"
-                  item-text="libelle"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-              <div>
-                <v-autocomplete
-                  label="Estimation maximale"
-                  filled
-                  :items="estimatess"
-                  item-text="libelle"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-            </div>
-          </div> -->
+          <filter-form></filter-form>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
               <v-progress-circular
@@ -71,9 +32,9 @@
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
           </div>
-          <div class="text-center">
+          <!-- <div class="text-center">
             <v-btn color="primary" v-if="benefits.length >= 1">Voir plus</v-btn>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -90,6 +51,7 @@ import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import { AppService } from "@/services/app.service";
+import FilterForm from "@/components/forms/FilterForm.vue";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
 
 export default Vue.extend({
@@ -98,12 +60,13 @@ export default Vue.extend({
     BenefitsGrid,
     ProvidersSlider,
     SearchForm,
+    FilterForm,
   },
   data() {
     return {
       categorie: null as unknown as string,
-      isFilter: false,
-      loading: false,
+      // isFilter: false,
+      // loading: false,
 
       allBenefits: [] as Benefit[],
       myBenefits: [] as Benefit[],
@@ -116,7 +79,9 @@ export default Vue.extend({
   },
   async beforeMount(): Promise<void> {
     this.$store.commit("benefits/resetSearchForm");
-    this.loading = true;
+    // this.loading = true;
+    this.$store.commit("benefits/changeLoading", true);
+    this.$store.commit("benefits/changeIsFilter", false);
     await Promise.all([
       this.$store.dispatch("benefits/fetchAll"),
       this.$store.dispatch("benefits/fetchCategories"),
@@ -150,35 +115,20 @@ export default Vue.extend({
         this.page * this.perPage
       );
     },
+    isFilter(): IProvider[] {
+      return this.$store.getters["benefits/isFilter"];
+    },
+    loading(): IProvider[] {
+      return this.$store.getters["benefits/loading"];
+    },
   },
   methods: {
     initSearch(): void {
       this.$router.push({ name: "Search" });
     },
-    async getfilterByCategory(): Promise<void> {
-      this.isFilter = true;
-      this.loading = true;
-      const prestationsSearch = new AppService();
-
-      const Cat = new Object() as IIdPrestation;
-      Cat.id_prestation = this.categorie;
-
-      const result = await prestationsSearch.filterByCategory(Cat);
-      console.log(result);
-
-      if (result.statu == 1) {
-        console.log("resultat");
-
-        console.log(result.resultat);
-        this.$store.commit("benefits/store", result.resultat);
-      } else {
-        console.log(result.resultat);
-        this.$store.commit("benefits/store", result.resultat);
-        this.loading = false;
-      }
-    },
     resetBenefits: function () {
-      this.isFilter = false;
+      // this.isFilter = false;
+      this.$store.commit("benefits/changeIsFilter", false);
       console.log("reset");
       this.categorie = "";
       this.$store.commit("benefits/store", []);
@@ -187,25 +137,25 @@ export default Vue.extend({
     },
   },
   watch: {
-    categorie: function (newValue, oldValue) {
-      // console.log(newValue);
-      if (newValue) {
-        this.getfilterByCategory();
-      }
-    },
     visiblePages: function (value, prevValue) {
       this.allBenefits = this.myBenefits.slice(
         (this.page - 1) * this.perPage,
         this.page * this.perPage
       );
     },
+    isFilter: function (newVal, oldVal) {
+      console.log(newVal, "ici");
+      if (newVal) {
+        this.benefitsLength = this.$store.getters["benefits/all"].length;
+        // console.log(this.benefitsLength);
+
+        this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+        this.pages = Object.keys(
+          Array.apply(0, Array(this.benefitsLength))
+        ).map(Number);
+      }
+    },
   },
-  // watch(visiblePages, (value, prevValue) => {
-  //     state.allOrders = state.myOrders.slice(
-  //       (state.page - 1) * state.perPage,
-  //       state.page * state.perPage
-  //     );
-  //   });
 });
 </script>
 

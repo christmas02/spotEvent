@@ -60,18 +60,16 @@
             <v-list-item-title @click="activeWorkerSpaceModal"
               >Mon espace</v-list-item-title
             >
-
-            <!-- <worker-space-modal
-              v-model="statusWorkerDialog"
-            ></worker-space-modal> -->
           </v-list-item>
           <v-list-item link tag="p" class="m-0">
             <v-list-item-title @click="activeFavoriteModal"
               >Mes Favoris</v-list-item-title
             >
-
-            <!-- <favorite-modal v-model="statusFavoriteDialog"></favorite-modal> -->
           </v-list-item>
+          <v-list-item link tag="p" class="m-0">
+            <v-list-item-title>Mes messages (5)</v-list-item-title>
+          </v-list-item>
+
           <v-list-item link tag="p" class="m-0" @click="logout">
             <v-list-item-title>Deconnexion</v-list-item-title>
           </v-list-item>

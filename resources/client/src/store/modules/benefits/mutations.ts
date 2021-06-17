@@ -57,5 +57,11 @@ export default {
         state.statusFormUpdatePhoto = false;
         state.statusFormUpdateProfil = false;
         state.statusFormUpdatePassword = false;
+    },
+    changeLoading(state: IBenefitState, val: boolean): void {
+        state.loading = val;
+    },
+    changeIsFilter(state: IBenefitState, val: boolean): void {
+        state.isFilter = val;
     }
 };

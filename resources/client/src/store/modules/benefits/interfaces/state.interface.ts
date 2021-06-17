@@ -17,6 +17,8 @@ export interface IBenefitState {
     statusFormUpdateProfil: Boolean;
     statusFormUpdatePhoto: Boolean;
     statusFormUpdatePassword: Boolean;
+    loading: Boolean;
+    isFilter: Boolean;
 }
 
 export interface FilterPayload {
