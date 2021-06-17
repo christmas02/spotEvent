@@ -8,6 +8,7 @@ import ContactScreen from "@/views/contact.vue";
 import AboutScreen from "@/views/about.vue";
 import Search from "@/views/search.vue";
 import SeeMore from "@/views/SeeMore.vue";
+import Chat from "@/views/Chat.vue";
 
 import store from "@/store";
 
@@ -28,6 +29,11 @@ const routes: Array<RouteConfig> = [
         path: "/seemore",
         name: "SeeMore",
         component: SeeMore
+    },
+    {
+        path: "/chat",
+        name: "Chat",
+        component: Chat
     },
     {
         path: "/login",

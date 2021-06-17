@@ -98,7 +98,7 @@
                   >
                     <v-icon>mdi-whatsapp</v-icon>
                   </auth-btn>
-                  <v-btn icon color="primary" x-large>
+                  <v-btn icon color="primary" x-large @click="chat">
                     <!-- :disabled="benefit.messagerie == 0" -->
                     <v-icon>mdi-message-processing</v-icon>
                   </v-btn>
@@ -181,7 +181,6 @@ export default Vue.extend({
     BenefitsGrid,
     ProviderContactFormModal,
     FavoriteBtn,
-    chatBot,
   },
   computed: {
     benefit(): Benefit {
@@ -244,6 +243,9 @@ export default Vue.extend({
       } else {
         this.slides = result.listPrestataire;
       }
+    },
+    chat(): void {
+      this.$router.push({ name: "Chat" });
     },
   },
   watch: {
