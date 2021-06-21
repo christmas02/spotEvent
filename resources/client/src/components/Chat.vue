@@ -177,7 +177,7 @@ export default Vue.extend({
 
         header: {
           background: "#fff",
-          colorRoomName: "#0a0a0a",
+          colorRoomName: "rgba(251, 178, 49, 1)", //"#0a0a0a",
           colorRoomInfo: "#9ca6af",
         },
 
@@ -189,7 +189,7 @@ export default Vue.extend({
         },
 
         content: {
-          background: "#f8f9fa",
+          background: "rgba(230, 230, 255, .5)", //"#f8f9fa",
         },
 
         sidemenu: {
