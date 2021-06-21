@@ -9,7 +9,7 @@
     >
       <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
-        :src="user.path_user"
+        :src="defaultUrl + pathUser"
         height="340px"
         dark
       >
@@ -18,6 +18,16 @@
             <v-btn color="primary" icon @click="showPhoto">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
+            <v-file-input
+              class="d-none"
+              :rules="photoRules"
+              ref="photoUploader"
+              accept="image/png"
+              placeholder="Choisissez une photo"
+              prepend-icon="mdi-camera"
+              label="Avatar"
+              @change="onFileChanged"
+            ></v-file-input>
             <v-spacer></v-spacer>
             <v-btn dark icon>
               <v-icon>mdi-dots-vertical</v-icon>
@@ -89,21 +99,36 @@ import UpdatePasswordForm from "@/components/forms/UpdatePasswordForm";
 // import UpdatePhoto from
 export default Vue.extend({
   components: { UpdatePhotoForm, UpdateProfilForm, UpdatePasswordForm },
-  // data() {
-  //   return {
-  //     statusFormUpdateProfil: false,
-  //     statusFormUpdatePhoto: false,
-  //   };
-  // },
+  data() {
+    return {
+      defaultUrl: `${window.location.origin}/storage/`,
+      photoRules: [
+        (value: any) =>
+          !value ||
+          value.size < 2000000 ||
+          "Avatar size should be less than 2 MB!",
+      ],
+      pathUser: this.$store.getters["auth/user"].path_user,
+    };
+  },
   methods: {
     showProfil() {
       this.$store.commit("benefits/changeStatusFormUpdateProfil", true);
     },
     showPhoto() {
-      this.$store.commit("benefits/changeStatusFormUpdatePhoto", true);
+      return this.$refs.photoUploader.$refs.input.click();
+
+      // this.$store.commit("benefits/changeStatusFormUpdatePhoto", true);
     },
     showPassword() {
       this.$store.commit("benefits/changeStatusFormUpdatePassword", true);
+    },
+    onFileChanged(file) {
+      // this.selectedFile = e.target.files[0];
+
+      console.log(file);
+
+      // do something
     },
   },
   computed: {

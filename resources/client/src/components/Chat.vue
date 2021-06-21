@@ -288,7 +288,7 @@ export default Vue.extend({
       return this.rooms.slice(0, this.roomsLoadedCount);
     },
     screenHeight() {
-      return this.isDevice ? window.innerHeight + "px" : "calc(100vh - 105px)";
+      return this.isDevice ? window.innerHeight + "px" : "calc(100vh - 169px)";
     },
     currentUserId() {
       return this.$store.getters["auth/id"];
