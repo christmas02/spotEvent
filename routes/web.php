@@ -36,6 +36,10 @@ Route::get('/statistique/{id}','AdminController@statiatique');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
 
+Route::get('/messageries/{id}','AdminController@message');
+Route::get('/liste_message/{code}','AdminController@getmessage');
+Route::post('/save/message','AdminController@saveMessage');
+
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');

@@ -144,5 +144,32 @@ label{
 @endforeach
 
 
+@section('extra-js')
+    <script>
+      $(document).ready(function(){
+            var user_id = e.target.value;
+            $('#myModal').modal('show')
+            
+            //ajax
+            $.get('/ajax_souscategorie?cat_id='+ cat_id, function(data){
+              //success data
+              console.log(data);
+              $('#souscategorie').empty();
+              $.each(data, function(index, subcatObj){
+                $('#souscategorie').append('<option value="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+              });
+            });
+
+      })
+
+      $(".save-data").click(function(event){
+        $('#myModal').modal('show')
+
+      
+      });
+    </script>
+@endsection
+
+
 
 @endsection

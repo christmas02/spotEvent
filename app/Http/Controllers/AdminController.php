@@ -11,7 +11,11 @@ use App\Galerie;
 use App\Demande;
 use App\Clicfiche;
 use App\Clicphone;
+use App\Conversation;
+use App\Message;
+use Illuminate\Mail\Message as MailMessage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class AdminController extends Controller
 {
@@ -222,8 +226,6 @@ class AdminController extends Controller
         try {
 
             //dd($request->all());
-           
-                
                 $image = $request->file('image');
                 //dd($image);
                 $image_icone = $input['imagename'] = time(). '.' . $image->getClientOriginalName();
@@ -248,5 +250,107 @@ class AdminController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.'.$th);
         }
+    }
+
+    ////// MESSAGERIE ///////////
+
+    public function saveMessage(Request $request){
+
+        try{
+
+            $id_emmetteur = $request->id_emmetteur;
+            $contenus = $request->contenus;
+            $conversation = $request->conversation;
+
+            $id_recepteur = $request->id_recepteur;
+
+            
+
+            if($conversation > 0){
+
+                $message = new Message;
+
+                $message->id_emmetteur = $id_emmetteur;
+                $message->contenus = $contenus;
+                $message->conversation = $conversation;
+
+                $message->save();
+
+            }else{
+
+                $conversatiom_exsite = Conversation::where('id_user', $id_emmetteur)
+                ->where('id_recepteur',$id_recepteur)->first();
+
+                if($conversatiom_exsite){
+                    //dd($conversatiom_exsite->cod_conversation);
+                    $message = new Message;
+
+                    $message->id_emmetteur = $id_emmetteur;
+                    $message->contenus = $contenus;
+                    $message->conversation = $conversatiom_exsite->cod_conversation;
+
+                    $message->save();
+
+                }else{
+                    // Creation de la conversation
+                    $code = time();
+                    $conversation = new Conversation;
+
+                    $conversation->id_user = $request->id_emmetteur;
+                    $conversation->id_recepteur = $id_recepteur;
+                    $conversation->cod_conversation = $code;
+
+                    $conversation->save();
+
+                    // Enregistrement du messages dans la table messages
+
+                    $message = new Message;
+
+                    $message->id_emmetteur = $id_emmetteur;
+                    $message->contenus = $contenus;
+                    $message->conversation = $code;
+
+                    $message->save();
+
+                }
+                
+
+            }
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        }catch(\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+
+    }
+
+
+    
+
+    public function message($id){
+        $infoUser = $this->Userinfo($id);
+        $conversation = Conversation::where('conversations.id_user',$id)
+        ->leftjoin('users','users.id','=','conversations.id_recepteur')
+        ->leftjoin('messages','messages.conversation','=','conversations.cod_conversation')
+        ->select('users.*','messages.id as id_message','messages.conversation as code')
+        ->orderBy('messages.id', 'desc')
+        //->groupBy('messages.conversation')
+        //->distinct('messages.conversation')
+        ->distinct()
+        //->count('messages.conversation')
+        ->get();
+        //dd($conversation);
+        //->get(['messages.conversation']);
+        return view('admin.messages',compact('infoUser','conversation'));
+    }
+
+    public function getmessage($code)
+    {
+        //
+        //dd($code)
+        $data = Message::where('conversation','=',$code)->get();
+        //dd($data);
+        return response()->json($data);
     }
 }

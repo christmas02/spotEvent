@@ -44,7 +44,12 @@ Route::post('filtreEstimation','ApiController@filtreEstimation'); // en cours
 Route::post('filtreCategorie','ApiController@filtreCategorie');
 
 Route::post('saveimage','ApiController@saveImage');
-Route::post('saveprofile','ApiController@saveProfile');
+Route::post('upadteprofile','ApiController@updateProfile');
 Route::post('newpassword','ApiController@newPassword');
+
+
+Route::post('liste_conversation','ApiController@getConversation');
+Route::post('liste_message','ApiController@getMessage');
+Route::post('message','ApiController@saveMessage');
 
 
