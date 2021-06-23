@@ -1,4 +1,4 @@
-@extends('admin/layout/master')
+@extends('prestataire/layout/master')
 
 @section('content') 
 
@@ -38,12 +38,12 @@
                             <ul class="list-unstyled top_profiles scroll-view">
                             @foreach($conversation->unique('code') as $items)
                             <li class="media event">
-                                    <a class="pull-left border-aero profile_thumb" href="javascript:void(0)" id="messagerie" data-code="{{ $items->code }}" data-id_recepteur="{{ $items->id }}" data-id_user="{{ $infoUser->id }}">
+                                    <a class="pull-left border-aero profile_thumb" href="javascript:void(0)" id="messagerie" data-code="{{ $items->code }}" data-id_user="{{ $items->id }}">
                                     <i class="fa fa-user aero"></i>
                                     </a>
                                     <div class="media-body">
                                         <a class="title" href="#">{{ $items->name }}</a>
-                                        <p><strong></strong> {{ $items->code }}</p>
+                                        <p><strong></strong> {{ $items->message }}</p>
                                         <p> <small></small>
                                         </p>
                                     </div>
@@ -82,12 +82,12 @@
             <div class="msg_history">
             </div>    
             <div class="type_msg">
-                <form method="post" action="/save/message">
+                <form method="post" action="/save/message/prestataire">
                 @csrf
                     <div class="input_msg_write">
                         <input type="hidden" value="0" name="conversation">
+                        <input type="hidden" value="" id="user" name="id_recepteur">
                         <input type="hidden" value="{{ $infoUser->id }}" name="id_emmetteur">
-                        <input type="hidden" id="recepteur" value="" name="id_recepteur">
                         <input type="text" name="contenus" class="write_msg" placeholder="Message ..." required/>
                         <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </div>

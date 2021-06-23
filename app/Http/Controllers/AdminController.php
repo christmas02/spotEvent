@@ -255,7 +255,6 @@ class AdminController extends Controller
     ////// MESSAGERIE ///////////
 
     public function saveMessage(Request $request){
-
         try{
 
             $id_emmetteur = $request->id_emmetteur;
@@ -263,8 +262,6 @@ class AdminController extends Controller
             $conversation = $request->conversation;
 
             $id_recepteur = $request->id_recepteur;
-
-            
 
             if($conversation > 0){
 

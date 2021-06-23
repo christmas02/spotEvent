@@ -14,6 +14,8 @@ use App\Demande;
 use App\Clicfiche;
 use App\Clicphone;
 use Illuminate\Support\Facades\Response;
+use App\Conversation;
+use App\Message;
 
 
 class PrestataireController extends Controller
@@ -300,8 +302,94 @@ class PrestataireController extends Controller
         return view('prestataire.fiche_prestataire',compact('prestataire','galerie'));
     }
 
-    public function getMessagerie(){
+    public function getMessagerie($id){
+
+        $infoUser = $this->infoUser($id);
+        $conversation = Conversation::where('conversations.id_recepteur',$id)
+        ->leftjoin('users','users.id','=','conversations.id_user')
+        ->leftjoin('messages','messages.conversation','=','conversations.cod_conversation')
+        ->select('users.*','messages.id as id_message','messages.conversation as code','messages.contenus as message')
+        ->orderBy('messages.id', 'desc')
+        //->groupBy('messages.conversation')
+        //->distinct('messages.conversation')
+        ->distinct()
+        //->count('messages.conversation')
+        ->get();
+        //dd($conversation);
+        //->get(['messages.conversation']);
+        return view('prestataire.messages',compact('infoUser','conversation'));
         
+    }
+
+    public function saveMessage(Request $request){
+        try{
+
+            //dd($request->all());
+
+            $id_emmetteur = $request->id_emmetteur;
+            $contenus = $request->contenus;
+            $conversation = $request->conversation;
+
+            $id_recepteur = $request->id_recepteur;
+
+            if($conversation > 0){
+
+                $message = new Message;
+
+                $message->id_emmetteur = $id_emmetteur;
+                $message->contenus = $contenus;
+                $message->conversation = $conversation;
+
+                $message->save();
+
+            }else{
+                //dd($request->all());
+
+                $conversatiom_exsite = Conversation::where('id_user', $id_recepteur)
+                ->where('id_recepteur',$id_emmetteur)->first();
+
+                if($conversatiom_exsite){
+                    //dd($conversatiom_exsite->cod_conversation);
+                    $message = new Message;
+
+                    $message->id_emmetteur = $id_emmetteur;
+                    $message->contenus = $contenus;
+                    $message->conversation = $conversatiom_exsite->cod_conversation;
+
+                    $message->save();
+
+                }else{
+                    // Creation de la conversation
+                    $code = time();
+                    $conversation = new Conversation;
+
+                    $conversation->id_user = $request->id_emmetteur;
+                    $conversation->id_recepteur = $id_recepteur;
+                    $conversation->cod_conversation = $code;
+
+                    $conversation->save();
+
+                    // Enregistrement du messages dans la table messages
+
+                    $message = new Message;
+
+                    $message->id_emmetteur = $id_emmetteur;
+                    $message->contenus = $contenus;
+                    $message->conversation = $code;
+
+                    $message->save();
+
+                }
+                
+
+            }
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        }catch(\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+
     }
 
     public function editImage($id)
