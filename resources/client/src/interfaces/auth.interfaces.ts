@@ -26,6 +26,9 @@ export interface IUser {
     phone: number;
     path_user: string;
 }
+export interface IUserId {
+    id_user: number;
+}
 
 export interface ILoginResponse {
     statu: number;

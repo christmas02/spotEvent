@@ -1,5 +1,10 @@
 import { IUser } from "@/interfaces/auth.interfaces";
 import { IFavorite } from "@/interfaces/favorite.interface";
+import {
+    IConversation,
+    IMessage
+} from "@/interfaces/liste-conversations.interfaces";
+import { Message } from "vue-advanced-chat";
 import { IAuthState } from "./interfaces/state.interface";
 
 export default {
@@ -24,11 +29,18 @@ export default {
     id(state: IAuthState): number {
         return state.user ? state.user.id : 0;
     },
+
     isFavorite(state: IAuthState): (providerId: number) => boolean {
         return (providerId: number) => {
             return state.favorites.some(
                 favorite => favorite.id_prestataire == providerId
             );
         };
+    },
+    rooms(state: IAuthState): IConversation[] {
+        return state.rooms;
+    },
+    messages(state: IAuthState): IMessage[] {
+        return state.messages;
     }
 };

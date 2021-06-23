@@ -5,39 +5,21 @@ import store from "@/store";
 import { IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
 
 export default {
-    // async prestationsSearchForm({
-    //     commit,
-    //     state
-    // }: {
-    //     commit: any;
-    //     state: IBenefitState;
-    // }): Promise<void> {
-    //     //  state.prestations.length === 0
-    //     console.log("ici");
+    // async getRooms(
+    //     { commit, state }: { commit: any; state: IBenefitState },
+    //     force = false
+    // ): Promise<void> {
+    //     if (force || state.benefits.length === 0) {
+    //         const benefitService = new BenefitService();
 
-    //     const prestationsSearch = new AppService();
-    //     // await commit("updatePrestationSearch");
+    //         const result = await benefitService.getRooms({ id_user: 13 });
 
-    //     const data = new Object() as ISearchForm;
-
-    //     data.localisation = state.choiceLocalisation;
-    //     data.estmation_max = state.choiceEstimateMax;
-    //     data.estmation_min = state.choiceEstimateMin;
-    //     data.id_prestation = state.choiceCategorie.toString();
-
-    //     const result = await prestationsSearch.getPrestationsSearchForm(data);
-    //     console.log(result);
-
-    //     if (result.statu == 0) {
-    //         console.log("resultat");
-
-    //         console.log(result.resultat);
-
-    //         commit("storeSearchResult", result.resultat);
-    //     } else if (result.statu == 1) {
-    //         alert("Aucun resultat trouvé");
-    //     } else {
-    //         alert("erreur lors de la recherche  des prestations");
+    //         if (result.statu == 1) {
+    //             // commit("store", result.listPrestation);
+    //             console.log(result);
+    //         } else {
+    //             alert("erreur lors de la recuperation des rooms");
+    //         }
     //     }
     // },
     async fetchAll(
@@ -57,6 +39,7 @@ export default {
             }
         }
     },
+
     async fetchProviders(
         { commit, state }: { commit: any; state: IBenefitState },
         force = false

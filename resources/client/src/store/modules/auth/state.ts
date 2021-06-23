@@ -7,7 +7,9 @@ const state = (): IAuthState => ({
     modal: false,
     favoritesModal: false,
     workerSpaceModal: false,
-    favorites: []
+    favorites: [],
+    rooms: [],
+    messages: []
 });
 
 export default state;
