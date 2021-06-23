@@ -174,13 +174,8 @@ export default Vue.extend({
         },
 
         header: {
-<<<<<<< HEAD
           background: "#fff",
           colorRoomName: "rgba(251, 178, 49, 1)", //"#0a0a0a",
-=======
-          background: "rgba(251, 178, 49, 1)", //"#fff",
-          colorRoomName: "#0a0a0a",
->>>>>>> origin/laravel-cli
           colorRoomInfo: "#9ca6af",
         },
 
