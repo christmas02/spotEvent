@@ -13,4 +13,5 @@ export interface IAuthState {
     favorites: IFavorite[];
     rooms: IConversation[];
     messages: IMessage[];
+    idBenefitToChat: number;
 }

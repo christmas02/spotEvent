@@ -35,5 +35,8 @@ export default {
     },
     updateMessages(state: IAuthState, val: IMessage[]): void {
         state.messages = val;
+    },
+    updateIdBenefitToChat(state: IAuthState, val: number): void {
+        state.idBenefitToChat = val;
     }
 };

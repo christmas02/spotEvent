@@ -4,6 +4,7 @@
     :height="screenHeight"
     :current-user-id="currentUserId"
     :rooms="rooms"
+    :room-id="roomId"
     :messages="messages"
     :loading-rooms="loadingRooms"
     :messages-loaded="messagesLoaded"
@@ -54,6 +55,7 @@ export default Vue.extend({
       messagesLoaded: false, // go set true when all messages from a coversation are loaded
       loadFirstRoom: false,
       toFalse: false,
+      roomId: null as unknown as number,
 
       rooms: [
         // {
@@ -278,6 +280,7 @@ export default Vue.extend({
       },
       idSecondUser: null as unknown as number,
       currentRoom: null as unknown as Room,
+      allSecondUser: [] as number[],
       // currentUserId: 1234,
     };
   },
@@ -344,6 +347,7 @@ export default Vue.extend({
 
           const secondUser = new Object() as RoomUser;
           secondUser._id = element.id_recepteur;
+          this.allSecondUser = [...this.allSecondUser, secondUser._id];
           secondUser.username = element.name_recepteur;
           secondUser.avatar = element.image_recepteur;
           secondUser.status = {
@@ -516,12 +520,53 @@ export default Vue.extend({
         alert("erreur lors de la recuperation des messages");
       }
     },
+    async modSendingFirstMessage(idBenefitToChat: number): Promise<void> {
+      // let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
+      const userService = new AuthService();
+      const sending = {
+        conversation: "0",
+        id_recepteur: idBenefitToChat.toString(),
+        id_emmetteur: this.currentUserId.toString(),
+        contenus: "Bienvenue sur le chat de SpotEvent",
+      } as IsendingMessage;
+
+      const result = await userService.sendingMessage(sending);
+
+      if (result.statu == 1) {
+        console.log("message envoyé");
+        this.fetchRooms();
+
+        this.modLocalFetchMessage();
+      } else {
+        alert("erreur lors de la recuperation des messages");
+      }
+    },
   },
-  mounted() {
-    this.fetchRooms();
-    // this.fetchLocalMessages(this.rooms[0]);
-    // this.fetchLocalMessages(3445773);
+  async mounted() {
+    await this.fetchRooms();
+    let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
+    console.log(this.allSecondUser, idBenefitToChat);
+    if (idBenefitToChat && !this.allSecondUser.includes(idBenefitToChat)) {
+      // console.log(idBenefitToChat);
+      this.modSendingFirstMessage(idBenefitToChat);
+      console.log("nouvelle conversation");
+      this.$store.commit("auth/updateIdBenefitToChat", null);
+    } else if (idBenefitToChat) {
+      let idRoom = this.allSecondUser.indexOf(idBenefitToChat);
+      this.rooms[idRoom].roomId;
+      // this.currentRoom = this.rooms[idRoom].roomId;
+      this.roomId = this.rooms[idRoom].roomId;
+      console.log(this.rooms[idRoom]);
+
+      console.log("conversation existence");
+    }
   },
+  // beforeMount() {
+  //   let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
+  //   if (idBenefitToChat) {
+  //     console.log(idBenefitToChat);
+  //   }
+  // },
 });
 </script>
 <style >

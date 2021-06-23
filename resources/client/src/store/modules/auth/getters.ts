@@ -42,5 +42,8 @@ export default {
     },
     messages(state: IAuthState): IMessage[] {
         return state.messages;
+    },
+    idBenefitToChat(state: IAuthState): number {
+        return state.idBenefitToChat;
     }
 };

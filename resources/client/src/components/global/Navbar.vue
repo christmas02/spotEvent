@@ -66,8 +66,8 @@
               >Mes Favoris</v-list-item-title
             >
           </v-list-item>
-          <v-list-item link tag="p" class="m-0">
-            <v-list-item-title>Mes messages (5)</v-list-item-title>
+          <v-list-item link tag="p" class="m-0" @click="chat">
+            <v-list-item-title>Mes messages</v-list-item-title>
           </v-list-item>
 
           <v-list-item link tag="p" class="m-0" @click="logout">
@@ -120,6 +120,10 @@ export default Vue.extend({
       this.$store.commit("auth/logout");
       if (this.$route.path != "/") this.goHome();
     },
+    chat(){
+      this.$store.commit("auth/updateIdBenefitToChat", null);
+      this.$router.push({ name: "Chat" });
+    }
     activeFavoriteModal() {
       this.statusFavoriteDialog = true;
       // this.$store.commit("auth/authFavoritesModalStatus", true);

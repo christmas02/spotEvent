@@ -245,6 +245,7 @@ export default Vue.extend({
       }
     },
     chat(): void {
+      this.$store.commit("auth/updateIdBenefitToChat", this.benefit.id_user);
       this.$router.push({ name: "Chat" });
     },
   },

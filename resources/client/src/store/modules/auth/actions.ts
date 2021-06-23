@@ -25,8 +25,9 @@ export default {
             // commit("store", result.listPrestation);
             // console.log(result.conversation);
         } else {
+            commit("updateRooms", []);
             // commit("updateRooms", result.conversation);
-            alert("erreur lors de la recuperation des rooms");
+            // alert("erreur lors de la recuperation des rooms");
         }
     },
     async getMessages(
