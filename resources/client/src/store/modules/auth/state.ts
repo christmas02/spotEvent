@@ -7,7 +7,10 @@ const state = (): IAuthState => ({
     modal: false,
     favoritesModal: false,
     workerSpaceModal: false,
-    favorites: []
+    favorites: [],
+    rooms: [],
+    messages: [],
+    idBenefitToChat: (null as unknown) as number
 });
 
 export default state;

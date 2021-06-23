@@ -22,6 +22,7 @@ export default {
             }
         }
     },
+
     async fetchProviders(
         { commit, state }: { commit: any; state: IBenefitState },
         force = false

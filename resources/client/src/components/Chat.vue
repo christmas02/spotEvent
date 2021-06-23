@@ -4,13 +4,17 @@
     :height="screenHeight"
     :current-user-id="currentUserId"
     :rooms="rooms"
+    :room-id="roomId"
     :messages="messages"
     :loading-rooms="loadingRooms"
     :messages-loaded="messagesLoaded"
+    :show-files="toFalse"
+    :load-first-room="toFalse"
     :rooms-loaded="roomsLoaded"
-    @fetch-messages="fetchMessages"
-    @send-message="sendMessage"
+    :text-messages="textMessages"
+    @send-message="sendingMessage"
     @open-file="openFile"
+    @fetch-messages="fetchLocalMessages"
     :show-audio="toFalse"
     :show-add-room="toFalse"
     :show-emojis="toFalse"
@@ -21,8 +25,24 @@
 
 <script lang="ts">
 import Vue from "vue";
-import ChatWindow, { Messages, RoomUsers } from "vue-advanced-chat";
+import { AuthService } from "@/services/auth.service";
+import ChatWindow, {
+  Message,
+  Messages,
+  Room,
+  Rooms,
+  RoomUser,
+  RoomUsers,
+} from "vue-advanced-chat";
 import "vue-advanced-chat/dist/vue-advanced-chat.css";
+import { BenefitService } from "@/services/benefit.service";
+import {
+  IUser,
+  IConversation,
+  IMessage,
+  IsendingMessage,
+} from "@/interfaces/liste-conversations.interfaces";
+import { IRoom, IRooms } from "@/interfaces/chat.interfaces";
 
 export default Vue.extend({
   components: {
@@ -30,89 +50,67 @@ export default Vue.extend({
   },
   data() {
     return {
-      roomsLoaded: true, // go set true when all rooms are loaded
+      roomsLoaded: false, // go set true when all rooms are loaded
       loadingRooms: false,
       messagesLoaded: false, // go set true when all messages from a coversation are loaded
       loadFirstRoom: false,
       toFalse: false,
+      roomId: null as unknown as number,
 
       rooms: [
-        {
-          roomId: 1,
-          roomName: "Room 1",
-          avatar: "http://lorempixel.com/400/200/",
-          unreadCount: 4,
-          lastMessage: {
-            content: "Wikilix",
-            sender_id: 1234,
-            username: "John Doe",
-            timestamp: "10:20",
-            date: 123242424,
-            saved: true,
-            distributed: false,
-            seen: false,
-            new: true,
-          },
-          users: [
-            {
-              _id: 1234,
-              username: "John Doe",
-              avatar: "http://lorempixel.com/400/300/",
-              status: {
-                state: "offline",
-                last_changed: "today, 14:30",
-              },
-            },
-            {
-              _id: 4321,
-              username: "John Snow",
-              avatar: "http://lorempixel.com/400/200/",
-              status: {
-                state: "offline",
-                last_changed: "14 July, 20:00",
-              },
-            },
-          ],
-          typingUsers: [4321],
-        },
-        {
-          roomId: 2,
-          roomName: "Room 5",
-          avatar: "http://lorempixel.com/500/100/",
-          unreadCount: 1,
-          lastMessage: {
-            content: "The last msg",
-            sender_id: 1234,
-            username: "John Doe",
-            timestamp: "10:20",
-            date: 123242424,
-            saved: true,
-            distributed: false,
-            seen: false,
-            new: true,
-          },
-          users: [
-            {
-              _id: 1234,
-              username: "John Doe",
-              avatar: "http://lorempixel.com/400/300/",
-              status: {
-                state: "offline",
-                last_changed: "today, 14:30",
-              },
-            },
-            {
-              _id: 5678,
-              username: "John Snow",
-              avatar: "http://lorempixel.com/400/200/",
-              status: {
-                state: "offline",
-                last_changed: "14 July, 20:00",
-              },
-            },
-          ],
-          typingUsers: [5678],
-        },
+        // {
+        //   roomId: 1,
+        //   roomName: "Room 1",
+        //   avatar: "http://lorempixel.com/400/200/",
+        //   users: [
+        //     {
+        //       _id: 1234,
+        //       username: "John Doe",
+        //       avatar: "http://lorempixel.com/400/300/",
+        //       status: {
+        //         state: "offline",
+        //         last_changed: "today, 14:30",
+        //       },
+        //     },
+        //     {
+        //       _id: 4321,
+        //       username: "John Snow",
+        //       avatar: "http://lorempixel.com/400/200/",
+        //       status: {
+        //         state: "offline",
+        //         last_changed: "14 July, 20:00",
+        //       },
+        //     },
+        //   ],
+        //   typingUsers: [4321],
+        // },
+        // {
+        //   roomId: 2,
+        //   roomName: "Room 5",
+        //   avatar: "http://lorempixel.com/500/100/",
+        //   unreadCount: 1,
+        //   users: [
+        //     {
+        //       _id: 1234,
+        //       username: "John Doe",
+        //       avatar: "http://lorempixel.com/400/300/",
+        //       status: {
+        //         state: "offline",
+        //         last_changed: "today, 14:30",
+        //       },
+        //     },
+        //     {
+        //       _id: 5678,
+        //       username: "John Snow",
+        //       avatar: "http://lorempixel.com/400/200/",
+        //       status: {
+        //         state: "offline",
+        //         last_changed: "14 July, 20:00",
+        //       },
+        //     },
+        //   ],
+        //   typingUsers: [5678],
+        // },
       ],
       messages: [] as Messages,
       menuActions: [
@@ -176,8 +174,13 @@ export default Vue.extend({
         },
 
         header: {
+<<<<<<< HEAD
           background: "#fff",
           colorRoomName: "rgba(251, 178, 49, 1)", //"#0a0a0a",
+=======
+          background: "rgba(251, 178, 49, 1)", //"#fff",
+          colorRoomName: "#0a0a0a",
+>>>>>>> origin/laravel-cli
           colorRoomInfo: "#9ca6af",
         },
 
@@ -280,48 +283,169 @@ export default Vue.extend({
           dropdownScroll: "#0a0a0a",
         },
       },
-      currentUserId: 1234,
+      idSecondUser: null as unknown as number,
+      currentRoom: null as unknown as Room,
+      allSecondUser: [] as number[],
+      // currentUserId: 1234,
     };
   },
   computed: {
+    currentUserId() {
+      return this.$store.getters["auth/user"].id;
+    },
     loadedRooms() {
       return this.rooms.slice(0, this.roomsLoadedCount);
     },
     screenHeight() {
       return this.isDevice ? window.innerHeight + "px" : "calc(100vh - 169px)";
     },
-    currentUserId() {
-      return this.$store.getters["auth/id"];
-    },
   },
   methods: {
-    menuActionHandler({ roomId, action }) {
-      switch (action.name) {
-        case "inviteUser":
-        // call a method to invite a user to the room
-        case "removeUser":
-        // call a method to remove a user from the room
-        case "deleteRoom":
-        // call a method to delete the room
-      }
+    getDate(localDate: string) {
+      let myDate = new Date(localDate);
+      return myDate.toLocaleDateString("fr-FR", {
+        day: "numeric",
+        month: "long",
+      });
+    },
+    async fetchRooms() {
+      await this.$store.dispatch("auth/getRooms");
+      const getAllRooms = this.$store.getters["auth/rooms"];
+      let listRecepteur = [] as number[];
+      const allRooms = [] as IRooms;
+
+      const authUser = new Object() as RoomUser;
+      authUser._id = this.$store.getters["auth/user"].id;
+      authUser.username = this.$store.getters["auth/user"].name;
+      authUser.avatar =
+        window.location.origin +
+        "/storage/" +
+        this.$store.getters["auth/user"].path_user;
+      authUser.status = {
+        state: "offline",
+        // lastChanged: "14 July, 20:00",
+        lastChanged: "",
+      };
+
+      getAllRooms.forEach((element: IConversation) => {
+        this.roomsLoaded = false;
+        if (
+          element.name_recepteur &&
+          element.name_recepteur &&
+          element.conversation &&
+          element.id_recepteur &&
+          !listRecepteur.includes(element.id_recepteur) &&
+          element.id_recepteur !== this.currentUserId
+        ) {
+          //http://lorempixel.com/400/200/
+          listRecepteur = [...listRecepteur, element.id_recepteur];
+          const localRoom = new Object() as IRoom;
+
+          localRoom.roomId = element.conversation;
+          localRoom.roomName = element.name_recepteur;
+          if (element.image_recepteur) {
+            localRoom.avatar =
+              window.location.origin + "/storage/" + element.image_recepteur;
+          } else {
+            localRoom.avatar = "http://lorempixel.com/450/250/";
+          }
+
+          const secondUser = new Object() as RoomUser;
+          secondUser._id = element.id_recepteur;
+          this.allSecondUser = [...this.allSecondUser, secondUser._id];
+          secondUser.username = element.name_recepteur;
+          secondUser.avatar = element.image_recepteur;
+          secondUser.status = {
+            state: "offline",
+            lastChanged: "",
+          };
+
+          localRoom.users = [authUser, secondUser];
+          // console.log(secondUser);
+          // allRooms = [...allRooms, localRoom]
+          allRooms.push(localRoom);
+          console.log(localRoom);
+        }
+      });
+      this.rooms = allRooms;
+      this.roomsLoaded = true;
+      console.log(allRooms);
+    },
+    async fetchLocalMessages({ room, options }) {
+      console.log(room);
+      // this.messagesLoaded = false;
+      this.currentRoom = room;
+      this.idSecondUser = room.users[1]._id;
+
+      // console.log(room.users[1]._id);
+      let allMessages = [] as Message[];
+      await this.$store.dispatch("auth/getMessages", {
+        conversation: { conversation: room.roomId.toString() },
+      });
+      const getAllMessages = this.$store.getters["auth/messages"];
+
+      getAllMessages.forEach((stateMessage: IMessage) => {
+        const roomMessage = new Object() as Message;
+        roomMessage._id = stateMessage.id;
+        roomMessage.content = stateMessage.contenus;
+        roomMessage.senderId = stateMessage.id_emmetteur;
+
+        roomMessage.date = this.getDate(stateMessage.created_at);
+
+        roomMessage.timestamp = stateMessage.created_at
+          .split(" ")[1]
+          .split(":")
+          .slice(0, 2)
+          .join(":");
+        allMessages = [...allMessages, roomMessage];
+        console.log(stateMessage.created_at);
+      });
+      this.messagesLoaded = false;
+      setTimeout(() => {
+        this.messages = [...allMessages];
+      }, 100);
+      this.messagesLoaded = true;
     },
 
-    messageActionHandler({ roomId, action, message }) {
-      switch (action.name) {
-        case "addMessageToFavorite":
-        // call a method to add a message to the favorite list
-        case "shareMessage":
-        // call a method to share the message with another user
-      }
+    async modLocalFetchMessage() {
+      let allMessages = [] as Message[];
+      await this.$store.dispatch("auth/getMessages", {
+        conversation: { conversation: this.currentRoom.roomId.toString() },
+      });
+      const getAllMessages = this.$store.getters["auth/messages"];
+      console.log(getAllMessages, this.currentRoom.roomId);
+
+      getAllMessages.forEach((stateMessage: IMessage) => {
+        const roomMessage = new Object() as Message;
+        roomMessage._id = stateMessage.id;
+        roomMessage.content = stateMessage.contenus;
+        roomMessage.senderId = stateMessage.id_emmetteur;
+
+        roomMessage.date = this.getDate(stateMessage.created_at);
+
+        roomMessage.timestamp = stateMessage.created_at
+          .split(" ")[1]
+          .split(":")
+          .slice(1)
+          .join(":");
+        allMessages = [...allMessages, roomMessage];
+      });
+
+      setTimeout(() => {
+        this.messages = [...allMessages];
+      }, 1000);
     },
+
     fetchMessages({ room, options }) {
+      console.log(room);
+
       this.messagesLoaded = false;
 
       // use timeout to imitate async server fetched data
       setTimeout(() => {
         this.messages = [
           {
-            _id: 7890,
+            _id: 1,
             content: "Mon premier message pour toi",
             senderId: 1234,
             username: "John Doe",
@@ -342,16 +466,9 @@ export default Vue.extend({
               duration: 14.4,
               url: "http://lorempixel.com/400/200/",
             },
-            reactions: {
-              wink: [
-                // 1234, // USER_ID
-                // 4321,
-              ],
-              laughing: [],
-            },
           },
           {
-            _id: 7891,
+            _id: 2,
             content: "Je te repondrai tres bientot",
             senderId: 4321,
             username: "John Snow",
@@ -364,13 +481,13 @@ export default Vue.extend({
             seen: true,
             disableActions: false,
             disableReactions: false,
-            reactions: {
-              wink: [
-                // 1234, // USER_ID
-                // 4321,
-              ],
-              laughing: [],
-            },
+            // reactions: {
+            //   wink: [
+            //     // 1234, // USER_ID
+            //     // 4321,
+            //   ],
+            //   laughing: [],
+            // },
           },
         ];
         this.messagesLoaded = true;
@@ -379,25 +496,82 @@ export default Vue.extend({
     openFile({ message }) {
       window.open(message.file.url, "_blank");
     },
-
-    async sendMessage({ content, roomId, file, replyMessage }) {
-      const message = {
-        sender_id: this.currentUserId,
-        content,
-        timestamp: new Date(),
-      };
-      if (file) {
-        message.file = {
-          name: file.name,
-          size: file.size,
-          type: file.type,
-          extension: file.extension || file.type,
-          url: file.localUrl,
-        };
+    async sendingMessage({
+      content,
+      roomId,
+      file,
+      replyMessage,
+    }): Promise<void> {
+      const userService = new AuthService();
+      const sending = {
+        conversation: roomId.toString(),
+        id_recepteur: this.idSecondUser.toString(),
+        id_emmetteur: this.currentUserId.toString(),
+        contenus: content,
+      } as IsendingMessage;
+      if (this.messages.length == 0) {
+        sending.conversation = "0";
       }
-      console.log("je viens d'envoyer un message");
+
+      console.log(sending);
+
+      const result = await userService.sendingMessage(sending);
+
+      if (result.statu == 1) {
+        console.log("message envoyé");
+
+        this.modLocalFetchMessage();
+      } else {
+        alert("erreur lors de la recuperation des messages");
+      }
+    },
+    async modSendingFirstMessage(idBenefitToChat: number): Promise<void> {
+      // let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
+      const userService = new AuthService();
+      const sending = {
+        conversation: "0",
+        id_recepteur: idBenefitToChat.toString(),
+        id_emmetteur: this.currentUserId.toString(),
+        contenus: "Bienvenue sur le chat de SpotEvent",
+      } as IsendingMessage;
+
+      const result = await userService.sendingMessage(sending);
+
+      if (result.statu == 1) {
+        console.log("message envoyé");
+        this.fetchRooms();
+
+        this.modLocalFetchMessage();
+      } else {
+        alert("erreur lors de la recuperation des messages");
+      }
     },
   },
+  async mounted() {
+    await this.fetchRooms();
+    let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
+    console.log(this.allSecondUser, idBenefitToChat);
+    if (idBenefitToChat && !this.allSecondUser.includes(idBenefitToChat)) {
+      // console.log(idBenefitToChat);
+      this.modSendingFirstMessage(idBenefitToChat);
+      console.log("nouvelle conversation");
+      this.$store.commit("auth/updateIdBenefitToChat", null);
+    } else if (idBenefitToChat) {
+      let idRoom = this.allSecondUser.indexOf(idBenefitToChat);
+      this.rooms[idRoom].roomId;
+      // this.currentRoom = this.rooms[idRoom].roomId;
+      this.roomId = this.rooms[idRoom].roomId;
+      console.log(this.rooms[idRoom]);
+
+      console.log("conversation existence");
+    }
+  },
+  // beforeMount() {
+  //   let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
+  //   if (idBenefitToChat) {
+  //     console.log(idBenefitToChat);
+  //   }
+  // },
 });
 </script>
 <style >

@@ -16,6 +16,8 @@ use App\Mail\notifixation;
 use Input;
 use Illuminate\Support\Facades\Mail;
 use DB;
+use App\Conversation;
+use App\Message;
 
 
 class ApiController extends Controller
@@ -309,16 +311,180 @@ class ApiController extends Controller
 
     }
 
+    public function getConversation(Request $request){
 
-    public function saveImage(){
+        try{
+            $id_user = $request['id_user'];
+
+            $conversation = Conversation::where('conversations.id_user',$id_user)
+                ->leftjoin('users','users.id','=','conversations.id_recepteur')
+                ->leftjoin('messages','messages.conversation','=','conversations.cod_conversation')
+                ->select('users.id as id_recepteur','users.name as name_recepteur','users.path_user as image_recepteur','messages.id as id_message','messages.conversation as conversation')
+                ->orderBy('messages.id', 'desc')
+                ->distinct()
+                ->get();
+
+            //dd($conversation);
+
+            if(count($conversation) != '0'){
+                $message = "Conversation disponible";
+                return response()->json(['statu'=>1,'message' => $message, 'conversation' => $conversation]);
+            }else{
+                $message = "Aucune conversation disponible";
+                return response()->json(['statu'=> 0,'message' => $message, 'conversation' => $conversation]);
+            }
+
+
+
+        }catch(\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
 
     }
 
-    public function saveProfile(){
+    public function getMessage(Request $request){
+
+        try{
+            $conversation = $request['conversation'];
+
+            $messages = Message::where('conversation','=',$conversation)->get();
+
+            //dd($conversation);
+
+            if(count($messages) != '0'){
+                $message = "message disponible";
+                return response()->json(['statu'=>1,'message' => $message, 'messages' => $messages]);
+            }else{
+                $message = "Aucun message disponible";
+                return response()->json(['statu'=> 0,'message' => $message, 'messages' => $messages]);
+            }
+
+
+
+        }catch(\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+
+    }
+
+    public function saveMessage(Request $request){
+
+        try{
+
+            $id_emmetteur = $request['id_emmetteur'];
+            $contenus = $request['contenus'];
+            $conversation = $request['conversation'];
+            $id_recepteur = $request['id_recepteur'];
+
+            
+            if($conversation > 0){
+
+                $message = new Message;
+
+                $message->id_emmetteur = $id_emmetteur;
+                $message->contenus = $contenus;
+                $message->conversation = $conversation;
+
+                $message->save();
+
+                if($message){
+                    $resultat = "message enregistre";
+                    return response()->json(['statu'=>1,'message' => $resultat]);
+
+                }else{
+                    $resultat = "message echec";
+                    return response()->json(['statu'=>1,'message' => $resultat]);
+                }
+
+            }else{
+
+                    $conversatiom_exsite = Conversation::where('id_user', $id_emmetteur)
+                    ->where('id_recepteur',$id_recepteur)->first();
+
+                    if($conversatiom_exsite){
+
+                        $message = new Message;
+
+                        $message->id_emmetteur = $id_emmetteur;
+                        $message->contenus = $contenus;
+                        $message->conversation = $conversatiom_exsite->cod_conversation;
+
+                        $message->save();
+
+                        if($message){
+                            $resultat = "message enregistre";
+                            return response()->json(['statu'=>1,'message' => $resultat]);
+        
+                        }else{
+                            $resultat = "message echec";
+                            return response()->json(['statu'=>1,'message' => $resultat]);
+                        }
+
+                    }else{
+
+                        // Creation de la conversation
+                        $code = time();
+                        $conversation = new Conversation;
+
+                        $conversation->id_user = $request->id_emmetteur;
+                        $conversation->id_recepteur = $id_recepteur;
+                        $conversation->cod_conversation = $code;
+
+                        $conversation->save();
+
+                        // Enregistrement du messages dans la table messages
+
+                        $message = new Message;
+
+                        $message->id_emmetteur = $id_emmetteur;
+                        $message->contenus = $contenus;
+                        $message->conversation = $code;
+
+                        $message->save();
+
+                        if($message AND $conversation){
+                            $resultat = "message et conversation enregistre";
+                            return response()->json(['statu'=>1,'message' => $resultat]);
+
+                        }else{
+                            $resultat = "message et conversation echec";
+                            return response()->json(['statu'=>1,'message' => $resultat]);
+                        }
+
+                }
+                
+            }
+
+
+
+        }catch(\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+
+    }
+
+
+    public function saveImage(Request $request){
+
+        $id_user = $request['estmation_max'];
+       
+
+    }
+
+    public function updateProfile(Request $request){
+
+        $id_user = $request['id_user'];
+        $name = $request['name'];
+        $email = $request['email'];
+        $phone = $request['phone'];
+
         
     }
 
-    public function newPassword(){
+    public function newPassword(Request $request){
         
     }
 

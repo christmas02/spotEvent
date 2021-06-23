@@ -1,5 +1,10 @@
 import { ILoginResponse, IUser } from "@/interfaces/auth.interfaces";
 import { IFavorite } from "@/interfaces/favorite.interface";
+import {
+    IConversation,
+    IMessage
+} from "@/interfaces/liste-conversations.interfaces";
+import { Message } from "vue-advanced-chat";
 import { IAuthState } from "./interfaces/state.interface";
 
 export default {
@@ -24,5 +29,14 @@ export default {
 
     updateFavoritesList(state: IAuthState, val: IFavorite[]): void {
         state.favorites = val;
+    },
+    updateRooms(state: IAuthState, val: IConversation[]): void {
+        state.rooms = val;
+    },
+    updateMessages(state: IAuthState, val: IMessage[]): void {
+        state.messages = val;
+    },
+    updateIdBenefitToChat(state: IAuthState, val: number): void {
+        state.idBenefitToChat = val;
     }
 };

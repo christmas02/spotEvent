@@ -75,7 +75,7 @@
                   </li>--}}
   
                   <li><a href="/liste/demandes/{{ $infoUser->id }}"><i class="fa fa-table"></i> Liste des demandes </a></li>
-                  <li><a href="#"><i class="fa fa-comments"></i> Messageries </a></li>
+                  <li><a href="/messageries/{{ $infoUser->id }}"><i class="fa fa-comments"></i> Messageries </a></li>
                   <li><a href="/statistique/{{ $infoUser->id }}"><i class="fa fa-bar-chart-o"></i> Statistique </a></li>
                   <li><a href="#"><i class="fa fa-cog"></i> Parametre<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -307,32 +307,38 @@
     <!-- jQuery Smart Wizard -->
     <script src="{{asset('/admin/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
+            $('body').on('click', '#messagerie', function () {
+              var post_code = $(this).data('code');
+              
+              $.get('/liste_message/'+post_code, function (data) {
+                console.log(post_code);
+                console.log(data);
+                $('#modalMessagerie').modal('show');
+                  $('#mesgs').empty();
+                  $.each(data, function(index, subcatObj){
+                    $('#mesgs').append();
+                  });
+              })
+              
+               
+            });
 
-    <script type="text/javascript">
-      function initialize() {
-          var options = {
-              //types: ['(cities)'],
-              componentRestrictions: {country: "ci"}
-          };
-          var input = document.getElementById('autocomplete');
-          var autocomplete = new google.maps.places.Autocomplete(input, options);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+ 
+        });
 
-      function positions() {
-        var geocoder = new google.maps.Geocoder();
-        var address = document.getElementById('autocomplete').value;
-
-        geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK){
-          var latitude = results[0].geometry.location.lat();
-          var longitude = results[0].geometry.location.lng();
-          document.getElementById('longitude').value = longitude;
-          document.getElementById('latitude').value = latitude;	
-        } 
-        }); 
-      }
-	 </script>
+        
+      
+        
+        
+      </script>
+     
   </body>
 </html>

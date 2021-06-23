@@ -99,7 +99,7 @@
                                         <div class="">
                                             <a href="/fiche/prestataires/{{ $items->id }}/{{ $infoUser->id }}" class="btn btn-modal"><i class="fa fa-eye"></i></a>
                                             <a href="#" data-toggle="modal" data-target="#exampleModalSetting{{$items->id}}" class="btn btn-modal"><i class="fa fa-cog"></i></a>
-                                            <a href="#" data-toggle="modal" data-target="#exampleModalMessagerie{{$items->id}}" class="btn btn-modal"><i class="fa fa-envelope"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#modalMessagerie{{$items->id}}" class="btn btn-modal"><i class="fa fa-envelope"></i></a>
                                             {{--<a href="#" data-toggle="modal" data-target="#exampleModalDelet{{$items->id}}" class="btn btn-modal"><i class="fa fa-trash"></i></a>--}}
                                         </div> 
                                     </td>
@@ -294,25 +294,50 @@
 @endforeach
 
 @foreach($listePrestation as $items)
-<!-- Modal -->
-<div class="modal fade" id="exampleModalMessagerie{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal fade" id="modalMessagerie{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-     
-      <div class="modal-body">
-      <form>
-        <label>Message</label>
-        <textarea class="form-control"></textarea>
       
+      <div class="modal-body">
+        <div class="mesgs">
+            <div class="msg_history">
+                <div class="incoming_msg">
+                    <div class="incoming_msg_img">
+                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> 
+                    </div>
+                    <div class="received_msg">
+                        <div class="received_withd_msg">
+                        <p>Test which is a new approach to have all
+                            solutions</p>
+                        <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                    </div>
+                </div>
+                <div class="outgoing_msg">
+                <div class="sent_msg">
+                    <p>Test which is a new approach to have all
+                    solutions</p>
+                    <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                </div>
+
+            </div>
+            <div class="type_msg">
+                <form method="post" action="/save/message">
+                @csrf
+                    <div class="input_msg_write">
+                        <input type="hidden" value="0" name="conversation">
+                        <input type="hidden" value="{{ $infoUser->id }}" name="id_emmetteur">
+                        <input type="hidden" value="{{$items->id_user}}" name="id_recepteur">
+                        <input type="text" name="contenus" class="write_msg" placeholder="Type a message" />
+                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
       </div>
-      <div class="modal-footer-btn">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-info">Envoyer</button>
-      </div>
-      </form>
     </div>
   </div>
 </div>
+
 @endforeach
 
 
