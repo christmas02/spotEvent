@@ -447,11 +447,11 @@ class ApiController extends Controller
                         if($message AND $conversation){
                             $resultat = "message et conversation enregistre";
                             $convertions = $code;
-                            return response()->json(['statu'=>1,'message' => $resultat,'conversation'=> $convertions ]);
+                            return response()->json(['statu'=> 1,'message' => $resultat,'conversation'=> $convertions ]);
 
                         }else{
                             $resultat = "message et conversation echec";
-                            return response()->json(['statu'=0,'message' => $resultat]);
+                            return response()->json(['statu'=> 0,'message' => $resultat]);
                         }
 
                 }
