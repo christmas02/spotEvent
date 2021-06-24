@@ -331,10 +331,10 @@
                     $('.msg_history').append(function(){
                       var id = subcatObj.id_emmetteur ;
                      
-                      if(id == id){
-                        return '<div class="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>'+subcatObj.contenus+'</p><span class="time_date">'+subcatObj.created_at+'</span>'+'</div></div>';
+                      if(id == id_user){
+                        return '<div class="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><span>'+"Moi :"+'</span><p>'+subcatObj.contenus+'</p><span class="time_date">'+subcatObj.created_at+'</span>'+'</div></div>';
                       }else{
-                        return '<div class="outgoing_msg"><div class="sent_msg"><p>'+subcatObj.contenus+'</p><span class="time_date">'+subcatObj.created_at+'</span>'+'</div></div>';
+                        return '<div class="outgoing_msg"><div class="sent_msg"><span>'+"Lui :"+'</span><p>'+subcatObj.contenus+'</p><span class="time_date">'+subcatObj.created_at+'</span>'+'</div></div>';
                       }
                       
                     });

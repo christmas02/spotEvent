@@ -348,6 +348,7 @@ class PrestataireController extends Controller
                 $conversatiom_exsite = Conversation::where('id_user', $id_recepteur)
                 ->where('id_recepteur',$id_emmetteur)->first();
 
+
                 if($conversatiom_exsite){
                     //dd($conversatiom_exsite->cod_conversation);
                     $message = new Message;

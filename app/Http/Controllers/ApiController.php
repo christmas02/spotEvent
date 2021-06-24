@@ -395,7 +395,7 @@ class ApiController extends Controller
 
                 }else{
                     $resultat = "message echec";
-                    return response()->json(['statu'=>1,'message' => $resultat]);
+                    return response()->json(['statu'=>0,'message' => $resultat]);
                 }
 
             }else{
@@ -419,7 +419,7 @@ class ApiController extends Controller
         
                         }else{
                             $resultat = "message echec";
-                            return response()->json(['statu'=>1,'message' => $resultat]);
+                            return response()->json(['statu'=>0,'message' => $resultat]);
                         }
 
                     }else{
@@ -446,11 +446,12 @@ class ApiController extends Controller
 
                         if($message AND $conversation){
                             $resultat = "message et conversation enregistre";
-                            return response()->json(['statu'=>1,'message' => $resultat]);
+                            $convertions = $code;
+                            return response()->json(['statu'=>1,'message' => $resultat,'conversation'=> $convertions ]);
 
                         }else{
                             $resultat = "message et conversation echec";
-                            return response()->json(['statu'=>1,'message' => $resultat]);
+                            return response()->json(['statu'=0,'message' => $resultat]);
                         }
 
                 }

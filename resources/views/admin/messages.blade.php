@@ -43,7 +43,7 @@
                                     </a>
                                     <div class="media-body">
                                         <a class="title" href="#">{{ $items->name }}</a>
-                                        <p><strong></strong> {{ $items->code }}</p>
+                                        <p><strong></strong> {{ $items->contenus }}</p>
                                         <p> <small></small>
                                         </p>
                                     </div>

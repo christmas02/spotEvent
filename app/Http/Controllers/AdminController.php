@@ -330,7 +330,7 @@ class AdminController extends Controller
         $conversation = Conversation::where('conversations.id_user',$id)
         ->leftjoin('users','users.id','=','conversations.id_recepteur')
         ->leftjoin('messages','messages.conversation','=','conversations.cod_conversation')
-        ->select('users.*','messages.id as id_message','messages.conversation as code')
+        ->select('users.*','messages.id as id_message','messages.contenus','messages.conversation as code')
         ->orderBy('messages.id', 'desc')
         //->groupBy('messages.conversation')
         //->distinct('messages.conversation')
