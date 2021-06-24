@@ -328,10 +328,10 @@ class ApiController extends Controller
 
             if(count($conversation) != '0'){
                 $message = "Conversation disponible";
-                return response()->json(['statu'=>0,'message' => $message, 'conversation' => $conversation]);
+                return response()->json(['statu'=> 1,'message' => $message, 'conversation' => $conversation]);
             }else{
                 $message = "Aucune conversation disponible";
-                return response()->json(['statu'=> 1,'message' => $message, 'conversation' => $conversation]);
+                return response()->json(['statu'=> 0,'message' => $message, 'conversation' => $conversation]);
             }
 
 
