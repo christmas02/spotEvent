@@ -310,12 +310,14 @@ export default Vue.extend({
       const allRooms = [] as IRooms;
 
       const authUser = new Object() as RoomUser;
+
       authUser._id = this.$store.getters["auth/user"].id;
       authUser.username = this.$store.getters["auth/user"].name;
       authUser.avatar =
         window.location.origin +
         "/storage/" +
         this.$store.getters["auth/user"].path_user;
+
       authUser.status = {
         state: "offline",
         // lastChanged: "14 July, 20:00",
@@ -362,12 +364,14 @@ export default Vue.extend({
           console.log(localRoom);
         }
       });
+
       this.rooms = allRooms;
       this.roomsLoaded = true;
-      console.log(allRooms);
+      return allRooms;
     },
+
     async fetchLocalMessages({ room, options }) {
-      console.log(room);
+      // console.log(room);
       // this.messagesLoaded = false;
       this.currentRoom = room;
       this.idSecondUser = room.users[1]._id;
@@ -508,21 +512,18 @@ export default Vue.extend({
         sending.conversation = "0";
       }
 
-      console.log(sending);
-
       const result = await userService.sendingMessage(sending);
 
       if (result.statu == 1) {
-        console.log("message envoyé");
-
         this.modLocalFetchMessage();
       } else {
         alert("erreur lors de la recuperation des messages");
       }
     },
-    async modSendingFirstMessage(idBenefitToChat: number): Promise<void> {
+    async modSendingFirstMessage(idBenefitToChat: number): Promise<any> {
       // let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
       const userService = new AuthService();
+
       const sending = {
         conversation: "0",
         id_recepteur: idBenefitToChat.toString(),
@@ -533,33 +534,45 @@ export default Vue.extend({
       const result = await userService.sendingMessage(sending);
 
       if (result.statu == 1) {
-        console.log("message envoyé");
-        this.fetchRooms();
+        await this.fetchRooms();
 
-        this.modLocalFetchMessage();
+        this.roomId = result.conversation;
+
+        await this.modLocalFetchMessage();
+
+        return result;
       } else {
         alert("erreur lors de la recuperation des messages");
       }
     },
   },
-  async mounted() {
+  async beforeMount() {
     await this.fetchRooms();
-    let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
-    console.log(this.allSecondUser, idBenefitToChat);
+    const idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];
+    console.log("idBenefitToChat", idBenefitToChat);
+
+    // console.log(this.allSecondUser, idBenefitToChat);
+    let idRoom = null;
+
     if (idBenefitToChat && !this.allSecondUser.includes(idBenefitToChat)) {
       // console.log(idBenefitToChat);
-      this.modSendingFirstMessage(idBenefitToChat);
-      console.log("nouvelle conversation");
-      this.$store.commit("auth/updateIdBenefitToChat", null);
-    } else if (idBenefitToChat) {
-      let idRoom = this.allSecondUser.indexOf(idBenefitToChat);
-      this.rooms[idRoom].roomId;
-      // this.currentRoom = this.rooms[idRoom].roomId;
-      this.roomId = this.rooms[idRoom].roomId;
-      console.log(this.rooms[idRoom]);
+      await this.modSendingFirstMessage(idBenefitToChat);
+      // console.log("nouvelle conversation");
 
-      console.log("conversation existence");
+      idRoom = this.allSecondUser.indexOf(idBenefitToChat);
+
+      this.roomId = this.rooms[idRoom].roomId;
+
+      console.log("id room", this.rooms[idRoom].roomId);
+
+      // this.$store.commit("auth/updateIdBenefitToChat", null);
+    } else if (idBenefitToChat) {
+      idRoom = this.allSecondUser.indexOf(idBenefitToChat);
+      this.roomId = this.rooms[idRoom].roomId;
     }
+
+    //  this.rooms[idRoom].roomId;
+    // this.currentRoom = this.rooms[idRoom].roomId;
   },
   // beforeMount() {
   //   let idBenefitToChat = this.$store.getters["auth/idBenefitToChat"];

@@ -44,4 +44,5 @@ export interface IsendingMessage {
 export interface IsendingMessageResponse {
     statu: number;
     message: string;
+    conversation: number;
 }
