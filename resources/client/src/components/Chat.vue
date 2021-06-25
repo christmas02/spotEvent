@@ -174,8 +174,8 @@ export default Vue.extend({
         },
 
         header: {
-          background: "#fff",
-          colorRoomName: "rgba(251, 178, 49, 1)", //"#0a0a0a",
+          background: "rgba(251, 178, 49, 1)", //"#fff",
+          colorRoomName: "#0a0a0a", //"rgba(251, 178, 49, 1)", //"#0a0a0a",
           colorRoomInfo: "#9ca6af",
         },
 
@@ -292,7 +292,7 @@ export default Vue.extend({
       return this.rooms.slice(0, this.roomsLoadedCount);
     },
     screenHeight() {
-      return this.isDevice ? window.innerHeight + "px" : "calc(100vh - 169px)";
+      return this.isDevice ? window.innerHeight + "px" : "calc(100vh - 105px)";
     },
   },
   methods: {
@@ -584,6 +584,6 @@ export default Vue.extend({
 </script>
 <style >
 .chat * {
-  z-index: 0;
+  z-index: auto;
 }
 </style>

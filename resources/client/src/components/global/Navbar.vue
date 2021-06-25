@@ -118,7 +118,9 @@ export default Vue.extend({
     },
     logout() {
       this.$store.commit("auth/logout");
-      if (this.$route.path != "/") this.goHome();
+      if (this.$route.path != "/") {
+         this.goHome();
+      }
     },
     chat(){
       this.$store.commit("auth/updateIdBenefitToChat", null);

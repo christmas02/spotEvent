@@ -258,6 +258,9 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+#benefit-page {
+  margin-top: 25px;
+}
 .section {
   margin-bottom: 40px;
 }
