@@ -40,6 +40,8 @@ Route::get('/messageries/{id}','AdminController@message');
 Route::get('/liste_message/{code}','AdminController@getmessage');
 Route::post('/save/message','AdminController@saveMessage');
 
+Route::post('/save/message/prestataire','PrestataireController@saveMessage');
+
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');

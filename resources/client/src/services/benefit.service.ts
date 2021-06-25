@@ -8,11 +8,11 @@ import {
 } from "@/interfaces/provider.interface";
 import { IClick } from "@/interfaces/app-services.interfaces";
 import { IFavoriteResponse } from "@/interfaces/favorite.interface";
-import {
-    IListeCnversationsResponse,
-    IConversation,
-    IUser
-} from "@/interfaces/liste-conversations.interfaces";
+// import {
+//     IListeCnversationsResponse,
+//     IConversation,
+//     IUser
+// } from "@/interfaces/liste-conversations.interfaces";
 
 export class BenefitService extends CommonService {
     async getAll(): Promise<BeneftsResponse> {

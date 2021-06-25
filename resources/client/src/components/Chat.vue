@@ -174,8 +174,8 @@ export default Vue.extend({
         },
 
         header: {
-          background: "rgba(251, 178, 49, 1)", //"#fff",
-          colorRoomName: "#0a0a0a",
+          background: "#fff",
+          colorRoomName: "rgba(251, 178, 49, 1)", //"#0a0a0a",
           colorRoomInfo: "#9ca6af",
         },
 
@@ -187,7 +187,7 @@ export default Vue.extend({
         },
 
         content: {
-          background: "#f8f9fa",
+          background: "rgba(230, 230, 255, .5)", //"#f8f9fa",
         },
 
         sidemenu: {
@@ -292,7 +292,7 @@ export default Vue.extend({
       return this.rooms.slice(0, this.roomsLoadedCount);
     },
     screenHeight() {
-      return this.isDevice ? window.innerHeight + "px" : "calc(100vh - 105px)";
+      return this.isDevice ? window.innerHeight + "px" : "calc(100vh - 169px)";
     },
   },
   methods: {

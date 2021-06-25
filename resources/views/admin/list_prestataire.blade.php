@@ -293,53 +293,6 @@
 </div>
 @endforeach
 
-@foreach($listePrestation as $items)
-<div class="modal fade" id="modalMessagerie{{$items->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-        <div class="mesgs">
-            <div class="msg_history">
-                <div class="incoming_msg">
-                    <div class="incoming_msg_img">
-                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> 
-                    </div>
-                    <div class="received_msg">
-                        <div class="received_withd_msg">
-                        <p>Test which is a new approach to have all
-                            solutions</p>
-                        <span class="time_date"> 11:01 AM    |    June 9</span></div>
-                    </div>
-                </div>
-                <div class="outgoing_msg">
-                <div class="sent_msg">
-                    <p>Test which is a new approach to have all
-                    solutions</p>
-                    <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-                </div>
-
-            </div>
-            <div class="type_msg">
-                <form method="post" action="/save/message">
-                @csrf
-                    <div class="input_msg_write">
-                        <input type="hidden" value="0" name="conversation">
-                        <input type="hidden" value="{{ $infoUser->id }}" name="id_emmetteur">
-                        <input type="hidden" value="{{$items->id_user}}" name="id_recepteur">
-                        <input type="text" name="contenus" class="write_msg" placeholder="Type a message" />
-                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-@endforeach
-
 
 @foreach($listePrestation as $items)
 <!-- Modal -->

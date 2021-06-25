@@ -5,23 +5,6 @@ import store from "@/store";
 import { IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
 
 export default {
-    // async getRooms(
-    //     { commit, state }: { commit: any; state: IBenefitState },
-    //     force = false
-    // ): Promise<void> {
-    //     if (force || state.benefits.length === 0) {
-    //         const benefitService = new BenefitService();
-
-    //         const result = await benefitService.getRooms({ id_user: 13 });
-
-    //         if (result.statu == 1) {
-    //             // commit("store", result.listPrestation);
-    //             console.log(result);
-    //         } else {
-    //             alert("erreur lors de la recuperation des rooms");
-    //         }
-    //     }
-    // },
     async fetchAll(
         { commit, state }: { commit: any; state: IBenefitState },
         force = false

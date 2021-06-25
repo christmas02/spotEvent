@@ -332,6 +332,50 @@
         });
     </script>
 
+<script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('body').on('click', '#messagerie', function () {
+              var post_code = $(this).data('code');
+              var id_user = $(this).data('id_user');
+              var id_recepteur = $(this).data('id_recepteur');
+              
+              $.get('/liste_message/'+post_code, function (data) {
+                console.log(post_code);
+                console.log(id_user);
+                console.log(id_recepteur);
+                console.log(data);
+                $('#modalMessagerie').modal('show');
+                $('#recepteur').val(id_recepteur);
+                  
+                  $.each(data, function(index, subcatObj){
+                    $('.msg_history').append(function(){
+                      var id = subcatObj.id_emmetteur ;
+                     
+                      if(id == id_user){
+                        return '<div class="incoming_msg"><div class="received_msg"><div class="received_withd_msg">'+"Moi :"+'<p>'+subcatObj.contenus+'</p><span class="time_date">'+subcatObj.created_at+'</span>'+'</div></div>';
+                      }else{
+                        return '<div class="outgoing_msg"><div class="sent_msg"><span>'+"Lui :"+'</span><p>'+subcatObj.contenus+'</p><span class="time_date">'+subcatObj.created_at+'</span>'+'</div></div>';
+                      }
+                      
+                    });
+                  });
+              })
+              
+               
+            });
+
+ 
+        });
+
+    
+    </script>
+
     <script type="text/javascript">
       function initialize() {
           var options = {

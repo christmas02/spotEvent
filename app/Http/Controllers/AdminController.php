@@ -255,7 +255,6 @@ class AdminController extends Controller
     ////// MESSAGERIE ///////////
 
     public function saveMessage(Request $request){
-
         try{
 
             $id_emmetteur = $request->id_emmetteur;
@@ -263,8 +262,6 @@ class AdminController extends Controller
             $conversation = $request->conversation;
 
             $id_recepteur = $request->id_recepteur;
-
-            
 
             if($conversation > 0){
 
@@ -333,7 +330,7 @@ class AdminController extends Controller
         $conversation = Conversation::where('conversations.id_user',$id)
         ->leftjoin('users','users.id','=','conversations.id_recepteur')
         ->leftjoin('messages','messages.conversation','=','conversations.cod_conversation')
-        ->select('users.*','messages.id as id_message','messages.conversation as code')
+        ->select('users.*','messages.id as id_message','messages.contenus','messages.conversation as code')
         ->orderBy('messages.id', 'desc')
         //->groupBy('messages.conversation')
         //->distinct('messages.conversation')
