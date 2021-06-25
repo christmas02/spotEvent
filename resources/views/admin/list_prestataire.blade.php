@@ -99,7 +99,7 @@
                                         <div class="">
                                             <a href="/fiche/prestataires/{{ $items->id }}/{{ $infoUser->id }}" class="btn btn-modal"><i class="fa fa-eye"></i></a>
                                             <a href="#" data-toggle="modal" data-target="#exampleModalSetting{{$items->id}}" class="btn btn-modal"><i class="fa fa-cog"></i></a>
-                                            <a href="#" data-toggle="modal" data-target="#modalMessagerie{{$items->id}}" class="btn btn-modal"><i class="fa fa-envelope"></i></a>
+                                            <a href="javascript:void(0)" id="chat" data-id_recepteur="{{ $items->id_user }}" data-id_user="{{ $infoUser->id }}" class="btn btn-modal"><i class="fa fa-envelope"></i></a>
                                             {{--<a href="#" data-toggle="modal" data-target="#exampleModalDelet{{$items->id}}" class="btn btn-modal"><i class="fa fa-trash"></i></a>--}}
                                         </div> 
                                     </td>
@@ -316,5 +316,33 @@
   </div>
 </div>
 @endforeach
+
+
+<!-- Modal demande formulaire -->
+<div class="modal fade" id="modalMessagerie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <div class="mesgs">
+            <div class="msg_history">
+            </div>    
+            <div class="type_msg">
+                <form method="post" action="/save/message">
+                @csrf
+                    <div class="input_msg_write">
+                        <input type="hidden" value="0" name="conversation">
+                        <input type="hidden" value="{{ $infoUser->id }}" name="id_emmetteur">
+                        <input type="hidden" id="recepteur" value="" name="id_recepteur">
+                        <input type="text" name="contenus" class="write_msg" placeholder="Message ..." required/>
+                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection

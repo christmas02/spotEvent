@@ -342,6 +342,30 @@ class AdminController extends Controller
         return view('admin.messages',compact('infoUser','conversation'));
     }
 
+    public function newMessage($emetteur,$recepteur){
+        
+        //dd($emetteur,$recepteur);
+        $convesation = Conversation::where('id_user',$emetteur)->where('id_recepteur',$recepteur)->first();
+        if($convesation){
+            $data = Message::where('conversation','=',$convesation->cod_conversation)->get();
+        }else{
+            $code = time();
+            $conversation = new Conversation;
+
+            $conversation->id_user = $emetteur;
+            $conversation->id_recepteur = $recepteur;
+            $conversation->cod_conversation = $code;
+
+            $conversation->save();
+
+            $data = $conversation;
+
+        }
+       
+        return response()->json($data);
+
+    }
+
     public function getmessage($code)
     {
         //
