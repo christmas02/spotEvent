@@ -43,10 +43,9 @@ Route::post('recherche','ApiController@serch');
 Route::post('filtreEstimation','ApiController@filtreEstimation'); // en cours
 Route::post('filtreCategorie','ApiController@filtreCategorie');
 
-Route::post('saveimage','ApiController@saveImage');
-Route::post('upadteprofile','ApiController@updateProfile');
-Route::post('newpassword','ApiController@newPassword');
-
+Route::post('saveImage','ApiController@saveImage');
+Route::post('upadteProfile','ApiController@updateProfile');
+Route::post('updatePassword','ApiController@updatePassword');
 
 Route::post('liste_conversation','ApiController@getConversation');
 Route::post('liste_message','ApiController@getMessage');

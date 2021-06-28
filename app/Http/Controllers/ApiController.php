@@ -15,6 +15,7 @@ use App\Demande;
 use App\Mail\notifixation;
 use Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use App\Conversation;
 use App\Message;
@@ -470,7 +471,29 @@ class ApiController extends Controller
 
     public function saveImage(Request $request){
 
-        $id_user = $request['estmation_max'];
+        $id_user = $request['id_user'];
+        $file=$request->file('image');
+
+        $name = $file->getClientOriginalName();
+        //$name = time() . '.' . $file->getClientOriginalExtension();
+        //$file->move('image',$name);
+        $storage_data = Storage::disk('public')->put($name, file_get_contents($file));
+
+        $user = User::where('id', $id_user)->first();
+
+        $user->path_user = $name;
+
+        $user->save();
+
+        if($user){
+            $resultat = "Mise a jour effectuer avec succes";
+            return response()->json(['statu'=>1,'message' => $resultat]);
+
+        }else{
+            $resultat = "Echec de la mise a jour";
+            return response()->json(['statu'=>0,'message' => $resultat]);
+        }
+        
        
 
     }
@@ -482,10 +505,46 @@ class ApiController extends Controller
         $email = $request['email'];
         $phone = $request['phone'];
 
+        $user = User::where('id', $id_user)->first();
+
+        if($user){
+        //dd($user);
+            $user->name = $name;
+            $user->email = $email;
+            $user->phone = $phone;
+
+            $user->save();
+
+            $resultat = "Mise a jour effectuer avec succes";
+            return response()->json(['statu'=>1,'message' => $resultat]);
+
+        }else{
+
+            $resultat = "Echec de la mise a jour";
+            return response()->json(['statu'=>0,'message' => $resultat]);
+        }
         
     }
 
-    public function newPassword(Request $request){
+    public function updatePassword(Request $request){
+
+        $id_user = $request['id_user'];
+        $password = $request['password'];
+
+        $user = User::whereId($id_user)->first();
+ 
+        if ($user){
+            $password = bcrypt($password);
+            $user->password = $password;
+
+            $resultat = 'La modification a correctement été effectuée';
+            return response()->json(['statu'=>1,'message' => $resultat]);
+ 
+        }else{
+
+            $resultat = 'Il y a eu une erreur, merci de recommencer';
+            return response()->json(['statu'=>0,'message' => $resultat]);
+        }
         
     }
 
