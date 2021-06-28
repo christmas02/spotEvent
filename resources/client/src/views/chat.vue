@@ -1,20 +1,5 @@
 <template>
   <default-layout :padding="padding">
-    <v-toolbar dark color="primary">
-      <!-- <v-btn icon dark @click="closeDialog">
-        <v-icon>mdi-close</v-icon>
-      </v-btn> -->
-      <v-toolbar-title>
-        <div class="d-flex">
-          <img
-             style="width: 60px; margin-right: 5px;"
-              :src="require('@/assets/light-logo.png')"
-            ></img>
-          <h3>Mon Chat</h3>
-        </div>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
     <chat></chat>
   </default-layout>
   <!-- <div>

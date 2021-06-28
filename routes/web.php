@@ -38,6 +38,7 @@ Route::post('/save/parametre','AdminController@saveParametre');
 
 Route::get('/messageries/{id}','AdminController@message');
 Route::get('/liste_message/{code}','AdminController@getmessage');
+Route::get('/new_message/{emetteur}/{recepteur}','AdminController@newMessage');
 Route::post('/save/message','AdminController@saveMessage');
 
 Route::post('/save/message/prestataire','PrestataireController@saveMessage');
