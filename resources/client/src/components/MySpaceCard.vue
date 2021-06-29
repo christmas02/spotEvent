@@ -112,7 +112,7 @@ export default Vue.extend({
           value.size < 2000000 ||
           "Avatar size should be less than 2 MB!",
       ],
-      pathUser: this.$store.getters["auth/user"].path_user,
+      // pathUser: this.$store.getters["auth/user"].path_user,
     };
   },
   methods: {
@@ -144,27 +144,21 @@ export default Vue.extend({
       // this.selectedFile = e.target.files[0];
       const myUser = new Object() as ISaveImage;
       myUser.id_user = this.id;
-      // let reader = new FileReader();
-      // reader.readAsDataURL(file);
-      // reader.onload = function () {
-      //   myUser.image = reader.result;
-      //   console.log(myUser);
-      // };
-      // reader.onerror = function (error) {
-      //   console.log("Error: ", error);
-      // };
 
       let formData = new FormData();
       formData.append(`image`, file);
       formData.append(`id_user`, this.id);
       console.log(formData);
       axios
-        .post(`http://localhost:8000/api/saveImage`, formData, {
+        .post(`${window.location.origin}/api/saveImage`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         })
         .then(() => {
+          const localUser = this.user;
+          localUser.path_user = file.name;
+          this.$store.commit("auth/updateUser", localUser);
           console.log("joli");
         })
         .catch(function () {
@@ -175,6 +169,9 @@ export default Vue.extend({
     },
   },
   computed: {
+    pathUser: function () {
+      return this.$store.getters["auth/user"].path_user;
+    },
     user: function () {
       return this.$store.getters["auth/user"];
     },
