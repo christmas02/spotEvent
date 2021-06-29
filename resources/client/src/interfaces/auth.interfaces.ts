@@ -57,7 +57,7 @@ export interface IUpdatePasswordResponse {
 }
 export interface ISaveImage {
     id_user: number;
-    image: File;
+    image: string;
 }
 export interface ISaveImageResponse {
     statu: number;

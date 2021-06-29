@@ -104,6 +104,7 @@ export default Vue.extend({
   data() {
     return {
       defaultUrl: `${window.location.origin}/storage/`,
+      localFile: "",
       photoRules: [
         (value: any) =>
           !value ||
@@ -142,10 +143,19 @@ export default Vue.extend({
       // this.selectedFile = e.target.files[0];
       const myUser = new Object() as ISaveImage;
       myUser.id_user = this.id;
-      myUser.image = file;
-      this.saveImage(myUser);
+      // myUser.image = this.getBase64(file).toString();
+      // console.log(this.getBase64(file));
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        myUser.image = reader.result;
+        console.log(myUser);
+      };
+      reader.onerror = function (error) {
+        console.log("Error: ", error);
+      };
 
-      // do something
+      this.saveImage(myUser);
     },
   },
   computed: {
