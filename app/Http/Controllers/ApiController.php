@@ -25,91 +25,98 @@ class ApiController extends Controller
 {
     //
 
-    public function getUsers(){
+    public function getUsers()
+    {
         $listUser = User::all();
-        return response()->json(['statu'=>1, 'listUser' => $listUser]);
+        return response()->json(['statu' => 1, 'listUser' => $listUser]);
     }
 
-    public function getCategorie(){
+    public function getCategorie()
+    {
         $listCategorie = Prestation::all();
-        return response()->json(['statu'=>1, 'listCategorie' => $listCategorie]);
-
+        return response()->json(['statu' => 1, 'listCategorie' => $listCategorie]);
     }
 
-    public function getEstimation(){
+    public function getEstimation()
+    {
         $listEstiomation = Estimation::all();
-        return response()->json(['statu'=>1, 'listCategorie' => $listEstiomation]);
+        return response()->json(['statu' => 1, 'listCategorie' => $listEstiomation]);
     }
 
-    public function getPrestation(){
-        $listPrestation = Fiche::where('statu_fiche', '!=' ,'0')->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-        ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
-        ->orderBy('fiches.id', 'desc')
-        ->get();
+    public function getPrestation()
+    {
+        $listPrestation = Fiche::where('statu_fiche', '!=', '0')->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+            ->select('fiches.*', 'prestations.name as prestation', 'prestations.path_icone')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
         //dd($listPrestataire);
-        return response()->json(['statu'=>1, 'listPrestation' => $listPrestation]);
+        return response()->json(['statu' => 1, 'listPrestation' => $listPrestation]);
     }
 
-    public function getPrestataire(){
-        $listPrestataire = User::where('role',2)
-        ->where('confirmation_token', NULL)
-        ->leftjoin('fiches','fiches.id_user','=','users.id')
-        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-        ->select('users.*','fiches.name as name_entreprise','fiches.id_user','prestations.name as prestation','prestations.path_icone')
-        ->get();
+    public function getPrestataire()
+    {
+        $listPrestataire = User::where('role', 2)
+            ->where('confirmation_token', NULL)
+            ->leftjoin('fiches', 'fiches.id_user', '=', 'users.id')
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+            ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+            ->get();
         //dd($listPrestataire);
-        return response()->json(['statu'=>1, 'listPrestataire' => $listPrestataire]);
+        return response()->json(['statu' => 1, 'listPrestataire' => $listPrestataire]);
     }
 
-    public function firstPrestataire(Request $request){
+    public function firstPrestataire(Request $request)
+    {
         $id = $request['id_user'];
-        $listPrestataire = User::where('users.id',$id)
-        ->where('confirmation_token', NULL)
-        ->leftjoin('fiches','fiches.id_user','=','users.id')
-        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-        ->select('users.*','fiches.name as name_entreprise','fiches.id_user','prestations.name as prestation','prestations.path_icone')
-        ->get();
+        $listPrestataire = User::where('users.id', $id)
+            ->where('confirmation_token', NULL)
+            ->leftjoin('fiches', 'fiches.id_user', '=', 'users.id')
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+            ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+            ->get();
         //dd($listPrestataire);
         //return $id;
-        return response()->json(['statu'=>1, 'listPrestataire' => $listPrestataire]);
+        return response()->json(['statu' => 1, 'listPrestataire' => $listPrestataire]);
     }
 
 
-    public function fisrtPrestation(Request $request){
+    public function fisrtPrestation(Request $request)
+    {
         $id = $request['id_user'];
-        $firstPrestation = Fiche::where('id_user',$id)
-        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-        ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
-        ->get();
+        $firstPrestation = Fiche::where('id_user', $id)
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+            ->select('fiches.*', 'prestations.name as prestation', 'prestations.path_icone')
+            ->get();
         //dd($listPrestataire);
-        return response()->json(['statu'=>1, 'firstPrestation' => $firstPrestation]);
+        return response()->json(['statu' => 1, 'firstPrestation' => $firstPrestation]);
     }
 
-    public function Favoris(Request $request){
-        
+    public function Favoris(Request $request)
+    {
+
         $data =  $request->all();
         // dd($data);
         $id_user = $request['id_user'];
         $id_pres = $request['id_pres'];
 
         $favoris = Favori::where('id_user', $id_user)
-                   ->where('id_prestataire',$id_pres)
-                   ->first();
+            ->where('id_prestataire', $id_pres)
+            ->first();
 
         //dd($favoris);
-        
-        if($favoris){
+
+        if ($favoris) {
             Favori::where('id_user', $id_user)->where('id_prestataire', $id_pres)->delete();
             $statu = 2;
-        }else{
+        } else {
             Favori::create([
                 'id_user' => $id_user,
                 'id_prestataire' => $id_pres,
@@ -118,16 +125,16 @@ class ApiController extends Controller
         }
 
         $listeFavoris = Favori::where('favoris.id_user', $id_user)
-                    ->leftjoin('fiches','fiches.id_user','=','favoris.id_prestataire')
-                    ->select('favoris.*','fiches.path_img','fiches.presentation','fiches.name')
-                    ->get();
+            ->leftjoin('fiches', 'fiches.id_user', '=', 'favoris.id_prestataire')
+            ->select('favoris.*', 'fiches.path_img', 'fiches.presentation', 'fiches.name')
+            ->get();
 
-        return response()->json(['statu'=> $statu, 'listeFavoris' => $listeFavoris]);
-        
+        return response()->json(['statu' => $statu, 'listeFavoris' => $listeFavoris]);
     }
 
-    public function clicfiche(Request $request){
-        try{
+    public function clicfiche(Request $request)
+    {
+        try {
             $id_user = $request['id_user'];
             $id_pres = $request['id_pres'];
 
@@ -137,17 +144,16 @@ class ApiController extends Controller
             ]);
             $statu = 1;
 
-            return response()->json(['statu'=> $statu]);
-
+            return response()->json(['statu' => $statu]);
         } catch (Exception $e) {
             $statu = 0;
-            return response()->json(['statu'=> $statu ,'erreur' => $e]);
+            return response()->json(['statu' => $statu, 'erreur' => $e]);
         }
-
     }
 
-    public function clicphone(Request $request){
-        try{
+    public function clicphone(Request $request)
+    {
+        try {
             $id_user = $request['id_user'];
             $id_pres = $request['id_pres'];
 
@@ -157,22 +163,21 @@ class ApiController extends Controller
             ]);
             $statu = 1;
 
-            return response()->json(['statu'=> $statu]);
-
+            return response()->json(['statu' => $statu]);
         } catch (Exception $e) {
             $statu = 0;
-            return response()->json(['statu'=> $statu ,'erreur' => $e]);
+            return response()->json(['statu' => $statu, 'erreur' => $e]);
         }
-
     }
 
 
-    public function saveDemande(Request $request){
-        try{
+    public function saveDemande(Request $request)
+    {
+        try {
 
             //$request=$request->all();
             //dd($request);
-           
+
             $id_pres = $request['id_pres'];
             $name = $request['name'];
             $phone = $request['phone'];
@@ -188,7 +193,7 @@ class ApiController extends Controller
                 'statu' => 0,
             ]);
 
-            $infoPrestataire  = DB::table('users')->where('id',$id_pres)->first();
+            $infoPrestataire  = DB::table('users')->where('id', $id_pres)->first();
 
             $statu = 1;
             $messages = "Votre demandé a bien été transmit au prèstatire !";
@@ -204,183 +209,173 @@ class ApiController extends Controller
 
             // communication sms pour ceux dont l'option telephon est Activité 
 
-            return response()->json(['statu'=> $statu, 'messages' => $messages]);
-
+            return response()->json(['statu' => $statu, 'messages' => $messages]);
         } catch (Exception $e) {
             $statu = 0;
-            return response()->json(['statu'=> $statu ,'erreur' => $e]);
+            return response()->json(['statu' => $statu, 'erreur' => $e]);
         }
-
     }
 
 
-    public function getSlide(Request $request){
-        
+    public function getSlide(Request $request)
+    {
+
         //$data = Request::json();
-        $request=$request->all();
+        $request = $request->all();
         response()->json([
             'request' => $request
         ]);
         $id = $request['id_user'];
-        
-       
-        $listSlide = Galerie::where('id_user',$id)->get();
+
+
+        $listSlide = Galerie::where('id_user', $id)->get();
         //dd($listPrestataire);
-        return response()->json(['statu'=>1, 'listPrestataire' => $listSlide]);
+        return response()->json(['statu' => 1, 'listPrestataire' => $listSlide]);
     }
 
-    public function serch(Request $request){
+    public function serch(Request $request)
+    {
 
         $id_prestation = $request['id_prestation'];
         $localisation = $request['localisation'];
         $estmation_max = $request['estmation_max'];
         $estmation_min = $request['estmation_min'];
 
-        $resultat = Fiche::where('statu_fiche', '!=' ,'0')
-        ->where('id_prestations',$id_prestation)
-        ->where('localisation','like','%'.$localisation.'%')
-        //->whereBetween('estimation_min', [$estmation_min,$estmation_max])
-        //->whereBetween('estimation_max', [$estmation_min, $estmation_max])
-        //->where('estimation_max','<=',$estmation_max)
-        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
-        ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
-        ->orderBy('fiches.id', 'desc')
-        ->get();
+        $resultat = Fiche::where('statu_fiche', '!=', '0')
+            ->where('id_prestations', $id_prestation)
+            ->where('localisation', 'like', '%' . $localisation . '%')
+            //->whereBetween('estimation_min', [$estmation_min,$estmation_max])
+            //->whereBetween('estimation_max', [$estmation_min, $estmation_max])
+            //->where('estimation_max','<=',$estmation_max)
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            ->select('fiches.*', 'prestations.name as prestation', 'prestations.path_icone')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
 
-        if(count($resultat) == '0'){
+        if (count($resultat) == '0') {
             $message = "resultat disponible";
-            return response()->json(['statu'=>0,'message' => $message, 'resultat' => $resultat]);
-        }else{
+            return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $resultat]);
+        } else {
             $message = "resultat vide";
-            return response()->json(['statu'=>1, 'message' => $message,'resultat' => $resultat]);
+            return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
         }
-        
-
-
     }
 
-    public function filtreCategorie(Request $request){
+    public function filtreCategorie(Request $request)
+    {
 
         $id_prestation = $request['id_prestation'];
-       
-        $resultat = Fiche::where('statu_fiche', '!=' ,'0')
-        ->where('id_prestations',$id_prestation)
-        ->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
-        ->select('fiches.*','prestations.name as prestation','prestations.path_icone')
-        ->orderBy('fiches.id', 'desc')
-        ->get();
+
+        $resultat = Fiche::where('statu_fiche', '!=', '0')
+            ->where('id_prestations', $id_prestation)
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            ->select('fiches.*', 'prestations.name as prestation', 'prestations.path_icone')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
 
         //dd(count($resultat));
 
-        if(count($resultat) != '0'){
+        if (count($resultat) != '0') {
             $message = "resultat disponible";
-            return response()->json(['statu'=>1,'message' => $message, 'resultat' => $resultat]);
-        }else{
+            return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
+        } else {
             $message = "resultat vide";
-            return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
+            return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $resultat]);
         }
-        
-
-
     }
 
-    public function filtreEstimation(Request $request){
+    public function filtreEstimation(Request $request)
+    {
 
         $estmation_max = $request['estmation_max'];
         $estmation_min = $request['estmation_min'];
 
         $resultat = Fiche::select('*')
-        ->where('statu_fiche', '!=' ,'0')
-        ->where('estimation_min', '=', $estmation_min)
-        ->where('estimation_max', '<=', $estmation_max)
-        //->whereBetween('estimation_max', [$estmation_min, $estmation_max])
-        //->where('estimation_max','<=',$estmation_max)
-        //->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-        //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-        //->select('fiches.*','prestations.name as prestation','prestations.path_icone')
-        ->orderBy('fiches.id', 'desc')
-        ->get();
+            ->where('statu_fiche', '!=', '0')
+            ->where('estimation_min', '=', $estmation_min)
+            ->where('estimation_max', '<=', $estmation_max)
+            //->whereBetween('estimation_max', [$estmation_min, $estmation_max])
+            //->where('estimation_max','<=',$estmation_max)
+            //->leftjoin('prestations','prestations.id','=','fiches.id_prestations')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
+            //->select('fiches.*','prestations.name as prestation','prestations.path_icone')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
 
-        if(count($resultat) == '0'){
+        if (count($resultat) == '0') {
             $message = "resultat disponible";
-            return response()->json(['statu'=>1,'message' => $message, 'resultat' => $resultat]);
-        }else{
+            return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
+        } else {
             $message = "resultat vide";
-            return response()->json(['statu'=>0, 'message' => $message,'resultat' => $resultat]);
+            return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $resultat]);
         }
-
     }
 
-    public function getConversation(Request $request){
+    public function getConversation(Request $request)
+    {
 
-        try{
+        try {
             $id_user = $request['id_user'];
 
-            $conversation = Conversation::where('conversations.id_user',$id_user)
-                ->leftjoin('users','users.id','=','conversations.id_recepteur')
-                ->leftjoin('messages','messages.conversation','=','conversations.cod_conversation')
-                ->select('users.id as id_recepteur','users.name as name_recepteur','users.path_user as image_recepteur','messages.id as id_message','messages.conversation as conversation')
+            $conversation = Conversation::where('conversations.id_user', $id_user)
+                ->leftjoin('users', 'users.id', '=', 'conversations.id_recepteur')
+                ->leftjoin('messages', 'messages.conversation', '=', 'conversations.cod_conversation')
+                ->select('users.id as id_recepteur', 'users.name as name_recepteur', 'users.path_user as image_recepteur', 'messages.id as id_message', 'messages.conversation as conversation')
                 ->orderBy('messages.id', 'desc')
                 ->distinct()
                 ->get();
 
             //dd($conversation);
 
-            if(count($conversation) != '0'){
+            if (count($conversation) != '0') {
                 $message = "Conversation disponible";
-                return response()->json(['statu'=> 1,'message' => $message, 'conversation' => $conversation]);
-            }else{
+                return response()->json(['statu' => 1, 'message' => $message, 'conversation' => $conversation]);
+            } else {
                 $message = "Aucune conversation disponible";
-                return response()->json(['statu'=> 0,'message' => $message, 'conversation' => $conversation]);
+                return response()->json(['statu' => 0, 'message' => $message, 'conversation' => $conversation]);
             }
-
-
-
-        }catch(\Throwable $th) {
+        } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
-    public function getMessage(Request $request){
+    public function getMessage(Request $request)
+    {
 
-        try{
+        try {
             $conversation = $request['conversation'];
 
-            $messages = Message::where('conversation','=',$conversation)->get();
+            $messages = Message::where('conversation', '=', $conversation)->get();
 
             //dd($conversation);
 
-            if(count($messages) != '0'){
+            if (count($messages) != '0') {
                 $message = "message disponible";
-                return response()->json(['statu'=>1,'message' => $message, 'messages' => $messages]);
-            }else{
+                return response()->json(['statu' => 1, 'message' => $message, 'messages' => $messages]);
+            } else {
                 $message = "Aucun message disponible";
-                return response()->json(['statu'=> 0,'message' => $message, 'messages' => $messages]);
+                return response()->json(['statu' => 0, 'message' => $message, 'messages' => $messages]);
             }
-
-
-
-        }catch(\Throwable $th) {
+        } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
-    public function saveMessage(Request $request){
+    public function saveMessage(Request $request)
+    {
 
-        try{
+        try {
 
             $id_emmetteur = $request['id_emmetteur'];
             $contenus = $request['contenus'];
             $conversation = $request['conversation'];
             $id_recepteur = $request['id_recepteur'];
 
-            
-            if($conversation > 0){
+
+            if ($conversation > 0) {
 
                 $message = new Message;
 
@@ -390,89 +385,79 @@ class ApiController extends Controller
 
                 $message->save();
 
-                if($message){
+                if ($message) {
                     $resultat = "message enregistre";
-                    return response()->json(['statu'=>1,'message' => $resultat]);
-
-                }else{
+                    return response()->json(['statu' => 1, 'message' => $resultat]);
+                } else {
                     $resultat = "message echec";
-                    return response()->json(['statu'=>0,'message' => $resultat]);
+                    return response()->json(['statu' => 0, 'message' => $resultat]);
                 }
+            } else {
 
-            }else{
+                $conversatiom_exsite = Conversation::where('id_user', $id_emmetteur)
+                    ->where('id_recepteur', $id_recepteur)->first();
 
-                    $conversatiom_exsite = Conversation::where('id_user', $id_emmetteur)
-                    ->where('id_recepteur',$id_recepteur)->first();
+                if ($conversatiom_exsite) {
 
-                    if($conversatiom_exsite){
+                    $message = new Message;
 
-                        $message = new Message;
+                    $message->id_emmetteur = $id_emmetteur;
+                    $message->contenus = $contenus;
+                    $message->conversation = $conversatiom_exsite->cod_conversation;
 
-                        $message->id_emmetteur = $id_emmetteur;
-                        $message->contenus = $contenus;
-                        $message->conversation = $conversatiom_exsite->cod_conversation;
+                    $message->save();
 
-                        $message->save();
+                    if ($message) {
+                        $resultat = "message enregistre";
+                        return response()->json(['statu' => 1, 'message' => $resultat]);
+                    } else {
+                        $resultat = "message echec";
+                        return response()->json(['statu' => 0, 'message' => $resultat]);
+                    }
+                } else {
 
-                        if($message){
-                            $resultat = "message enregistre";
-                            return response()->json(['statu'=>1,'message' => $resultat]);
-        
-                        }else{
-                            $resultat = "message echec";
-                            return response()->json(['statu'=>0,'message' => $resultat]);
-                        }
+                    // Creation de la conversation
+                    $code = time();
+                    $conversation = new Conversation;
 
-                    }else{
+                    $conversation->id_user = $request->id_emmetteur;
+                    $conversation->id_recepteur = $id_recepteur;
+                    $conversation->cod_conversation = $code;
 
-                        // Creation de la conversation
-                        $code = time();
-                        $conversation = new Conversation;
+                    $conversation->save();
 
-                        $conversation->id_user = $request->id_emmetteur;
-                        $conversation->id_recepteur = $id_recepteur;
-                        $conversation->cod_conversation = $code;
+                    // Enregistrement du messages dans la table messages
 
-                        $conversation->save();
+                    $message = new Message;
 
-                        // Enregistrement du messages dans la table messages
+                    $message->id_emmetteur = $id_emmetteur;
+                    $message->contenus = $contenus;
+                    $message->conversation = $code;
 
-                        $message = new Message;
+                    $message->save();
 
-                        $message->id_emmetteur = $id_emmetteur;
-                        $message->contenus = $contenus;
-                        $message->conversation = $code;
-
-                        $message->save();
-
-                        if($message AND $conversation){
-                            $resultat = "message et conversation enregistre";
-                            $convertions = $code;
-                            return response()->json(['statu'=> 1,'message' => $resultat,'conversation'=> $convertions ]);
-
-                        }else{
-                            $resultat = "message et conversation echec";
-                            return response()->json(['statu'=> 0,'message' => $resultat]);
-                        }
-
+                    if ($message and $conversation) {
+                        $resultat = "message et conversation enregistre";
+                        $convertions = $code;
+                        return response()->json(['statu' => 1, 'message' => $resultat, 'conversation' => $convertions]);
+                    } else {
+                        $resultat = "message et conversation echec";
+                        return response()->json(['statu' => 0, 'message' => $resultat]);
+                    }
                 }
-                
             }
-
-
-
-        }catch(\Throwable $th) {
+        } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
 
-    public function saveImage(Request $request){
+    public function saveImage(Request $request)
+    {
 
         $id_user = $request['id_user'];
-        $file=$request->file('image');
+        $file = $request->file('image');
 
         $name = $file->getClientOriginalName();
         //$name = time() . '.' . $file->getClientOriginalExtension();
@@ -485,20 +470,17 @@ class ApiController extends Controller
 
         $user->save();
 
-        if($user){
+        if ($user) {
             $resultat = "Mise a jour effectuer avec succes";
-            return response()->json(['statu'=>1,'message' => $resultat]);
-
-        }else{
+            return response()->json(['statu' => 1, 'message' => $resultat]);
+        } else {
             $resultat = "Echec de la mise a jour";
-            return response()->json(['statu'=>0,'message' => $resultat]);
+            return response()->json(['statu' => 0, 'message' => $resultat]);
         }
-        
-       
-
     }
 
-    public function updateProfile(Request $request){
+    public function updateProfile(Request $request)
+    {
 
         $id_user = $request['id_user'];
         $name = $request['name'];
@@ -507,8 +489,8 @@ class ApiController extends Controller
 
         $user = User::where('id', $id_user)->first();
 
-        if($user){
-        //dd($user);
+        if ($user) {
+            //dd($user);
             $user->name = $name;
             $user->email = $email;
             $user->phone = $phone;
@@ -516,39 +498,33 @@ class ApiController extends Controller
             $user->save();
 
             $resultat = "Mise a jour effectuer avec succes";
-            return response()->json(['statu'=>1,'message' => $resultat]);
-
-        }else{
+            return response()->json(['statu' => 1, 'message' => $resultat]);
+        } else {
 
             $resultat = "Echec de la mise a jour";
-            return response()->json(['statu'=>0,'message' => $resultat]);
+            return response()->json(['statu' => 0, 'message' => $resultat]);
         }
-        
     }
 
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request)
+    {
 
         $id_user = $request['id_user'];
         $password = $request['password'];
 
         $user = User::whereId($id_user)->first();
- 
-        if ($user){
+
+        if ($user) {
             $password = bcrypt($password);
             $user->password = $password;
             $user->save();
 
             $resultat = 'La modification a correctement été effectuée';
-            return response()->json(['statu'=>1,'message' => $resultat]);
- 
-        }else{
+            return response()->json(['statu' => 1, 'message' => $resultat]);
+        } else {
 
             $resultat = 'Il y a eu une erreur, merci de recommencer';
-            return response()->json(['statu'=>0,'message' => $resultat]);
+            return response()->json(['statu' => 0, 'message' => $resultat]);
         }
-        
     }
-
-
-
 }
