@@ -93,6 +93,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+import axios from "axios";
 import UpdatePhotoForm from "@/components/forms/UpdatePhotoForm";
 import UpdateProfilForm from "@/components/forms/UpdateProfilForm";
 import UpdatePasswordForm from "@/components/forms/UpdatePasswordForm";
@@ -143,19 +144,34 @@ export default Vue.extend({
       // this.selectedFile = e.target.files[0];
       const myUser = new Object() as ISaveImage;
       myUser.id_user = this.id;
-      // myUser.image = this.getBase64(file).toString();
-      // console.log(this.getBase64(file));
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function () {
-        myUser.image = reader.result;
-        console.log(myUser);
-      };
-      reader.onerror = function (error) {
-        console.log("Error: ", error);
-      };
+      // let reader = new FileReader();
+      // reader.readAsDataURL(file);
+      // reader.onload = function () {
+      //   myUser.image = reader.result;
+      //   console.log(myUser);
+      // };
+      // reader.onerror = function (error) {
+      //   console.log("Error: ", error);
+      // };
 
-      this.saveImage(myUser);
+      let formData = new FormData();
+      formData.append(`image`, file);
+      formData.append(`id_user`, this.id);
+      console.log(formData);
+      axios
+        .post(`http://localhost:8000/api/saveImage`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          console.log("joli");
+        })
+        .catch(function () {
+          alert("Une erreur est survenue lors de la modification des images ");
+        });
+
+      // this.saveImage(myUser);
     },
   },
   computed: {
