@@ -536,6 +536,7 @@ class ApiController extends Controller
         if ($user){
             $password = bcrypt($password);
             $user->password = $password;
+            $user->save();
 
             $resultat = 'La modification a correctement été effectuée';
             return response()->json(['statu'=>1,'message' => $resultat]);
