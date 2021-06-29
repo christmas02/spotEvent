@@ -3,7 +3,7 @@
     <v-card-title>Modification photo</v-card-title>
     <v-file-input
       :rules="rules"
-      accept="image/png, image/jpeg, image/bmp"
+      accept="image/png, image/jpeg, image/jpeg"
       placeholder="Pick an avatar"
       prepend-icon="mdi-camera"
       label="Avatar"

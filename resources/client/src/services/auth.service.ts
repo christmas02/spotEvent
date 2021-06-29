@@ -5,6 +5,12 @@ import {
     ILoginResponse,
     IRegister,
     IRegisterResponse,
+    ISaveImage,
+    ISaveImageResponse,
+    IUpadteProfile,
+    IUpadteProfileResponse,
+    IUpdatePassword,
+    IUpdatePasswordResponse,
     IUser
 } from "@/interfaces/auth.interfaces";
 import {
@@ -100,6 +106,59 @@ export class AuthService extends CommonService {
                 statu: 0,
                 message: "Message non enregistré"
             } as IsendingMessageResponse;
+        }
+    }
+    async upadteProfile(body: IUpadteProfile): Promise<IUpadteProfileResponse> {
+        try {
+            const {
+                data
+            }: { data: IUpadteProfileResponse } = await this.client.post(
+                "upadteProfile",
+                body
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: "Modification non enregistrée"
+            } as IUpadteProfileResponse;
+        }
+    }
+    async updatePassword(
+        body: IUpdatePassword
+    ): Promise<IUpdatePasswordResponse> {
+        try {
+            const {
+                data
+            }: { data: IUpdatePasswordResponse } = await this.client.post(
+                "updatePassword",
+                body
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: "Modification du mot de passe non prise en compte"
+            } as IUpdatePasswordResponse;
+        }
+    }
+    async saveImage(body: ISaveImage): Promise<ISaveImageResponse> {
+        try {
+            const {
+                data
+            }: { data: ISaveImageResponse } = await this.client.post(
+                "saveImage",
+                body
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: "Erreur lors du changement de l'avatar"
+            } as ISaveImageResponse;
         }
     }
 }

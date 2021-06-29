@@ -37,3 +37,29 @@ export interface ILoginResponse {
     user: IUser;
     favoris: IFavorite[];
 }
+export interface IUpadteProfile {
+    id_user: string;
+    name: string;
+    email: string;
+    phone: string;
+}
+export interface IUpadteProfileResponse {
+    statu: number;
+    message: string;
+}
+export interface IUpdatePassword {
+    id_user: string;
+    password: string;
+}
+export interface IUpdatePasswordResponse {
+    statu: number;
+    message: string;
+}
+export interface ISaveImage {
+    id_user: number;
+    image: File;
+}
+export interface ISaveImageResponse {
+    statu: number;
+    message: string;
+}

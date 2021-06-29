@@ -1,3 +1,4 @@
+import { IUpadteProfile, IUser } from "@/interfaces/auth.interfaces";
 import {
     IConversationId,
     IsendingMessage,
@@ -7,6 +8,31 @@ import { AuthService } from "@/services/auth.service";
 import { IAuthState } from "./interfaces/state.interface";
 
 export default {
+    async upadteProfile(
+        {
+            commit,
+            state,
+            getters
+        }: { commit: any; state: IAuthState; getters: any },
+        { force = false, myUser = {} as IUpadteProfile }
+    ): Promise<void> {
+        const userService = new AuthService();
+        console.log(myUser);
+
+        const result = await userService.upadteProfile(myUser);
+
+        if (result.statu == 1) {
+            console.log(result);
+            const img = getters("user").path_user;
+            const auth_user = new Object() as IUser;
+            console.log(img);
+
+            // commit("updateUser", );
+        } else {
+            console.log("erreur");
+            // commit("upadteProfile", []);
+        }
+    },
     async getRooms(
         { commit, state }: { commit: any; state: IAuthState },
         force = false
@@ -16,18 +42,12 @@ export default {
         myUser.id_user = state.user.id;
 
         console.log(state.user.id);
-        // const result = await userService.getRooms(myUser);
-        // const result = await userService.getRooms({ id_user: 13 });
         const result = await userService.getRooms({ id_user: state.user.id });
 
         if (result.statu == 1) {
             commit("updateRooms", result.conversation);
-            // commit("store", result.listPrestation);
-            // console.log(result.conversation);
         } else {
             commit("updateRooms", []);
-            // commit("updateRooms", result.conversation);
-            // alert("erreur lors de la recuperation des rooms");
         }
     },
     async getMessages(

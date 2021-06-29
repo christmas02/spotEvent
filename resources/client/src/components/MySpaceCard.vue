@@ -96,6 +96,8 @@ import Vue from "vue";
 import UpdatePhotoForm from "@/components/forms/UpdatePhotoForm";
 import UpdateProfilForm from "@/components/forms/UpdateProfilForm";
 import UpdatePasswordForm from "@/components/forms/UpdatePasswordForm";
+import { ISaveImage, IUser } from "@/interfaces/auth.interfaces";
+import { AuthService } from "@/services/auth.service";
 // import UpdatePhoto from
 export default Vue.extend({
   components: { UpdatePhotoForm, UpdateProfilForm, UpdatePasswordForm },
@@ -123,10 +125,25 @@ export default Vue.extend({
     showPassword() {
       this.$store.commit("benefits/changeStatusFormUpdatePassword", true);
     },
-    onFileChanged(file) {
-      // this.selectedFile = e.target.files[0];
+    async saveImage(MyUser: ISaveImage): Promise<void> {
+      const userService = new AuthService();
+      console.log(MyUser);
 
-      console.log(file);
+      const result = await userService.saveImage(MyUser);
+
+      if (result.statu == 1) {
+        console.log("modification effectué");
+        this.$store.commit("benefits/resetStatusFormUpdatePhotoAndProfil");
+      } else {
+        console.log("erreur");
+      }
+    },
+    onFileChanged(file: File) {
+      // this.selectedFile = e.target.files[0];
+      const myUser = new Object() as ISaveImage;
+      myUser.id_user = this.id;
+      myUser.image = file;
+      this.saveImage(myUser);
 
       // do something
     },
@@ -158,6 +175,9 @@ export default Vue.extend({
       set(val: boolean) {
         this.$store.commit("benefits/changeStatusFormUpdatePassword", val);
       },
+    },
+    id() {
+      return this.$store.getters["auth/user"].id.toString();
     },
   },
   watch: {

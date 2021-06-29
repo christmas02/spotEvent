@@ -17,6 +17,9 @@ export default {
         state.auth = false;
         state.user = (null as unknown) as IUser;
     },
+    updateUser(state: IAuthState, val: IUser):void{
+        state.user = val;
+    },
     authModalStatus(state: IAuthState, val: boolean): void {
         state.modal = val;
     },
