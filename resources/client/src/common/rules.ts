@@ -6,8 +6,10 @@ export const emailRules = [
 export const nameRules = [
     (v: string) => (v && !validator.isEmpty(v)) || "Le champ nom est requis",
     (v: string) =>
-        (v && validator.isAlpha(v, "fr-FR")) ||
-        "Le champ nom ne doit pas contenir des chiffres"
+        // (v &&
+        v.split(/[\s-]+/).every(function(str) {
+            return validator.isAlpha(str);
+        }) || "Le champ nom est invalide"
 ];
 
 export const requiredRules = [
