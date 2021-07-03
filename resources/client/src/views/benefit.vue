@@ -70,8 +70,45 @@
             <div class="col-md-7 left">
               <div class="section">
                 <h2 class="section-title">Description</h2>
-                <p>{{ benefit.description }}</p>
+                <div>
+                  <p>{{ benefit.description }}</p>
+                </div>
               </div>
+
+              <div>
+                <comment-rating-user></comment-rating-user>
+              </div>
+              <div class="avisUser">
+                <h2>Avis Utilisateurs</h2>
+                <comment-rating-grid></comment-rating-grid>
+              </div>
+              <!-- <div class="review-card">
+                <div class="review-header">
+                  <div class="name-group">
+                    <div class="initials">A</div>
+                    <p>Alice Banks</p>
+                  </div>
+                  <div class="rating">
+                    <i id="one" class="fas fa-star"></i>
+                    <i id="one" class="fas fa-star"></i>
+                    <i id="one" class="fas fa-star"></i>
+                    <i id="one" class="fas fa-star"></i>
+                    <i id="one" class="fas fa-star"></i>
+                  </div>
+                </div>
+                <div class="review-description">
+                  The device has a clean design, and the metal housing feels
+                  sturdy in my hands. Soft rounded corners make it a pleasure to
+                  look at.
+                </div>
+                <div class="review-details">
+                  <div class="review-date">Feb 13, 2021</div>
+                  <div class="share-group">
+                    <i class="fas fa-share-alt"></i>
+                    <p>Share</p>
+                  </div>
+                </div>
+              </div> -->
             </div>
             <div class="offset-md-1 col-md-4">
               <div class="section">
@@ -152,6 +189,8 @@
 import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
+import CommentRatingUser from "@/components/CommentRatingUser.vue";
+import CommentRatingGrid from "@/components/CommentRatingGrid.vue";
 import utilsMixin from "../mixins/utils.mixin";
 import { Benefit } from "../interfaces/benefit.interface";
 import { BenefitService } from "../services/benefit.service";
@@ -181,6 +220,8 @@ export default Vue.extend({
     BenefitsGrid,
     ProviderContactFormModal,
     FavoriteBtn,
+    CommentRatingUser,
+    CommentRatingGrid,
   },
   computed: {
     benefit(): Benefit {
@@ -262,7 +303,7 @@ export default Vue.extend({
   margin-top: 25px;
 }
 .section {
-  margin-bottom: 40px;
+  margin-bottom: 100px;
 }
 
 .provider-pics {
@@ -292,4 +333,9 @@ export default Vue.extend({
   padding: 70px 0;
   background-color: #f4f5f7;
 }
+.avisUser {
+  margin-top: 100px;
+}
+
+/*dojdojdpid *** */
 </style>
