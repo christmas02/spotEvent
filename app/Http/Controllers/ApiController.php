@@ -455,7 +455,6 @@ class ApiController extends Controller
 
     public function saveImage(Request $request)
     {
-
         $id_user = $request['id_user'];
         $file = $request->file('image');
 
@@ -472,7 +471,7 @@ class ApiController extends Controller
 
         if ($user) {
             $resultat = "Mise a jour effectuer avec succes";
-            return response()->json(['statu' => 1, 'message' => $resultat]);
+            return response()->json(['statu' => 1, 'user' => $user, 'message' => $resultat]);
         } else {
             $resultat = "Echec de la mise a jour";
             return response()->json(['statu' => 0, 'message' => $resultat]);
@@ -498,7 +497,7 @@ class ApiController extends Controller
             $user->save();
 
             $resultat = "Mise a jour effectuer avec succes";
-            return response()->json(['statu' => 1, 'message' => $resultat]);
+            return response()->json(['statu' => 1, 'user' => $user, 'message' => $resultat]);
         } else {
 
             $resultat = "Echec de la mise a jour";
