@@ -51,4 +51,8 @@ Route::post('liste_conversation','ApiController@getConversation');
 Route::post('liste_message','ApiController@getMessage');
 Route::post('message','ApiController@saveMessage');
 
+Route::post('save_commentaire','ApiController@saveCommentaire');
+Route::post('liste_commentaire','ApiController@getCommenataire');
+
+
 

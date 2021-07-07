@@ -12,6 +12,7 @@ use App\Favori;
 use App\Clicfiche;
 use App\Clicphone;
 use App\Demande;
+use App\Commentaire;
 use App\Mail\notifixation;
 use Input;
 use Illuminate\Support\Facades\Mail;
@@ -525,5 +526,77 @@ class ApiController extends Controller
             $resultat = 'Il y a eu une erreur, merci de recommencer';
             return response()->json(['statu' => 0, 'message' => $resultat]);
         }
+    }
+
+    public function getCommenataire(Request $request){
+
+        try {
+        
+            $id_prestataire = $request['id_prestataire'];
+
+            $resultat = Commentaire::where('id_prestataire',$id_prestataire)
+            ->leftjoin('users','users.id','=','commentaires.id_user')
+            ->select('commentaires.*','users.name as nom_client')
+            ->get();
+
+            if($resultat){
+                return response()->json(['statu' => 1, 'resultat' => $resultat]);
+            }
+
+        } catch (\Throwable $th) {
+            dd($th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
+        }
+
+
+    }
+
+    public function saveCommentaire(Request $request){
+
+        try {
+        
+            $id_prestataire = $request['id_prestataire'];
+            $vote = $request['vote'];
+            $contenus = $request['contenus'];
+            $id_user = $request['id_user'];
+
+            //dd($id_prestataire , $vote, $contenus , $id_user);
+
+            $Commentaire_existe = Commentaire::where('id_user',$id_user)
+            ->where('id_prestataire',$id_prestataire )
+            ->first();
+
+            if(!$Commentaire_existe){
+
+                $commentaire = new Commentaire();
+
+                $commentaire->id_user = $id_user;
+                $commentaire->id_prestataire = $id_prestataire;
+                $commentaire->vote = $vote;
+                $commentaire->contenus = $contenus;
+
+                if($commentaire->save()){
+
+                    $resultat = Commentaire::where('id_prestataire',$id_prestataire)
+                    ->leftjoin('users','users.id','=','commentaires.id_user')
+                    ->select('commentaires.*','users.name as nom_client')
+                    ->get();
+
+                    return response()->json(['statu' => 1, 'resultat' => $resultat]);
+
+                }else{
+                    return response()->json(['statu' => 0]);
+                }
+
+            }else{
+                return response()->json(['statu' => 0, 'message' => "Cet prestataire a deja reçu un commentaire venant de ce client"]);
+            }
+
+
+        } catch (\Throwable $th) {
+            dd($th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
+        }
+
     }
 }
