@@ -18,11 +18,12 @@
             <v-btn color="primary" icon @click="showPhoto">
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
+            <!-- image/png, image/jpg, image/jpeg -->
+            <!-- image/* -->
             <v-file-input
               class="d-none"
-              :rules="photoRules"
               ref="photoUploader"
-              accept="image/png"
+              accept="image/png, image/jpg, image/jpeg"
               placeholder="Choisissez une photo"
               prepend-icon="mdi-camera"
               label="Avatar"
@@ -106,13 +107,6 @@ export default Vue.extend({
     return {
       defaultUrl: `${window.location.origin}/storage/`,
       localFile: "",
-      photoRules: [
-        (value: any) =>
-          !value ||
-          value.size < 2000000 ||
-          "Avatar size should be less than 2 MB!",
-      ],
-      // pathUser: this.$store.getters["auth/user"].path_user,
     };
   },
   methods: {
@@ -141,31 +135,37 @@ export default Vue.extend({
       }
     },
     onFileChanged(file: File) {
-      // this.selectedFile = e.target.files[0];
-      const myUser = new Object() as ISaveImage;
-      myUser.id_user = this.id;
+      if (file) {
+        if (file.type.includes("image/")) {
+          console.log("inclus");
+          const myUser = new Object() as ISaveImage;
+          myUser.id_user = this.id;
 
-      let formData = new FormData();
-      formData.append(`image`, file);
-      formData.append(`id_user`, this.id);
-      console.log(formData);
-      axios
-        .post(`${window.location.origin}/api/saveImage`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(() => {
-          const localUser = this.user;
-          localUser.path_user = file.name;
-          this.$store.commit("auth/updateUser", localUser);
-          console.log("joli");
-        })
-        .catch(function () {
-          alert("Une erreur est survenue lors de la modification des images ");
-        });
-
-      // this.saveImage(myUser);
+          let formData = new FormData();
+          formData.append(`image`, file);
+          formData.append(`id_user`, this.id);
+          // console.log(formData);
+          axios
+            .post(`${window.location.origin}/api/saveImage`, formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            })
+            .then(() => {
+              const localUser = this.user;
+              localUser.path_user = file.name;
+              this.$store.commit("auth/updateUser", localUser);
+              console.log("joli");
+            })
+            .catch(function () {
+              alert(
+                "Une erreur est survenue lors de la modification des images "
+              );
+            });
+        } else {
+          alert("Veillez choisir un fichier de type image");
+        }
+      }
     },
   },
   computed: {

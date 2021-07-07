@@ -3,8 +3,8 @@
     <div class="review-card">
       <div class="review-header">
         <div class="name-group">
-          <div class="initials">K</div>
-          <p class="mb-0">KACOU YANNICK</p>
+          <div class="initials">J</div>
+          <p class="mb-0">John Doe</p>
         </div>
         <div class="rating">
           <v-rating
