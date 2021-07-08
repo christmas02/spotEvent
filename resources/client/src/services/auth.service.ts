@@ -21,6 +21,13 @@ import {
     IsendingMessageResponse,
     IUserId
 } from "@/interfaces/liste-conversations.interfaces";
+import {
+    IListComment,
+    IResultListComment,
+    IResultListCommentResponse,
+    ISendComment,
+    ISendCommentResponse
+} from "@/interfaces/comment.interface";
 
 export class AuthService extends CommonService {
     async initLogin(credentials: ILogin): Promise<ILoginResponse> {
@@ -159,6 +166,40 @@ export class AuthService extends CommonService {
                 statu: 0,
                 message: "Erreur lors du changement de l'avatar"
             } as ISaveImageResponse;
+        }
+    }
+    async sendComment(body: ISendComment): Promise<ISendCommentResponse> {
+        try {
+            const {
+                data
+            }: { data: ISendCommentResponse } = await this.client.post(
+                "save_commentaire",
+                body
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: "Erreur lors del'nevoi du commentaire"
+            } as ISendCommentResponse;
+        }
+    }
+    async listComment(body: IListComment): Promise<IResultListCommentResponse> {
+        try {
+            const {
+                data
+            }: { data: IResultListCommentResponse } = await this.client.post(
+                "liste_commentaire",
+                body
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: "Erreur lors de la recuperation des commentaires"
+            } as IResultListCommentResponse;
         }
     }
 }

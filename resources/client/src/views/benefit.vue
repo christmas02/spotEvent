@@ -76,39 +76,17 @@
               </div>
 
               <div>
-                <comment-rating-user></comment-rating-user>
+                <comment-rating-user
+                  :id_prestataire="id_prestataire"
+                  :id_user="id_user.toString()"
+                ></comment-rating-user>
               </div>
               <div class="avisUser">
                 <h2>Avis Utilisateurs</h2>
-                <comment-rating-grid></comment-rating-grid>
+                <comment-rating-grid
+                  :test="id_prestataire"
+                ></comment-rating-grid>
               </div>
-              <!-- <div class="review-card">
-                <div class="review-header">
-                  <div class="name-group">
-                    <div class="initials">A</div>
-                    <p>Alice Banks</p>
-                  </div>
-                  <div class="rating">
-                    <i id="one" class="fas fa-star"></i>
-                    <i id="one" class="fas fa-star"></i>
-                    <i id="one" class="fas fa-star"></i>
-                    <i id="one" class="fas fa-star"></i>
-                    <i id="one" class="fas fa-star"></i>
-                  </div>
-                </div>
-                <div class="review-description">
-                  The device has a clean design, and the metal housing feels
-                  sturdy in my hands. Soft rounded corners make it a pleasure to
-                  look at.
-                </div>
-                <div class="review-details">
-                  <div class="review-date">Feb 13, 2021</div>
-                  <div class="share-group">
-                    <i class="fas fa-share-alt"></i>
-                    <p>Share</p>
-                  </div>
-                </div>
-              </div> -->
             </div>
             <div class="offset-md-1 col-md-4">
               <div class="section">
@@ -210,11 +188,16 @@ export default Vue.extend({
       slides: [] as ISlider[],
       idProvider: null,
       isChat: true,
+      id_prestataire: "" as string,
     };
   },
   async beforeMount(): Promise<void> {
     await this.$store.dispatch("benefits/fetchAll");
     await this.updateSlder(this.currentId);
+    this.id_prestataire = this.$store.getters["benefits/one"](
+      this.$route.params.id
+    ).id_user.toString();
+    // console.log(this.$route.params.id);
   },
   components: {
     BenefitsGrid,
@@ -224,6 +207,9 @@ export default Vue.extend({
     CommentRatingGrid,
   },
   computed: {
+    id_user() {
+      return this.$store.getters["auth/user"].id;
+    },
     benefit(): Benefit {
       return this.$store.getters["benefits/one"](this.$route.params.id);
     },
@@ -232,6 +218,9 @@ export default Vue.extend({
     },
     currentId(): string {
       return this.$route.params.id;
+    },
+    isComment(): boolean {
+      return this.$store.getters["auth/isComment"];
     },
   },
   methods: {
@@ -292,6 +281,9 @@ export default Vue.extend({
   },
   watch: {
     async currentId(val) {
+      this.id_prestataire = this.$store.getters["benefits/one"](
+        this.$route.params.id
+      ).id_user.toString();
       await this.updateSlder(val);
     },
   },
@@ -335,6 +327,7 @@ export default Vue.extend({
 }
 .avisUser {
   margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 /*dojdojdpid *** */

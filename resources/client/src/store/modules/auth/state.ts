@@ -1,4 +1,6 @@
 import { IUser } from "@/interfaces/auth.interfaces";
+import { IResultListComment } from "@/interfaces/comment.interface";
+import { IListeConversationsResponse } from "@/interfaces/liste-conversations.interfaces";
 import { IAuthState } from "./interfaces/state.interface";
 
 const state = (): IAuthState => ({
@@ -10,7 +12,9 @@ const state = (): IAuthState => ({
     favorites: [],
     rooms: [],
     messages: [],
-    idBenefitToChat: (null as unknown) as number
+    idBenefitToChat: (null as unknown) as number,
+    isComment: true,
+    listComment: (null as unknown) as IResultListComment[]
 });
 
 export default state;

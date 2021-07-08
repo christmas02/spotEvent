@@ -34,7 +34,11 @@
         <template v-slot:activator="{ on, attrs }">
           <p v-bind="attrs" v-on="on" class="m-0">
             <v-avatar size="30" class="mr-2">
-              <img :src="user.path_user | createImagePath" />
+              <v-img
+                lazy-src="https://picsum.photos/id/11/500/300"
+                :src="user.path_user | createImagePath"
+              ></v-img>
+              <!-- <img :src="user.path_user | createImagePath" /> -->
             </v-avatar>
             {{ user.name }}
           </p>
