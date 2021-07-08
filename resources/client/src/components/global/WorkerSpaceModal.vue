@@ -44,6 +44,8 @@ export default Vue.extend({
   },
   methods: {
     closeDialog() {
+      console.log("fermé");
+
       this.$emit("change", false);
       // this.$emit("input", false);
 

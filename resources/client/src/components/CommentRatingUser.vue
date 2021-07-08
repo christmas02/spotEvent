@@ -1,46 +1,44 @@
 <template>
-  <v-slide-y-transition hide-on-leave>
-    <div class="ratingUser" v-if="isComment">
-      <div class="review-card">
-        <div class="review-header">
-          <div class="name-group">
-            <div class="initials">{{ user.name.charAt(0) }}</div>
-            <p class="mb-0">{{ user.name }}</p>
-          </div>
-          <div class="rating">
-            <v-rating
-              v-model="rating"
-              size="30"
-              background-color="primary"
-              color="primary"
-            ></v-rating>
-          </div>
+  <div class="ratingUser" v-if="isComment">
+    <div class="review-card">
+      <div class="review-header">
+        <div class="name-group">
+          <div class="initials">{{ user.name.charAt(0) }}</div>
+          <p class="mb-0">{{ user.name }}</p>
         </div>
-        <div class="review-description">
-          <!-- The device has a clean design, and the metal housing feels sturdy in my
+        <div class="rating">
+          <v-rating
+            v-model="rating"
+            size="30"
+            background-color="primary"
+            color="primary"
+          ></v-rating>
+        </div>
+      </div>
+      <div class="review-description">
+        <!-- The device has a clean design, and the metal housing feels sturdy in my
         hands. Soft rounded corners make it a pleasure to look at. -->
-          <v-textarea
-            label="Commentaire"
-            v-model="comment"
-            placeholder="Le commentaire n'est pas obligatoire"
-          ></v-textarea>
-        </div>
-        <div class="review-details">
-          <!-- <div class="review-date">Feb 13, 2021</div> -->
-          <div class="share-group">
-            <v-btn
-              depressed
-              color="primary"
-              :disabled="rating == 0"
-              @click="send"
-            >
-              Valider
-            </v-btn>
-          </div>
+        <v-textarea
+          label="Commentaire"
+          v-model="comment"
+          placeholder="Le commentaire n'est pas obligatoire"
+        ></v-textarea>
+      </div>
+      <div class="review-details">
+        <!-- <div class="review-date">Feb 13, 2021</div> -->
+        <div class="share-group">
+          <v-btn
+            depressed
+            color="primary"
+            :disabled="rating == 0"
+            @click="send"
+          >
+            Valider
+          </v-btn>
         </div>
       </div>
     </div>
-  </v-slide-y-transition>
+  </div>
 </template>
 
 <script lang="ts">

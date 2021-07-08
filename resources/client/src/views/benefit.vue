@@ -77,15 +77,14 @@
 
               <div>
                 <comment-rating-user
+                  v-if="isConnected"
                   :id_prestataire="id_prestataire"
                   :id_user="id_user.toString()"
                 ></comment-rating-user>
               </div>
               <div class="avisUser">
-                <h2>Avis Utilisateurs</h2>
-                <comment-rating-grid
-                  :test="id_prestataire"
-                ></comment-rating-grid>
+                <h1>Avis Utilisateurs</h1>
+                <comment-rating-grid></comment-rating-grid>
               </div>
             </div>
             <div class="offset-md-1 col-md-4">
@@ -221,6 +220,9 @@ export default Vue.extend({
     },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
+    },
+    isConnected() {
+      return this.$store.getters["auth/isConnected"];
     },
   },
   methods: {
