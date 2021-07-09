@@ -1,5 +1,6 @@
 <template>
-  <div class="ratingUser" v-if="isComment">
+  <div v-if="listComment"></div>
+  <div class="ratingUser" v-else-if="!isComment">
     <div class="review-card">
       <div class="review-header">
         <div class="name-group">
@@ -39,6 +40,9 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    <h3>Vous avez commenté</h3>
+  </div>
 </template>
 
 <script lang="ts">
@@ -66,6 +70,7 @@ export default Vue.extend({
       comment: "",
       size: 5,
       isComment: false,
+      listComment: true,
     };
   },
   computed: {
@@ -83,6 +88,7 @@ export default Vue.extend({
 
       toSendComment.contenus =
         this.comment == "" ? "Aucun commentaire" : this.comment;
+
       // console.log(toSendComment);
       this.sendComment(toSendComment);
     },
@@ -94,6 +100,8 @@ export default Vue.extend({
       if (result.statu == 1) {
         console.log("message envoyé effectué");
         this.$store.commit("auth/updateIsComment", false);
+        this.comment = "";
+        this.rating = 0;
         this.isComment = false;
         this.getListComment();
       } else {
@@ -118,9 +126,14 @@ export default Vue.extend({
 
         let id_user = this.$store.getters["auth/user"].id;
         //if id user is not in id of comment
-        if (!allUsers.includes(id_user)) {
+        this.listComment = false;
+        if (allUsers.includes(id_user)) {
+          console.log(id_user, allUsers);
+          console.log("oui il y est");
+          // this.listComment = false;
           this.isComment = true;
         }
+
         this.$store.commit("auth/updateListComment", result.resultat);
         console.log(allUsers, id_user, "icici");
       } else {
@@ -130,13 +143,15 @@ export default Vue.extend({
   },
   beforeMount() {
     console.log("water");
-
+    this.isComment = false;
+    this.listComment = true;
     this.getListComment();
   },
   watch: {
     $route(to, from) {
       this.isComment = false;
-      this.comment = "";
+      this.listComment = true;
+
       this.getListComment();
     },
   },
