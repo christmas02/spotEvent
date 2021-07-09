@@ -37,7 +37,7 @@ export default Vue.extend({
         id_pres: this.benefit.id_user.toString(),
       });
 
-      console.log(statu);
+      console.log(statu, "uddoiop");
 
       if (statu == 1) {
         this.$router.push({

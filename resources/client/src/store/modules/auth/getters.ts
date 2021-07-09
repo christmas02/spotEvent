@@ -1,4 +1,5 @@
 import { IUser } from "@/interfaces/auth.interfaces";
+import { IResultListComment } from "@/interfaces/comment.interface";
 import { IFavorite } from "@/interfaces/favorite.interface";
 import {
     IConversation,
@@ -23,6 +24,9 @@ export default {
     favoritesModal(state: IAuthState): boolean {
         return state.favoritesModal;
     },
+    isComment(state: IAuthState): boolean {
+        return state.isComment;
+    },
     workerSpaceModal(state: IAuthState): boolean {
         return state.workerSpaceModal;
     },
@@ -45,5 +49,8 @@ export default {
     },
     idBenefitToChat(state: IAuthState): number {
         return state.idBenefitToChat;
+    },
+    listComment(state: IAuthState): IResultListComment[] {
+        return state.listComment;
     }
 };

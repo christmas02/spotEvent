@@ -1,4 +1,5 @@
 import { IUpadteProfile, IUser } from "@/interfaces/auth.interfaces";
+import { IListComment } from "@/interfaces/comment.interface";
 import {
     IConversationId,
     IsendingMessage,
@@ -31,6 +32,21 @@ export default {
         } else {
             console.log("erreur");
             // commit("upadteProfile", []);
+        }
+    },
+    async getListComment(
+        { commit, state }: { commit: any; state: IAuthState },
+        { force = false, prestataire = {} as IListComment }
+    ): Promise<void> {
+        const userService = new AuthService();
+
+        // console.log(state.user.id);
+        const result = await userService.listComment(prestataire);
+
+        if (result.statu == 1) {
+            commit("updateListComment", result.resultat);
+        } else {
+            commit("updateListComment", []);
         }
     },
     async getRooms(

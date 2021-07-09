@@ -1,4 +1,8 @@
 import { ILoginResponse, IUser } from "@/interfaces/auth.interfaces";
+import {
+    IListComment,
+    IResultListComment
+} from "@/interfaces/comment.interface";
 import { IFavorite } from "@/interfaces/favorite.interface";
 import {
     IConversation,
@@ -17,11 +21,17 @@ export default {
         state.auth = false;
         state.user = (null as unknown) as IUser;
     },
-    updateUser(state: IAuthState, val: IUser):void{
+    updateUser(state: IAuthState, val: IUser): void {
         state.user = val;
     },
     authModalStatus(state: IAuthState, val: boolean): void {
         state.modal = val;
+    },
+    updateIsComment(state: IAuthState, val: boolean): void {
+        state.isComment = val;
+    },
+    updateListComment(state: IAuthState, val: IResultListComment[]): void {
+        state.listComment = val;
     },
     authFavoritesModalStatus(state: IAuthState, val: boolean): void {
         state.favoritesModal = val;
