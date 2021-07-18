@@ -38,13 +38,14 @@ export class AuthService extends CommonService {
             );
             return data;
         } catch (e) {
-            console.log(e);
+            // console.log(e.response.data);
             return {
                 statu: 0,
                 favoris: [],
                 role: 0,
                 lien: "",
-                user: (null as unknown) as IUser
+                user: (null as unknown) as IUser,
+                message: ""
             };
         }
     }
@@ -57,8 +58,14 @@ export class AuthService extends CommonService {
             );
             return data;
         } catch (e) {
-            console.log(e);
-            return { statu: 0, role: "0" };
+            if (e.response.status === 422)
+                return {
+                    statu: 0,
+                    role: "0",
+                    message: "Email ou numero de telephone deja utilisé"
+                };
+
+            return { statu: 0, role: "0", message: "Une erreur est survenue" };
         }
     }
     async getRooms(body: IUserId): Promise<IListeConversationsResponse> {

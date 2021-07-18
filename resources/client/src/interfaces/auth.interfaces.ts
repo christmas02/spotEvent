@@ -17,6 +17,7 @@ export interface IRegister {
 export interface IRegisterResponse {
     statu: number;
     role: string;
+    message?: string;
 }
 
 export interface IUser {
@@ -36,6 +37,7 @@ export interface ILoginResponse {
     lien: string;
     user: IUser;
     favoris: IFavorite[];
+    message?: string;
 }
 export interface IUpadteProfile {
     id_user: string;

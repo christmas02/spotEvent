@@ -99,7 +99,7 @@ export default Vue.extend({
         if (result.statu != 0) {
           const result = await this.$swal({
             icon: "info",
-            text: "Vous avez reçu un email de confirmation",
+            text: "Vous avez reçu un email de confirmation, verfiez aussi vos spams",
             allowOutsideClick: false,
           });
 
@@ -107,7 +107,7 @@ export default Vue.extend({
             await this.$router.push({ name: "auth-login" });
           }
         } else {
-          this.$swal({ icon: "error", text: "Une erreur est survenue" });
+          this.$swal({ icon: "error", text: result.message });
         }
       }
     },
