@@ -23,18 +23,22 @@
           <p class="mb-0 text-h5">papa {{ phone_service }}</p>
         </div>
       </div>
-      <div v-else>
-        <p class="text-h5">Desolé Il n'y a aucun contact</p>
+      <div v-else class="py-8">
+        <div class="d-flex align-center my-5">
+          <v-icon size="45" class="mr-5">mdi-phone</v-icon>
+          <p class="mb-0 text-h5">Desolé Il n'y a aucun contact</p>
+        </div>
+        <!-- <p class="text-h5 mb-0">Desolé Il n'y a aucun contact</p> -->
       </div>
       <!-- </v-card-text> -->
       <!-- <v-card-text v-else> Il n'y a pas de numero </v-card-text> -->
 
       <!-- <v-divider></v-divider> -->
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <!-- <v-btn color="primary" text @click="dialog = false"> I accept </v-btn> -->
-      </v-card-actions>
+      <!-- <v-card-actions>
+        <v-spacer></v-spacer> -->
+      <!-- <v-btn color="primary" text @click="dialog = false"> I accept </v-btn> -->
+      <!-- </v-card-actions> -->
     </v-card>
   </v-dialog>
 </template>
