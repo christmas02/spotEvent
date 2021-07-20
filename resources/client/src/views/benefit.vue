@@ -112,7 +112,14 @@
                   >
                     <v-icon>mdi-whatsapp</v-icon>
                   </auth-btn>
-                  <v-btn icon color="primary" x-large @click="chat">
+
+                  <v-btn
+                    v-if="isConnected"
+                    icon
+                    color="primary"
+                    x-large
+                    @click="chat"
+                  >
                     <!-- :disabled="benefit.messagerie == 0" -->
                     <v-icon>mdi-message-processing</v-icon>
                   </v-btn>
@@ -120,6 +127,13 @@
                   <v-btn icon color="primary" x-large @click="showContactForm">
                     <v-icon>mdi-email</v-icon>
                   </v-btn>
+                  <!-- Modal  Number Phone -->
+                  <social-dialog
+                    v-model="isModal"
+                    :hasNumber="hasNumber"
+                    :enterprise="enterprise"
+                    :phone_service="phone_service"
+                  ></social-dialog>
                 </div>
               </div>
               <div class="section">
@@ -175,6 +189,7 @@ import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
 import FavoriteBtn from "../components/FavoriteBtn.vue";
 import { AppService } from "../services/app.service";
+import SocialDialog from "@/components/socialDialog.vue";
 // import ChatBot from "../components/ChatBot.vue";
 
 export default Vue.extend({
@@ -183,11 +198,15 @@ export default Vue.extend({
   data() {
     return {
       model: 0,
+      isModal: false,
+      hasNumber: false,
       dialog: false,
       slides: [] as ISlider[],
       idProvider: null,
       isChat: true,
       id_prestataire: "" as string,
+      phone_service: "" as string,
+      enterprise: "" as string,
     };
   },
   async beforeMount(): Promise<void> {
@@ -204,6 +223,7 @@ export default Vue.extend({
     FavoriteBtn,
     CommentRatingUser,
     CommentRatingGrid,
+    SocialDialog,
   },
   computed: {
     id_user() {
@@ -235,16 +255,26 @@ export default Vue.extend({
       });
 
       if (statu == 1) {
+        this.hasNumber = true;
+        this.isModal = true;
+        this.phone_service = this.benefit.phone_service;
+        this.enterprise = this.benefit.name;
+        console.log("gwouuuu");
+
         const html = `
           <h2>${this.benefit.phone_service}</h2>
           <h2>${this.benefit.phone2_service}</h2>
         `;
-        this.$swal({
-          html,
-        });
+        // this.$swal({
+        //   html,
+        // });
+      } else {
+        this.hasNumber = false;
+        this.isModal = true;
       }
     },
     async displayWhatsappNumber(): Promise<void> {
+      this.isModal = true;
       const service = new AppService();
       const id_user = this.$store.getters["auth/id"];
       const { statu } = await service.phoneClick({
@@ -253,7 +283,12 @@ export default Vue.extend({
       });
 
       if (statu == 1) {
-        this.$swal(this.benefit.phone_whastapp);
+        this.hasNumber = true;
+        this.isModal = true;
+        // this.$swal(this.benefit.phone_whastapp);
+      } else {
+        this.hasNumber = false;
+        this.isModal = true;
       }
     },
     showContactForm() {
