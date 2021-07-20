@@ -10,7 +10,12 @@
             les prestataires n'attendent que vous
           </p>
           <div>
-            <v-btn color="primary">Découvrir</v-btn>
+            <v-btn
+              color="primary"
+              :to="{ name: 'auth-register' }"
+              v-if="!isAuth"
+              >Découvrir</v-btn
+            >
           </div>
           <template #append>
             <div class="search-container">
@@ -147,6 +152,9 @@ export default Vue.extend({
   computed: {
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"];
+    },
+    isAuth() {
+      return this.$store.getters["auth/isConnected"];
     },
     categories(): ICategory[] {
       return this.$store.getters["benefits/categories"];
