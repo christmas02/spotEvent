@@ -1,0 +1,36 @@
+public static function postSmsCloud(){
+
+        $sender = 'MTNCLOUD';
+        $mg = 'text message mtn cloud sms';
+        $destinataire = '2250748997945';
+
+        $data = array(
+            'sender' => $sender,
+            'content' => $mg,
+            'dlrUrl' => 'https://myserver.com/XXXXXXXXX-XXXXXXXXXX',
+            'recipients' => [$destinataire]
+        );
+ 
+         $jsonString = json_encode($data);
+         $curl = curl_init();
+         curl_setopt_array($curl, array(
+ 
+             CURLOPT_URL => "https://api.smscloud.ci/xxxxxxxxxxxx",
+             CURLOPT_RETURNTRANSFER => true,
+             CURLOPT_CUSTOMREQUEST => "POST",
+             CURLOPT_POSTFIELDS => $jsonString,
+             CURLOPT_HTTPHEADER => array(
+                 "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXX",
+                 "Content-Type: application/json " ,
+                 "cache-control: no-cache " ,
+             ),
+ 
+         ));
+         //
+         $output = curl_exec($curl);
+         $response = json_decode($output,true);
+
+         $err = curl_error($curl);   
+         curl_close($curl);
+         return $response;
+}

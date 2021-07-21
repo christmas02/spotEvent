@@ -129,13 +129,14 @@ export default Vue.extend({
 }
 
 #auth-layout .auth-title {
-  font-size: 140px;
+  font-size: 6rem;
   margin-bottom: -35px;
 }
 
 #auth-layout .auth-subtitle {
   font-weight: 200;
   font-size: 1.9rem;
+  margin-top: 15px;
 }
 
 #auth-layout button {
@@ -149,7 +150,7 @@ export default Vue.extend({
 }
 
 #auth-layout .form-container {
-  margin: 4% 15%;
+  margin: 4% 10%;
   height: 90%;
 }
 

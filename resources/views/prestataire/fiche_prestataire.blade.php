@@ -101,7 +101,16 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation <small>Une présentation se 400 mots</small></label>
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Detail sur la localisation <small>Une présentation se 100 mots</small><span class="required">*</span></label>
+
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <textarea rows="4" size="100" name="detail_localisation" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <label for="middle-name"
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation <small>Une présentation se 400 mots</small> <span class="required">*</span></label>
 
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="4" size="400" name="presentation" class="form-control" required></textarea>
@@ -110,7 +119,7 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Description <span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="8" name="description" class="form-control" required></textarea>
                                         </div>
@@ -213,7 +222,7 @@
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
                                         principale dimension de l'image (1733 × 838)</label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="image_five" class="form-control" required>
+                                        <input type="file" name="image_five" accept="jpg,png" class="form-control" required>
                                     </div>
                                 </div>
 

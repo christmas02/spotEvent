@@ -55,4 +55,7 @@ Route::post('save_commentaire','ApiController@saveCommentaire');
 Route::post('liste_commentaire','ApiController@getCommenataire');
 
 
+Route::post('forgetPassword','ApiController@forgetPassword');
+
+
 

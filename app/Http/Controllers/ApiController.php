@@ -14,6 +14,7 @@ use App\Clicphone;
 use App\Demande;
 use App\Commentaire;
 use App\Mail\notifixation;
+use App\Mail\fotgetPassword;
 use Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -321,8 +322,9 @@ class ApiController extends Controller
 
             $conversation = Conversation::where('conversations.id_user', $id_user)
                 ->leftjoin('users', 'users.id', '=', 'conversations.id_recepteur')
+                ->leftjoin('fiches', 'fiches.id_user', '=', 'conversations.id_recepteur')
                 ->leftjoin('messages', 'messages.conversation', '=', 'conversations.cod_conversation')
-                ->select('users.id as id_recepteur', 'users.name as name_recepteur', 'users.path_user as image_recepteur', 'messages.id as id_message', 'messages.conversation as conversation')
+                ->select('users.id as id_recepteur', 'fiches.name as name_recepteur', 'users.path_user as image_recepteur', 'messages.id as id_message', 'messages.conversation as conversation')
                 ->orderBy('messages.id', 'desc')
                 ->distinct()
                 ->get();
@@ -592,6 +594,46 @@ class ApiController extends Controller
                 return response()->json(['statu' => 0, 'message' => "Cet prestataire a deja reçu un commentaire venant de ce client"]);
             }
 
+
+        } catch (\Throwable $th) {
+            dd($th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
+        }
+
+    }
+
+    public function forgetPassword(Request $request){
+
+        try {
+        
+            $email = $request['email'];
+            $user_exist = User::where('email',$email)->first();
+
+            $user = User::whereId($user_exist->id)->first();
+            $password = time();
+
+
+
+            if ($user) {
+                $passwords = bcrypt($password);
+                $user->password = $passwords;
+                $user->save();
+
+                $data = [
+                    "password" => $password,
+                    "name" => $user_exist->name,
+                ];
+
+                // communication mail pas defaut
+                Mail::to($user_exist->email)->send(new fotgetPassword($data));
+
+                $resultat = 'La modification a correctement été effectuée un mail contenant votre nouveau mot de passe vous a ete transmit';
+                return response()->json(['statu' => 1, 'message' => $resultat]);
+            } else {
+
+                $resultat = 'Il y a eu une erreur, merci de recommencer';
+                return response()->json(['statu' => 0, 'message' => $resultat]);
+            }
 
         } catch (\Throwable $th) {
             dd($th);

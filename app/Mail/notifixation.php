@@ -32,8 +32,7 @@ class notifixation extends Mailable
      */
     public function build()
     {
-       
-        return $this->from('infos@yesimmo.ci', 'Alerte SportEvent')
+        return $this->from('noreply@spoteventapp.net', 'Alerte spoteventapp')
         ->subject('Confirmation reservation')
         ->markdown('mails.notification');
     }

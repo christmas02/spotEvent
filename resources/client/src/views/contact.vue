@@ -83,7 +83,10 @@
                     <v-text-field label="Email" outlined></v-text-field>
                   </div>
                   <div class="col-md-6">
-                    <v-text-field label="Website" outlined></v-text-field>
+                    <v-text-field
+                      label="contact téléphonique"
+                      outlined
+                    ></v-text-field>
                   </div>
                   <div class="col-md-12">
                     <v-textarea label="Message" outlined></v-textarea>

@@ -1,7 +1,7 @@
 <template>
   <auth-layout
     title="Hello !"
-    subtitle="Connecte-toi afin d'accéder à la plateforme."
+    subtitle="Content de te revoir parmi nous"
     action="login"
   >
     <div class="login-container">

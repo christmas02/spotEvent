@@ -80,9 +80,9 @@
 
                         <div class="">
                             <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#exampleModalGalerie">
-                            <i class="fa fa-pencil"></i> Modifier la gallerie</button>
+                            <i class="fa fa-pencil"></i> Modifier la galerie</button>
                             <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#exampleModalCenterInfo">
-                            <i class="fa fa-folder"></i> Modifier mom profil</button>
+                            <i class="fa fa-folder"></i> Modifier mon profil</button>
                             
                         </div>
                         <hr>
@@ -159,7 +159,7 @@
       <div class="modal-body">
        
             <input type="text" hidden name="id" value="">
-            <center><h3>Modifier la gallerie</h3></center>
+            <center><h3>Modifier la galerie</h3></center>
             <div class="table-responsive">
                      @if(count($galerieExiste) != 0)
                       <table class="table table-striped jambo_table bulk_action">

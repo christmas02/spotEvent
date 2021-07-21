@@ -16,9 +16,11 @@ class RegisteredUser extends Notification
      *
      * @return void
      */
-    public function __construct()
+  
+    public function __construct($name)
     {
         //
+   
     }
 
     /**
@@ -42,9 +44,12 @@ class RegisteredUser extends Notification
     {
         return (new MailMessage)
                     ->success()
-                    ->subject('Confirmation d\'Inscription sur SpotEvent ')
-                    ->line('Votre compte à bien été crée. Cependant il doit être confirmer afin que vous puissez y accéder.
-                     Merci de cliquer sur le lien suivant.')
+                    ->subject('Confirmation d\'Inscription sur spoteventapp')
+                    
+                    ->line($notifiable->name.'! Nous avons bien pris en compte votre inscription sur Spot Event !
+                    Pour la finaliser, il vous faudra cliquer sur le bouton “confirmer mon adresse email”.
+                    Une fois cette action effectuée, les administrateurs de Spot Event pourront activer votre compte !
+                    ')
                     ->action('Confirmer mon compte', url("/confirm/{$notifiable->id}/{$notifiable->confirmation_token}"))
                     ->line('Merci d\'utiliser notre plateforme');
     }
