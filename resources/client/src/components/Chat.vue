@@ -42,7 +42,7 @@ import {
   IMessage,
   IsendingMessage,
 } from "@/interfaces/liste-conversations.interfaces";
-import { IRoom, IRooms } from "@/interfaces/chat.interfaces";
+import { IRoom, IRooms } from "@/interfaces/chat.interface";
 
 export default Vue.extend({
   components: {
@@ -286,7 +286,7 @@ export default Vue.extend({
   },
   computed: {
     currentUserId() {
-      return this.$store.getters["auth/user"].id;
+      return this.$store.getters["auth/user"].id.toString();
     },
     loadedRooms() {
       return this.rooms.slice(0, this.roomsLoadedCount);
@@ -339,6 +339,9 @@ export default Vue.extend({
           const localRoom = new Object() as IRoom;
 
           localRoom.roomId = element.conversation;
+          // localRoom.roomName = element.name_recepteur;
+          // console.log(element.name_recepteur);
+
           localRoom.roomName = element.name_recepteur;
           if (element.image_recepteur) {
             localRoom.avatar =

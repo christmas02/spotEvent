@@ -63,8 +63,8 @@ export default Vue.extend({
       rating: 0,
       comment: "",
       size: 5,
-      isComment: false,
-      listComment: true,
+      isComment: false as boolean,
+      listComment: true as boolean,
     };
   },
   computed: {
@@ -142,7 +142,7 @@ export default Vue.extend({
     this.getListComment();
   },
   watch: {
-    $route() {
+    $route(to, from) {
       this.isComment = false;
       this.listComment = true;
 

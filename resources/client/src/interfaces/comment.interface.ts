@@ -1,3 +1,4 @@
+export type StringNumber = string | number
 export interface ISendComment {
     id_prestataire: string;
     id_user: string;
@@ -25,10 +26,10 @@ export interface IListComment {
     id_prestataire: string;
 }
 export interface IResultListComment {
-    id: number;
-    id_user: number;
-    id_prestataire: number;
-    vote: number;
+    id: StringNumber;
+    id_user: StringNumber;
+    id_prestataire: StringNumber;
+    vote: StringNumber;
     contenus: string;
     created_at: string;
     updated_at: string;

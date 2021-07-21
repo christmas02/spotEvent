@@ -50,10 +50,11 @@ export default {
             // result.resultat[index].id_prestataire = result.resultat[index].id_prestataire.toString();
             // result.resultat[index].id_user = result.resultat[index].id_user.toString();
             // result.resultat[index].vote = result.resultat[index].vote.toString();
+            
 
-            result.resultat[index].id_prestataire = parseInt(result.resultat[index].id_prestataire);
-            result.resultat[index].id_user = parseInt(result.resultat[index].id_user);
-            result.resultat[index].vote = parseInt(result.resultat[index].vote);
+            // result.resultat[index].id_prestataire = parseInt(result.resultat[index].id_prestataire);
+            // result.resultat[index].id_user = parseInt(result.resultat[index].id_user);
+            // result.resultat[index].vote = parseInt(result.resultat[index].vote);
 
         }
             commit("updateListComment", result.resultat);
@@ -88,16 +89,16 @@ export default {
 
         if (result.statu == 1) {
             // console.log(result, "mes resultats");
-            for (let index = 0; index < result.messages.length; index++) {
+            // for (let index = 0; index < result.messages.length; index++) {
 
                             
-                // result.messages[index].id_emmetteur = result.messages[index].id_emmetteur.toString();
-                // result.messages[index].conversation = result.messages[index].conversation.toString();
+            //     result.messages[index].id_emmetteur = result.messages[index].id_emmetteur.toString();
+            //     result.messages[index].conversation = result.messages[index].conversation.toString();
 
 
-                result.messages[index].id_emmetteur = parseInt(result.messages[index].id_emmetteur);
-                result.messages[index].conversation = parseInt(result.messages[index].conversation);
-            }
+                // result.messages[index].id_emmetteur = parseInt(result.messages[index].id_emmetteur);
+                // result.messages[index].conversation = parseInt(result.messages[index].conversation);
+            // }
             await commit("updateMessages", result.messages);
             // console.log(result);
         } else {

@@ -9,7 +9,7 @@
           </div>
           <div class="rating">
             <v-rating
-              :value="comment.vote"
+              :value="parseInt(comment.vote)"
               readonly
               size="30"
               background-color="primary"

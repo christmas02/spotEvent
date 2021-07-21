@@ -12,20 +12,20 @@ export interface IListeMessagesResponse {
     messages: IMessage[];
 }
 export interface IMessage {
-    id: number;
-    conversation: number;
-    id_emmetteur: number;
-    contenus: string;
-    created_at: string;
-    updated_at: string;
-
-
-    // id: StringNumber;
-    // conversation: StringNumber;
-    // id_emmetteur: StringNumber;
+    // id: number;
+    // conversation: number;
+    // id_emmetteur: number;
     // contenus: string;
     // created_at: string;
     // updated_at: string;
+
+
+    id: StringNumber;
+    conversation: StringNumber;
+    id_emmetteur: StringNumber;
+    contenus: string;
+    created_at: string;
+    updated_at: string;
 
     // id: string;
     // conversation: string;

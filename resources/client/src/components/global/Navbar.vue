@@ -118,14 +118,14 @@ export default Vue.extend({
     },
     logout() {
       this.$store.commit("auth/logout");
-      if(this.$route.name != 'Home'){
+      if (this.$route.name != "Home") {
         this.$router.push("/");
       }
     },
-    chat(){
+    chat() {
       this.$store.commit("auth/updateIdBenefitToChat", null);
       this.$router.push({ name: "Chat" });
-    }
+    },
     activeFavoriteModal() {
       this.statusFavoriteDialog = true;
       // this.$store.commit("auth/authFavoritesModalStatus", true);
