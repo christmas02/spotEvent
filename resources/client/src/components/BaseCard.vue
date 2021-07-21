@@ -37,7 +37,8 @@ export default Vue.extend({
     },
     description: {
       type: String,
-      required: true,
+      required: false,
+      default: "Aucune description",
     },
     image: {
       type: String,

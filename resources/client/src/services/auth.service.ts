@@ -23,7 +23,6 @@ import {
 } from "@/interfaces/liste-conversations.interfaces";
 import {
     IListComment,
-    IResultListComment,
     IResultListCommentResponse,
     ISendComment,
     ISendCommentResponse

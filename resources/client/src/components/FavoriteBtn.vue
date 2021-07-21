@@ -7,7 +7,7 @@
     rounded
     class="btn-icon"
     @click="toggleFavorite"
-    :disabled="benefit.favoris !== 1 || !auth"
+    :disabled="benefit.favoris != 1 || !auth"
   >
     <v-icon>mdi-heart</v-icon>
   </v-btn>

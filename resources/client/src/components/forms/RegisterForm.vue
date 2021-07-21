@@ -23,7 +23,7 @@
         label="N° de téléphone"
         v-model="form.phone"
         type="tel"
-        :rules="phoneCiRules"
+        :rules="requiredRules"
       ></v-text-field>
       <v-text-field
         v-model="form.password"
@@ -66,9 +66,7 @@ export default Vue.extend({
       required: true,
     },
   },
-  mounted() {
-    console.log(this.role);
-  },
+
   data() {
     return {
       form: {
@@ -85,7 +83,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    async registerUser() {
+    async registerUser(): Promise<void> {
       // @ts-ignore
       if (this.$refs.registerForm.validate()) {
         this.loading = true;
@@ -99,7 +97,7 @@ export default Vue.extend({
         if (result.statu != 0) {
           const result = await this.$swal({
             icon: "info",
-            text: "Vous avez reçu un email de confirmation, verfiez aussi vos spams",
+            text: "Vous avez reçu un email de confirmation, verifiez aussi vos spams si vous le retrouvez pas dans votre boite de receprion",
             allowOutsideClick: false,
           });
 

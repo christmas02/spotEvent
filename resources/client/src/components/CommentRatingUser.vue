@@ -1,6 +1,8 @@
 <template>
-  <div v-if="listComment"></div>
-  <div class="ratingUser" v-else-if="!isComment">
+  <div v-if="isComment">
+    <h3>Vous avez commenté</h3>
+  </div>
+  <div class="ratingUser" v-else>
     <div class="review-card">
       <div class="review-header">
         <div class="name-group">
@@ -26,22 +28,12 @@
         ></v-textarea>
       </div>
       <div class="review-details">
-        <!-- <div class="review-date">Feb 13, 2021</div> -->
         <div class="share-group">
-          <v-btn
-            depressed
-            color="primary"
-            :disabled="rating == 0"
-            @click="send"
-          >
-            Valider
-          </v-btn>
+          <loading-button :handler="send" type="button">Valider</loading-button>
+          <!-- <v-btn depressed color="primary" @click="send"> Valider </v-btn> -->
         </div>
       </div>
     </div>
-  </div>
-  <div v-else>
-    <h3>Vous avez commenté</h3>
   </div>
 </template>
 
@@ -53,7 +45,9 @@ import {
   IListComment,
   IResultListComment,
 } from "@/interfaces/comment.interface";
+import LoadingButton from "./global/LoadingButton.vue";
 export default Vue.extend({
+  components: { LoadingButton },
   props: {
     id_prestataire: {
       type: String,
@@ -93,6 +87,7 @@ export default Vue.extend({
       this.sendComment(toSendComment);
     },
     async sendComment(comment: ISendComment): Promise<void> {
+      this.$store.commit("startLoading");
       const userService = new AuthService();
 
       const result = await userService.sendComment(comment);
@@ -107,6 +102,8 @@ export default Vue.extend({
       } else {
         console.log("erreur");
       }
+
+      this.$store.commit("stopLoading");
     },
     async getListComment(): Promise<void> {
       const userService = new AuthService();
@@ -119,36 +116,33 @@ export default Vue.extend({
       const result = await userService.listComment(prestataire);
 
       if (result.statu == 1) {
-        const allUsers = result.resultat.map(
-          (el: IResultListComment) => el.id_user
+        const allUsers: string[] = result.resultat.map(
+          (el: IResultListComment) => el.id_user.toString()
         );
         // console.log(allUsers, "ici");
 
-        let id_user = this.$store.getters["auth/user"].id;
+        let id_user = this.$store.getters["auth/user"].id.toString();
         //if id user is not in id of comment
         this.listComment = false;
+
         if (allUsers.includes(id_user)) {
-          console.log(id_user, allUsers);
-          console.log("oui il y est");
           // this.listComment = false;
           this.isComment = true;
         }
 
         this.$store.commit("auth/updateListComment", result.resultat);
-        console.log(allUsers, id_user, "icici");
       } else {
         console.log("erreur");
       }
     },
   },
   beforeMount() {
-    console.log("water");
     this.isComment = false;
     this.listComment = true;
     this.getListComment();
   },
   watch: {
-    $route(to, from) {
+    $route() {
       this.isComment = false;
       this.listComment = true;
 

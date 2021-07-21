@@ -1,7 +1,7 @@
 <template>
   <auth-layout
     title="Hello !"
-    subtitle="Content de te revoir parmi nous"
+    subtitle="Contents de vous revoir parmi nous"
     action="login"
   >
     <div class="login-container">

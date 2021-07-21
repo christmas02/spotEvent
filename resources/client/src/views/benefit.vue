@@ -135,7 +135,10 @@
                     :phone2_service="phone2_service" -->
                 </div>
               </div>
-              <div class="section">
+              <div
+                class="section"
+                v-if="benefit.lien_facebook || benefit.lien_instagram"
+              >
                 <h2 class="section-title">Reseaux sociaux</h2>
                 <p>Rejoignez-nous sur les réseaux sociaux</p>
                 <div>
@@ -145,6 +148,7 @@
                     x-large
                     tag="a"
                     :href="benefit.lien_facebook"
+                    v-if="benefit.lien_facebook"
                     target="_blank"
                   >
                     <v-icon>mdi-facebook</v-icon>
@@ -154,6 +158,7 @@
                     color="primary"
                     x-large
                     tag="a"
+                    v-if="benefit.lien_instagram"
                     :href="benefit.lien_instagram"
                     target="_blank"
                   >
