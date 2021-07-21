@@ -1,5 +1,11 @@
 <template>
-  <v-btn :color="color" :type="type" :disabled="loading" :block="block">
+  <v-btn
+    :color="color"
+    :type="type"
+    :disabled="loading"
+    :block="block"
+    @click="handler"
+  >
     <template v-if="loading">Veuillez patienter ... </template>
     <template v-else><slot></slot></template>
   </v-btn>

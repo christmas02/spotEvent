@@ -66,9 +66,7 @@ export default Vue.extend({
       required: true,
     },
   },
-  mounted() {
-    console.log(this.role);
-  },
+
   data() {
     return {
       form: {
