@@ -20,11 +20,15 @@
         <!-- <v-divider></v-divider> -->
         <div class="d-flex align-center my-5">
           <v-icon size="45" class="mr-5">mdi-phone</v-icon>
+<<<<<<< HEAD
           <p class="mb-0 text-h5">{{ all.phone_service }}</p>
         </div>
         <div class="d-flex align-center my-5" v-if="all.phone2_service">
           <v-icon size="45" class="mr-5">mdi-phone</v-icon>
           <p class="mb-0 text-h5">{{ all.phone2_service }}</p>
+=======
+          <p class="mb-0 text-h5">{{ phone_service }}</p>
+>>>>>>> a1cfd66 (points en cours)
         </div>
       </div>
       <div v-else class="py-8">

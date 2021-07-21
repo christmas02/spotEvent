@@ -7,7 +7,18 @@
         !statusFormUpdatePassword
       "
     >
+      <div
+        v-if="imageLoading"
+        class="d-flex justify-center align-center w-100"
+        style="height: 340px"
+      >
+        <v-progress-circular
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </div>
       <v-img
+        v-else
         lazy-src="https://picsum.photos/id/11/10/6"
         :src="defaultUrl + pathUser"
         height="340px"
@@ -23,7 +34,7 @@
             <v-file-input
               class="d-none"
               ref="photoUploader"
-              accept="image/png, image/jpg, image/jpeg"
+              accept="image/*"
               placeholder="Choisissez une photo"
               prepend-icon="mdi-camera"
               label="Avatar"
@@ -103,6 +114,7 @@ export default Vue.extend({
     return {
       defaultUrl: `${window.location.origin}/storage/`,
       localFile: "",
+      imageLoading: false,
     };
   },
   methods: {
@@ -133,7 +145,6 @@ export default Vue.extend({
     onFileChanged(file: File) {
       if (file) {
         if (file.type.includes("image/")) {
-          console.log("inclus");
           const myUser = new Object() as ISaveImage;
           myUser.id_user = this.id;
 
@@ -141,22 +152,38 @@ export default Vue.extend({
           formData.append(`image`, file);
           formData.append(`id_user`, this.id);
           // console.log(formData);
+          this.imageLoading = true;
           axios
             .post(`${window.location.origin}/api/saveImage`, formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
             })
-            .then(() => {
-              const localUser = this.user;
-              localUser.path_user = file.name;
-              this.$store.commit("auth/updateUser", localUser);
-              console.log("joli");
+            .then((v: any) => {
+              if (v.statu == 0) {
+                this.$swal({
+                  toast: true,
+                  icon: "error",
+                  title: "Erreurlors de la mise a jour de l'image",
+                  timer: 5000,
+                  showConfirmButton: false,
+                  position: "top-end",
+                });
+              } else {
+                const localUser = this.user;
+                localUser.path_user = file.name;
+                this.$store.commit("auth/updateUser", localUser);
+              }
             })
             .catch(function () {
               alert(
                 "Une erreur est survenue lors de la modification des images "
               );
+            })
+            .finally(() => {
+              setTimeout(() => {
+                this.imageLoading = false;
+              }, 2000);
             });
         } else {
           alert("Veillez choisir un fichier de type image");
