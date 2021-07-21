@@ -128,12 +128,11 @@
                     <v-icon>mdi-email</v-icon>
                   </v-btn>
                   <!-- Modal  Number Phone -->
-                  <social-dialog
-                    v-model="isModal"
-                    :hasNumber="hasNumber"
+                  <social-dialog v-model="all"></social-dialog>
+                  <!-- :hasNumber="hasNumber"
                     :enterprise="enterprise"
                     :phone_service="phone_service"
-                  ></social-dialog>
+                    :phone2_service="phone2_service" -->
                 </div>
               </div>
               <div class="section">
@@ -206,6 +205,7 @@ export default Vue.extend({
       isChat: true,
       id_prestataire: "" as string,
       phone_service: "" as string,
+      phone2_service: "" as string,
       enterprise: "" as string,
     };
   },
@@ -244,7 +244,26 @@ export default Vue.extend({
     isConnected() {
       return this.$store.getters["auth/isConnected"];
     },
-  },
+    all: {
+      get(){
+        return {
+        isModal: this.isModal,
+        hasNumber: this.hasNumber,
+        enterprise: this.enterprise,
+        phone_service: this.phone_service,
+        phone2_service: this.phone2_service
+        }
+      },
+      set(isModal:boolean,hasNumber:boolean, enterprise:string, phone_service:string, phone2_service: string){
+        this.isModal = isModal; 
+        this.hasNumber = hasNumber;
+        this.enterprise = enterprise;
+        this.phone_service = phone_service;
+        this.phone2_service = phone2_service;
+      }
+    },
+  }
+
   methods: {
     async displayPhoneNumber(): Promise<void> {
       const service = new AppService();
@@ -255,9 +274,12 @@ export default Vue.extend({
       });
 
       if (statu == 1) {
+        this.phone_service = this.benefit.phone_service;
+        // console.log(this.benefit.phone2_service);
+        
+        this.phone2_service = this.benefit.phone2_service;
         this.hasNumber = true;
         this.isModal = true;
-        this.phone_service = this.benefit.phone_service;
         this.enterprise = this.benefit.name;
         console.log("gwouuuu");
 
@@ -274,7 +296,6 @@ export default Vue.extend({
       }
     },
     async displayWhatsappNumber(): Promise<void> {
-      this.isModal = true;
       const service = new AppService();
       const id_user = this.$store.getters["auth/id"];
       const { statu } = await service.phoneClick({
@@ -283,6 +304,11 @@ export default Vue.extend({
       });
 
       if (statu == 1) {
+        this.enterprise = this.benefit.name;
+        console.log();
+        
+        this.phone_service = this.benefit.phone_whastapp; // this.$swal(this.benefit.phone_whastapp);
+        this.phone2_service = null; // this.$swal(this.benefit.phone_whastapp);
         this.hasNumber = true;
         this.isModal = true;
         // this.$swal(this.benefit.phone_whastapp);

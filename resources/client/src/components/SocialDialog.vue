@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="isModal"
+    v-model="all.isModal"
     @keydown.esc="closeDialog"
     @click:outside="closeDialog"
     width="500"
@@ -11,16 +11,20 @@
       </v-card-title> -->
 
       <!-- <v-card-text v-if="hasNumber"> -->
-      <div v-if="hasNumber" class="d-flex flex-column">
+      <div v-if="all.hasNumber" class="d-flex flex-column">
         <div class="d-flex align-center my-5">
           <v-icon size="45" class="mr-5">mdi-account</v-icon>
-          <p class="mb-0 text-h5">{{ enterprise }}</p>
+          <p class="mb-0 text-h5">{{ all.enterprise }}</p>
         </div>
 
         <!-- <v-divider></v-divider> -->
         <div class="d-flex align-center my-5">
           <v-icon size="45" class="mr-5">mdi-phone</v-icon>
-          <p class="mb-0 text-h5">papa {{ phone_service }}</p>
+          <p class="mb-0 text-h5">{{ all.phone_service }}</p>
+        </div>
+        <div class="d-flex align-center my-5" v-if="all.phone2_service">
+          <v-icon size="45" class="mr-5">mdi-phone</v-icon>
+          <p class="mb-0 text-h5">{{ all.phone2_service }}</p>
         </div>
       </div>
       <div v-else class="py-8">
@@ -47,28 +51,36 @@
 import Vue from "vue";
 export default Vue.extend({
   model: {
-    prop: "isModal",
+    prop: "all",
     event: "change",
   },
   props: {
-    isModal: {
-      type: Boolean,
+    all: {
+      type: Object,
       required: true,
-      default: false,
     },
-    hasNumber: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    phone_service: {
-      type: String,
-      required: false,
-    },
-    enterprise: {
-      type: String,
-      required: false,
-    },
+    // isModal: {
+    //   type: Boolean,
+    //   required: true,
+    //   default: false,
+    // },
+    // hasNumber: {
+    //   type: Boolean,
+    //   required: true,
+    //   default: false,
+    // },
+    // phone_service: {
+    //   type: String,
+    //   required: false,
+    // },
+    // phone2_service: {
+    //   type: String,
+    //   required: false,
+    // },
+    // enterprise: {
+    //   type: String,
+    //   required: false,
+    // },
   },
   methods: {
     closeDialog() {
