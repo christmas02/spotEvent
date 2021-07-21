@@ -51,18 +51,9 @@
                                                             <td align="left" valign="top"
                                                                 style="direction:ltr;padding:0 24px 0 24px">
                                                                 <p style="margin:0;padding:0;color:#131313;font-family:Roboto,Arial,Helvetica,sans-serif;font-size:16px;font-weight:400;line-height:24px;letter-spacing:0.1px">
-                                                                 
-                                                                Bonjour {{ $data['name']}},
-                                                                Un client potentiel vous a laissé un message via le formulaire de contact
-                                                                Pour y accéder, veuillez vous connecter à votre espace prestataire.<br><br>
+                                                                Bonjour monsieur/ madame {{ $data['name']}} votre nouveau mot de passe est le suivant  {{ $data['password']}} <br><br>
 
-
-                                                                <a href="http://spoteventapp.net/login" class="btn btn-info" style="background-color: #38c172; padding: 10px 20px; color:#fff;"> Accéder à mon espace prestataire </a> 
-
-                                                                <br><br>
-
-                                                                L’équipe Spot Event
-
+                                                                Merci de consulter votre espace prestataire sur le site sportevent.
 
                                                                     
                                                                 </p>
@@ -121,7 +112,7 @@
                                                             <td align="left" valign="top"
                                                                 style="direction:ltr;padding:0 24px 0 24px">
                                                                 <p style="margin:0;padding:0;color:#131313;font-family:Roboto,Arial,Helvetica,sans-serif;font-size:16px;font-weight:400;line-height:24px;letter-spacing:0.1px">
-                                                                    <a href="http://spoteventapp.net/">spoteventapp.net</a>
+                                                                <a href="http://spoteventapp.net/">spoteventapp.net</a>
                                                                 </p>
                                                             </td>
                                                         </tr>

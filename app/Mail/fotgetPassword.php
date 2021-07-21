@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class notifixation extends Mailable
+class fotgetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,8 +32,8 @@ class notifixation extends Mailable
      */
     public function build()
     {
-        return $this->from('noreply@spoteventapp.net', 'Alerte spoteventapp')
-        ->subject('Confirmation reservation')
-        ->markdown('mails.notification');
+        return $this->from('noreply@spoteventapp.net', 'spoteventapp')
+        ->subject('Nouveau mot de passe')
+        ->markdown('mails.fotgetPassword');
     }
 }

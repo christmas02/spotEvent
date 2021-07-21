@@ -12,6 +12,7 @@ use App\Demande;
 use App\Clicfiche;
 use App\Clicphone;
 use App\Conversation;
+use App\Estimation;
 use App\Message;
 use Illuminate\Mail\Message as MailMessage;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,22 @@ class AdminController extends Controller
 
         $demande = Demande::where('id_prestataire',$id)->get();
         return count($demande);
+    }
+
+    public function categorie($id){
+
+        $categories = Prestation::get();
+        $infoUser = $this->Userinfo($id);
+        //return count($demande);
+        return view('admin.list_categorie',compact('categories','infoUser'));
+    }
+
+    public function estimation($id){
+
+        $categories = Estimation::get();
+        $infoUser = $this->Userinfo($id);
+        //return count($demande);
+        return view('admin.list_estimation',compact('categories','infoUser'));
     }
 
     public function demandeMonth($id){

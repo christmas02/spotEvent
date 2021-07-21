@@ -51,10 +51,11 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         //dd($request['role']);
+        $name = $request['name'];
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-        $user->notify(new RegisteredUser());
+        $user->notify(new RegisteredUser($name));
         //$this->guard()->login($user);
         $role = $request->role;
         if($role == 1){

@@ -123,14 +123,19 @@ class PrestataireController extends Controller
     }
 
     public function postFiche(Request $request){
+
         //dd($request->all());
         try {
             //$this->validate($request,$this->rules,$this->message);
 
-            $image = $request->file('image_five');
+            /*$image = $request->file('image_five');
             $image_five = $input['image_fivename'] = time(). '.' . $image->getClientOriginalname();
             $destination = public_path('/image');
-            $image->move($destination, $input['image_fivename']);
+            $image->move($destination, $input['image_fivename']);*/
+            $file = $request->file('image_five');
+            $name_img = $file->getClientOriginalName();
+            $storage_data = Storage::disk('public')->put($name_img, file_get_contents($file));
+            
     
             $fiche = New Fiche;
 
@@ -139,7 +144,8 @@ class PrestataireController extends Controller
             $fiche->id_prestations = $request->get('id_prestations');
             $fiche->description = $request->get('description');
             $fiche->presentation = $request->get('presentation');
-            $fiche->path_img = $image_five;
+            $fiche->detail_localisation = $request->get('detail_localisation');
+            $fiche->path_img = $name_img; 
             $fiche->phone_service = $request->get('phone_service');
             $fiche->phone2_service = $request->get('phone2_service');
             $fiche->phone_whastapp = $request->get('phone_whastapp');
@@ -150,9 +156,13 @@ class PrestataireController extends Controller
             $fiche->estimation_min = $request->get('estimation_min');
             $fiche->id_user = $request->get('id_user');
             $fiche->statu_fiche = 0;
+            $fiche->actif_phone = 0;
+            $fiche->actif_whatsapp = 0;
+            $fiche->actif_chat = 0;
             $fiche->messagerie = 0;
             $fiche->position = 0;
             $fiche->favoris = 0;
+            $fiche->nbre_image = 3;
             
             // save du menu nourriture ---- #########
             $fiche->save();
@@ -162,6 +172,7 @@ class PrestataireController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.'.$th);
         }
+
     }
 
     public function fiche($id){
@@ -185,7 +196,7 @@ class PrestataireController extends Controller
             $localisation = $request->get('localisation');
             $presentation = $request->get('presentation');
             $description = $request->get('description');
-            $detail_localisation = $request->get('detail_localisation');
+           // $detail_localisation = $request->get('detail_localisation');
             $estimation_min = $request->get('estimation_min');
             $estimation_max = $request->get('estimation_max');
             $phone_service = $request->get('phone_service');
