@@ -1,3 +1,6 @@
+export type StringNumber = string | number
+
+
 export interface IListeConversationsResponse {
     statu: number;
     message: string;
@@ -15,6 +18,21 @@ export interface IMessage {
     contenus: string;
     created_at: string;
     updated_at: string;
+
+
+    // id: StringNumber;
+    // conversation: StringNumber;
+    // id_emmetteur: StringNumber;
+    // contenus: string;
+    // created_at: string;
+    // updated_at: string;
+
+    // id: string;
+    // conversation: string;
+    // id_emmetteur: string;
+    // contenus: string;
+    // created_at: string;
+    // updated_at: string;
 }
 
 export interface IConversation {

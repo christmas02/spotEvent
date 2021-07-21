@@ -9,6 +9,7 @@ import AboutScreen from "@/views/about.vue";
 import Search from "@/views/search.vue";
 import SeeMore from "@/views/SeeMore.vue";
 import Chat from "@/views/Chat.vue";
+import resetPassword from "@/views/resetPassword.vue";
 
 import store from "@/store";
 
@@ -19,6 +20,11 @@ const routes: Array<RouteConfig> = [
         path: "/",
         name: "Home",
         component: HomeScreen
+    },
+    {
+        path: "/reset",
+        name: "reset",
+        component: resetPassword,
     },
     {
         path: "/search",
