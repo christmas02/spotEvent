@@ -31,6 +31,7 @@ import Vue from "vue";
 import validationsMixin from "@/mixins/validations.mixin";
 import { IUpdatePassword, IUser } from "@/interfaces/auth.interfaces";
 import { AuthService } from "@/services/auth.service";
+
 export default Vue.extend({
   mixins: [validationsMixin],
   name: "form",
@@ -47,15 +48,10 @@ export default Vue.extend({
           (value && value.length >= 8) ||
           "Veillez entre un minimum de 8 caracteres",
       ],
-      confirmPasswordRules: [
-        (value: string) => !!value || "type confirm password",
-        (value: string) =>
-          value === this.password || "Les mots de passes ne correspondent pas",
-      ],
     };
   },
   methods: {
-    validate() {
+    validate(): void {
       //@ts-ignore
       if (this.$refs.form.validate()) {
         console.log("Valide");
@@ -87,6 +83,14 @@ export default Vue.extend({
     },
   },
   computed: {
+    confirmPasswordRules(): any[] {
+      return [
+        (value: string) => !!value || "type confirm password",
+        (value: string) =>
+          value === this.$data.password ||
+          "Les mots de passes ne correspondent pas",
+      ];
+    },
     name() {
       return this.$store.getters["auth/user"].name.toString();
     },

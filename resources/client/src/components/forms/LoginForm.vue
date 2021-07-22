@@ -73,7 +73,7 @@ export default Vue.extend({
               this.$swal({ icon: "error", text: "Identifiants invalides" });
           }
         } else {
-          this.$swal({ icon: "warning", text: "Identifiants invalides" });
+          this.$swal({ icon: "warning", text: result.message });
         }
       }
     },
