@@ -114,7 +114,7 @@
                   </auth-btn>
 
                   <v-btn
-                    v-if="isConnected"
+                    :disabled="!isConnected || benefit.messagerie == 0"
                     icon
                     color="primary"
                     x-large
@@ -221,6 +221,8 @@ export default Vue.extend({
       this.$route.params.id
     ).id_user.toString();
     // console.log(this.$route.params.id);
+    console.log(this.$store.getters["auth/isConnected"]);
+    
   },
   components: {
     BenefitsGrid,
