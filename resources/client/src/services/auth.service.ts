@@ -29,6 +29,21 @@ import {
 } from "@/interfaces/comment.interface";
 
 export class AuthService extends CommonService {
+    async resetPassword(credentials: ILogin): Promise<IUpadteProfileResponse> {
+        try {
+            const { data } = await this.client.post(
+                "/forgetPassword",
+                credentials
+            );
+            return data;
+        } catch (e) {
+            // console.log(e.response.data);
+            return {
+                statu: 0,
+                message: "Une erreur est survenu lors de l'nevoi de l'email"
+            };
+        }
+    }
     async initLogin(credentials: ILogin): Promise<ILoginResponse> {
         try {
             const { data } = await this.client.post(
