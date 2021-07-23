@@ -21,10 +21,11 @@
         @click:append="show1 = !show1"
       ></v-text-field>
     </div>
-    <div>
+    <div class="d-flex justify-space-between align-end">
       <v-btn color="primary" type="submit" :disabled="loading">{{
         loading ? "Veuillez patienter ..." : "Connexion"
       }}</v-btn>
+      <router-link :to="{ name: 'reset' }"> Mot de passe oublié ?</router-link>
     </div>
   </v-form>
 </template>
