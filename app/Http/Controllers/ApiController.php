@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use App\Conversation;
 use App\Message;
+use App\Commune;
 
 
 class ApiController extends Controller
@@ -642,7 +643,25 @@ class ApiController extends Controller
                 return response()->json(['statu' => 0, 'message' => $resultat]);
             }
         } catch (\Throwable $th) {
-            dd($th);
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
+        }
+
+    }
+
+    public function ListCommune(){
+        try {
+        
+            $listCommune = Commune::get();
+
+            if ($listCommune) {
+                return response()->json(['statu' => 1, 'listCommune' => $listCommune]);
+            } else {
+                return response()->json(['statu' => 0, 'listCommune' => $listCommune]);
+            }
+
+        } catch (\Throwable $th) {
+            //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
     }

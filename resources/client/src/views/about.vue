@@ -50,11 +50,12 @@
                   alt="oki"
                   class="img-fluid"
                 />
-                <h2 class="text-primary text-uppercase mt-2">Nos services</h2>
+                <h2 class="text-primary text-uppercase mt-2">Notre service</h2>
                 <div class="my-divider"></div>
                 <p>
-                  Un catalogue dynamique permettant à de nombreuses personnes de
-                  découvrir vos services
+                  Un catalogue dynamique vous permettant de trouver le ou les
+                  prestataires dont vous avez besoin pour la réalisation de
+                  votre événement
                 </p>
               </div>
             </div>
@@ -66,12 +67,12 @@
                   class="img-fluid"
                 />
                 <h2 class="text-primary text-uppercase mt-2">
-                  Outil de communication
+                  Un outil d’organisation simplifiée
                 </h2>
                 <div class="my-divider"></div>
                 <p>
-                  Un outil de communication et de marketing pour vous faire
-                  gagner en visibilité
+                  Centraliser en un seul et même endroit vos recherches de
+                  prestataires
                 </p>
               </div>
             </div>
@@ -82,11 +83,9 @@
                   alt="oki"
                   class="img-fluid"
                 />
-                <h2 class="text-primary text-uppercase mt-2">Notre équipe</h2>
+                <h2 class="text-primary text-uppercase mt-2">Une question ?</h2>
                 <div class="my-divider"></div>
-                <p>
-                  Une équipe disponible pour vous assister et vous accompagner
-                </p>
+                <p>Notre équipe se tient à votre disposition pour vous aider</p>
               </div>
             </div>
           </div>

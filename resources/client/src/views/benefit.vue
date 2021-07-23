@@ -114,7 +114,7 @@
                   </auth-btn>
 
                   <v-btn
-                    v-if="isConnected"
+                    :disabled="!isConnected || benefit.messagerie == 0"
                     icon
                     color="primary"
                     x-large
@@ -221,6 +221,7 @@ export default Vue.extend({
       this.$route.params.id
     ).id_user.toString();
     // console.log(this.$route.params.id);
+    console.log(this.$store.getters["auth/isConnected"]);
   },
   components: {
     BenefitsGrid,
@@ -250,24 +251,30 @@ export default Vue.extend({
       return this.$store.getters["auth/isConnected"];
     },
     all: {
-      get(){
+      get() {
         return {
-        isModal: this.isModal,
-        hasNumber: this.hasNumber,
-        enterprise: this.enterprise,
-        phone_service: this.phone_service,
-        phone2_service: this.phone2_service
-        }
+          isModal: this.isModal,
+          hasNumber: this.hasNumber,
+          enterprise: this.enterprise,
+          phone_service: this.phone_service,
+          phone2_service: this.phone2_service,
+        };
       },
-      set(isModal:boolean,hasNumber:boolean, enterprise:string, phone_service:string, phone2_service: string){
-        this.isModal = isModal; 
+      set(
+        isModal: boolean,
+        hasNumber: boolean,
+        enterprise: string,
+        phone_service: string,
+        phone2_service: string
+      ) {
+        this.isModal = isModal;
         this.hasNumber = hasNumber;
         this.enterprise = enterprise;
         this.phone_service = phone_service;
         this.phone2_service = phone2_service;
-      }
+      },
     },
-  }
+  },
 
   methods: {
     async displayPhoneNumber(): Promise<void> {
@@ -281,7 +288,7 @@ export default Vue.extend({
       if (statu == 1) {
         this.phone_service = this.benefit.phone_service;
         // console.log(this.benefit.phone2_service);
-        
+
         this.phone2_service = this.benefit.phone2_service;
         this.hasNumber = true;
         this.isModal = true;
@@ -311,7 +318,7 @@ export default Vue.extend({
       if (statu == 1) {
         this.enterprise = this.benefit.name;
         console.log();
-        
+
         this.phone_service = this.benefit.phone_whastapp; // this.$swal(this.benefit.phone_whastapp);
         this.phone2_service = null; // this.$swal(this.benefit.phone_whastapp);
         this.hasNumber = true;

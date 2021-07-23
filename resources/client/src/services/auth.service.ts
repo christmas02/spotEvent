@@ -50,9 +50,9 @@ export class AuthService extends CommonService {
                 "/authentification/login",
                 credentials
             );
+
             return data;
         } catch (e) {
-            // console.log(e.response.data);
             return {
                 statu: 0,
                 favoris: [],

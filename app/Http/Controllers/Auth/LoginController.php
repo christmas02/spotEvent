@@ -53,7 +53,7 @@ class LoginController extends Controller
    
         if(auth()->attempt(array('email' => $inputVal['email'], 'password' => $inputVal['password']))){
             if(auth()->user()->confirmation_token != null){
-                return response()->json(['statu'=>1, 'message' => 'Compte inactive']);
+                return response()->json(['statu'=> 1, 'message' => 'votre compte inactive']);
             }else{
                 if (auth()->user()->role == 3){
                     //return redirect()->route('administrateur');
@@ -96,7 +96,7 @@ class LoginController extends Controller
                     return response()->json(['statu'=>1, 'role' => $role,'lien' => $lien, 'user'=> $user, 'favoris' => $favoris]);
                 }else{
                     $role = 0;
-                    return response()->json(['statu'=>0, 'role' => $role]);
+                    return response()->json(['statu'=> 0, 'message' => 'Vous ne possedez pas de compte utilisateur']);
                 }
             }
             
