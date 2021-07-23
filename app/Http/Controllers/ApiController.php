@@ -50,8 +50,8 @@ class ApiController extends Controller
     {
         $listPrestation = Fiche::where('statu_fiche', '!=', '0')->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
             //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-            ->select('fiches.*', 'prestations.name as prestation', 'prestations.path_icone')
+            ->leftjoin('communes','communes.id','=','fiches.localisation')
+            ->select('fiches.*','communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
             ->orderBy('fiches.id', 'desc')
             ->get();
         //dd($listPrestataire);

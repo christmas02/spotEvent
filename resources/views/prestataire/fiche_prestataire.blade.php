@@ -94,8 +94,12 @@
                                             for="first-name">Situation goegraphique <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input type="text" name="localisation"
-                                                class="form-control " required>
+                                            <select required="required" name="localisation" class="form-control " required>
+                                            <option>Choisir la commune</option>
+                                            @foreach($listCommune as $items)
+                                                <option value="{{ $items->id }}"> {{ $items->name }}</option>
+                                            @endforeach    
+                                            </select>
                                         </div>
                                     </div>
 
