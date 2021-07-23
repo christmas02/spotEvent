@@ -2,7 +2,12 @@
   <div class="elem">
     <v-img src="./images/forgetPassword.jpg" width="150" height="100"></v-img>
     <div class="d-flex justify-center mt-5">
-      <v-img :src="require('@/assets/light-logo.png')" max-width="150"></v-img>
+      <router-link :to="{ name: 'auth-login' }">
+        <v-img
+          :src="require('@/assets/light-logo.png')"
+          max-width="150"
+        ></v-img>
+      </router-link>
     </div>
     <v-card width="500" class="mx-auto px-5 localCard py-5">
       <h2 class="text-center">
