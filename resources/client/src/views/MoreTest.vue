@@ -1,7 +1,4 @@
-         
-
-
-    <template>
+<template>
   <default-layout>
     <div id="homepage">
       <div class="main psearch">

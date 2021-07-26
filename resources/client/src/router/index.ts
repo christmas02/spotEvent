@@ -29,7 +29,7 @@ const routes: Array<RouteConfig> = [
         component: MoreTest
     },
     {
-        path: "/reset",
+        path: "/mot-de-passe-oublie",
         name: "reset",
         component: resetPassword
     },
@@ -39,12 +39,12 @@ const routes: Array<RouteConfig> = [
         component: listePrestataires
     },
     {
-        path: "/search",
+        path: "/recherche",
         name: "Search",
         component: Search
     },
     {
-        path: "/seemore",
+        path: "/categories",
         name: "SeeMore",
         component: SeeMore
     },
@@ -54,17 +54,17 @@ const routes: Array<RouteConfig> = [
         component: Chat
     },
     {
-        path: "/login",
+        path: "/connexion",
         name: "auth-login",
         component: LoginScreen
     },
     {
-        path: "/register",
+        path: "/inscription",
         name: "auth-register",
         component: RegisterScreen
     },
     {
-        path: "/benefit/:id",
+        path: "/prestations/:id",
         name: "benefit",
         component: BenefitScreen
     },
@@ -74,7 +74,7 @@ const routes: Array<RouteConfig> = [
         component: ContactScreen
     },
     {
-        path: "/about",
+        path: "/a-propos-de-nous",
         name: "about",
         component: AboutScreen
     }
