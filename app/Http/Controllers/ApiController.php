@@ -355,6 +355,18 @@ class ApiController extends Controller
 
             //dd($conversation);
 
+            // foreach ($messages as $key => $value) {
+            //     echo $value->sm_id;
+            // }
+            for ($i = 0; $i < count($messages); $i++) {
+                # code...
+                $messages[$i]->conversation = strval($messages[$i]->conversation);
+                $messages[$i]->id_emmetteur = strval($messages[$i]->id_emmetteur);
+            }
+
+
+            // $messages[0]->conversation = strval($messages[0]->conversation);
+            // $messages[0]->id_emmetteur = strval($messages[0]->id_emmetteur);
             if (count($messages) != '0') {
                 $message = "message disponible";
                 return response()->json(['statu' => 1, 'message' => $message, 'messages' => $messages]);
@@ -531,33 +543,32 @@ class ApiController extends Controller
         }
     }
 
-    public function getCommenataire(Request $request){
+    public function getCommenataire(Request $request)
+    {
 
         try {
-        
+
             $id_prestataire = $request['id_prestataire'];
 
-            $resultat = Commentaire::where('id_prestataire',$id_prestataire)
-            ->leftjoin('users','users.id','=','commentaires.id_user')
-            ->select('commentaires.*','users.name as nom_client')
-            ->get();
+            $resultat = Commentaire::where('id_prestataire', $id_prestataire)
+                ->leftjoin('users', 'users.id', '=', 'commentaires.id_user')
+                ->select('commentaires.*', 'users.name as nom_client')
+                ->get();
 
-            if($resultat){
+            if ($resultat) {
                 return response()->json(['statu' => 1, 'resultat' => $resultat]);
             }
-
         } catch (\Throwable $th) {
             dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
-
     }
 
-    public function saveCommentaire(Request $request){
+    public function saveCommentaire(Request $request)
+    {
 
         try {
-        
+
             $id_prestataire = $request['id_prestataire'];
             $vote = $request['vote'];
             $contenus = $request['contenus'];
@@ -565,11 +576,11 @@ class ApiController extends Controller
 
             //dd($id_prestataire , $vote, $contenus , $id_user);
 
-            $Commentaire_existe = Commentaire::where('id_user',$id_user)
-            ->where('id_prestataire',$id_prestataire )
-            ->first();
+            $Commentaire_existe = Commentaire::where('id_user', $id_user)
+                ->where('id_prestataire', $id_prestataire)
+                ->first();
 
-            if(!$Commentaire_existe){
+            if (!$Commentaire_existe) {
 
                 $commentaire = new Commentaire();
 
@@ -578,37 +589,33 @@ class ApiController extends Controller
                 $commentaire->vote = $vote;
                 $commentaire->contenus = $contenus;
 
-                if($commentaire->save()){
+                if ($commentaire->save()) {
 
-                    $resultat = Commentaire::where('id_prestataire',$id_prestataire)
-                    ->leftjoin('users','users.id','=','commentaires.id_user')
-                    ->select('commentaires.*','users.name as nom_client')
-                    ->get();
+                    $resultat = Commentaire::where('id_prestataire', $id_prestataire)
+                        ->leftjoin('users', 'users.id', '=', 'commentaires.id_user')
+                        ->select('commentaires.*', 'users.name as nom_client')
+                        ->get();
 
                     return response()->json(['statu' => 1, 'resultat' => $resultat]);
-
-                }else{
+                } else {
                     return response()->json(['statu' => 0]);
                 }
-
-            }else{
+            } else {
                 return response()->json(['statu' => 0, 'message' => "Cet prestataire a deja reçu un commentaire venant de ce client"]);
             }
-
-
         } catch (\Throwable $th) {
             dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
-    public function forgetPassword(Request $request){
+    public function forgetPassword(Request $request)
+    {
 
         try {
-        
+
             $email = $request['email'];
-            $user_exist = User::where('email',$email)->first();
+            $user_exist = User::where('email', $email)->first();
 
             $user = User::whereId($user_exist->id)->first();
             $password = time();
@@ -628,14 +635,13 @@ class ApiController extends Controller
                 // communication mail pas defaut
                 Mail::to($user_exist->email)->send(new fotgetPassword($data));
 
-                $resultat = 'La modification a correctement été effectuée un mail contenant votre nouveau mot de passe vous a ete transmit';
-                return response()->json(['statu' => 1, 'message' => $resultat]);
+                $message = 'Votre mot de passe a bien été reinitilaisé , veuillez consultez votre boite mail';
+                return response()->json(['statu' => 1, 'message' => $message]);
             } else {
 
-                $resultat = 'Il y a eu une erreur, merci de recommencer';
-                return response()->json(['statu' => 0, 'message' => $resultat]);
+                $message = 'Une erreur est survenue durant le processus , veillez contacter notre service client';
+                return response()->json(['statu' => 0, 'message' => $message]);
             }
-
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
@@ -658,6 +664,5 @@ class ApiController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 }

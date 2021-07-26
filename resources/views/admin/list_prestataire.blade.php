@@ -61,7 +61,7 @@
                                     
                                     
                                     <td> {{ $items->name }}</td>
-                                    <td> {{ $items->localisation }}</td>
+                                    <td> {{ $items->commune }}</td>
                                     <td> {{ $items->phone_service }}</td>
                                     
                                    
@@ -322,7 +322,6 @@
 <div class="modal fade" id="modalMessagerie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      
       <div class="modal-body">
         <div class="mesgs">
             <div class="msg_history">

@@ -1,8 +1,8 @@
 import { IFavorite } from "./favorite.interface";
 
 export interface ILogin {
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
 }
 
 export interface IRegister {

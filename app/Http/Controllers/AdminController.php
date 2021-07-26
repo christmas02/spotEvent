@@ -120,9 +120,12 @@ class AdminController extends Controller
 
         $listePrestation = Db::table('fiches')
                         ->leftjoin('users','users.id','=','fiches.id_user')
-                        ->select('users.name as nom','users.phone as numero','fiches.*')
+                        ->leftjoin('communes','communes.id','=','fiches.localisation')
+                        ->select('users.name as nom','communes.name as commune','users.phone as numero','fiches.*')
                         ->orderBy('fiches.id', 'desc')
                         ->get();
+
+                        //dd($listePrestation);
 
         return view('admin.list_prestataire',compact('listePrestation','infoUser'));
     }
