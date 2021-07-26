@@ -75,14 +75,14 @@ export default Vue.extend({
       if (result.statu == 1) {
         await this.$swal({
           icon: "success",
-          text: "Votre mot de passe a bien été reinitilaisé , veillez consultez votre boite mail",
+          text: result.message,
         });
         this.$router.push({ name: "auth-login" });
         // commit("updateUser", );
       } else {
         await this.$swal({
           icon: "error",
-          text: "Une erreur est survenue durant le processus , veillez contacter notre service client",
+          text: result.message,
         });
         console.log("erreur");
         // commit("upadteProfile", []);
