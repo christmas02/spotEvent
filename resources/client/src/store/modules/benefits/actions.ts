@@ -54,6 +54,22 @@ export default {
             }
         }
     },
+    async fetchCommunes(
+        { commit, state }: { commit: any; state: IBenefitState },
+        force = false
+    ): Promise<void> {
+        if (force || state.communes.length === 0) {
+            const benefitService = new BenefitService();
+
+            const result = await benefitService.getCommunes();
+
+            if (result.statu == 1) {
+                commit("storeCategories", result.listCommune);
+            } else {
+                alert("erreur lors de la recuperation des communes");
+            }
+        }
+    },
     async fetchEstimates(
         { commit, state }: { commit: any; state: IBenefitState },
         force = false

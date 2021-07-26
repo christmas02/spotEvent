@@ -154,7 +154,7 @@ export default Vue.extend({
           label: "Catégories",
         },
         {
-          name: "#",
+          name: "listePrestataires",
           label: "Prestataires",
         },
         {

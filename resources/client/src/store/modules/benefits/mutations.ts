@@ -1,3 +1,4 @@
+import { ICommune } from "./../../../interfaces/commune.interface";
 import { IBenefitState } from "@/store/modules/benefits/interfaces/state.interface";
 import { Benefit } from "@/interfaces/benefit.interface";
 import { ICategory } from "@/interfaces/category.interface";
@@ -13,6 +14,9 @@ export default {
     // },
     storeCategories(state: IBenefitState, categories: ICategory[]): void {
         state.categories = categories;
+    },
+    storecommunes(state: IBenefitState, communes: ICommune[]): void {
+        state.communes = communes;
     },
     storeEstimates(state: IBenefitState, val: IEstimate[]): void {
         state.estimates = val;
