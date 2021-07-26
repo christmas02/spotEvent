@@ -1,7 +1,7 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <div class="d-none d-md-block">
+      <!-- <div class="d-none d-md-block">
         <jumbotron image="images/jmbg1.png">
           <h1 class="content-title">
             L' organisation zen <br />de vos événements
@@ -23,15 +23,30 @@
             </div>
           </template>
         </jumbotron>
-      </div>
+      </div> -->
+
+      <!-- <div class="main psearch">
+        <v-text-field
+          outlined
+          label="Je recherche une prestation"
+          append-icon="mdi-account-search-outline"
+        ></v-text-field>
+      </div> -->
 
       <div class="main mx-auto">
-        <div class="d-block d-md-none">
+        <!-- <div class="d-block d-md-none">
           <search-form :handler="initSearch"></search-form>
-        </div>
+        </div> -->
 
         <div class="section">
-          <filter-form></filter-form>
+          <!-- <filter-form></filter-form> -->
+          <div class="psearch">
+            <v-text-field
+              outlined
+              label="Je recherche une prestation"
+              append-icon="mdi-account-search-outline"
+            ></v-text-field>
+          </div>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && providers.length == 0">
               <v-progress-circular
@@ -54,7 +69,7 @@
           </div> -->
         </div>
 
-        <div class="section mt-0 d-none d-md-block">
+        <!-- <div class="section mt-0 d-none d-md-block">
           <div>
             <h2 class="section-title">Prestataires</h2>
           </div>
@@ -64,7 +79,7 @@
           <div class="text-center">
             <v-btn color="primary">Découvir tous les prestataires</v-btn>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </default-layout>
@@ -190,6 +205,11 @@ export default Vue.extend({
 #homepage .section {
   margin: 50px 0;
 }
+.psearch {
+  width: 50%;
+  margin-left: 10px;
+  /* border: 1px solid; */
+}
 #homepage .nothing {
   text-align: center;
   vertical-align: middle;
@@ -197,7 +217,7 @@ export default Vue.extend({
 
 @media screen and (min-width: 1264px) {
   #homepage .section {
-    margin: 136px 0;
+    margin: 0px !important;
   }
 }
 
