@@ -10,6 +10,8 @@ import Search from "@/views/search.vue";
 import SeeMore from "@/views/SeeMore.vue";
 import Chat from "@/views/Chat.vue";
 import resetPassword from "@/views/resetPassword.vue";
+import listePrestataires from "@/views/listePrestataires.vue";
+import MoreTest from "@/views/MoreTest.vue";
 
 import store from "@/store";
 
@@ -22,9 +24,19 @@ const routes: Array<RouteConfig> = [
         component: HomeScreen
     },
     {
+        path: "/test",
+        name: "MoreTest",
+        component: MoreTest
+    },
+    {
         path: "/mot-de-passe-oublie",
         name: "reset",
-        component: resetPassword,
+        component: resetPassword
+    },
+    {
+        path: "/prestataires",
+        name: "listePrestataires",
+        component: listePrestataires
     },
     {
         path: "/recherche",
@@ -32,7 +44,7 @@ const routes: Array<RouteConfig> = [
         component: Search
     },
     {
-        path: "/voir-plus",
+        path: "/categories",
         name: "SeeMore",
         component: SeeMore
     },

@@ -12,6 +12,7 @@ export interface IPrestationsSearchFormResponse {
     message: string;
     resultat: Benefit[];
 }
+
 export interface ISearchForm {
     id_prestation: String;
     localisation: String;

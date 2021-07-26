@@ -7,6 +7,7 @@ import {
     FilterPayload,
     IBenefitState
 } from "@/store/modules/benefits/interfaces/state.interface";
+import { ICommune } from "@/interfaces/commune.interface";
 
 export default {
     one(state: IBenefitState) {
@@ -21,6 +22,9 @@ export default {
     },
     categories(state: IBenefitState): ICategory[] {
         return state.categories;
+    },
+    communes(state: IBenefitState): ICommune[] {
+        return state.communes;
     },
     estimates(state: IBenefitState): IEstimate[] {
         return state.estimates;

@@ -3,10 +3,12 @@ import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import { ISearchForm } from "@/interfaces/app-services.interfaces";
+import { ICommune } from "@/interfaces/commune.interface";
 
 export interface IBenefitState {
     benefits: Benefit[];
     categories: ICategory[];
+    communes: ICommune[];
     estimates: IEstimate[];
     providers: IProvider[];
     choiceCategorie: String;

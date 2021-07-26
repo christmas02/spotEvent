@@ -7,12 +7,23 @@
     >
       <slot></slot>
     </v-img>
+    <!-- <div class="row"> -->
 
     <v-card-title class="the-title">
-      {{ title }}
+      {{ rating ? title.toUpperCase() : title }}
     </v-card-title>
+    <div flat class="d-flex nowrap justify-space-around pb-5" v-if="rating">
+      <p class="mb-0 categorie">{{ description }}</p>
+      <v-rating
+        v-if="rating"
+        v-model="rating"
+        size="15"
+        background-color="primary"
+        color="primary"
+      ></v-rating>
+    </div>
 
-    <v-card-subtitle class="subtitle">
+    <v-card-subtitle class="subtitle" v-if="!rating">
       <p>{{ description }}</p>
     </v-card-subtitle>
   </v-card>
@@ -33,7 +44,8 @@ export default Vue.extend({
     },
     title: {
       type: String,
-      required: true,
+      default: "AUCUN NOM ENTREPRISE",
+      required: false,
     },
     description: {
       type: String,
@@ -44,6 +56,10 @@ export default Vue.extend({
       type: String,
       required: true,
     },
+    rating: {
+      type: Number,
+      required: false,
+    },
   },
 });
 </script>
@@ -53,6 +69,9 @@ export default Vue.extend({
   font-size: 1.4rem !important;
   color: var(--primary);
   margin-bottom: 8px;
+}
+.categorie {
+  font-weight: 600;
 }
 
 .subtitle p {

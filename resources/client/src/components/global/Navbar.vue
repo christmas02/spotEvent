@@ -150,11 +150,11 @@ export default Vue.extend({
           label: "A propos de nous",
         },
         {
-          name: "#",
+          name: "SeeMore",
           label: "Catégories",
         },
         {
-          name: "#",
+          name: "listePrestataires",
           label: "Prestataires",
         },
         {

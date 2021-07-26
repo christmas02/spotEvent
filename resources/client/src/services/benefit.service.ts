@@ -1,6 +1,7 @@
 import { BeneftsResponse } from "@/interfaces/benefit.interface";
 import { CommonService } from "./Common.service";
 import { ICategoryResponse } from "@/interfaces/category.interface";
+import { ICommuneResponse } from "@/interfaces/commune.interface";
 import { IEstimateResponse } from "@/interfaces/estimation.interface";
 import {
     ISlidersResponse,
@@ -42,6 +43,19 @@ export class BenefitService extends CommonService {
                 statu: 0,
                 listPrestataire: []
             } as ProvidersResponse;
+        }
+    }
+    async getCommunes(): Promise<ICommuneResponse> {
+        try {
+            const { data }: { data: ICommuneResponse } = await this.client.get(
+                "Liste_commune"
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0
+            } as ICommuneResponse;
         }
     }
 

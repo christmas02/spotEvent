@@ -102,7 +102,9 @@
             <providers-slider></providers-slider>
           </div>
           <div class="text-center">
-            <v-btn color="primary">Découvir tous les prestataires</v-btn>
+            <v-btn color="primary" @click="seeMore"
+              >Découvir tous les prestataires</v-btn
+            >
           </div>
         </div>
       </div>
@@ -145,6 +147,7 @@ export default Vue.extend({
     await Promise.all([
       this.$store.dispatch("benefits/fetchAll"),
       this.$store.dispatch("benefits/fetchCategories"),
+      // this.$store.dispatch("benefits/fetchCommunes"),
       this.$store.dispatch("benefits/fetchEstimates"),
       this.$store.dispatch("benefits/fetchProviders"),
     ]);

@@ -6,6 +6,7 @@ const state: () => IBenefitState = () => ({
     benefits: [] as Benefit[],
     prestations: (null as unknown) as ISearchForm,
     categories: [],
+    communes: [],
     estimates: [],
     providers: [],
     choiceCategorie: (null as unknown) as string,
