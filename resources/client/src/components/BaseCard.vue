@@ -12,12 +12,18 @@
     <v-card-title class="the-title">
       {{ rating ? title.toUpperCase() : title }}
     </v-card-title>
-    <div flat class="d-flex nowrap justify-space-around pb-5" v-if="rating">
+    <div
+      flat
+      class="d-flex nowrap justify-space-between pb-5 px-5"
+      v-if="rating"
+    >
       <p class="mb-0 categorie">{{ description }}</p>
       <v-rating
         v-if="rating"
         v-model="rating"
         size="15"
+        readonly
+        :length="rating"
         background-color="primary"
         color="primary"
       ></v-rating>

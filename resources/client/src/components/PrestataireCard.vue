@@ -5,10 +5,10 @@
     :title="
       prestataire.name_entreprise
         ? prestataire.name_entreprise
-        : 'ENTREPRISE VIDE'
+        : 'AUCUN NOM ENTREPRISE '
     "
     :description="
-      prestataire.prestation ? prestataire.prestation : 'Categorie Vide'
+      prestataire.prestation ? prestataire.prestation : 'aucune categorie'
     "
     :image="prestataire.path_user | createImagePath"
   >
