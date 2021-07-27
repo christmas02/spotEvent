@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!-- :style="{ marginTop: '112px' }" -->
     <div :class="{ 'default-padding': padding }">
       <nav-bar :height="navBarHeight" class="mybar"></nav-bar>
-      <v-main :style="{ marginTop: '114px' }" class="bar">
+      <v-main class="bar">
         <slot></slot>
       </v-main>
     </div>
@@ -30,17 +31,20 @@ export default {
 .mybar * {
   z-index: 100;
 }
-/* .bar {
-  margin-top: 90px;
-} */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .bar {
+    margin-top: 90px;
+  }
+}
+
 @-moz-document url-prefix() {
   .bar {
     margin-top: 114px;
   }
 }
-@supports (-ms-ime-align: auto) {
+/* @supports (-ms-ime-align: auto) {
   .bar {
     margin-top: 114px;
   }
-}
+} */
 </style>
