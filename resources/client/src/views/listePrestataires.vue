@@ -201,7 +201,7 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style scoped>
 #homepage .section {
   margin: 50px 0;
 }

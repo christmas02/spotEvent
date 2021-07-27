@@ -22,6 +22,11 @@ export default Vue.extend({
       default: "https://picsum.photos/id/11/10/6",
     },
   },
+  data() {
+    return {
+      images: "images/jmbg2.png",
+    };
+  },
 });
 </script>
 
