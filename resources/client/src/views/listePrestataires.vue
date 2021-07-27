@@ -40,7 +40,7 @@
 
         <div class="section">
           <!-- <filter-form></filter-form> -->
-          <div class="psearch">
+          <div class="psearch mx-auto">
             <v-text-field
               outlined
               label="Je recherche une prestation"
@@ -207,7 +207,7 @@ export default Vue.extend({
 }
 .psearch {
   width: 50%;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   /* border: 1px solid; */
 }
 #homepage .nothing {

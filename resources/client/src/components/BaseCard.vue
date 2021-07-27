@@ -88,4 +88,9 @@ export default Vue.extend({
   text-overflow: ellipsis;
   max-height: 4.5em;
 }
+@media screen and (min-width: 961px) {
+  .the-title {
+    font-size: 1rem !important;
+  }
+}
 </style>
