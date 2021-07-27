@@ -97,6 +97,7 @@ export default Vue.extend({
       this.prestationsSearchForm(),
 
       // this.$store.dispatch("benefits/prestationsSearchForm"),
+      this.$store.dispatch("benefits/fetchCommunes"),
       this.$store.dispatch("benefits/fetchCategories"),
       this.$store.dispatch("benefits/fetchEstimates"),
       // this.$store.dispatch("benefits/fetchProviders"),
@@ -140,6 +141,8 @@ export default Vue.extend({
         // commit("storeSearchResult", result.resultat);
         this.results = result.resultat;
       } else {
+        console.log("faux");
+
         this.nothingFinded = true;
         this.results = [] as Benefit[];
         console.log("aucun resultat trouvé");

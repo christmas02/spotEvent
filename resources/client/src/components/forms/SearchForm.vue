@@ -11,10 +11,13 @@
         ></v-select>
       </div>
       <div class="col-md-3">
-        <v-text-field
-          label="Situation géographique"
+        <v-select
           v-model="choiceLocalisation"
-        ></v-text-field>
+          label="Situation géographique"
+          :items="communes"
+          item-text="name"
+          item-value="id"
+        ></v-select>
       </div>
       <div class="col-md-6 d-block d-md-flex align-items-md-center second">
         <v-select
@@ -59,6 +62,9 @@ export default Vue.extend({
     },
     categories(): ICategory[] {
       return this.$store.getters["benefits/categories"];
+    },
+    communes(): ICategory[] {
+      return this.$store.getters["benefits/communes"];
     },
     estimatess(): IEstimate[] {
       return this.$store.getters["benefits/estimates"];

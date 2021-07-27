@@ -18,6 +18,16 @@
       </div>
       <div class="mx-2">
         <v-autocomplete
+          v-model="commune"
+          label="Situation géographique"
+          filled
+          :items="communes"
+          item-text="name"
+          item-value="id"
+        ></v-autocomplete>
+      </div>
+      <div class="mx-2">
+        <v-autocomplete
           label="Estimation minimale"
           filled
           :items="estimatess"
@@ -51,7 +61,9 @@ export default Vue.extend({
   data() {
     return {
       categorie: null as unknown as string,
+      commune: null as unknown as string,
       isFilter: false,
+
       // loading: false,
     };
   },
@@ -64,6 +76,9 @@ export default Vue.extend({
     },
     providers(): IProvider[] {
       return this.$store.getters["benefits/providers"];
+    },
+    communes(): ICategory[] {
+      return this.$store.getters["benefits/communes"];
     },
   },
   methods: {

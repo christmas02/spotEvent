@@ -147,7 +147,7 @@ export default Vue.extend({
     await Promise.all([
       this.$store.dispatch("benefits/fetchAll"),
       this.$store.dispatch("benefits/fetchCategories"),
-      // this.$store.dispatch("benefits/fetchCommunes"),
+      this.$store.dispatch("benefits/fetchCommunes"),
       this.$store.dispatch("benefits/fetchEstimates"),
       this.$store.dispatch("benefits/fetchProviders"),
     ]);

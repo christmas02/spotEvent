@@ -64,7 +64,7 @@ export default {
             const result = await benefitService.getCommunes();
 
             if (result.statu == 1) {
-                commit("storeCategories", result.listCommune);
+                commit("storecommunes", result.listCommune);
             } else {
                 alert("erreur lors de la recuperation des communes");
             }
