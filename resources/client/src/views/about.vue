@@ -119,10 +119,6 @@ export default Vue.extend({});
   padding-bottom: 150px;
 }
 
-.main {
-  padding-top: 90px;
-}
-
 .section-title {
   margin-bottom: 50px;
 }

@@ -110,6 +110,10 @@ export default Vue.extend({
       type: String,
       default: "90",
     },
+    isFixed: {
+      type: Boolean,
+      default: false,
+    },
   },
   mixins: [utilsMixin],
   methods: {
@@ -180,6 +184,7 @@ export default Vue.extend({
   padding-left: 5%;
   padding-right: 5%;
   margin: 0 auto;
+  display: inline;
 }
 #app-navbar .primary--text {
   border: none;
