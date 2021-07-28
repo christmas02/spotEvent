@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar id="app-navbar" color="white" :height="height" flat app>
+  <v-app-bar id="app-navbar" color="white" :height="height" app flat>
     <div>
       <v-img
         @click="goHome"
@@ -143,7 +143,7 @@ export default Vue.extend({
       links: [
         {
           name: "Home",
-          label: "Acceuil",
+          label: "Accueil",
         },
         {
           name: "about",
@@ -159,7 +159,7 @@ export default Vue.extend({
         },
         {
           name: "contact",
-          label: "Contacts",
+          label: "Contact",
         },
       ],
     };

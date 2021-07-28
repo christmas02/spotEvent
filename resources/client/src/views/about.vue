@@ -49,7 +49,9 @@
                   :src="require('../assets/about/about3.png')"
                   alt="oki"
                   class="img-fluid"
+                  max-height="100"
                 />
+                <!-- height="110" -->
                 <h2 class="text-primary text-uppercase mt-2">Notre service</h2>
                 <div class="my-divider"></div>
                 <p>
@@ -66,6 +68,7 @@
                   alt="oki"
                   class="img-fluid"
                 />
+                <!-- height="110" -->
                 <h2 class="text-primary text-uppercase mt-2">
                   Un outil d’organisation simplifiée
                 </h2>
@@ -83,6 +86,7 @@
                   alt="oki"
                   class="img-fluid"
                 />
+                <!-- height="110" -->
                 <h2 class="text-primary text-uppercase mt-2">Une question ?</h2>
                 <div class="my-divider"></div>
                 <p>Notre équipe se tient à votre disposition pour vous aider</p>
@@ -133,7 +137,6 @@ export default Vue.extend({});
 .more-info {
   width: 95%;
 }
-
 .right {
   justify-content: center;
   align-items: flex-end;
@@ -141,10 +144,10 @@ export default Vue.extend({});
 }
 
 .more img {
-  width: 30%;
+  /* width: 30%; */
+  max-height: 100px;
 }
-
-.title-container {
+@media screen and (min-width: 1264px) .title-container {
   width: 60%;
 }
 </style>
