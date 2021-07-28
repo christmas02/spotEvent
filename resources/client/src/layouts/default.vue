@@ -31,20 +31,4 @@ export default {
 .mybar * {
   z-index: 100;
 }
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-  .bar {
-    margin-top: 90px;
-  }
-}
-
-@-moz-document url-prefix() {
-  .bar {
-    margin-top: 114px;
-  }
-}
-/* @supports (-ms-ime-align: auto) {
-  .bar {
-    margin-top: 114px;
-  }
-} */
 </style>

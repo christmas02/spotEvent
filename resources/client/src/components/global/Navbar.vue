@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar id="app-navbar" color="white" :height="height" flat fixed>
+  <v-app-bar id="app-navbar" color="white" :height="height" flat app>
     <div>
       <v-img
         @click="goHome"
