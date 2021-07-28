@@ -635,7 +635,7 @@ class ApiController extends Controller
                 // communication mail pas defaut
                 Mail::to($user_exist->email)->send(new fotgetPassword($data));
 
-                $message = 'Votre mot de passe a bien été reinitilaisé , veuillez consultez votre boite mail';
+                $message = 'Votre mot de passe a bien été reinitialisé. Veuiller consultez votre boite mail';
                 return response()->json(['statu' => 1, 'message' => $message]);
             } else {
 
