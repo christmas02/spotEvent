@@ -11,7 +11,7 @@
     </div>
     <v-card width="500" class="mx-auto px-5 localCard py-5">
       <h2 class="text-center">
-        Renseignez votre E-mail pour reinitialiser votre mot de passe
+        Renseignez votre E-mail pour réinitialiser votre mot de passe
       </h2>
       <v-form
         ref="form"
