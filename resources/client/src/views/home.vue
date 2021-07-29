@@ -88,9 +88,10 @@
             </div>
           </div>
           <div class="text-center">
-            <v-btn color="primary" v-if="benefits.length >= 1" @click="seeMore"
+            <!-- <v-btn color="primary" v-if="benefits.length >= 13" @click="seeMore"
               >Voir plus</v-btn
-            >
+            > -->
+            <v-btn color="primary" @click="seeMore">Voir plus</v-btn>
           </div>
         </div>
 
@@ -154,8 +155,11 @@ export default Vue.extend({
   },
   computed: {
     benefits(): Benefit[] {
-      return this.$store.getters["benefits/all"];
+      // console.log(this.$store.getters["benefits/all"].slice(2));
+      // return [...this.$store.getters["benefits/all"].slice(0, 12)];
+      return this.$store.getters["benefits/all"].slice(0, 12);
     },
+
     isAuth() {
       return this.$store.getters["auth/isConnected"];
     },

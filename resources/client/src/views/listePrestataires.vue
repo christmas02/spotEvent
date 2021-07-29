@@ -54,10 +54,18 @@
                 color="amber"
               ></v-progress-circular>
             </div>
-            <prestataires-grid
-              :prestataires="providers"
-              v-else-if="providers.length >= 1"
-            ></prestataires-grid>
+            <div v-else-if="providers.length >= 1">
+              <prestataires-grid
+                :prestataires="allBenefits"
+              ></prestataires-grid>
+              <v-pagination
+                class="py-5"
+                v-model="page"
+                :length="paginateLength"
+                prev-icon="mdi-menu-left"
+                next-icon="mdi-menu-right"
+              ></v-pagination>
+            </div>
             <div class="nothing" v-else-if="providers.length == 0 && isFilter">
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
@@ -91,9 +99,9 @@ import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import PrestatairesGrid from "@/components/PrestatairesGrid.vue";
 import ProvidersSlider from "@/components/ProvidersSlider.vue";
 import { Benefit } from "@/interfaces/benefit.interface";
+import { IProvider } from "@/interfaces/Provider.interface";
 import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
-import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { AppService } from "@/services/app.service";
@@ -111,6 +119,13 @@ export default Vue.extend({
   data() {
     return {
       categorie: null as unknown as string,
+      allBenefits: [] as IProvider[],
+      myBenefits: [] as IProvider[],
+      page: 1,
+      perPage: 12, //12
+      benefitsLength: 0,
+      paginateLength: 0,
+      pages: [] as number[],
       // isFilter: false,
     };
   },
@@ -126,6 +141,13 @@ export default Vue.extend({
       this.$store.dispatch("benefits/fetchEstimates"),
       this.$store.dispatch("benefits/fetchProviders"),
     ]);
+
+    this.benefitsLength = this.$store.getters["benefits/providers"].length;
+    // console.log(this.benefitsLength);
+    this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+    this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
+      Number
+    );
   },
   computed: {
     benefits(): Benefit[] {
@@ -141,6 +163,8 @@ export default Vue.extend({
       return this.$store.getters["benefits/estimates"];
     },
     providers(): IProvider[] {
+      this.allBenefits = this.$store.getters["benefits/providers"];
+      this.myBenefits = this.$store.getters["benefits/providers"];
       return this.$store.getters["benefits/providers"];
     },
     loading(): IProvider[] {
@@ -148,6 +172,12 @@ export default Vue.extend({
     },
     isFilter(): IProvider[] {
       return this.$store.getters["benefits/isFilter"];
+    },
+    visiblePages(): number[] {
+      return this.pages.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );
     },
   },
   methods: {
@@ -195,6 +225,24 @@ export default Vue.extend({
       // console.log(newValue);
       if (newValue) {
         this.getfilterByCategory();
+      }
+    },
+    visiblePages: function (value, prevValue) {
+      this.allBenefits = this.myBenefits.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );
+    },
+    isFilter: function (newVal, oldVal) {
+      console.log(newVal, "ici");
+      if (newVal) {
+        this.benefitsLength = this.$store.getters["benefits/providers"].length;
+        // console.log(this.benefitsLength);
+
+        this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+        this.pages = Object.keys(
+          Array.apply(0, Array(this.benefitsLength))
+        ).map(Number);
       }
     },
   },

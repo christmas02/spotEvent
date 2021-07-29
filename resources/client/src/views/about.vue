@@ -20,7 +20,7 @@
           </div>
         </jumbotron>
       </div>
-      <div class="main mx-auto pb-4">
+      <div class="main mx-auto pb-4 mt-md-10">
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="section">
@@ -143,7 +143,9 @@ export default Vue.extend({});
   /* width: 30%; */
   max-height: 100px;
 }
-@media screen and (min-width: 1264px) .title-container {
-  width: 60%;
+@media screen and (min-width: 1264px) {
+  .title-container {
+    width: 60%;
+  }
 }
 </style>

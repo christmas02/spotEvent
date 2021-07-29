@@ -13,6 +13,7 @@
           <filter-form></filter-form>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
+              <!-- <div class="loading" v-if="loading || benefits.length == 0"> -->
               <v-progress-circular
                 indeterminate
                 color="amber"
@@ -71,7 +72,7 @@ export default Vue.extend({
       allBenefits: [] as Benefit[],
       myBenefits: [] as Benefit[],
       page: 1,
-      perPage: 2,
+      perPage: 24, //24
       benefitsLength: 0,
       paginateLength: 0,
       pages: [] as number[],

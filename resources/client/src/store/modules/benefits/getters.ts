@@ -30,7 +30,7 @@ export default {
         return state.estimates;
     },
     providers(state: IBenefitState): IProvider[] {
-        console.log("ici");
+        // console.log("ici");
 
         return state.providers;
     },

@@ -30,7 +30,7 @@ export default {
     window.addEventListener("scroll", this.onScroll);
   },
   beforeDestroy() {
-    window.removeEventListener("scroll");
+    window.removeEventListener("scroll", this.onScroll);
   },
   data() {
     return {
