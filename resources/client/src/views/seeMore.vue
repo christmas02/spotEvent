@@ -24,6 +24,7 @@
               <v-pagination
                 class="py-5"
                 v-model="page"
+                v-if="benefits.length > perPage"
                 :length="paginateLength"
                 prev-icon="mdi-menu-left"
                 next-icon="mdi-menu-right"

@@ -61,6 +61,7 @@
               <v-pagination
                 class="py-5"
                 v-model="page"
+                v-if="providers.length > perPage"
                 :length="paginateLength"
                 prev-icon="mdi-menu-left"
                 next-icon="mdi-menu-right"
@@ -122,10 +123,11 @@ export default Vue.extend({
       allBenefits: [] as IProvider[],
       myBenefits: [] as IProvider[],
       page: 1,
-      perPage: 12, //12
+      perPage: 4, //24
       benefitsLength: 0,
       paginateLength: 0,
       pages: [] as number[],
+      isPaginate: false,
       // isFilter: false,
     };
   },
@@ -150,6 +152,10 @@ export default Vue.extend({
     );
   },
   computed: {
+    // isPaginate(){
+    //   if(this.perPage)
+
+    // },
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"];
     },
