@@ -1,43 +1,7 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <!-- <div class="d-none d-md-block">
-        <jumbotron image="images/jmbg1.png">
-          <h1 class="content-title">
-            L' organisation zen <br />de vos événements
-          </h1>
-          <p class="content-subtitle my-5">
-            les prestataires n'attendent que vous
-          </p>
-          <div>
-            <v-btn
-              color="primary"
-              :to="{ name: 'auth-register' }"
-              v-if="!isAuth"
-              >Découvrir</v-btn
-            >
-          </div>
-          <template #append>
-            <div class="search-container">
-              <search-form :handler="initSearch"></search-form>
-            </div>
-          </template>
-        </jumbotron>
-      </div> -->
-
-      <!-- <div class="main psearch">
-        <v-text-field
-          outlined
-          label="Je recherche une prestation"
-          append-icon="mdi-account-search-outline"
-        ></v-text-field>
-      </div> -->
-
       <div class="main mx-auto">
-        <!-- <div class="d-block d-md-none">
-          <search-form :handler="initSearch"></search-form>
-        </div> -->
-
         <div class="section">
           <!-- <filter-form></filter-form> -->
           <div class="psearch mx-auto">
