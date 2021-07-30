@@ -16,6 +16,7 @@ use App\Clicphone;
 use Illuminate\Support\Facades\Response;
 use App\Conversation;
 use App\Message;
+use App\Commune;
 
 
 class PrestataireController extends Controller
@@ -116,10 +117,11 @@ class PrestataireController extends Controller
         
         $listPrestation = Prestation::get();
         $listEstimation = Estimation::get();
+        $listCommune = Commune::get();
         $infoUser = $this->infoUser($id);
         $ficheExiste = $this->ficheExiste($id);
 
-        return view('prestataire.fiche_prestataire',compact('listEstimation','infoUser','ficheExiste','listPrestation'));
+        return view('prestataire.fiche_prestataire',compact('listEstimation','listCommune','infoUser','ficheExiste','listPrestation'));
     }
 
     public function postFiche(Request $request){

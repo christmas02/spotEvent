@@ -50,8 +50,8 @@ class ApiController extends Controller
     {
         $listPrestation = Fiche::where('statu_fiche', '!=', '0')->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
             //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-            ->select('fiches.*', 'prestations.name as prestation', 'prestations.path_icone')
+            ->leftjoin('communes','communes.id','=','fiches.localisation')
+            ->select('fiches.*','communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
             ->orderBy('fiches.id', 'desc')
             ->get();
         //dd($listPrestataire);
@@ -635,12 +635,12 @@ class ApiController extends Controller
                 // communication mail pas defaut
                 Mail::to($user_exist->email)->send(new fotgetPassword($data));
 
-                $resultat = 'La modification a correctement été effectuée un mail contenant votre nouveau mot de passe vous a ete transmit';
-                return response()->json(['statu' => 1, 'message' => $resultat]);
+                $message = 'Votre mot de passe a bien été reinitialisé. Veuiller consultez votre boite mail';
+                return response()->json(['statu' => 1, 'message' => $message]);
             } else {
 
-                $resultat = 'Il y a eu une erreur, merci de recommencer';
-                return response()->json(['statu' => 0, 'message' => $resultat]);
+                $message = 'Une erreur est survenue durant le processus , veillez contacter notre service client';
+                return response()->json(['statu' => 0, 'message' => $message]);
             }
         } catch (\Throwable $th) {
             //dd($th);
