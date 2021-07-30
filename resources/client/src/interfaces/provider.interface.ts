@@ -13,6 +13,10 @@ export interface IProvider {
     id_user?: number;
     prestation: string;
     path_icone: string;
+    vote?: number;
+    votant?: number;
+    id_prestataire?: number;
+    id_fiche?: number;
 }
 
 export interface ISlider {
