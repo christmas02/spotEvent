@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar id="app-navbar" color="white" :height="height" flat fixed>
+  <v-app-bar id="app-navbar" color="white" :height="height" app flat>
     <div>
       <v-img
         @click="goHome"
@@ -110,6 +110,10 @@ export default Vue.extend({
       type: String,
       default: "90",
     },
+    isFixed: {
+      type: Boolean,
+      default: false,
+    },
   },
   mixins: [utilsMixin],
   methods: {
@@ -143,7 +147,7 @@ export default Vue.extend({
       links: [
         {
           name: "Home",
-          label: "Acceuil",
+          label: "Accueil",
         },
         {
           name: "about",
@@ -159,7 +163,7 @@ export default Vue.extend({
         },
         {
           name: "contact",
-          label: "Contacts",
+          label: "Contact",
         },
       ],
     };
@@ -180,6 +184,7 @@ export default Vue.extend({
   padding-left: 5%;
   padding-right: 5%;
   margin: 0 auto;
+  display: inline;
 }
 #app-navbar .primary--text {
   border: none;

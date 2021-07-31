@@ -1,7 +1,5 @@
 <template>
-  <v-app>
-    <!-- <worker-space-modal></worker-space-modal>
-    <favorite-modal></favorite-modal> -->
+  <v-app app>
     <login-modal></login-modal>
     <router-view />
   </v-app>

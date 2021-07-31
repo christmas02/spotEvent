@@ -60,7 +60,7 @@ class ApiController extends Controller
 
     public function getPrestataire()
     {
-        $listPrestataire = User::where('role', 2)
+        $listPrestata = User::where('role', 2)
             ->where('confirmation_token', NULL)
             ->leftjoin('fiches', 'fiches.id_user', '=', 'users.id')
             ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
@@ -68,7 +68,38 @@ class ApiController extends Controller
             //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
             ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
             ->get();
-        //dd($listPrestataire);
+
+        $list = Fiche::where('fiches.statu_fiche', 1)
+        ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+        ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+        ->select('users.*', 'fiches.name as name_entreprise','fiches.id as id_fiche' ,'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+        ->get();
+        
+        
+        $listPrestataire = [];
+        $i = 0;
+
+        foreach($list as $items){
+
+            $vote = Commentaire::where('id_prestataire',$items->id_user)->avg('vote');
+            $votant = Commentaire::where('id_prestataire',$items->id_user)->count();
+
+            $listPrestataire[$i]['vote'] = (int)($vote);
+            $listPrestataire[$i]['votant'] = (int)($votant);
+            $listPrestataire[$i]['id_prestataire'] = $items->id_user;
+            $listPrestataire[$i]['name_entreprise'] = $items->name_entreprise;
+            $listPrestataire[$i]['prestation'] = $items->prestation;
+            $listPrestataire[$i]['path_icone'] = $items->path_icone;
+            $listPrestataire[$i]['path_user'] = $items->path_user;
+            $listPrestataire[$i]['id_fiche'] = $items->id_fiche;
+
+            $i++;
+
+        }
+
+       
+
+
         return response()->json(['statu' => 1, 'listPrestataire' => $listPrestataire]);
     }
 
@@ -246,7 +277,8 @@ class ApiController extends Controller
 
         $resultat = Fiche::where('statu_fiche', '!=', '0')
             ->where('id_prestations', $id_prestation)
-            ->where('localisation', 'like', '%' . $localisation . '%')
+            ->where('localisation', $localisation)
+            //->where('localisation', 'like', '%' . $localisation . '%')
             //->whereBetween('estimation_min', [$estmation_min,$estmation_max])
             //->whereBetween('estimation_max', [$estmation_min, $estmation_max])
             //->where('estimation_max','<=',$estmation_max)
@@ -635,7 +667,7 @@ class ApiController extends Controller
                 // communication mail pas defaut
                 Mail::to($user_exist->email)->send(new fotgetPassword($data));
 
-                $message = 'Votre mot de passe a bien été reinitialisé. Veuiller consultez votre boite mail';
+                $message = 'Votre mot de passe a bien été reinitialisé. \m Veuiller consultez votre boite mail';
                 return response()->json(['statu' => 1, 'message' => $message]);
             } else {
 

@@ -2,16 +2,22 @@
   <div>
     <!-- :style="{ marginTop: '112px' }" -->
     <div :class="{ 'default-padding': padding }">
-      <nav-bar :height="navBarHeight" class="mybar"></nav-bar>
-      <v-main class="bar">
-        <slot></slot>
+      <nav-bar
+        :height="navBarHeight"
+        class="mybar"
+        :isFixed="scroll > 10"
+      ></nav-bar>
+      <v-main app>
+        <div style="margin-top: 30px">
+          <slot></slot>
+        </div>
       </v-main>
     </div>
-    <app-footer></app-footer>
+    <app-footer app></app-footer>
   </div>
 </template>
 
-<script>
+<script >
 export default {
   name: "default",
   props: {
@@ -20,10 +26,22 @@ export default {
       default: true,
     },
   },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll");
+  },
   data() {
     return {
       navBarHeight: "90",
+      scroll: 0,
     };
+  },
+  methods: {
+    onScroll() {
+      this.scroll = window.scrollY;
+    },
   },
 };
 </script>
@@ -31,20 +49,8 @@ export default {
 .mybar * {
   z-index: 100;
 }
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-  .bar {
-    margin-top: 90px;
-  }
-}
 
-@-moz-document url-prefix() {
-  .bar {
-    margin-top: 114px;
-  }
+.mybar {
+  display: inline;
 }
-/* @supports (-ms-ime-align: auto) {
-  .bar {
-    margin-top: 114px;
-  }
-} */
 </style>
