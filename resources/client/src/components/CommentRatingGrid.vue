@@ -73,6 +73,9 @@ export default Vue.extend({
     comments() {
       return this.$store.getters["auth/listComment"];
     },
+    currentId(): string {
+      return sessionStorage.getItem("benefitId") as string;
+    },
   },
   methods: {
     getDate(localDate: string) {
@@ -105,11 +108,10 @@ export default Vue.extend({
       }
     },
   },
-  beforeMount() {
-    console.log("wano");
 
+  beforeMount() {
     this.id_prestataire = this.$store.getters["benefits/one"](
-      this.$route.params.id
+      this.currentId
     ).id_user.toString();
     this.getListComment({ id_prestataire: this.id_prestataire });
   },
@@ -117,7 +119,7 @@ export default Vue.extend({
     $route(to, from) {
       console.log(to.params.id, "wano");
       this.id_prestataire = this.$store.getters["benefits/one"](
-        this.$route.params.id
+        this.currentId
       ).id_user.toString();
       this.getListComment({ id_prestataire: this.id_prestataire });
     },

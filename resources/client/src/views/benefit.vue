@@ -218,10 +218,17 @@ export default Vue.extend({
     await this.$store.dispatch("benefits/fetchAll");
     await this.updateSlder(this.currentId);
     this.id_prestataire = this.$store.getters["benefits/one"](
-      this.$route.params.id
+      this.currentId
     ).id_user.toString();
-    // console.log(this.$route.params.id);
+    // console.log(this.currentId);
     console.log(this.$store.getters["auth/isConnected"]);
+  },
+  beforeRouteEnter(_: any, __: any, next: any) {
+    if (!sessionStorage.getItem("benefitId")) {
+      next("/");
+    } else {
+      next();
+    }
   },
   components: {
     BenefitsGrid,
@@ -236,13 +243,13 @@ export default Vue.extend({
       return this.$store.getters["auth/user"].id;
     },
     benefit(): Benefit {
-      return this.$store.getters["benefits/one"](this.$route.params.id);
+      return this.$store.getters["benefits/one"](this.currentId);
     },
     others(): Benefit[] {
-      return this.$store.getters["benefits/others"](this.$route.params.id);
+      return this.$store.getters["benefits/others"](this.currentId);
     },
     currentId(): string {
-      return this.$route.params.id;
+      return sessionStorage.getItem("benefitId") as string;
     },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
@@ -357,7 +364,7 @@ export default Vue.extend({
   watch: {
     async currentId(val) {
       this.id_prestataire = this.$store.getters["benefits/one"](
-        this.$route.params.id
+        this.currentId
       ).id_user.toString();
       await this.updateSlder(val);
     },

@@ -1,43 +1,7 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <!-- <div class="d-none d-md-block">
-        <jumbotron image="images/jmbg1.png">
-          <h1 class="content-title">
-            L' organisation zen <br />de vos événements
-          </h1>
-          <p class="content-subtitle my-5">
-            les prestataires n'attendent que vous
-          </p>
-          <div>
-            <v-btn
-              color="primary"
-              :to="{ name: 'auth-register' }"
-              v-if="!isAuth"
-              >Découvrir</v-btn
-            >
-          </div>
-          <template #append>
-            <div class="search-container">
-              <search-form :handler="initSearch"></search-form>
-            </div>
-          </template>
-        </jumbotron>
-      </div> -->
-
-      <!-- <div class="main psearch">
-        <v-text-field
-          outlined
-          label="Je recherche une prestation"
-          append-icon="mdi-account-search-outline"
-        ></v-text-field>
-      </div> -->
-
       <div class="main mx-auto">
-        <!-- <div class="d-block d-md-none">
-          <search-form :handler="initSearch"></search-form>
-        </div> -->
-
         <div class="section">
           <!-- <filter-form></filter-form> -->
           <div class="psearch mx-auto">
@@ -54,10 +18,19 @@
                 color="amber"
               ></v-progress-circular>
             </div>
-            <prestataires-grid
-              :prestataires="providers"
-              v-else-if="providers.length >= 1"
-            ></prestataires-grid>
+            <div v-else-if="providers.length >= 1">
+              <prestataires-grid
+                :prestataires="allBenefits"
+              ></prestataires-grid>
+              <v-pagination
+                class="py-5"
+                v-model="page"
+                v-if="providers.length > perPage"
+                :length="paginateLength"
+                prev-icon="mdi-menu-left"
+                next-icon="mdi-menu-right"
+              ></v-pagination>
+            </div>
             <div class="nothing" v-else-if="providers.length == 0 && isFilter">
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
@@ -91,9 +64,9 @@ import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import PrestatairesGrid from "@/components/PrestatairesGrid.vue";
 import ProvidersSlider from "@/components/ProvidersSlider.vue";
 import { Benefit } from "@/interfaces/benefit.interface";
+import { IProvider } from "@/interfaces/Provider.interface";
 import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
-import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { AppService } from "@/services/app.service";
@@ -111,6 +84,14 @@ export default Vue.extend({
   data() {
     return {
       categorie: null as unknown as string,
+      allBenefits: [] as IProvider[],
+      myBenefits: [] as IProvider[],
+      page: 1,
+      perPage: 4, //24
+      benefitsLength: 0,
+      paginateLength: 0,
+      pages: [] as number[],
+      isPaginate: false,
       // isFilter: false,
     };
   },
@@ -126,8 +107,19 @@ export default Vue.extend({
       this.$store.dispatch("benefits/fetchEstimates"),
       this.$store.dispatch("benefits/fetchProviders"),
     ]);
+
+    this.benefitsLength = this.$store.getters["benefits/providers"].length;
+    // console.log(this.benefitsLength);
+    this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+    this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
+      Number
+    );
   },
   computed: {
+    // isPaginate(){
+    //   if(this.perPage)
+
+    // },
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"];
     },
@@ -141,6 +133,8 @@ export default Vue.extend({
       return this.$store.getters["benefits/estimates"];
     },
     providers(): IProvider[] {
+      this.allBenefits = this.$store.getters["benefits/providers"];
+      this.myBenefits = this.$store.getters["benefits/providers"];
       return this.$store.getters["benefits/providers"];
     },
     loading(): IProvider[] {
@@ -148,6 +142,12 @@ export default Vue.extend({
     },
     isFilter(): IProvider[] {
       return this.$store.getters["benefits/isFilter"];
+    },
+    visiblePages(): number[] {
+      return this.pages.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );
     },
   },
   methods: {
@@ -195,6 +195,24 @@ export default Vue.extend({
       // console.log(newValue);
       if (newValue) {
         this.getfilterByCategory();
+      }
+    },
+    visiblePages: function (value, prevValue) {
+      this.allBenefits = this.myBenefits.slice(
+        (this.page - 1) * this.perPage,
+        this.page * this.perPage
+      );
+    },
+    isFilter: function (newVal, oldVal) {
+      console.log(newVal, "ici");
+      if (newVal) {
+        this.benefitsLength = this.$store.getters["benefits/providers"].length;
+        // console.log(this.benefitsLength);
+
+        this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+        this.pages = Object.keys(
+          Array.apply(0, Array(this.benefitsLength))
+        ).map(Number);
       }
     },
   },

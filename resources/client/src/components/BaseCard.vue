@@ -12,21 +12,26 @@
     <v-card-title class="the-title">
       {{ rating ? title.toUpperCase() : title }}
     </v-card-title>
-    <div
-      flat
-      class="d-flex nowrap justify-space-between pb-5 px-5"
-      v-if="rating"
-    >
+    <!-- class="d-flex nowrap justify-space-between pb-5 px-5" -->
+    <div flat class="d-flex flex-column pb-5 px-5" v-if="rating">
       <p class="mb-0 categorie">{{ description }}</p>
-      <v-rating
-        v-if="rating"
-        v-model="rating"
-        size="15"
-        readonly
-        :length="rating"
-        background-color="primary"
-        color="primary"
-      ></v-rating>
+      <div class="d-flex nowrap justify-space-between">
+        <v-rating
+          v-if="rating"
+          v-model="rating"
+          size="15"
+          dense
+          readonly
+          :length="rating"
+          background-color="primary"
+          color="primary"
+        ></v-rating>
+
+        <div class="mb-0 d-flex align-center">
+          <span>{{ userRating }}</span>
+          <v-icon>mdi-account</v-icon>
+        </div>
+      </div>
     </div>
 
     <v-card-subtitle class="subtitle" v-if="!rating">
@@ -65,6 +70,12 @@ export default Vue.extend({
     rating: {
       type: Number,
       required: false,
+    },
+    //votant
+    userRating: {
+      type: Number,
+      required: false,
+      default: 5,
     },
   },
 });

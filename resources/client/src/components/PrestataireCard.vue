@@ -1,7 +1,7 @@
 <template>
   <base-card
     max-width="90%"
-    :rating="2"
+    :rating="prestataire.vote ? prestataire.vote : 2"
     :title="
       prestataire.name_entreprise
         ? prestataire.name_entreprise

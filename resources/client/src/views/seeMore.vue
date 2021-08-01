@@ -13,6 +13,7 @@
           <filter-form></filter-form>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
+              <!-- <div class="loading" v-if="loading || benefits.length == 0"> -->
               <v-progress-circular
                 indeterminate
                 color="amber"
@@ -23,6 +24,7 @@
               <v-pagination
                 class="py-5"
                 v-model="page"
+                v-if="benefits.length > perPage"
                 :length="paginateLength"
                 prev-icon="mdi-menu-left"
                 next-icon="mdi-menu-right"
@@ -71,7 +73,7 @@ export default Vue.extend({
       allBenefits: [] as Benefit[],
       myBenefits: [] as Benefit[],
       page: 1,
-      perPage: 2,
+      perPage: 24, //24
       benefitsLength: 0,
       paginateLength: 0,
       pages: [] as number[],

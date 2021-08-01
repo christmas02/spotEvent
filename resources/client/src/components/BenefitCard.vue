@@ -12,6 +12,7 @@
 </template>
 
 <script lang="ts">
+import slugify from "slugify";
 import { Benefit } from "@/interfaces/benefit.interface";
 import Vue, { PropType } from "vue";
 import BaseCard from "./BaseCard.vue";
@@ -37,12 +38,17 @@ export default Vue.extend({
         id_pres: this.benefit.id_user.toString(),
       });
 
-      console.log(statu, "uddoiop");
+      // console.log(statu,");
+      // console.log(statu, this.benefit.id_user.toString());
 
       if (statu == 1) {
+        // console.log(slugify(this.benefit.name));
+
+        sessionStorage.setItem("benefitId", this.benefit.id.toString());
+        // console.log("uniikk");
         this.$router.push({
           name: "benefit",
-          params: { id: this.benefit.id.toString() },
+          params: { slug: slugify(this.benefit.name) },
         });
       }
     },

@@ -64,7 +64,7 @@ const routes: Array<RouteConfig> = [
         component: RegisterScreen
     },
     {
-        path: "/prestations/:id",
+        path: "/prestations/:slug",
         name: "benefit",
         component: BenefitScreen
     },

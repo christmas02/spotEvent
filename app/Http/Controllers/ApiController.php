@@ -43,7 +43,16 @@ class ApiController extends Controller
     public function getEstimation()
     {
         $listEstiomation = Estimation::all();
-        return response()->json(['statu' => 1, 'listCategorie' => $listEstiomation]);
+        $i = 0;
+        $estimation = array();
+        foreach($listEstiomation as $item){
+            $estimation[$i]['id'] = $item->id;
+            $estimation[$i]['libelle'] = ($item->libelle);
+
+            $i ++;
+
+        }
+        return response()->json(['statu' => 1, 'listCategorie' => $estimation]);
     }
 
     public function getPrestation()
@@ -179,7 +188,7 @@ class ApiController extends Controller
             $statu = 1;
 
             return response()->json(['statu' => $statu]);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $statu = 0;
             return response()->json(['statu' => $statu, 'erreur' => $e]);
         }
@@ -198,7 +207,7 @@ class ApiController extends Controller
             $statu = 1;
 
             return response()->json(['statu' => $statu]);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $statu = 0;
             return response()->json(['statu' => $statu, 'erreur' => $e]);
         }
@@ -244,7 +253,7 @@ class ApiController extends Controller
             // communication sms pour ceux dont l'option telephon est Activité 
 
             return response()->json(['statu' => $statu, 'messages' => $messages]);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $statu = 0;
             return response()->json(['statu' => $statu, 'erreur' => $e]);
         }
@@ -346,6 +355,51 @@ class ApiController extends Controller
             return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $resultat]);
         }
     }
+
+   /* public function getConversation(Request $request)
+    {
+
+        try {
+            $id_user = $request['id_user'];
+
+            $conversationListe = Conversation::where('conversations.id_user', $id_user)
+                ->leftjoin('users', 'users.id', '=', 'conversations.id_recepteur')
+                ->leftjoin('fiches', 'fiches.id_user', '=', 'conversations.id_recepteur')
+                ->leftjoin('messages', 'messages.conversation', '=', 'conversations.cod_conversation')
+                ->select('users.id as id_recepteur', 'fiches.name as name_recepteur', 'users.path_user as image_recepteur', 'messages.id as id_message', 'messages.conversation as conversation')
+                ->orderBy('messages.id', 'desc')
+                ->distinct()
+                ->get();
+
+            $conversation = array();
+            $i = 0;
+
+            //dd($conversation);
+
+            if (count($conversationListe) != '0') {
+                foreach($conversationListe as $items){
+
+                    $conversation[$i]['id_recepteur'] = (int)($items->id_recepteur);
+                    $conversation[$i]['name_recepteur'] = ($items->name_recepteur);
+                    $conversation[$i]['image_recepteur'] = ($items->image_recepteur);
+                    $conversation[$i]['id_message'] = (int)($items->id_message);
+                    $conversation[$i]['conversation'] = (int)($items->conversation);
+
+
+                    $i++;
+
+                }
+                $message = "Conversation disponible";
+                return response()->json(['statu' => 1, 'message' => $message, 'conversation' => $conversation]);
+            } else {
+                $message = "Aucune conversation disponible";
+                return response()->json(['statu' => 0, 'message' => $message, 'conversation' => $conversation]);
+            }
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
+        }
+    }*/
 
     public function getConversation(Request $request)
     {

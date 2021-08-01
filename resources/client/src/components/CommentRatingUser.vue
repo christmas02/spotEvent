@@ -71,6 +71,9 @@ export default Vue.extend({
     user() {
       return this.$store.getters["auth/user"];
     },
+    currentId(): string {
+      return sessionStorage.getItem("benefitId") as string;
+    },
   },
   methods: {
     send() {
@@ -108,7 +111,7 @@ export default Vue.extend({
     async getListComment(): Promise<void> {
       const userService = new AuthService();
       let id_prestataire = this.$store.getters["benefits/one"](
-        this.$route.params.id
+        this.currentId
       ).id_user.toString();
       const prestataire = new Object() as IListComment;
       prestataire.id_prestataire = id_prestataire;
