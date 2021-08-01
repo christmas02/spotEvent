@@ -75,7 +75,7 @@ export default Vue.extend({
     userRating: {
       type: Number,
       required: false,
-      default: 5,
+      default: 0,
     },
   },
 });

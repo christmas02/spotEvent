@@ -19,17 +19,21 @@
               ></v-progress-circular>
             </div>
             <div v-else-if="providers.length >= 1">
-              <prestataires-grid
-                :prestataires="allBenefits"
-              ></prestataires-grid>
-              <v-pagination
+              <prestataires-grid :prestataires="element"></prestataires-grid>
+              <!-- <v-pagination
                 class="py-5"
                 v-model="page"
                 v-if="providers.length > perPage"
                 :length="paginateLength"
                 prev-icon="mdi-menu-left"
                 next-icon="mdi-menu-right"
-              ></v-pagination>
+              ></v-pagination> -->
+
+              <yan-paginate
+                :data="providers"
+                :perPage="perPage"
+                @changePage="getNewData"
+              ></yan-paginate>
             </div>
             <div class="nothing" v-else-if="providers.length == 0 && isFilter">
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
@@ -61,6 +65,7 @@
 <script lang="ts">
 import Vue from "vue";
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
+import YanPaginate from "@/components/YanPaginate.vue";
 import PrestatairesGrid from "@/components/PrestatairesGrid.vue";
 import ProvidersSlider from "@/components/ProvidersSlider.vue";
 import { Benefit } from "@/interfaces/benefit.interface";
@@ -80,19 +85,14 @@ export default Vue.extend({
     ProvidersSlider,
     SearchForm,
     FilterForm,
+    YanPaginate,
   },
   data() {
     return {
       categorie: null as unknown as string,
-      allBenefits: [] as IProvider[],
-      myBenefits: [] as IProvider[],
-      page: 1,
-      perPage: 4, //24
-      benefitsLength: 0,
-      paginateLength: 0,
-      pages: [] as number[],
+      perPage: 4, //4
       isPaginate: false,
-      // isFilter: false,
+      element: [],
     };
   },
   async beforeMount(): Promise<void> {
@@ -107,13 +107,6 @@ export default Vue.extend({
       this.$store.dispatch("benefits/fetchEstimates"),
       this.$store.dispatch("benefits/fetchProviders"),
     ]);
-
-    this.benefitsLength = this.$store.getters["benefits/providers"].length;
-    // console.log(this.benefitsLength);
-    this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
-    this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
-      Number
-    );
   },
   computed: {
     // isPaginate(){
@@ -133,8 +126,6 @@ export default Vue.extend({
       return this.$store.getters["benefits/estimates"];
     },
     providers(): IProvider[] {
-      this.allBenefits = this.$store.getters["benefits/providers"];
-      this.myBenefits = this.$store.getters["benefits/providers"];
       return this.$store.getters["benefits/providers"];
     },
     loading(): IProvider[] {
@@ -143,14 +134,12 @@ export default Vue.extend({
     isFilter(): IProvider[] {
       return this.$store.getters["benefits/isFilter"];
     },
-    visiblePages(): number[] {
-      return this.pages.slice(
-        (this.page - 1) * this.perPage,
-        this.page * this.perPage
-      );
-    },
   },
   methods: {
+    getNewData(e: any) {
+      console.log(e, "emit");
+      this.element = e;
+    },
     initSearch(): void {
       this.$router.push({ name: "Search" });
     },
@@ -196,12 +185,6 @@ export default Vue.extend({
       if (newValue) {
         this.getfilterByCategory();
       }
-    },
-    visiblePages: function (value, prevValue) {
-      this.allBenefits = this.myBenefits.slice(
-        (this.page - 1) * this.perPage,
-        this.page * this.perPage
-      );
     },
     isFilter: function (newVal, oldVal) {
       console.log(newVal, "ici");
