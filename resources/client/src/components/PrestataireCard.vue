@@ -1,7 +1,9 @@
 <template>
   <base-card
+    customClass="prestataire-card"
     max-width="90%"
-    :rating="prestataire.vote ? prestataire.vote : 2"
+    :rating="prestataire.vote ? prestataire.vote : 0"
+    :userRating="prestataire.votant ? prestataire.votant : 0"
     :title="
       prestataire.name_entreprise
         ? prestataire.name_entreprise
@@ -50,8 +52,12 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-.img-content {
+<style>
+.prestataire-card .img-content {
   margin: 4% 4% 0% 4%;
+}
+
+.prestataire-card .the-title {
+  margin-bottom: -23px !important;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <base-card
-    :title="provider.name"
+    :title="provider.name_entreprise"
     :description="provider.prestation"
     :image="provider.path_user | createImagePath"
   >

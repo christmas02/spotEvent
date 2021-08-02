@@ -1,5 +1,10 @@
 <template>
-  <v-card class="mx-auto" :max-width="maxWidth" :min-width="minWidth">
+  <v-card
+    class="mx-auto"
+    :max-width="maxWidth"
+    :min-width="minWidth"
+    :class="customClass"
+  >
     <v-img
       lazy-src="https://picsum.photos/id/11/10/6"
       :src="image"
@@ -45,6 +50,10 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: {
+    customClass: {
+      type: String,
+      required: false,
+    },
     maxWidth: {
       type: String,
       default: "344",
@@ -75,7 +84,7 @@ export default Vue.extend({
     userRating: {
       type: Number,
       required: false,
-      default: 5,
+      default: 0,
     },
   },
 });
