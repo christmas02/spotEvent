@@ -6,9 +6,7 @@
   >
     <div class="d-flex justify-content-between align-items-center img-content">
       <div>
-        <v-btn color="primary" class="discover-btn" small
-          >Demander un devis</v-btn
-        >
+        <v-btn color="primary" class="discover-btn" small>Découvrir</v-btn>
       </div>
       <div class="btn-container">
         <v-btn icon :color="color" outlined><v-icon>mdi-heart</v-icon></v-btn>
