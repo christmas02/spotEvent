@@ -90,7 +90,7 @@ export default Vue.extend({
   data() {
     return {
       categorie: null as unknown as string,
-      perPage: 4, //4
+      perPage: 8, //4
       isPaginate: false,
       element: [],
     };
