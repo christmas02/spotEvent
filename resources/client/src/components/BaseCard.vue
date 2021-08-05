@@ -6,7 +6,7 @@
     :class="customClass"
   >
     <v-img
-      lazy-src="https://picsum.photos/id/11/10/6"
+      :lazy-src="require('../assets/dark-logo.png')"
       :src="image"
       height="250px"
     >
@@ -21,16 +21,10 @@
     <div flat class="d-flex flex-column pb-5 px-5" v-if="rating">
       <p class="mb-0 categorie">{{ description }}</p>
       <div class="d-flex nowrap justify-space-between">
-        <v-rating
-          v-if="rating"
-          v-model="rating"
-          size="15"
-          dense
-          readonly
-          :length="rating"
-          background-color="primary"
-          color="primary"
-        ></v-rating>
+        <div class="mb-0 d-flex align-center">
+          <span>{{ rating }}</span>
+          <v-icon color="primary">mdi-star</v-icon>
+        </div>
 
         <div class="mb-0 d-flex align-center">
           <span>{{ userRating }}</span>

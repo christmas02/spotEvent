@@ -8,7 +8,7 @@
     animationSpeed="4000"
   >
     <slide :index="i" v-for="(provider, i) in providers" :key="provider.id">
-      <provider-card :provider="provider"></provider-card>
+      <prestataire-card :prestataire="provider"></prestataire-card>
     </slide>
   </carousel-3d>
 </template>
@@ -16,14 +16,14 @@
 <script lang="ts">
 import Vue from "vue";
 import { Carousel3d, Slide } from "vue-carousel-3d";
-import ProviderCard from "@/components/ProviderCard.vue";
+import PrestataireCard from "./PrestataireCard.vue";
 import { IProvider } from "@/interfaces/provider.interface";
 
 export default Vue.extend({
   components: {
     Carousel3d,
     Slide,
-    ProviderCard,
+    PrestataireCard,
   },
   computed: {
     providers(): IProvider[] {

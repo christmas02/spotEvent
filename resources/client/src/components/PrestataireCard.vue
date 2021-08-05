@@ -16,7 +16,9 @@
   >
     <div class="d-flex justify-content-between align-items-center img-content">
       <div>
-        <v-btn color="primary" class="discover-btn" small>Découvrir</v-btn>
+        <v-btn color="primary" class="discover-btn" small @click="discover"
+          >Découvrir</v-btn
+        >
       </div>
       <div class="btn-container">
         <v-btn icon :color="color" outlined><v-icon>mdi-heart</v-icon></v-btn>
@@ -31,6 +33,8 @@ import { IProvider } from "../interfaces/provider.interface";
 import Vue, { PropType } from "vue";
 import BaseCard from "./BaseCard.vue";
 import utilsMixin from "@/mixins/utils.mixin";
+import slugify from "slugify";
+
 export default Vue.extend({
   mixins: [utilsMixin],
   props: {
@@ -47,6 +51,16 @@ export default Vue.extend({
       return this.$store.getters["auth/isFavorite"](this.prestataire.id)
         ? "red"
         : "white";
+    },
+  },
+  methods: {
+    async discover(): Promise<void> {
+      sessionStorage.setItem("benefitId", this.prestataire.id_fiche);
+      // console.log("uniikk");
+      this.$router.push({
+        name: "benefit",
+        params: { slug: slugify(this.prestataire.name_entreprise) },
+      });
     },
   },
 });
