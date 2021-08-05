@@ -3,7 +3,7 @@
     <provider-contact-form-modal
       :provider="idProvider"
     ></provider-contact-form-modal>
-    <div id="benefit-page">
+    <div id="benefit-page" v-if="benefit">
       <div class="main">
         <div>
           <jumbotron :image="benefit.path_img | createImagePath">
@@ -341,6 +341,8 @@ export default Vue.extend({
     },
     async updateSlder(benefitId: string) {
       const benefit = this.$store.getters["benefits/one"](benefitId);
+
+      console.log("my benefit", benefit);
 
       this.idProvider = benefit.id_user.toString();
 

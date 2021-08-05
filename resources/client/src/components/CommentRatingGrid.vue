@@ -4,8 +4,8 @@
       <div class="review-card" v-for="comment in comments" :key="comment.id">
         <div class="review-header">
           <div class="name-group">
-            <div class="initials">{{ comment.nom_client.charAt(0) }}</div>
-            <p class="mb-0">{{ comment.nom_client }}</p>
+            <div class="initials">{{ initials(comment.nom_client) }}</div>
+            <p class="mb-0">{{ comment.nom_client || "Aucun nom" }}</p>
           </div>
           <div class="rating">
             <v-rating
@@ -106,6 +106,9 @@ export default Vue.extend({
         this.$store.commit("auth/updateListComment", []);
         console.log("erreur");
       }
+    },
+    initials(v: string | null) {
+      return v ? v.charAt(0) : "";
     },
   },
 

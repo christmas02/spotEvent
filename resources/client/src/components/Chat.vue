@@ -328,7 +328,6 @@ export default Vue.extend({
         this.roomsLoaded = false;
         if (
           element.name_recepteur &&
-          element.name_recepteur &&
           element.conversation &&
           element.id_recepteur &&
           !listRecepteur.includes(element.id_recepteur) &&
@@ -568,6 +567,7 @@ export default Vue.extend({
 
       console.log("id room", this.rooms[idRoom].roomId);
 
+      console.log("the rooms", this.rooms);
       // this.$store.commit("auth/updateIdBenefitToChat", null);
     } else if (idBenefitToChat) {
       idRoom = this.allSecondUser.indexOf(idBenefitToChat);
