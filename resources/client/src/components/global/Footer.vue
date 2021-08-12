@@ -9,14 +9,22 @@
           ></v-img>
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus,
-          alias atque cupiditate debitis dignissimos fuga fugit illum labore
-          laborum nam nostrum odit pariatur perferendis quod quos repellat
-          suscipit, temporibus voluptatem.
+          Constituez votre "équipe qui gagne" pour votre évènement grâce à Spot
+          Event, l'annuaire digital de l'événementiel
         </p>
         <div>
-          <v-btn icon color="primary"><v-icon>mdi-facebook</v-icon></v-btn>
-          <v-btn icon color="primary"><v-icon>mdi-instagram</v-icon></v-btn>
+          <v-btn
+            icon
+            color="primary"
+            href=" https://www.facebook.com/spoteventapp/"
+            ><v-icon>mdi-facebook</v-icon></v-btn
+          >
+          <v-btn
+            icon
+            color="primary"
+            href="https://www.instagram.com/spoteventapp/"
+            ><v-icon>mdi-instagram</v-icon></v-btn
+          >
         </div>
       </div>
       <div class="offset-md-1 col-md-7 d-none d-md-block">

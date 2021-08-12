@@ -5,11 +5,20 @@
         <div class="section">
           <!-- <filter-form></filter-form> -->
           <div class="psearch mx-auto">
-            <v-text-field
+            <!-- <v-text-field
               outlined
               label="Je recherche une prestation"
               append-icon="mdi-account-search-outline"
-            ></v-text-field>
+            ></v-text-field> -->
+            <v-autocomplete
+              v-model="search"
+              :items="providers"
+              item-text="name_entreprise"
+              item-value="id_prestataire"
+              outlined
+              label="Je recherche un prestataire"
+              append-icon="mdi-account-search-outline"
+            ></v-autocomplete>
           </div>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && providers.length == 0">
@@ -45,18 +54,6 @@
             >
           </div> -->
         </div>
-
-        <!-- <div class="section mt-0 d-none d-md-block">
-          <div>
-            <h2 class="section-title">Prestataires</h2>
-          </div>
-          <div style="margin: 50px 0">
-            <providers-slider></providers-slider>
-          </div>
-          <div class="text-center">
-            <v-btn color="primary">Découvir tous les prestataires</v-btn>
-          </div>
-        </div> -->
       </div>
     </div>
   </default-layout>
@@ -93,6 +90,7 @@ export default Vue.extend({
       perPage: 8, //4
       isPaginate: false,
       element: [],
+      search: null as unknown as string,
     };
   },
   async beforeMount(): Promise<void> {

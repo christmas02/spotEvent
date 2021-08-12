@@ -1,3 +1,7 @@
+import {
+    ISearchPrestataire,
+    ISearchPrestataireResponse
+} from "./../interfaces/app-services.interfaces";
 import { CommonService } from "./Common.service";
 import {
     IClick,
@@ -46,6 +50,25 @@ export class AppService extends CommonService {
                 statu: 0,
                 message: ""
             } as IPrestationsSearchFormResponse;
+        }
+    }
+    async getPrestataireSearchForm(
+        body: ISearchPrestataire
+    ): Promise<ISearchPrestataireResponse> {
+        try {
+            const {
+                data
+            }: {
+                data: ISearchPrestataireResponse;
+            } = await this.client.post("recherchePrestataire", body);
+            // data.statu = 1;
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: ""
+            } as ISearchPrestataireResponse;
         }
     }
     async contactForm(body: IContactForm): Promise<IContactFormResponse> {
