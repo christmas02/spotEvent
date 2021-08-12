@@ -37,3 +37,22 @@ export interface IClick {
 export interface IClickResponse {
     statu: number;
 }
+export interface ISearchPrestataireResponse {
+    statu: number;
+    message: string;
+    resultat: IResultForm;
+}
+export interface ISearchPrestataire {
+    mane: string;
+}
+
+export interface IResultForm {
+    vote: number;
+    votant: number;
+    id_prestataire: number;
+    name_entreprise: string;
+    prestation: string;
+    path_icone: string;
+    path_user?: any;
+    id_fiche: number;
+}
