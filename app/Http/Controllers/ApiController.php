@@ -302,9 +302,13 @@ class ApiController extends Controller
     public function serchPrestataire(Request $request)
     {
 
-        $mane = $request['name'];
+        $name = $request['name'];
+        $request=$request->all();
 
-        $list = Fiche::where('fiches.name', 'like', '%' . $mane . '%')
+        //dd($name); 
+
+        $list = Fiche:://where('fiches.name', $name)
+            where('fiches.name', 'like', '%' . $name . '%')
             ->where('fiches.statu_fiche', 1)
             ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
             ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
