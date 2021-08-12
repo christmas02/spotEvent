@@ -43,6 +43,10 @@ Route::post('clicphone','ApiController@clicphone');
 Route::post('demande','ApiController@saveDemande');
 
 Route::post('recherche','ApiController@serch');
+
+Route::post('recherchePrestataire','ApiController@serchPrestataire');
+
+
 Route::post('filtreEstimation','ApiController@filtreEstimation'); // en cours
 Route::post('filtreCategorie','ApiController@filtreCategorie');
 

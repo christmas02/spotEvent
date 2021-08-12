@@ -69,14 +69,7 @@ class ApiController extends Controller
 
     public function getPrestataire()
     {
-        $listPrestata = User::where('role', 2)
-            ->where('confirmation_token', NULL)
-            ->leftjoin('fiches', 'fiches.id_user', '=', 'users.id')
-            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
-            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_max')
-            ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
-            ->get();
+       
 
         $list = Fiche::where('fiches.statu_fiche', 1)
         ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
@@ -302,6 +295,50 @@ class ApiController extends Controller
         } else {
             $message = "resultat vide";
             return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
+        }
+    }
+
+
+    public function serchPrestataire(Request $request)
+    {
+
+        $mane = $request['name'];
+
+        $list = Fiche::where('fiches.name', 'like', '%' . $mane . '%')
+            ->where('fiches.statu_fiche', 1)
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            ->select('users.*', 'fiches.name as name_entreprise','fiches.id as id_fiche' ,'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+            ->get();
+        
+        
+        $listPrestataire = [];
+        $i = 0;
+
+        foreach($list as $items){
+
+            $vote = Commentaire::where('id_prestataire',$items->id_user)->avg('vote');
+            $votant = Commentaire::where('id_prestataire',$items->id_user)->count();
+
+            $listPrestataire[$i]['vote'] = (int)($vote);
+            $listPrestataire[$i]['votant'] = (int)($votant);
+            $listPrestataire[$i]['id_prestataire'] = $items->id_user;
+            $listPrestataire[$i]['name_entreprise'] = $items->name_entreprise;
+            $listPrestataire[$i]['prestation'] = $items->prestation;
+            $listPrestataire[$i]['path_icone'] = $items->path_icone;
+            $listPrestataire[$i]['path_user'] = $items->path_user;
+            $listPrestataire[$i]['id_fiche'] = $items->id_fiche;
+
+            $i++;
+
+        };
+
+        if (count($list) == '0') {
+            $message = "resultat non disponible";
+            return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $listPrestataire]);
+        } else {
+            $message = "resultat disponible";
+            return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $listPrestataire]);
         }
     }
 
