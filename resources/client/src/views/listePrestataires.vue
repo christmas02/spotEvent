@@ -3,25 +3,21 @@
     <div id="homepage">
       <div class="main mx-auto">
         <div class="section">
-          <!-- <filter-form></filter-form> -->
           <div class="psearch mx-auto">
-            <!-- <v-text-field
-              outlined
-              label="Je recherche une prestation"
-              append-icon="mdi-account-search-outline"
-            ></v-text-field> -->
             <v-autocomplete
-              v-model="search"
+              v-model="model"
               :items="providers"
               item-text="name_entreprise"
               item-value="id_prestataire"
               outlined
               label="Je recherche un prestataire"
               append-icon="mdi-account-search-outline"
+              :loading="isLoading"
+              :search-input.sync="search"
             ></v-autocomplete>
           </div>
           <div style="margin: 50px 0">
-            <div class="loading" v-if="loading && providers.length == 0">
+            <div class="loading" v-if="isLoading">
               <v-progress-circular
                 indeterminate
                 color="amber"
@@ -29,30 +25,16 @@
             </div>
             <div v-else-if="providers.length >= 1">
               <prestataires-grid :prestataires="element"></prestataires-grid>
-              <!-- <v-pagination
-                class="py-5"
-                v-model="page"
-                v-if="providers.length > perPage"
-                :length="paginateLength"
-                prev-icon="mdi-menu-left"
-                next-icon="mdi-menu-right"
-              ></v-pagination> -->
-
               <yan-paginate
                 :data="providers"
                 :perPage="perPage"
                 @changePage="getNewData"
               ></yan-paginate>
             </div>
-            <div class="nothing" v-else-if="providers.length == 0 && isFilter">
+            <div class="nothing" v-else-if="providers.length == 0">
               <p class="display-2 font-weight-bold">Aucun resultat trouvé</p>
             </div>
           </div>
-          <!-- <div class="text-center">
-            <v-btn color="primary" v-if="providers.length >= 1" @click="seeMore"
-              >Voir plus</v-btn
-            >
-          </div> -->
         </div>
       </div>
     </div>
@@ -73,7 +55,8 @@ import SearchForm from "../components/forms/SearchForm.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { AppService } from "@/services/app.service";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
-
+import { BenefitService } from "../services/benefit.service";
+import { IAutocompleteProvidersResponse } from "../interfaces/provider.interface";
 export default Vue.extend({
   name: "Home",
   components: {
@@ -91,110 +74,55 @@ export default Vue.extend({
       isPaginate: false,
       element: [],
       search: null as unknown as string,
+      model: null as unknown as string,
+      isLoading: false,
+      providers: [],
+      count: 0,
     };
   },
   async beforeMount(): Promise<void> {
+    this.isLoading = true;
     this.$store.commit("benefits/resetSearchForm");
     // this.loading = true;
-    this.$store.commit("benefits/changeLoading", true);
-    this.$store.commit("benefits/changeIsFilter", false);
     await Promise.all([
       this.$store.dispatch("benefits/fetchAll"),
-      this.$store.dispatch("benefits/fetchCategories"),
       //   this.$store.dispatch("benefits/fetchCommunes"),
-      this.$store.dispatch("benefits/fetchEstimates"),
       this.$store.dispatch("benefits/fetchProviders"),
     ]);
-  },
-  computed: {
-    // isPaginate(){
-    //   if(this.perPage)
 
-    // },
-    benefits(): Benefit[] {
-      return this.$store.getters["benefits/all"];
-    },
-    isAuth() {
-      return this.$store.getters["auth/isConnected"];
-    },
-    categories(): ICategory[] {
-      return this.$store.getters["benefits/categories"];
-    },
-    estimatess(): IEstimate[] {
-      return this.$store.getters["benefits/estimates"];
-    },
-    providers(): IProvider[] {
-      return this.$store.getters["benefits/providers"];
-    },
-    loading(): IProvider[] {
-      return this.$store.getters["benefits/loading"];
-    },
-    isFilter(): IProvider[] {
-      return this.$store.getters["benefits/isFilter"];
-    },
+    this.providers = this.$store.getters["benefits/providers"];
+    this.count = this.providers.length;
+
+    this.isLoading = false;
   },
   methods: {
     getNewData(e: any) {
       console.log(e, "emit");
       this.element = e;
     },
-    initSearch(): void {
-      this.$router.push({ name: "Search" });
-    },
-    seeMore(): void {
-      this.$router.push({ name: "SeeMore" });
-    },
-    async getfilterByCategory(): Promise<void> {
-      // this.isFilter = true;
-      this.$store.commit("benefits/changeIsFilter", true);
-      // this.loading = true;
-      this.$store.commit("benefits/changeLoading", true);
-      const prestationsSearch = new AppService();
-
-      const Cat = new Object() as IIdPrestation;
-      Cat.id_prestation = this.categorie;
-
-      const result = await prestationsSearch.filterByCategory(Cat);
-      console.log(result);
-
-      if (result.statu == 1) {
-        console.log("resultat");
-
-        this.$store.commit("benefits/store", result.resultat);
-      } else {
-        console.log(result.resultat);
-        this.$store.commit("benefits/store", result.resultat);
-        // this.loading = false;
-        this.$store.commit("benefits/changeLoading", false);
-      }
-    },
-    resetBenefits: function () {
-      // this.isFilter = false;
-      this.$store.commit("benefits/changeIsFilter", false);
-      this.categorie = "";
-      this.$store.commit("benefits/store", []);
-
-      this.$store.dispatch("benefits/fetchAll");
-    },
   },
   watch: {
-    categorie: function (newValue, oldValue) {
-      // console.log(newValue);
-      if (newValue) {
-        this.getfilterByCategory();
-      }
-    },
-    isFilter: function (newVal, oldVal) {
-      console.log(newVal, "ici");
-      if (newVal) {
-        this.benefitsLength = this.$store.getters["benefits/providers"].length;
-        // console.log(this.benefitsLength);
+    async search(val: string) {
+      // Items have already been loaded
+      // if (this.benefits.length > 0) return;
 
-        this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
-        this.pages = Object.keys(
-          Array.apply(0, Array(this.benefitsLength))
-        ).map(Number);
+      // Items have already been requested
+      if (this.isLoading) return;
+
+      this.isLoading = true;
+
+      // Lazily load input items
+      const service = new BenefitService();
+
+      const result: IAutocompleteProvidersResponse =
+        await service.autocompleteProviders(val);
+
+      if (result.statu == 1) {
+        this.providers = result.resultat;
+        this.count = this.providers.length;
       }
+
+      this.isLoading = false;
     },
   },
 });

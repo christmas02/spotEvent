@@ -36,3 +36,14 @@ export interface ISlidersResponse {
     statu: number;
     listPrestataire: ISlider[];
 }
+
+
+
+
+
+    export interface IAutocompleteProvidersResponse {
+        statu: number;
+        message: string;
+        resultat: IProvider[];
+    }
+

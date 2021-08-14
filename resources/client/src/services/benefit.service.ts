@@ -4,6 +4,7 @@ import { ICategoryResponse } from "@/interfaces/category.interface";
 import { ICommuneResponse } from "@/interfaces/commune.interface";
 import { IEstimateResponse } from "@/interfaces/estimation.interface";
 import {
+    IAutocompleteProvidersResponse,
     ISlidersResponse,
     ProvidersResponse
 } from "@/interfaces/provider.interface";
@@ -122,6 +123,27 @@ export class BenefitService extends CommonService {
                 statu: 0,
                 listeFavoris: []
             } as IFavoriteResponse;
+        }
+    }
+
+    async autocompleteProviders(text: string): Promise<IAutocompleteProvidersResponse> {
+        try {
+            const {
+                data
+            }: { data: IAutocompleteProvidersResponse } = await this.client.post(
+                "/recherchePrestataire",
+                {
+                    mane: text
+                }
+            );
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+               message: "Erreur",
+               resultat: [],
+               statu: 0
+            } as IAutocompleteProvidersResponse;
         }
     }
 }
