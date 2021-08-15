@@ -155,9 +155,10 @@ export default Vue.extend({
   },
   computed: {
     benefits(): Benefit[] {
-      // console.log(this.$store.getters["benefits/all"].slice(2));
-      // return [...this.$store.getters["benefits/all"].slice(0, 12)];
       return this.$store.getters["benefits/all"].slice(0, 12);
+      // return this.$store.getters["benefits/all"]
+      //   ? this.$store.getters["benefits/all"].slice(0, 12)
+      //   : ([] as Benefit[]);
     },
 
     isAuth() {

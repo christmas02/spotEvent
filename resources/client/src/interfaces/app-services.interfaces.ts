@@ -1,4 +1,4 @@
-import { Benefit } from "./benefit.interface";
+import { Benefit, IfiltreEstimation } from "./benefit.interface";
 export interface IContactForm {
     id_pres: string;
     name: string;
