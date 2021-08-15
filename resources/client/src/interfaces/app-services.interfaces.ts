@@ -23,6 +23,10 @@ export interface ISearchForm {
 export interface IIdPrestation {
     id_prestation: String;
 }
+export interface IEstimation {
+    estmation_max: number;
+    estmation_min: number;
+}
 
 export interface IContactFormResponse {
     statu: number;

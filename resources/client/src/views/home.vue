@@ -186,47 +186,47 @@ export default Vue.extend({
     seeMore(): void {
       this.$router.push({ name: "SeeMore" });
     },
-    async getfilterByCategory(): Promise<void> {
-      // this.isFilter = true;
-      this.$store.commit("benefits/changeIsFilter", true);
-      // this.loading = true;
-      this.$store.commit("benefits/changeLoading", true);
-      const prestationsSearch = new AppService();
+    // async getfilterByCategory(): Promise<void> {
+    //   // this.isFilter = true;
+    //   this.$store.commit("benefits/changeIsFilter", true);
+    //   // this.loading = true;
+    //   this.$store.commit("benefits/changeLoading", true);
+    //   const prestationsSearch = new AppService();
 
-      const Cat = new Object() as IIdPrestation;
-      Cat.id_prestation = this.categorie;
+    //   const Cat = new Object() as IIdPrestation;
+    //   Cat.id_prestation = this.categorie;
 
-      const result = await prestationsSearch.filterByCategory(Cat);
-      console.log(result);
+    //   const result = await prestationsSearch.filterByCategory(Cat);
+    //   console.log(result);
 
-      if (result.statu == 1) {
-        console.log("resultat");
+    //   if (result.statu == 1) {
+    //     console.log("resultat");
 
-        this.$store.commit("benefits/store", result.resultat);
-      } else {
-        console.log(result.resultat);
-        this.$store.commit("benefits/store", result.resultat);
-        // this.loading = false;
-        this.$store.commit("benefits/changeLoading", false);
-      }
-    },
-    resetBenefits: function () {
-      // this.isFilter = false;
-      this.$store.commit("benefits/changeIsFilter", false);
-      this.categorie = "";
-      this.$store.commit("benefits/store", []);
+    //     this.$store.commit("benefits/store", result.resultat);
+    //   } else {
+    //     console.log(result.resultat);
+    //     this.$store.commit("benefits/store", result.resultat);
+    //     // this.loading = false;
+    //     this.$store.commit("benefits/changeLoading", false);
+    //   }
+    // },
+    // resetBenefits: function () {
+    //   // this.isFilter = false;
+    //   this.$store.commit("benefits/changeIsFilter", false);
+    //   this.categorie = "";
+    //   this.$store.commit("benefits/store", []);
 
-      this.$store.dispatch("benefits/fetchAll");
-    },
+    //   this.$store.dispatch("benefits/fetchAll");
+    // },
   },
-  watch: {
-    categorie: function (newValue, oldValue) {
-      // console.log(newValue);
-      if (newValue) {
-        this.getfilterByCategory();
-      }
-    },
-  },
+  // watch: {
+  //   categorie: function (newValue, oldValue) {
+  //     // console.log(newValue);
+  //     if (newValue) {
+  //       this.getfilterByCategory();
+  //     }
+  //   },
+  // },
 });
 </script>
 
