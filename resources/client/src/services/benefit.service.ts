@@ -133,7 +133,7 @@ export class BenefitService extends CommonService {
             }: { data: IAutocompleteProvidersResponse } = await this.client.post(
                 "/recherchePrestataire",
                 {
-                    mane: text
+                    name: text
                 }
             );
             return data;
