@@ -307,6 +307,7 @@ class ApiController extends Controller
 
         //dd($name); 
 
+
         $list = Fiche:://where('fiches.name', $name)
             where('fiches.name', 'like', '%' . $name . '%')
             ->where('fiches.statu_fiche', 1)
@@ -360,6 +361,28 @@ class ApiController extends Controller
 
         //dd(count($resultat));
 
+        if (count($resultat) != '0'){
+            $message = "resultat disponible";
+            return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
+        }else{
+            $message = "resultat vide";
+            return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $resultat]);
+        }
+    }
+
+
+    public function filtreSituationGeo(Request $request)
+    {
+        $id_commune = $request['id_commune'];
+
+        $resultat = Fiche::where('statu_fiche', '!=', '0')
+            ->where('localisation', $id_commune)
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            ->select('fiches.*', 'prestations.name as prestation', 'prestations.path_icone')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
+
+        //dd(count($resultat));
         if (count($resultat) != '0') {
             $message = "resultat disponible";
             return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
@@ -375,6 +398,8 @@ class ApiController extends Controller
         $estmation_max = $request['estmation_max'];
         $estmation_min = $request['estmation_min'];
 
+        //dd($estmation_min, $estmation_max);
+
         $resultat = Fiche::select('*')
             ->where('statu_fiche', '!=', '0')
             ->where('estimation_min', '=', $estmation_min)
@@ -388,7 +413,7 @@ class ApiController extends Controller
             ->orderBy('fiches.id', 'desc')
             ->get();
 
-        if (count($resultat) == '0') {
+        if (count($resultat) != '0') {
             $message = "resultat disponible";
             return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
         } else {

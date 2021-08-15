@@ -49,6 +49,7 @@ Route::post('recherchePrestataire','ApiController@serchPrestataire');
 
 Route::post('filtreEstimation','ApiController@filtreEstimation'); // en cours
 Route::post('filtreCategorie','ApiController@filtreCategorie');
+Route::post('filtreCommune','ApiController@filtreSituationGeo');
 
 Route::post('saveImage','ApiController@saveImage');
 Route::post('upadteProfile','ApiController@updateProfile');
