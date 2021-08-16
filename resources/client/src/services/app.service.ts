@@ -1,4 +1,6 @@
+import { ICommuneSearch } from "./../interfaces/commune.interface";
 import {
+    IEstimation,
     ISearchPrestataire,
     ISearchPrestataireResponse
 } from "./../interfaces/app-services.interfaces";
@@ -23,6 +25,44 @@ export class AppService extends CommonService {
             }: {
                 data: IPrestationsSearchFormResponse;
             } = await this.client.post("filtreCategorie", body);
+
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: ""
+            } as IPrestationsSearchFormResponse;
+        }
+    }
+    async filterByEstimation(
+        body: IEstimation
+    ): Promise<IPrestationsSearchFormResponse> {
+        try {
+            const {
+                data
+            }: {
+                data: IPrestationsSearchFormResponse;
+            } = await this.client.post("filtreEstimation", body);
+
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: ""
+            } as IPrestationsSearchFormResponse;
+        }
+    }
+    async filterByCommune(
+        body: ICommuneSearch
+    ): Promise<IPrestationsSearchFormResponse> {
+        try {
+            const {
+                data
+            }: {
+                data: IPrestationsSearchFormResponse;
+            } = await this.client.post("filtreCommune", body);
 
             return data;
         } catch (e) {

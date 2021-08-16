@@ -30,18 +30,20 @@
         <v-autocomplete
           label="Estimation minimale"
           filled
+          v-model="estmation_min"
           :items="estimatess"
           item-text="libelle"
-          item-value="id"
+          item-value="libelle"
         ></v-autocomplete>
       </div>
       <div>
         <v-autocomplete
           label="Estimation maximale"
+          v-model="estmation_max"
           filled
           :items="estimatess"
           item-text="libelle"
-          item-value="id"
+          item-value="libelle"
         ></v-autocomplete>
       </div>
     </div>
@@ -63,6 +65,8 @@ export default Vue.extend({
       categorie: null as unknown as string,
       commune: null as unknown as string,
       isFilter: false,
+      estmation_max: "" as string,
+      estmation_min: "" as string,
 
       // loading: false,
     };
@@ -112,10 +116,76 @@ export default Vue.extend({
       //   Number
       // );
     },
+    async getfilterByCommune(): Promise<void> {
+      // this.isFilter = true;
+      // this.loading = true;
+      this.$store.commit("benefits/changeLoading", true);
+      const prestationsSearch = new AppService();
+
+      const Cat = new Object() as IIdPrestation;
+      let commune = { id_commune: this.commune.toString() };
+
+      const result = await prestationsSearch.filterByCommune(commune);
+      console.log(result);
+
+      if (result.statu == 1) {
+        console.log("resultat commuen");
+
+        this.$store.commit("benefits/store", result.resultat);
+      } else {
+        console.log(result.resultat);
+        this.$store.commit("benefits/store", result.resultat);
+        // this.loading = false;
+        this.$store.commit("benefits/changeLoading", false);
+      }
+      this.$store.commit("benefits/changeIsFilter", true);
+      // this.benefitsLength = this.$store.getters["benefits/all"].length;
+      // this.paginateLength = Math.ceil(this.benefitsLength / this.perPage);
+      // this.pages = Object.keys(Array.apply(0, Array(this.benefitsLength))).map(
+      //   Number
+      // );
+    },
+    async getfilterByEstimation(): Promise<void> {
+      // this.isFilter = true;
+      // this.loading = true;
+      this.$store.commit("benefits/changeLoading", true);
+      const prestationsSearch = new AppService();
+      let min = this.estmation_min;
+      let max = this.estmation_max;
+      if (this.estmation_min == "") {
+        min = this.estimatess[0].libelle;
+      }
+      // else if (this.estmation_max == "") {
+      //   max = this.estimatess[this.estimatess.length - 1].libelle;
+      // }
+      let extimate = {
+        estmation_max: max,
+        estmation_min: min,
+      };
+
+      const result = await prestationsSearch.filterByEstimation(extimate);
+      console.log(result);
+
+      if (result.statu == 1) {
+        console.log("extima");
+        console.log(result.resultat);
+
+        this.$store.commit("benefits/store", result.resultat);
+      } else {
+        console.log(result.resultat);
+        this.$store.commit("benefits/store", result.resultat);
+        // this.loading = false;
+        this.$store.commit("benefits/changeLoading", false);
+      }
+      this.$store.commit("benefits/changeIsFilter", true);
+    },
     resetBenefits() {
       // this.isFilter = false;
       this.$store.commit("benefits/changeIsFilter", false);
       this.categorie = "";
+      this.commune = "";
+      this.estmation_max = "";
+      this.estmation_min = "";
       this.$store.commit("benefits/store", []);
 
       this.$store.dispatch("benefits/fetchAll");
@@ -125,7 +195,32 @@ export default Vue.extend({
     categorie(newValue, oldValue) {
       // console.log(newValue);
       if (newValue) {
+        this.commune = "";
+        this.estmation_max = "";
+        this.estmation_min = "";
         this.getfilterByCategory();
+      }
+    },
+    commune(newValue, oldValue) {
+      if (newValue) {
+        this.categorie = "";
+        this.estmation_max = "";
+        this.estmation_min = "";
+        this.getfilterByCommune();
+      }
+    },
+    estmation_max(newValue, oldValue) {
+      if (newValue) {
+        this.categorie = "";
+        this.commune = "";
+        this.getfilterByEstimation();
+      }
+    },
+    estmation_min(newValue, oldValue) {
+      if (newValue) {
+        this.categorie = "";
+        this.commune = "";
+        // this.getfilterByEstimation();
       }
     },
   },
