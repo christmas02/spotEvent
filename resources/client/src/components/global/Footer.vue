@@ -29,36 +29,17 @@
       </div>
       <div class="offset-md-1 col-md-7 d-none d-md-block">
         <div class="row mt-md-5">
-          <div class="col-md-3">
+          <div class="col-md-12">
             <ul class="footer-list">
               <li>
-                <h4 class="list-title">Categories</h4>
+                <h4 class="list-title">Prestations</h4>
               </li>
-              <li v-for="link in categories" :key="link">
-                <router-link class="footer-link" to="/" exact>{{
-                  link
-                }}</router-link>
+
+              <li v-for="benefit in benefits" :key="benefit.id">
+                <a class="footer-link" @click="discover(benefit)">{{
+                  benefit.prestation
+                }}</a>
               </li>
-            </ul>
-          </div>
-          <div class="col-md-9">
-            <ul class="footer-list">
-              <li>
-                <h4 class="list-title">Prestataires</h4>
-              </li>
-              <div class="row">
-                <div
-                  class="col-md-4"
-                  v-for="(col, i) in providers"
-                  :key="col.length.toString() + i"
-                >
-                  <li v-for="link in col" :key="link">
-                    <router-link class="footer-link" to="/" exact>{{
-                      link
-                    }}</router-link>
-                  </li>
-                </div>
-              </div>
             </ul>
           </div>
         </div>
@@ -67,32 +48,47 @@
   </footer>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { ICategory } from "@/interfaces/category.interface";
+import slugify from "slugify";
+import Vue from "vue";
+import { Benefit } from "../../interfaces/benefit.interface";
+import { AppService } from "../../services/app.service";
+export default Vue.extend({
   name: "Footer",
-  data() {
-    return {
-      categories: ["Mariages", "Baptêmes", "Anniversaires"],
-      providers: [
-        [
-          "Salles / Lieux de réception",
-          "Photographe",
-          "Vidéaste",
-          "Sonorisation",
-          "Voiture",
-        ],
-        [
-          "Décoration",
-          "Logistique",
-          "Faire part",
-          "Fleuristes",
-          "Mise en beauté",
-        ],
-        ["Traiteur", "Cambuse", "Tenues", "Mise au vert", "Lune de miel "],
-      ],
-    };
+  computed: {
+    categories(): ICategory[] {
+      return this.$store.getters["benefits/categories"];
+    },
+    benefits(): Benefit[] {
+      return this.$store.getters["benefits/all"].slice(0, 12);
+    },
   },
-};
+  methods: {
+    async discover(benefit: Benefit): Promise<void> {
+      const service = new AppService();
+      const id_user = this.$store.getters["auth/id"];
+      const { statu } = await service.benefitClick({
+        id_user,
+        id_pres: benefit.id_user.toString(),
+      });
+
+      // console.log(statu,");
+      // console.log(statu, this.benefit.id_user.toString());
+
+      if (statu == 1) {
+        // console.log(slugify(this.benefit.name));
+
+        sessionStorage.setItem("benefitId", benefit.id.toString());
+        // console.log("uniikk");
+        this.$router.push({
+          name: "benefit",
+          params: { slug: slugify(benefit.name) },
+        });
+      }
+    },
+  },
+});
 </script>
 
 <style scoped>

@@ -1,5 +1,6 @@
 <template>
   <base-card
+    class="b-card"
     max-width="90%"
     :description="benefit.presentation"
     :title="benefit.name.toUpperCase()"
@@ -18,6 +19,7 @@ import Vue, { PropType } from "vue";
 import BaseCard from "./BaseCard.vue";
 import utilsMixin from "@/mixins/utils.mixin";
 import { AppService } from "../services/app.service";
+
 export default Vue.extend({
   mixins: [utilsMixin],
   props: {
@@ -62,5 +64,9 @@ export default Vue.extend({
   top: 8%;
   left: 6%;
   color: #000 !important;
+}
+
+.b-card {
+  height: 100%;
 }
 </style>
