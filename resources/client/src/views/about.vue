@@ -13,7 +13,8 @@
               <div class="title-container">
                 <h1 class="content-title">A Propos de Nous</h1>
                 <p class="content-subtitle my-5">
-                  Le répertoire des prestataires de l'événementiel
+                  Le répertoire des meilleurs prestataires œuvrant pour la
+                  réalisation de votre mariage
                 </p>
               </div>
             </div>
@@ -27,11 +28,11 @@
               <h2 class="section-title">Qui-sommes nous ?</h2>
               <p class="font-weight-bold">
                 Nous sommes une plateforme de mise en relation entre les acteurs
-                de l'évènementiel et les personnes désireuses de réaliser un
-                évènement. Notre but ultime est de contribuer à la réalisation
-                d'évènements marquants, uniques et réussis. Nous y parvenons
-                grâce à la collaboration de nos partenaires spécialistes du
-                secteur.
+                de l'univers du mariage et les personnes désireuses de réaliser
+                un mariage. Notre but ultime est de contribuer à faire de votre
+                mariage une journée mémorable, unique et réussite. Nous y
+                parvenons grâce à la collaboration de nos partenaires
+                spécialistes du secteur.
               </p>
             </div>
           </div>
@@ -57,7 +58,7 @@
                 <p>
                   Un catalogue dynamique vous permettant de trouver le ou les
                   prestataires dont vous avez besoin pour la réalisation de
-                  votre événement
+                  votre mariage
                 </p>
               </div>
             </div>

@@ -2,12 +2,11 @@
   <default-layout :padding="false">
     <div class="main">
       <jumbotron :image="require('../assets/images/jmbg2.png')">
-        <p class="more-infos">Pour plus d'infos</p>
         <h1 class="content-title">Contactez-nous</h1>
         <div class="description">
           <p>
-            Notre équipe bienveillante se tient à votre disposition pour vous
-            aider
+            Pour plus d'infos, notre équipe bienveillante se tient à votre
+            disposition pour vous aider
           </p>
         </div>
       </jumbotron>
@@ -65,10 +64,7 @@
           <div class="col-md-8">
             <div>
               <h3 class="form-titile">Envoyez-nous un message</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aperiam dolores neque ratione voluptates.
-              </p>
+              <p>Nous vous répondrons dans les plus brefs délais</p>
             </div>
             <div>
               <v-form>

@@ -55,12 +55,8 @@ export class AuthService extends CommonService {
         } catch (e) {
             return {
                 statu: 0,
-                favoris: [],
-                role: 0,
-                lien: "",
-                user: (null as unknown) as IUser,
-                message: ""
-            };
+                message: e.response.data.message
+            } as ILoginResponse;
         }
     }
 
