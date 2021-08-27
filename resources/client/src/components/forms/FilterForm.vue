@@ -9,7 +9,7 @@
       <div class="mx-2">
         <v-autocomplete
           v-model="categorie"
-          label="Catégories"
+          label="Prestations"
           filled
           :items="categories"
           item-text="name"

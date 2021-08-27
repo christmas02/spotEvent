@@ -32,46 +32,7 @@
         </div>
 
         <div class="section">
-          <!-- <div class="d-flex justify-content-between">
-            <div>
-              <h2 class="section-title">Prestations</h2>
-            </div>
-            <div class="actions-container d-none d-md-flex">
-              <div>
-                <v-btn color="primary" @click="resetBenefits" x-large
-                  >Toutes les prestations</v-btn
-                >
-              </div>
-              <div class="mx-2">
-                <v-autocomplete
-                  v-model="categorie"
-                  label="Catégories"
-                  filled
-                  :items="categories"
-                  item-text="name"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-              <div class="mx-2">
-                <v-autocomplete
-                  label="Estimation minimale"
-                  filled
-                  :items="estimatess"
-                  item-text="libelle"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-              <div>
-                <v-autocomplete
-                  label="Estimation maximale"
-                  filled
-                  :items="estimatess"
-                  item-text="libelle"
-                  item-value="id"
-                ></v-autocomplete>
-              </div>
-            </div>
-          </div> -->
+
           <filter-form></filter-form>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
