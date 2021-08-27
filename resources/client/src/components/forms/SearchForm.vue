@@ -4,7 +4,7 @@
       <div class="col-md-3">
         <v-select
           v-model="choiceCategorie"
-          label="Catégories"
+          label="Prestations"
           :items="categories"
           item-text="name"
           item-value="id"

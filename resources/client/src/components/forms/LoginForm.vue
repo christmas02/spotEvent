@@ -71,7 +71,7 @@ export default Vue.extend({
               window.location.href = window.location.origin + "/" + result.lien;
               break;
             default:
-              this.$swal({ icon: "error", text: "Identifiants invalides" });
+              this.$swal({ icon: "error", text: result.message });
           }
         } else {
           this.$swal({ icon: "warning", text: result.message });
