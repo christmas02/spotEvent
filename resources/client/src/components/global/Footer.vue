@@ -30,17 +30,20 @@
       <div class="offset-md-1 col-md-7 d-none d-md-block">
         <div class="row mt-md-5">
           <div class="col-md-12">
-            <ul class="footer-list">
-              <li>
-                <h4 class="list-title">Prestations</h4>
-              </li>
-
-              <li v-for="benefit in benefits" :key="benefit.id">
-                <a class="footer-link" @click="discover(benefit)">{{
-                  benefit.prestation
-                }}</a>
-              </li>
-            </ul>
+            <h4 class="list-title mb-5">Prestations</h4>
+            <div class="d-flex">
+              <ul
+                v-for="(listcategorie, i) in categories"
+                :key="i"
+                class="footer-list mr-5 px-0"
+              >
+                <li v-for="categorie in listcategorie" :key="categorie.id">
+                  <a class="footer-link" @click="discover(categorie.id)">{{
+                    categorie.name
+                  }}</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -58,34 +61,33 @@ export default Vue.extend({
   name: "Footer",
   computed: {
     categories(): ICategory[] {
-      return this.$store.getters["benefits/categories"];
+      let final = [];
+
+      let elem = this.$store.getters["benefits/categories"];
+      console.log(elem);
+      let count = Math.floor(elem.length / 4);
+      let lastIndex = 0;
+      for (let index = 0; index <= count; index += 5) {
+        final.push(elem.slice(index, (index += 4)));
+        lastIndex = index;
+      }
+      if (!Number.isInteger(elem / 4)) {
+        final.push(elem.slice(lastIndex, elem.length + 1));
+      }
+
+      console.log(final);
+
+      // return this.$store.getters["benefits/categories"];
+      return final;
     },
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"].slice(0, 12);
     },
   },
   methods: {
-    async discover(benefit: Benefit): Promise<void> {
-      const service = new AppService();
-      const id_user = this.$store.getters["auth/id"];
-      const { statu } = await service.benefitClick({
-        id_user,
-        id_pres: benefit.id_user.toString(),
-      });
-
-      // console.log(statu,");
-      // console.log(statu, this.benefit.id_user.toString());
-
-      if (statu == 1) {
-        // console.log(slugify(this.benefit.name));
-
-        sessionStorage.setItem("benefitId", benefit.id.toString());
-        // console.log("uniikk");
-        this.$router.push({
-          name: "benefit",
-          params: { slug: slugify(benefit.name) },
-        });
-      }
+    discover(id: number) {
+      this.$store.commit("benefits/updateChoiceCategorie", id);
+      this.$router.push({ name: "Search" });
     },
   },
 });
