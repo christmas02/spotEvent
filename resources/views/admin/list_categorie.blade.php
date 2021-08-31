@@ -19,9 +19,7 @@
                   <div class="x_title">
                     <h2>Liste des categories <small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      
-       
-                      
+                      <li><a href="#" data-toggle="modal" data-target="#nouvelleCategorie" class="btn btn-md btn-primary"> Nouvelle categorie </a></li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -106,13 +104,13 @@
       <hr>
       <div class="silde">
       
-        <form method="POST" action="/save/parametre">
+        <form method="POST" action="/update/categorie">
         @csrf
         
             <input type="text" hidden name="id" value="{{$items->id}}">
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                   Designation <span class="required">*</span>
+                   Titre <span class="required">*</span>
                 </label>
                 <div class="col-md-9 col-sm-9 ">
                     <input type="text" name="name" class="form-control" value="{{$items->name}}">
@@ -123,7 +121,7 @@
                    Description <span class="required">*</span>
                 </label>
                 <div class="col-md-9 col-sm-9 ">
-                    <textarea rows="10" name="name" class="form-control">
+                    <textarea rows="10" name="description" class="form-control">
                       {{$items->description}}
                     </textarea>
                 </div>
@@ -168,6 +166,61 @@
   </div>
 </div>
 @endforeach
+
+<!-- NOUVELLE CATEGORIE -->
+<div class="modal fade" id="nouvelleCategorie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      <h4 class="text-center"></b></h4> 
+      <center><h3>Ajouter une nouvelle categorie</b></h3></center>
+      <hr>
+      <div class="silde">
+      
+        <form method="POST" action="/save/categorie" enctype="multipart/form-data">
+        @csrf
+        
+            <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                   Titre <span class="required">*</span>
+                </label>
+                <div class="col-md-9 col-sm-9 ">
+                    <input type="text" name="name" class="form-control" value="">
+                </div>
+            </div>
+            <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                   Icone <span class="required">*</span>
+                </label>
+                <div class="col-md-9 col-sm-9 ">
+                    <input type="file" name="file" class="form-control" value="">
+                </div>
+            </div>
+            <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                   Description <span class="required">*</span>
+                </label>
+                <div class="col-md-9 col-sm-9 ">
+                    <textarea rows="10" name="description" class="form-control">
+                      
+                    </textarea>
+                </div>
+            </div>
+            
+        
+   
+
+        
+      </div>
+      </div>
+      <div class="modal-footer-btn">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-success">Valider</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
 
