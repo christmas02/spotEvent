@@ -69,7 +69,7 @@ class UserController extends Controller
 
     public function updateImgProfile(Request $request){
 
-        //dd($request);
+        //dd($request->all());
 
         $id = $request->id;
 

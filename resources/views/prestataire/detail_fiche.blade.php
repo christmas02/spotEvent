@@ -309,8 +309,8 @@
                                 </h4>
                                 <h4><strong>Description :</strong>{{ $ficheExiste->description }}.</h4>
                                 <h4>Interval de facturation de la prestation :
-                                    {{ number_format($ficheExiste->estimation_min) }} .XOF -
-                                    {{ number_format($ficheExiste->estimation_max) }}.XOF </h4>
+                                    {{ $ficheExiste->estimation_min }} .XOF -
+                                    {{ $ficheExiste->estimation_max }}.XOF </h4>
                                 <h4><strong>Telephone</strong> : {{ $ficheExiste->phone_service }} /
                                     {{ $ficheExiste->phone2_service }}</h4>
                                 <h4>Whatsapp : {{ $ficheExiste->phone_whastapp }}</h4>

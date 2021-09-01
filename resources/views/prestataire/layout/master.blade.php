@@ -372,11 +372,14 @@
             if (input.files && input.files[0]) {
                 // Get the selected file
                 var files = $('#file')[0].files;
+                var id_user = document.getElementById("id").value;
                 if (files.length > 0) {
                     var fd = new FormData();
                     // Append data 
                     fd.append('file', files[0]);
+                    fd.append('id',id_user);
                     //fd.append('_token',CSRF_TOKEN);
+                    console.log(id_user);
                     $.ajax({
                         url: '/updade/img/profile',
                         type: 'post',

@@ -168,6 +168,7 @@
                                 <div class="avatar-upload">
                                     <div class="avatar-edit">
                                         <input type='file' id="file" name="file" accept="image/*" />
+                                        <input type='type' id="id" name="id" value="{{ $infoUser->id }} "/>
                                         <label for="file"></label>
                                     </div>
                                     <div class="avatar-preview">

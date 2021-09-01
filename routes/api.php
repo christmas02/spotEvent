@@ -65,5 +65,7 @@ Route::post('liste_commentaire','ApiController@getCommenataire');
 
 Route::post('forgetPassword','ApiController@forgetPassword');
 
+Route::post('saveMessagerie','ApiController@saveMessagerie');
+
 
 
