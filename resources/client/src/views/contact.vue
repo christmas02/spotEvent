@@ -18,45 +18,49 @@
           <div class="col-md-4">
             <v-list-item class="my-info">
               <v-list-item-avatar color="primary">
-                <v-icon color="white"> mdi-folder </v-icon>
+                <v-icon color="white"> mdi-map-marker </v-icon>
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title class="title">Adresse</v-list-item-title>
+                <v-list-item-title class="title"
+                  >Localisation</v-list-item-title
+                >
 
                 <v-list-item-subtitle class="subtitle">
-                  <p class="m-0 p-0">Abidjan</p>
-                  <p class="m-0 p-0">Abidjan</p>
+                  <p class="m-0 p-0">
+                    Cocody Angré non loin du 12èeme arrondissement
+                  </p>
+                  <!-- <p class="m-0 p-0">Abidjan</p> -->
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
             <v-list-item class="my-info">
               <v-list-item-avatar color="primary">
-                <v-icon color="white"> mdi-folder </v-icon>
+                <v-icon color="white"> mdi-at </v-icon>
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title class="title">Adresse</v-list-item-title>
+                <v-list-item-title class="title">E-mail</v-list-item-title>
 
                 <v-list-item-subtitle class="subtitle">
-                  <p class="m-0 p-0">Abidjan</p>
-                  <p class="m-0 p-0">Abidjan</p>
+                  <p class="m-0 p-0">info@spoteventapp.net</p>
+                  <!-- <p class="m-0 p-0">Abidjan</p> -->
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
             <v-list-item class="my-info">
               <v-list-item-avatar color="primary">
-                <v-icon color="white"> mdi-folder </v-icon>
+                <v-icon color="white"> mdi-phone </v-icon>
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title class="title">Adresse</v-list-item-title>
+                <v-list-item-title class="title">Contact</v-list-item-title>
 
                 <v-list-item-subtitle class="subtitle">
-                  <p class="m-0 p-0">Abidjan</p>
-                  <p class="m-0 p-0">Abidjan</p>
+                  <p class="m-0 p-0 my-2">+225 07 47 61 99 44</p>
+                  <p class="m-0 p-0 my-2">+225 05 84 96 93 04</p>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
