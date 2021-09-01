@@ -31,6 +31,7 @@
         <div class="row mt-md-5">
           <div class="col-md-12">
             <h4 class="list-title mb-5">Prestations</h4>
+
             <div class="d-flex">
               <ul
                 v-for="(listcategorie, i) in categories"
@@ -44,6 +45,18 @@
                 </li>
               </ul>
             </div>
+
+            <!-- <div class="d-flex">
+              <ul
+                v-for="(listcategorie, i) in categories"
+                :key="i"
+                class="footer-list mr-5 px-0"
+              >
+                <li v-for="(categorie, i) in listcategorie" :key="i">
+                  <a class="footer-link">{{ categorie }}</a>
+                </li>
+              </ul>
+            </div> -->
           </div>
         </div>
       </div>
@@ -64,16 +77,16 @@ export default Vue.extend({
       let final = [];
 
       let elem = this.$store.getters["benefits/categories"];
+      // let elem = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
       console.log(elem);
       let count = Math.floor(elem.length / 4);
       let lastIndex = 0;
-      for (let index = 0; index <= count; index += 5) {
-        final.push(elem.slice(index, (index += 4)));
+      for (let index = 0; index < elem.length; index += 4) {
+        console.log(index);
+        final.push(elem.slice(index, index + 4));
         lastIndex = index;
       }
-      if (!Number.isInteger(elem / 4)) {
-        final.push(elem.slice(lastIndex, elem.length + 1));
-      }
+      console.log(final);
 
       console.log(final);
 

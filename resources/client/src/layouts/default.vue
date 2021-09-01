@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script >
+<script lang="ts">
 export default {
   name: "default",
   props: {
@@ -42,6 +42,19 @@ export default {
     onScroll() {
       this.scroll = window.scrollY;
     },
+  },
+  async beforeMount(): Promise<void> {
+    this.$store.commit("benefits/resetSearchForm");
+    // this.loading = true;
+    this.$store.commit("benefits/changeLoading", true);
+    this.$store.commit("benefits/changeIsFilter", false);
+    await Promise.all([
+      this.$store.dispatch("benefits/fetchAll"),
+      this.$store.dispatch("benefits/fetchCategories"),
+      this.$store.dispatch("benefits/fetchCommunes"),
+      this.$store.dispatch("benefits/fetchEstimates"),
+      this.$store.dispatch("benefits/fetchProviders"),
+    ]);
   },
 };
 </script>
