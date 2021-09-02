@@ -10,8 +10,8 @@
           ></v-img>
         </div>
         <p>
-          Constituez votre "équipe qui gagne" pour votre mariage grâce à Spot
-          Event, l'annuaire nuptial digital
+          Constituez "l'équipe qui gagne" pour votre mariage grâce à Spot Event,
+          l'annuaire nuptial digital
         </p>
         <div>
           <v-btn

@@ -1,7 +1,7 @@
 <template>
   <default-layout :padding="false">
     <div class="main">
-      <jumbotron :image="require('../assets/images/jmbg2.jpg')">
+      <jumbotron :image="require('../assets/images/jmbg2.png')">
         <h1 class="content-title">Contactez-nous</h1>
         <div class="description">
           <p>
