@@ -24,7 +24,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      images: "images/jmbg2.jpg",
+      images: "images/jmbg2.png",
     };
   },
 });

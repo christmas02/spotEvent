@@ -2,7 +2,8 @@
   <default-layout :padding="false">
     <div id="benefit-page">
       <div class="default-padding">
-        <jumbotron :image="require('../assets/about/jmb.png')">
+        <!-- <jumbotron :image="require('../assets/about/jmb.png')"> -->
+        <jumbotron :image="require('../assets/about/img01.jpg')">
           <div
             class="d-md-flex justify-content-md-between align-items-md-center"
           >
