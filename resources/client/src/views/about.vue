@@ -31,7 +31,7 @@
                 Nous sommes une plateforme de mise en relation entre les acteurs
                 de l'univers du mariage et les personnes désireuses de réaliser
                 un mariage. Notre but ultime est de contribuer à faire de votre
-                mariage une journée mémorable, unique et réussite. Nous y
+                mariage une journée mémorable, unique et réussie. Nous y
                 parvenons grâce à la collaboration de nos partenaires
                 spécialistes du secteur.
               </p>
