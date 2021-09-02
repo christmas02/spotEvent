@@ -5,6 +5,7 @@
         <div>
           <v-img
             style="width: 50%; max-width: 180px"
+            class="footerLogo"
             contain
             :src="require('../../assets/light-logo.png')"
           ></v-img>
@@ -108,6 +109,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+@media screen and (max-width: 425px) {
+  .footerLogo {
+    width: 90px !important;
+  }
+}
 .my-footer {
   background-color: #303749 !important;
   padding-top: 3%;

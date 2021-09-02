@@ -27,9 +27,7 @@
                 >
 
                 <v-list-item-subtitle class="subtitle">
-                  <p class="m-0 p-0">
-                    Cocody Angré non loin du 12ème arrondissement
-                  </p>
+                  <p class="m-0 p-0">Cocody 2 Plateau Vallon</p>
                   <!-- <p class="m-0 p-0">Abidjan</p> -->
                 </v-list-item-subtitle>
               </v-list-item-content>

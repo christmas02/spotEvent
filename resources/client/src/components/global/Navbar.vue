@@ -1,9 +1,11 @@
 <template>
   <v-app-bar id="app-navbar" color="white" :height="height" app flat>
-    <div class="d-none d-sm-block">
+    <!-- <div class="d-none d-sm-block"> -->
+    <div>
       <v-img
         @click="goHome"
         width="120"
+        class="logo"
         :src="require('../../assets/dark-logo.png')"
       >
       </v-img>
@@ -194,6 +196,11 @@ export default Vue.extend({
 </script>
 
 <style>
+@media screen and (max-width: 425px) {
+  .logo {
+    width: 90px !important;
+  }
+}
 #app-navbar {
   padding-left: 5%;
   padding-right: 5%;
