@@ -4,7 +4,8 @@
       <div class="col-md-4">
         <div>
           <v-img
-            style="width: 50%"
+            style="width: 50%; max-width: 180px"
+            contain
             :src="require('../../assets/light-logo.png')"
           ></v-img>
         </div>
