@@ -53,8 +53,8 @@
                     <div class="profile clearfix">
                         <div class="profile_pic">
                             @if($infoUser->path_user != NULL)
-                            <img src="{{asset('/storage/'.$infoUser->path_user)}}" alt="..."
-                                class="img-circle profile_img">
+                            <img src="{{asset('spotevent/public/storage/'.$infoUser->path_user)}}" alt="..."
+                                class="img-circle profile_img" width="100">
                             @else
                             <img src="{{asset('/admin/images/user.png')}}" alt="..." class="img-circle profile_img">
                             @endif
@@ -210,8 +210,9 @@
                         <div class="item form-group col-md-3">
                             <center class="img_profil">
                                 @if($infoUser->path_user != NULL)
-                                <img src="{{asset('/storage/'.$infoUser->path_user)}}" alt="..."
+                                <img src="{{asset('spotevent/public/storage/'.$infoUser->path_user)}}" alt="..."
                                     class="img-circle profile_img" style="width:200; margin-left: 0px;">
+                                
                                 @else
                                 <img src="{{asset('/admin/images/user.png')}}" alt="..." class="img-circle profile_img">
                                 @endif

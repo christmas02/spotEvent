@@ -48,7 +48,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{asset('/admin/images/user.png')}}" alt="..." class="img-circle profile_img">
+                <img src="{{asset('spotevent/public/storage/'.$infoUser->path_user )}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <h2>{{ $infoUser->name }}</h2>
@@ -102,7 +102,7 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="{{asset('/admin/images/user.png')}}" alt="">{{ $infoUser->name }}
+                      {{ $infoUser->name }}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalProfil"> Profile</a>
@@ -179,13 +179,13 @@
           <h4 class="text-center"></b></h4> 
           <center><h3>Profile</h3></center> <hr>
           <div class="" style="margin: 0 80px;">
-            <div method="POST" action="/save/parametre">
+            <div method="POST" action="">
             @csrf
             
             <div class="row">
                 <div class="col-md-3">
                   <div class="profil">
-                      <img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar"> 
+                      <img class="{{asset('spotevent/public/storage/'.$infoUser->path_user )}}" alt="Avatar" title="Change the avatar"> 
                   </div>
                 </div>
                 <div class="col-md-9" style="padding: 0 30px;">

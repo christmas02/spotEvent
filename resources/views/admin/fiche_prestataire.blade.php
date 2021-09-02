@@ -89,7 +89,7 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar">
+                          <img class="img-responsive avatar-view" src="{{asset('spotevent/public/storage/'.$infoUser->path_user )}}" alt="Avatar" title="...">
                         </div>
                       </div>
                       <h3>{{ $prestataire->nom }}</h3>
@@ -206,14 +206,14 @@
 
                     <div class="col-md-6 col-sm-7 ">
                       <div class="product-image">
-                        <img src="{{asset('/storage/'.$prestataire->path_img)}}" alt="..." />
+                        <img src="{{asset('spotevent/public/storage/'.$prestataire->path_img)}}" alt="..." />
                       </div>
                       <br>
                     @if($galerie != [])
                      <div class="product_gallery">
                       @foreach($galerie as $image)
                         <a>
-                          <img width="50" height="90" src="{{asset('/storage/'.$image->path)}}" alt="..." />
+                          <img width="50" height="90" src="{{asset('spotevent/public/storage/'.$image->path)}}" alt="..." />
                         </a>
                       @endforeach
                       </div>

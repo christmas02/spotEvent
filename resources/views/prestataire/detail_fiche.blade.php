@@ -333,7 +333,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="product-image container-image">
-                                            <img src="{{asset('/storage/'.$ficheExiste->path_img)}}" alt="..." />
+                                            <img src="{{asset('spotevent/public/storage/'.$ficheExiste->path_img)}}" alt="..." />
                                             <div class="overlay">
                                                 <a href="" data-toggle="modal"
                                                     data-target="#exampleModalUpadeImage{{$ficheExiste->id}}"
@@ -357,7 +357,7 @@
                                         <div class="">
                                             <div class="col-md-6 container-image">
                                                 <img width="" height="" style="margin-bottom: 20px; width:100%;"
-                                                    src="{{asset('/storage/'.$items->path )}}" alt="spotevent" />
+                                                    src="{{asset('spotevent/public/storage/'.$items->path )}}" alt="spotevent" />
                                                 <div class="overlay">
                                                     <button href="" data-toggle="modal"
                                                         data-target="#exampleModalUpadeImageSeconds{{$items->id}}"

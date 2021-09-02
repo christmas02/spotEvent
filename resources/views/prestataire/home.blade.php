@@ -174,7 +174,7 @@
                                     <div class="avatar-preview">
                                         @if($infoUser->path_user != NULL)
                                         <div id="imagePreview"
-                                            style="background-image: url({{asset('/storage/'.$infoUser->path_user )}});">
+                                            style="background-image: url({{asset('spotevent/public/storage/'.$infoUser->path_user )}});">
                                         </div>
                                         @else
                                         <div id="imagePreview"

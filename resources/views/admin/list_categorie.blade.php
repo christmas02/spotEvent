@@ -55,7 +55,7 @@
                                     <td> </td>
                                     
                                     
-                                    <td><img src="{{asset('storage/'.$items->path_icone) }}" width="30"> </td>
+                                    <td><img src="{{asset('spotevent/public/storage/'.$items->path_icone) }}" width="30"> </td>
                                     <td> {{ $items->name }}</td>
                                     <td> {{ $items->description }}</td>
                                     
