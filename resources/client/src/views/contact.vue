@@ -69,28 +69,63 @@
               <p>Nous vous répondrons dans les plus brefs délais</p>
             </div>
             <div>
-              <v-form>
+              <v-form
+                ref="form"
+                class="my-5"
+                lazy-validation
+                @submit.prevent="validate"
+              >
                 <div class="row">
                   <div class="col-md-6">
-                    <v-text-field label="Nom" outlined></v-text-field>
+                    <v-text-field
+                      label="Nom"
+                      v-model="nom"
+                      :rules="requiredRules"
+                      outlined
+                    ></v-text-field>
                   </div>
                   <div class="col-md-6">
-                    <v-text-field label="Prénoms" outlined></v-text-field>
+                    <v-text-field
+                      label="Prénoms"
+                      v-model="prenom"
+                      :rules="requiredRules"
+                      outlined
+                    ></v-text-field>
                   </div>
                   <div class="col-md-6">
-                    <v-text-field label="Email" outlined></v-text-field>
+                    <v-text-field
+                      label="Email"
+                      v-model="email"
+                      :rules="requiredRules"
+                      outlined
+                    ></v-text-field>
                   </div>
                   <div class="col-md-6">
                     <v-text-field
                       label="contact téléphonique"
                       outlined
+                      v-model="telephone"
+                      :rules="requiredRules"
                     ></v-text-field>
                   </div>
                   <div class="col-md-12">
-                    <v-textarea label="Message" outlined></v-textarea>
+                    <v-textarea
+                      label="Message"
+                      v-model="message"
+                      :rules="requiredRules"
+                      outlined
+                    ></v-textarea>
                   </div>
                 </div>
-                <v-btn color="primary"><v-icon>mdi-arrow-right</v-icon></v-btn>
+                <!-- <v-btn color="primary" type="submit" :disabled="loading">{{
+                  loading ? "Veuillez patienter ..." : ""
+                }}</v-btn> -->
+                <div>
+                  <v-btn color="primary" type="submit" :disabled="loading">
+                    <template v-if="loading">Veuillez patienter ...</template>
+                    <v-icon v-else>mdi-arrow-right</v-icon>
+                  </v-btn>
+                </div>
               </v-form>
             </div>
           </div>
@@ -137,9 +172,42 @@
 
 <script lang="ts">
 import Vue from "vue";
-
+import validationsMixin from "@/mixins/validations.mixin";
 export default Vue.extend({
   name: "Home",
+  mixins: [validationsMixin],
+  data() {
+    return {
+      loading: false,
+      nom: "" as string,
+      prenom: "" as string,
+      telephone: "" as string,
+      email: "" as string,
+      message: "" as string,
+    };
+  },
+  methods: {
+    async validate(): Promise<void> {
+      this.loading = true;
+      // @ts-ignore
+      if (this.$refs.form.validate()) {
+        // await this.actions(
+        //   this.oldPassword,
+        //   this.password,
+        //   this.confirmPassword
+        // );
+        this.loading = false;
+      } else {
+        this.$swal({
+          title: "Erreur",
+          text: "Veuillez remplir correctement tous les champs!",
+          icon: "error",
+        });
+        console.log("erreur");
+      }
+    },
+    async action(): Promise<void> {},
+  },
 });
 </script>
 

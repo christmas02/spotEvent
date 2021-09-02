@@ -4,6 +4,17 @@ export interface ILogin {
     email?: string;
     password?: string;
 }
+export interface IContact {
+    nom: string;
+    prenom: string;
+    telephone: string;
+    email: string;
+    message: string;
+}
+export interface IContactResponse {
+    statu: number;
+    messaage?: string;
+}
 
 export interface IRegister {
     name: string;
