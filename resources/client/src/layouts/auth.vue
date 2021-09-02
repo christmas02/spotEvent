@@ -1,6 +1,6 @@
 <template>
   <div class="vh-100 vw-100 my-row" id="auth-layout">
-    <div class="col-md-7 left d-none d-md-block" :class="action">
+    <div class="col-md-6 left d-none d-md-block" :class="action">
       <div class="welcome">
         <div class="top">
           <img
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="form-container">
         <slot></slot>
       </div>
@@ -128,6 +128,19 @@ export default Vue.extend({
   background: var(--primary);
 }
 
+@media screen and (max-width: 1024px) {
+  #auth-layout .auth-title {
+    font-size: 4rem !important;
+    margin-bottom: -35px;
+  }
+  .btn-container {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  #auth-layout .form-container {
+    margin: 4% 4% !important;
+  }
+}
 #auth-layout .auth-title {
   font-size: 6rem;
   margin-bottom: -35px;

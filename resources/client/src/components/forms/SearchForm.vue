@@ -119,7 +119,8 @@ export default Vue.extend({
   width: 100%;
 }
 
-@media screen and (min-width: 1264px) {
+/* @media screen and (min-width: 1264px) { */
+@media screen and (min-width: 1024px) {
   #devis {
     width: 90%;
     padding: 10px 15px 10px 40px;

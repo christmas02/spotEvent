@@ -4,7 +4,16 @@
     subtitle="Plateforme de mise en relation  dans le secteur évènementiel."
     action="register"
   >
-    <v-tabs v-model="tab" background-color="transparent" grow>
+    <v-tabs
+      v-model="tab"
+      background-color="transparent"
+      show-arrows
+      grow
+      center-active
+      mobile-breakpoint="320"
+      align-with-title
+      :vertical="window.width < 620"
+    >
       <v-tab>En tant que client</v-tab>
       <v-tab>En tant que prestataire</v-tab>
     </v-tabs>
@@ -32,7 +41,24 @@ export default Vue.extend({
   data() {
     return {
       tab: null,
+      window: {
+        width: 0,
+        height: 0,
+      },
     };
+  },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
   },
 });
 </script>

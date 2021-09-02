@@ -1,7 +1,7 @@
 <template>
   <default-layout :padding="false">
     <div class="main">
-      <jumbotron :image="require('../assets/images/jmbg2.png')">
+      <jumbotron :image="require('../assets/images/jmbg2.jpg')">
         <h1 class="content-title">Contactez-nous</h1>
         <div class="description">
           <p>
@@ -28,7 +28,7 @@
 
                 <v-list-item-subtitle class="subtitle">
                   <p class="m-0 p-0">
-                    Cocody Angré non loin du 12èeme arrondissement
+                    Cocody Angré non loin du 12ème arrondissement
                   </p>
                   <!-- <p class="m-0 p-0">Abidjan</p> -->
                 </v-list-item-subtitle>
@@ -109,7 +109,7 @@
             dolores neque ratione voluptates.
           </p>
         </div>
-        <div>
+        <!-- <div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.626502442513!2d-4.021626684674619!3d5.320813537448535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1ebbecfcdfd21%3A0xe0ff20358d182a30!2sCASH%20CENTER%20PLATEAU!5e0!3m2!1sfr!2sci!4v1621328265517!5m2!1sfr!2sci"
             height="450"
@@ -117,6 +117,20 @@
             allowfullscreen=""
             loading="lazy"
           ></iframe>
+        </div> -->
+        <div style="width: 100%">
+          <iframe
+            width="100%"
+            height="600"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=cocody%20angr%C3%A9%2012%C3%A8me+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+          ></iframe
+          ><a href="https://www.maps.ie/draw-radius-circle-map/"
+            >Easy radius map</a
+          >
         </div>
       </div>
     </section>

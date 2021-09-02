@@ -1,6 +1,6 @@
 <template>
   <v-app-bar id="app-navbar" color="white" :height="height" app flat>
-    <div>
+    <div class="d-none d-sm-block">
       <v-img
         @click="goHome"
         width="120"
@@ -78,14 +78,20 @@
       <!-- <worker-space-modal v-model="statusWorkerDialog"></worker-space-modal> -->
     </template>
     <template v-else>
-      <v-btn color="primary" outlined :to="{ name: 'auth-login' }" exact>
-        Connexion
-      </v-btn>
+      <div class="d-none d-md-block">
+        <v-btn color="primary" outlined :to="{ name: 'auth-login' }" exact>
+          Connexion
+        </v-btn>
 
-      <v-btn color="primary" :to="{ name: 'auth-register' }" exact>
-        Inscription
-      </v-btn>
+        <v-btn color="primary" :to="{ name: 'auth-register' }" exact>
+          Inscription
+        </v-btn>
+      </div>
     </template>
+    <v-app-bar-nav-icon
+      class="d-block d-md-none"
+      @click="actionDrawer"
+    ></v-app-bar-nav-icon>
     <template>
       <div>
         <worker-space-modal v-model="statusWorkerDialog"></worker-space-modal>
@@ -104,6 +110,10 @@ import WorkerSpaceModal from "@/components/global/WorkerSpaceModal.vue";
 import Vue from "vue";
 export default Vue.extend({
   components: { favoriteModal, WorkerSpaceModal },
+  model: {
+    prop: "drawer",
+    event: "change",
+  },
   name: "navbar",
   props: {
     height: {
@@ -117,6 +127,10 @@ export default Vue.extend({
   },
   mixins: [utilsMixin],
   methods: {
+    actionDrawer() {
+      console.log("riffle");
+      this.$emit("change", true);
+    },
     goHome() {
       this.$router.push("/");
     },
