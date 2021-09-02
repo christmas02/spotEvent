@@ -38,8 +38,56 @@
         </div>
       </div>
     </div>
+    <v-navigation-drawer v-model="drawer" app fixed temporary>
+      <!-- :lazy-src="require('../assets/dark-logo.png')" -->
+      <div class="d-flex justify-center my-3">
+        <v-img
+          :src="require('../assets/dark-logo.png')"
+          contain
+          height="60"
+          width="120"
+        >
+        </v-img>
+      </div>
+      <v-list dense v-model="group" active-class="primary">
+        <template v-for="link in links">
+          <v-list-item
+            :key="link.name"
+            v-if="link.name != '#'"
+            exact
+            :to="{ name: link.name }"
+          >
+            <v-list-item-title>{{ link.label }}</v-list-item-title>
+          </v-list-item>
+          <v-list-item :key="link.label" v-else disabled>
+            <v-list-item-title>{{ link.label }}</v-list-item-title>
+          </v-list-item>
+        </template>
+        <div v-if="!auth" class="mt-8">
+          <div
+            class="d-flex justify-center"
+            v-if="currentRouteName != 'auth-register'"
+          >
+            <v-btn color="primary" :to="{ name: 'auth-register' }" exact>
+              Inscription
+            </v-btn>
+          </div>
+          <div
+            class="my-5 d-flex justify-center"
+            v-if="currentRouteName != 'auth-login'"
+          >
+            <v-btn color="primary" outlined :to="{ name: 'auth-login' }" exact>
+              Connexion
+            </v-btn>
+          </div>
+        </div>
+      </v-list>
+    </v-navigation-drawer>
     <div class="col-md-6">
       <div class="form-container">
+        <div class="d-flex justify-end">
+          <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+        </div>
         <slot></slot>
       </div>
     </div>
@@ -68,10 +116,51 @@ export default Vue.extend({
       },
     },
   },
+
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    auth(): boolean {
+      return this.$store.getters["auth/isConnected"];
+    },
+  },
+
   methods: {
+    // test() {
+    //   console.log(this.$route.name);
+    // },
     goHome() {
       this.$router.push("/");
     },
+  },
+  data() {
+    return {
+      drawer: false,
+      group: null,
+      links: [
+        {
+          name: "Home",
+          label: "Accueil",
+        },
+        {
+          name: "about",
+          label: "A propos de nous",
+        },
+        {
+          name: "SeeMore",
+          label: "Catégories",
+        },
+        {
+          name: "listePrestataires",
+          label: "Prestataires",
+        },
+        {
+          name: "contact",
+          label: "Contact",
+        },
+      ],
+    };
   },
 });
 </script>
