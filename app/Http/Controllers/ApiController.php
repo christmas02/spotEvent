@@ -22,6 +22,7 @@ use DB;
 use App\Conversation;
 use App\Message;
 use App\Commune;
+use App\Messagerie;
 
 
 class ApiController extends Controller
@@ -815,6 +816,31 @@ class ApiController extends Controller
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
+        }
+    }
+
+    public function saveMessagerie(Request $request)
+    {
+        try {
+
+            //dd($request->all());
+
+            $messagerie = new Messagerie;
+
+            $messagerie->nom = $request['nom'];
+            $messagerie->prenom = $request['prenom'];
+            $messagerie->telephone = $request['telephone'];
+            $messagerie->email = $request['email'];
+            $messagerie->message = $request['message'];
+
+            $messagerie->save();
+
+            return response()->json(['statu' => 1, 'messaage' => "Nous avous bien recus votre message"]);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            //dd($th);
+            return redirect()->back()->with('danger', 'Echec');
         }
     }
 }

@@ -105,7 +105,7 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Detail sur la localisation <small>Une présentation se 100 mots</small><span class="required">*</span></label>
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Detail sur la localisation <small>Une présentation de 100 mots</small><span class="required">*</span></label>
 
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="4" size="100" name="detail_localisation" class="form-control" required></textarea>
@@ -114,7 +114,7 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation <small>Une présentation se 400 mots</small> <span class="required">*</span></label>
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation <small>Une présentation de 250 mots</small> <span class="required">*</span></label>
 
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="4" size="400" name="presentation" class="form-control" required></textarea>

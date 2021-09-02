@@ -17,6 +17,7 @@ use App\Message;
 use Illuminate\Mail\Message as MailMessage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -341,8 +342,6 @@ class AdminController extends Controller
     }
 
 
-    
-
     public function message($id){
         $infoUser = $this->Userinfo($id);
         $conversation = Conversation::where('conversations.id_user',$id)
@@ -392,4 +391,100 @@ class AdminController extends Controller
         //dd($data);
         return response()->json($data);
     }
+
+    public function updateCategorie(Request $request){
+
+        try {
+            //code...
+            $description = $request->get('description');
+            $name = $request->get('name');
+            $id = $request->get('id');
+
+            Prestation::where('id',$id)
+            ->update([
+                'name' => $name,
+                'description' => $description,
+            ]);
+
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+
+    }
+
+    public function updateEstimation(){
+
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+    }
+
+    public function saveCategorie(Request $request){
+
+        try {
+
+            //dd($request->all());
+
+
+            $file = $request->file('file');
+            $name_img = $file->getClientOriginalName();
+            $storage_data = Storage::disk('public')->put($name_img, file_get_contents($file));
+
+
+            $prestation = New Prestation;
+
+
+            $prestation->description = $request->get('description');
+            $prestation->name = $request->get('name');
+            $prestation->path_icone = $name_img;
+ 
+            // save du menu nourriture ---- #########
+            $prestation->save();
+           
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+
+    }
+
+    public function saveEstimation(Request $request){
+
+        try {
+            //dd($request->all());
+            //code...
+            $estimation = New Estimation;
+            $estimation->libelle = $request->get('libelle');
+
+            $estimationExiste = Estimation::where('libelle',$request->get('libelle'))->first();
+
+            if($estimationExiste){
+                return redirect()->back()->with('danger', 'Error.');
+            }
+
+            // save du menu nourriture ---- #########
+            $estimation->save();
+           
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        }
+
+    }
+
+
+
+
+
+
 }

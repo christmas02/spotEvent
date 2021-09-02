@@ -36,7 +36,7 @@
                           <div class="col-lg-3 col-md-6">
                               <div class="card">
                                   <div class="body l-parpl text-center">
-                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">8,3,2,6,5,9,4,5</div>
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                       <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078" data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
                                       <span class="text-white">Visite</span>
                                   </div>
@@ -45,7 +45,7 @@
                           <div class="col-lg-3 col-md-6">
                               <div class="card">
                                   <div class="body l-seagreen text-center">
-                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">2,3,5,6,9,8,7,8,7</div>
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                       <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278" data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
                                       <span class="text-white">Prise contact</span>
                                   </div>
@@ -54,7 +54,7 @@
                           <div class="col-lg-3 col-md-6">
                               <div class="card">
                                   <div class="body l-amber text-center">
-                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">5,2,8,3,6,9,7,5,1,2</div>
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                       <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521" data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
                                       <span class="text-white">Sollicitation</span>
                                   </div>
@@ -63,7 +63,7 @@
                           <div class="col-lg-3 col-md-6">
                               <div class="card">
                                   <div class="body l-blue text-center">
-                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">9,3,1,6,9,8,1,8,7</div>
+                                      <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                       <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="978" data-speed="2000" data-fresh-interval="700">0</h3>
                                       <span class="text-white">Messagerie</span>
                                   </div>
@@ -89,7 +89,7 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="{{asset('/admin/images/user.png')}}" alt="Avatar" title="Change the avatar">
+                          <img class="img-responsive avatar-view" src="{{asset('spotevent/public/storage/'.$infoUser->path_user )}}" alt="Avatar" title="...">
                         </div>
                       </div>
                       <h3>{{ $prestataire->nom }}</h3>
@@ -206,14 +206,14 @@
 
                     <div class="col-md-6 col-sm-7 ">
                       <div class="product-image">
-                        <img src="{{asset('/storage/'.$prestataire->path_img)}}" alt="..." />
+                        <img src="{{asset('spotevent/public/storage/'.$prestataire->path_img)}}" alt="..." />
                       </div>
                       <br>
                     @if($galerie != [])
                      <div class="product_gallery">
                       @foreach($galerie as $image)
                         <a>
-                          <img width="50" height="90" src="{{asset('/storage/'.$image->path)}}" alt="..." />
+                          <img width="50" height="90" src="{{asset('spotevent/public/storage/'.$image->path)}}" alt="..." />
                         </a>
                       @endforeach
                       </div>

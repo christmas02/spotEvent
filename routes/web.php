@@ -25,6 +25,11 @@ Route::get('/list/messageries/{id}','PrestataireController@getMessagerie');
 
 Route::post('/save/gallerie/','PrestataireController@saveGalerie');
 
+Route::post('/add/gallerie','PrestataireController@addGaleri');
+
+Route::post('/update/image','PrestataireController@updateImage');
+Route::post('/delet/image','PrestataireController@deletImage');
+
 Route::get('mise_a_jour_image/{id}','PrestataireController@editImage');
 
 Route::get('/welcome/tableau/administrateur/{id}','AdminController@home')->name('administrateur');
@@ -44,7 +49,10 @@ Route::get('/new_message/{emetteur}/{recepteur}','AdminController@newMessage');
 Route::post('/save/message','AdminController@saveMessage');
 
 Route::post('/save/message/prestataire','PrestataireController@saveMessage');
-
+Route::post('/save/categorie','AdminController@saveCategorie');
+Route::post('/update/categorie','AdminController@updateCategorie');
+Route::post('/save/estimation','AdminController@saveEstimation');
+Route::post('/update/estimation','AdminController@updateEstimation');
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');
@@ -67,3 +75,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+
+
+Route::post('/save/profil','UserController@saveProfil');
+Route::post('/save/password','UserController@savePassword');
+Route::post('/updade/img/profile','UserController@updateImgProfile');

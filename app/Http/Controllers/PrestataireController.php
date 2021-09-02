@@ -414,4 +414,97 @@ class PrestataireController extends Controller
  
         return Response::json($post);
     }
+
+    public function updateImage(Request $request){
+        try {
+            $id = $request->get('id');
+            $table = $request->get('table');
+
+            $file = $request->file('image');
+            $name_img = $file->getClientOriginalName();
+            $storage_data = Storage::disk('public')->put($name_img, file_get_contents($file));
+
+            if($table == 1){
+
+                Fiche::where('id',$id)
+                ->update([
+                    'path_img' => $name_img,
+                ]);
+
+            }else{
+
+                Galerie::where('id',$id)
+                ->update([
+                    'path' => $name_img,
+                ]);
+
+            }
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        }
+
+
+    }
+
+    public function deletImage(Request $request){
+        try {
+            $id = $request->get('id');
+
+            $image = Galerie::find($id);
+            $image->delete();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+           //dd($th);
+            return redirect()->back()->with('danger', 'Error.'.$th);
+        } 
+
+    }
+
+    public function addGaleri(Request $request){
+        //dd($request->file('images'));
+        $id_user = $request->get('id_user');
+        $imgPossible = $request->get('imgPossible');
+        $images = array();
+            if ($files=$request->file('images')) {
+                if (count($files) <= $imgPossible) {
+                    //
+                    foreach ($files as $file) {
+                        //
+                        $name = time() . '.' . $file->getClientOriginalName();
+                        //$name = time() . '.' . $file->getClientOriginalExtension();
+                        //$file->move('image',$name);
+                        $storage_data = Storage::disk('public')->put($name, file_get_contents($file));
+                        $images[]=$name;
+                        //
+                        //$extension = $file->getClientOriginalExtension();
+                        //$image_two = time(). '.' . $image->getClientOriginalname();
+                        //$filename = time() . '.' . $file->getClientOriginalExtension();
+                        //$storage_data = Storage::disk('public')->put($filename, file_get_contents($file));
+                        //$file_path = Storage::url($filename);
+                        //$new_path = asset($file_path);
+                        //$images[]=$filename;
+                      
+                        Galerie::create([
+                            'path' => $name,
+                            'id_user' => $id_user
+                        ]);
+                    }
+                } else {
+                    
+                    return redirect()->back()->with('danger', "Enregistrement impossible, vous pouvez enregistrez que  ".$imgPossible);
+                }
+
+                return redirect()->back()->with('success', "Opération éffectué avec succès.");
+            }
+
+
+    }
+
+
 }
