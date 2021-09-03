@@ -79,24 +79,24 @@
                   <div class="col-md-6">
                     <v-text-field
                       label="Nom"
-                      v-model="nom"
-                      :rules="requiredRules"
+                      v-model="contact.nom"
+                      :rules="nameRules"
                       outlined
                     ></v-text-field>
                   </div>
                   <div class="col-md-6">
                     <v-text-field
                       label="Prénoms"
-                      v-model="prenom"
-                      :rules="requiredRules"
+                      v-model="contact.prenom"
+                      :rules="surnameRules"
                       outlined
                     ></v-text-field>
                   </div>
                   <div class="col-md-6">
                     <v-text-field
                       label="Email"
-                      v-model="email"
-                      :rules="requiredRules"
+                      v-model="contact.email"
+                      :rules="emailRules"
                       outlined
                     ></v-text-field>
                   </div>
@@ -104,14 +104,14 @@
                     <v-text-field
                       label="contact téléphonique"
                       outlined
-                      v-model="telephone"
-                      :rules="requiredRules"
+                      v-model="contact.telephone"
+                      :rules="phoneCiRules"
                     ></v-text-field>
                   </div>
                   <div class="col-md-12">
                     <v-textarea
                       label="Message"
-                      v-model="message"
+                      v-model="contact.message"
                       :rules="requiredRules"
                       outlined
                     ></v-textarea>
@@ -172,18 +172,22 @@
 
 <script lang="ts">
 import Vue from "vue";
-import validationsMixin from "@/mixins/validations.mixin";
+import validationsMixin from "./../mixins/validations.mixin";
+import { AuthService } from "@/services/auth.service";
+import { IContact } from "@/interfaces/auth.interfaces";
 export default Vue.extend({
   name: "Home",
   mixins: [validationsMixin],
   data() {
     return {
       loading: false,
-      nom: "" as string,
-      prenom: "" as string,
-      telephone: "" as string,
-      email: "" as string,
-      message: "" as string,
+      contact: {
+        nom: "" as string,
+        prenom: "" as string,
+        telephone: "" as string,
+        email: "" as string,
+        message: "" as string,
+      },
     };
   },
   methods: {
@@ -191,22 +195,45 @@ export default Vue.extend({
       this.loading = true;
       // @ts-ignore
       if (this.$refs.form.validate()) {
-        // await this.actions(
-        //   this.oldPassword,
-        //   this.password,
-        //   this.confirmPassword
-        // );
+        await this.action(this.contact);
         this.loading = false;
       } else {
-        this.$swal({
+        await this.$swal({
           title: "Erreur",
           text: "Veuillez remplir correctement tous les champs!",
           icon: "error",
         });
+        this.loading = false;
         console.log("erreur");
       }
     },
-    async action(): Promise<void> {},
+    async action(contact: IContact): Promise<void> {
+      const authService = new AuthService();
+
+      const result = await authService.contact(contact);
+
+      if (result.statu != 0) {
+        await this.$swal({
+          icon: "success",
+          text: result.messaage
+            ? result.messaage
+            : "Votre message a bien eté enregistré",
+        });
+        this.loading = false;
+        // this.contact.nom = "";
+        for (const key in this.contact) {
+          if (Object.prototype.hasOwnProperty.call(this.contact, key)) {
+            // const element = this.contact[key];
+            //@ts-ignore
+            this.contact[key] = "";
+          }
+        }
+        this.$router.push("/");
+      } else {
+        await this.$swal({ icon: "error", text: result.messaage });
+        this.loading = false;
+      }
+    },
   },
 });
 </script>

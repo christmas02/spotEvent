@@ -15,6 +15,18 @@ export const nameRules = [
 export const requiredRules = [
     (v: string) => (v && !validator.isEmpty(v)) || "Ce champ est requis"
 ];
+export const surnameRules = [
+    (v: string) => (v && !validator.isEmpty(v)) || "Le champ prénom est requis",
+    (v: string) => {
+        return (
+            (v &&
+                v.split(/[\s-]+/).every(function(str) {
+                    return validator.isAlpha(str);
+                })) ||
+            "Le champ prénom est invalide"
+        );
+    }
+];
 
 export const phoneCiRules = [
     (v: string) => {
