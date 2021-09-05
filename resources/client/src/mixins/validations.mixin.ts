@@ -3,7 +3,8 @@ import {
     emailRules,
     phoneCiRules,
     requiredRules,
-    nameRules
+    nameRules,
+    surnameRules
 } from "@/common/rules";
 
 export default {
@@ -13,7 +14,8 @@ export default {
             requiredRules,
             phoneCiRules,
             emailRules,
-            nameRules
+            nameRules,
+            surnameRules
         };
     }
 };

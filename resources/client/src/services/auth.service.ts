@@ -1,3 +1,4 @@
+import { IContact, IContactResponse } from "./../interfaces/auth.interfaces";
 import { CommonService } from "@/services/Common.service";
 
 import {
@@ -78,6 +79,18 @@ export class AuthService extends CommonService {
             return { statu: 0, role: "0", message: "Une erreur est survenue" };
         }
     }
+    async contact(credentials: IContact): Promise<IContactResponse> {
+        try {
+            const { data } = await this.client.post(
+                "/saveMessagerie",
+                credentials
+            );
+            return data;
+        } catch (e) {
+            return { statu: 0, messaage: "Une erreur est survenue" };
+        }
+    }
+
     async getRooms(body: IUserId): Promise<IListeConversationsResponse> {
         try {
             const {

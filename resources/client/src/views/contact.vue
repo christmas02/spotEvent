@@ -69,28 +69,63 @@
               <p>Nous vous répondrons dans les plus brefs délais</p>
             </div>
             <div>
-              <v-form>
+              <v-form
+                ref="form"
+                class="my-5"
+                lazy-validation
+                @submit.prevent="validate"
+              >
                 <div class="row">
                   <div class="col-md-6">
-                    <v-text-field label="Nom" outlined></v-text-field>
+                    <v-text-field
+                      label="Nom"
+                      v-model="contact.nom"
+                      :rules="nameRules"
+                      outlined
+                    ></v-text-field>
                   </div>
                   <div class="col-md-6">
-                    <v-text-field label="Prénoms" outlined></v-text-field>
+                    <v-text-field
+                      label="Prénoms"
+                      v-model="contact.prenom"
+                      :rules="surnameRules"
+                      outlined
+                    ></v-text-field>
                   </div>
                   <div class="col-md-6">
-                    <v-text-field label="Email" outlined></v-text-field>
+                    <v-text-field
+                      label="Email"
+                      v-model="contact.email"
+                      :rules="emailRules"
+                      outlined
+                    ></v-text-field>
                   </div>
                   <div class="col-md-6">
                     <v-text-field
                       label="contact téléphonique"
                       outlined
+                      v-model="contact.telephone"
+                      :rules="phoneCiRules"
                     ></v-text-field>
                   </div>
                   <div class="col-md-12">
-                    <v-textarea label="Message" outlined></v-textarea>
+                    <v-textarea
+                      label="Message"
+                      v-model="contact.message"
+                      :rules="requiredRules"
+                      outlined
+                    ></v-textarea>
                   </div>
                 </div>
-                <v-btn color="primary"><v-icon>mdi-arrow-right</v-icon></v-btn>
+                <!-- <v-btn color="primary" type="submit" :disabled="loading">{{
+                  loading ? "Veuillez patienter ..." : ""
+                }}</v-btn> -->
+                <div>
+                  <v-btn color="primary" type="submit" :disabled="loading">
+                    <template v-if="loading">Veuillez patienter ...</template>
+                    <v-icon v-else>mdi-arrow-right</v-icon>
+                  </v-btn>
+                </div>
               </v-form>
             </div>
           </div>
@@ -137,9 +172,69 @@
 
 <script lang="ts">
 import Vue from "vue";
-
+import validationsMixin from "./../mixins/validations.mixin";
+import { AuthService } from "@/services/auth.service";
+import { IContact } from "@/interfaces/auth.interfaces";
 export default Vue.extend({
   name: "Home",
+  mixins: [validationsMixin],
+  data() {
+    return {
+      loading: false,
+      contact: {
+        nom: "" as string,
+        prenom: "" as string,
+        telephone: "" as string,
+        email: "" as string,
+        message: "" as string,
+      },
+    };
+  },
+  methods: {
+    async validate(): Promise<void> {
+      this.loading = true;
+      // @ts-ignore
+      if (this.$refs.form.validate()) {
+        await this.action(this.contact);
+        this.loading = false;
+      } else {
+        await this.$swal({
+          title: "Erreur",
+          text: "Veuillez remplir correctement tous les champs!",
+          icon: "error",
+        });
+        this.loading = false;
+        console.log("erreur");
+      }
+    },
+    async action(contact: IContact): Promise<void> {
+      const authService = new AuthService();
+
+      const result = await authService.contact(contact);
+
+      if (result.statu != 0) {
+        await this.$swal({
+          icon: "success",
+          text: result.messaage
+            ? result.messaage
+            : "Votre message a bien eté enregistré",
+        });
+        this.loading = false;
+        // this.contact.nom = "";
+        for (const key in this.contact) {
+          if (Object.prototype.hasOwnProperty.call(this.contact, key)) {
+            // const element = this.contact[key];
+            //@ts-ignore
+            this.contact[key] = "";
+          }
+        }
+        this.$router.push("/");
+      } else {
+        await this.$swal({ icon: "error", text: result.messaage });
+        this.loading = false;
+      }
+    },
+  },
 });
 </script>
 
