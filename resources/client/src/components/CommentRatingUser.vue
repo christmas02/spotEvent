@@ -4,7 +4,7 @@
   </div>
   <div class="ratingUser" v-else>
     <div class="review-card">
-      <div class="review-header">
+      <div class="review-header row">
         <div class="name-group">
           <div class="initials">{{ user.name.charAt(0) }}</div>
           <p class="mb-0">{{ user.name }}</p>
@@ -156,6 +156,12 @@ export default Vue.extend({
 </script>
 
 <style>
+@media screen and (max-width: 425px) {
+  .review-details {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
 .ratingUser {
   transition: 0.5s;
 }

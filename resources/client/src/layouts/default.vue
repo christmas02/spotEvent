@@ -48,7 +48,7 @@
                   <v-list-item-title>Mes messages</v-list-item-title>
                 </v-list-item>
 
-                <v-list-item link @click="logout" class="mb-7">
+                <v-list-item link @click="logout" class="mb-3">
                   <v-list-item-title>Deconnexion</v-list-item-title>
                 </v-list-item>
               </v-list-group>

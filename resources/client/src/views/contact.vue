@@ -285,6 +285,19 @@ section.maps {
   border-radius: 10px;
 }
 
+@media screen and (max-width: 425px) {
+  .content-title::after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 .description {
   width: 35%;
 }
