@@ -288,6 +288,23 @@ section.maps {
 .description {
   width: 35%;
 }
+@media screen and (max-width: 768px) {
+  .description {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .description {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+  .content-title {
+    text-align: center;
+    font-size: 55px;
+  }
+}
 
 .form-titile {
   font-weight: bold;

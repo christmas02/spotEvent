@@ -150,4 +150,16 @@ export default Vue.extend({});
     width: 60%;
   }
 }
+@media screen and (max-width: 425px) {
+  .content-subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+  .content-title {
+    text-align: center;
+    font-size: 55px;
+  }
+}
 </style>

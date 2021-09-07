@@ -1,18 +1,22 @@
 <template>
   <v-row justify="center" v-if="isAuth">
     <!-- @keydown.esc="closeDialog" @click:outside="closeDialog"  -->
-    <v-dialog v-model="dialog" @keydown.esc="closeDialog" @click:outside="closeDialog"  width="450">
-
+    <v-dialog
+      v-model="dialog"
+      @keydown.esc="closeDialog"
+      @click:outside="closeDialog"
+      width="450"
+    >
       <v-toolbar dark color="primary">
         <v-btn icon dark @click="closeDialog">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-toolbar-title>
           <div class="d-flex">
-            <img
-             style="width: 60px; margin-right: 5px;"
+            <v-img
+              style="width: 60px; margin-right: 5px"
               :src="require('../../assets/light-logo.png')"
-            ></img>
+            ></v-img>
             <h3>Mon profil</h3>
           </div>
         </v-toolbar-title>
@@ -57,6 +61,9 @@ export default Vue.extend({
       isAuth: "auth/isConnected",
       user: "auth/user",
     }),
+    isAuth(): boolean {
+      return this.$store.getters["auth/isConnected"];
+    },
   },
 });
 </script>

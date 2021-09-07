@@ -142,6 +142,13 @@ export default Vue.extend({
   vertical-align: middle;
 }
 
+@media screen and (max-width: 768px) {
+  .psearch {
+    width: 70%;
+    /* margin-left: 10px; */
+    /* border: 1px solid; */
+  }
+}
 @media screen and (min-width: 1264px) {
   #homepage .section {
     margin: 0px !important;

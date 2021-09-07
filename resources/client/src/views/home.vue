@@ -19,7 +19,7 @@
             >
           </div>
           <template #append>
-            <div class="search-container">
+            <div class="d-none d-md-none">
               <search-form :handler="initSearch"></search-form>
             </div>
           </template>
@@ -27,12 +27,14 @@
       </div>
 
       <div class="main mx-auto">
-        <div class="d-block d-md-none">
+        <div class="d-none d-sm-block d-md-none">
           <search-form :handler="initSearch"></search-form>
+        </div>
+        <div class="d-block d-sm-none">
+          <expansion-panel></expansion-panel>
         </div>
 
         <div class="section">
-
           <filter-form></filter-form>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
@@ -86,6 +88,7 @@ import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { AppService } from "@/services/app.service";
+import expansionPanel from "@/components/expansionPanel.vue";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
 
 export default Vue.extend({
@@ -95,6 +98,7 @@ export default Vue.extend({
     ProvidersSlider,
     SearchForm,
     FilterForm,
+    expansionPanel,
   },
   data() {
     return {

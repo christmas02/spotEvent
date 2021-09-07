@@ -1,13 +1,16 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <div class="main psearch">
+      <div class="d-none d-md-none main psearch">
         <search-form :handler="initSearch"></search-form>
       </div>
 
       <div class="main mx-auto">
-        <div class="d-block d-md-none">
+        <div class="d-none d-sm-block d-md-none">
           <search-form :handler="initSearch"></search-form>
+        </div>
+        <div class="d-block d-sm-none">
+          <expansion-panel></expansion-panel>
         </div>
         <div class="section">
           <filter-form></filter-form>
@@ -53,8 +56,10 @@ import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import { AppService } from "@/services/app.service";
+import expansionPanel from "@/components/expansionPanel.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
+import expansionPanel from "@/components/expansionPanel.vue";
 
 export default Vue.extend({
   name: "Home",
@@ -63,6 +68,7 @@ export default Vue.extend({
     ProvidersSlider,
     SearchForm,
     FilterForm,
+    expansionPanel,
   },
   data() {
     return {

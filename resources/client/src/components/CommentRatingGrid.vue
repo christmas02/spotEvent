@@ -2,7 +2,7 @@
   <div>
     <div class="commentRatingGrid" v-if="comments.length >= 1">
       <div class="review-card" v-for="comment in comments" :key="comment.id">
-        <div class="review-header">
+        <div class="review-header row">
           <div class="name-group">
             <div class="initials">{{ initials(comment.nom_client) }}</div>
             <p class="mb-0">{{ comment.nom_client || "Aucun nom" }}</p>

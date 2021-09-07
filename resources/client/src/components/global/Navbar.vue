@@ -34,7 +34,7 @@
     <template v-if="auth">
       <v-menu offset-y bottom>
         <template v-slot:activator="{ on, attrs }">
-          <p v-bind="attrs" v-on="on" class="m-0">
+          <p v-bind="attrs" v-on="on" class="m-0 d-none d-md-block">
             <v-avatar size="30" class="mr-2">
               <v-img
                 lazy-src="https://picsum.photos/id/11/500/300"

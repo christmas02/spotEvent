@@ -1,14 +1,20 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <div class="main psearch">
+      <div class="d-none d-md-block main psearch">
         <search-form :handler="prestationsSearchForm"></search-form>
       </div>
 
       <div class="main mx-auto">
-        <div class="d-block d-md-none mx-auto">
+        <div class="d-none d-sm-block d-md-none mx-auto">
           <search-form :handler="prestationsSearchForm"></search-form>
         </div>
+        <div class="d-block d-sm-none">
+          <expansion-panel-prestation
+            :prestationsSearchForm="prestationsSearchForm"
+          ></expansion-panel-prestation>
+        </div>
+
         <div class="section">
           <div style="margin: 50px 0">
             <!-- <div class="loading" v-if="loading && benefits.length == 0"> -->
@@ -58,6 +64,7 @@ import SearchForm from "../components/forms/SearchForm.vue";
 import PrestationSearchForm from "../components/forms/PrestationSearchForm.vue";
 import { ISearchForm } from "@/interfaces/app-services.interfaces";
 import { AppService } from "@/services/app.service";
+import expansionPanelPrestation from "@/components/expansionPanelPrestation.vue";
 import { FilterPayload } from "../store/modules/benefits/interfaces/state.interface";
 
 export default Vue.extend({
@@ -66,6 +73,7 @@ export default Vue.extend({
     BenefitsGrid,
     ProvidersSlider,
     SearchForm,
+    expansionPanelPrestation,
     PrestationSearchForm,
   },
   data() {
