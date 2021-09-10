@@ -23,6 +23,7 @@ use App\Conversation;
 use App\Message;
 use App\Commune;
 use App\Messagerie;
+use App\Contenu;
 
 
 class ApiController extends Controller
@@ -817,6 +818,20 @@ class ApiController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
+    }
+
+    public function gestionContenus(){
+
+        try {
+
+            $contenu = Contenu::all();
+            return response()->json(['statu' => 0, 'listCommune' => $contenu]);
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('danger', 'Error.');
+        }
+
     }
 
     public function saveMessagerie(Request $request)

@@ -32,6 +32,8 @@ Route::get('liste_prestataire','ApiController@getPrestataire');
 
 Route::get('Liste_commune','ApiController@ListCommune');
 
+Route::get('Liste_contenus','ApiController@gestionContenus');
+
 Route::post('liste_slides','ApiController@getSlide');
 Route::post('first_prestation','ApiController@fisrtPrestation');
 Route::post('first_prestataire','ApiController@firstPrestataire');

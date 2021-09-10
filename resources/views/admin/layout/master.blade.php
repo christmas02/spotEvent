@@ -105,7 +105,7 @@
                       {{ $infoUser->name }}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalProfil"> Profile</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalProfil"> Profil</a>
                       <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalPassword">Modification du mot de passe</a>
                       <a class="dropdown-item" href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
@@ -157,7 +157,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <a href="">Spotevent</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -177,7 +177,7 @@
           
           <div class="modal-body">
           <h4 class="text-center"></b></h4> 
-          <center><h3>Profile</h3></center> <hr>
+          <center><h3>Profil</h3></center> <hr>
           <div class="" style="margin: 0 80px;">
             <div method="POST" action="">
             @csrf
@@ -193,10 +193,10 @@
                    <hr>
                   <div class="row">
                     
-                      <div class="col-md-4 col-sm-3">Nom et prenom :</div>
+                      <div class="col-md-4 col-sm-3">Nom et prénom :</div>
                       <div class="col-md-6 col-sm-6">{{$infoUser->name }}</div>
                     
-                      <div class="col-md-4 col-sm-3">Telephone :</div>
+                      <div class="col-md-4 col-sm-3">Téléphone :</div>
                       <div class="col-md-6 col-sm-6">{{$infoUser->phone }}</div>
                     
                       <div class="col-md-4 col-sm-3">Email :</div>

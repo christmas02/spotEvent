@@ -24,7 +24,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Information compte prestataire</h2>
+                        <h2>Informations compte prestataire</h2>
                         <ul class="nav navbar-right panel_toolbox">
                         <li><a href="/welcome/tableau/gesttion" class=""><i class="fa fa-chevron-up"></i>Retour</a>
                         </ul>
@@ -38,7 +38,7 @@
                         @endif
 
                         <!-- Smart Wizard -->
-                        <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p>
+                        <p></p>
                         <div id="wizard" class="form_wizard wizard_horizontal">
                             <ul class="wizard_steps">
                                 <li><a href="#step-1"><span class="step_no">1</span>
@@ -67,7 +67,7 @@
                             <div id="step-1">
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                            for="first-name">Non de la structure <span class="required">*</span>
+                                            for="first-name">Nom de la structure <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <input type="text" name="name" class="form-control " required>
@@ -91,7 +91,7 @@
 
                                     <div class="item form-group">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                            for="first-name">Situation goegraphique <span class="required">*</span>
+                                            for="first-name">Situation géographique <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <select required="required" name="localisation" class="form-control " required>
@@ -105,7 +105,7 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Detail sur la localisation <small>Une présentation de 100 mots</small><span class="required">*</span></label>
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Détail sur la localisation <small>Une présentation de 100 mots</small><span class="required">*</span></label>
 
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="4" size="100" name="detail_localisation" class="form-control" required></textarea>
@@ -114,7 +114,7 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation <small>Une présentation de 250 mots</small> <span class="required">*</span></label>
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation de la structure <small>Une présentation de 250 mots</small> <span class="required">*</span></label>
 
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="4" size="400" name="presentation" class="form-control" required></textarea>
@@ -123,7 +123,7 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Description <span class="required">*</span></label>
+                                            class="col-form-label col-md-3 col-sm-3 label-align">Description du service<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <textarea rows="8" name="description" class="form-control" required></textarea>
                                         </div>
@@ -135,7 +135,7 @@
                             <div id="step-2">
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                        Numero de telephone<span class="required">*</span>
+                                        Numéro de téléphone<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="phone_service" class="form-control" required>
@@ -144,7 +144,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Numero de telephone second
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Second numéro de téléphone
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="phone2_service"  class="form-control">
@@ -153,7 +153,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Numero whatsapp
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Numéro WhatsApp
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="phone_whastapp"  class="form-control">
@@ -163,7 +163,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Votre lien facebook
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Votre lien Facebook
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="lien_facebook"  class="form-control">
@@ -172,7 +172,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Votre lien intagram
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Votre lien Instagram
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="lien_instagram"  class="form-control">
@@ -181,7 +181,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Adresse electronique
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Adresse électronique
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="email_service"  class="form-control">
@@ -224,7 +224,7 @@
                             <div id="step-4">
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        principale dimension de l'image (1733 × 838)</label>
+                                        principale (Taille maximum 23Mo)</label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="file" name="image_five" accept="jpg,png" class="form-control" required>
                                     </div>

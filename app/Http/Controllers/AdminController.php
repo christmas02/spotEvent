@@ -112,7 +112,28 @@ class AdminController extends Controller
         //dd();
         $infoUser = User::where('id',$id)->first();
         //dd($infoUser->name);
-        return view('admin.home', compact('infoUser'));
+        $Users = User::all();
+        return view('admin.home', compact('Users','infoUser'));
+    }
+
+    public function listeprestatire($id){
+       
+        //dd();
+        $infoUser = User::where('id',$id)->first();
+        //dd($infoUser->name);
+        $Prestataire = User::where('role',2)->get();
+        //dd($Prestataire);
+        return view('admin.prestataire', compact('Prestataire','infoUser'));
+    }
+
+    public function listeutilisateur($id){
+       
+        //dd();
+        $infoUser = User::where('id',$id)->first();
+        //dd($infoUser->name);
+        $Utilisateur = User::where('role',1)->get();
+        //dd($Prestataire);
+        return view('admin.utilisateur', compact('Utilisateur','infoUser'));
     }
 
     public function getPrestatire($id){

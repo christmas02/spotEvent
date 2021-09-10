@@ -1,5 +1,7 @@
 @extends('admin/layout/master')
 
+
+
 @section('content')
 <!-- page content -->
 <div class="right_col" role="main">
@@ -47,11 +49,12 @@
                                                     <th> Téléphone </th>
                                                     <th> Rôle </th>
                                                     <th> Profil </th>
-                                                    <th> Date d'inscription </th>
+                                                    <th> Date d'inscriptio </th>
+                                                    
                                                 </tr>
                                             </thead>
-                                            @if($Users)
-                                            @foreach($Users as $itmes)
+                                            @if($Utilisateur)
+                                            @foreach($Utilisateur as $itmes)
                                             <tr>
                                                 <td>{{ $itmes->name }}</td>
                                                 <td>{{ $itmes->email }}</td>
@@ -73,6 +76,7 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $itmes->created_at }}</td>
+                                                
                                             </tr>
                                             @endforeach
                                             @endif

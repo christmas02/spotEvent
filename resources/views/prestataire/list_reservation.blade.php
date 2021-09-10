@@ -17,7 +17,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Liste des demandes de reservations <small></small></h2>
+                    <h2>Liste des demandes de réservations <small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       
        
@@ -34,8 +34,8 @@
                       <thead>
                         <tr>
                             <th>  </th>
-                            <th> Nom et prenom </th>
-                            <th> Contact Tel</th>
+                            <th> Nom et prénom </th>
+                            <th> Contact Tél</th>
                             <th> Email </th>
                             <th> Message </th>
                             <th>  </th>
