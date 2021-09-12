@@ -113,7 +113,7 @@
                                 <div class="dropdown-menu dropdown-usermenu pull-right"
                                     aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalProfile"
-                                        href="#"> Profile</a>
+                                        href="#"> Profil</a>
                                     <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalmdp"
                                         href="#"> Mot de passe</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
@@ -201,7 +201,7 @@
 
                 <div class="modal-body">
                     <center>
-                        <h4>Modification du profile</h4>
+                        <h4>Modification du profil</h4>
                     </center>
                     <hr>
                     <form method="POST" class="row" action="/save/profil" enctype="multipart/form-data">
@@ -221,15 +221,15 @@
                         <div class="col-md-8">
                             <div class="item form-group">
                                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Nom et
-                                    prenom</label>
+                                    prénom</label>
                                 <div class="col-md-9 col-sm-9 ">
                                     <input type="text" name="name" class="form-control" value="{{ $infoUser->name }}">
                                     <input type="" hidden name="id" class="form-control" value="{{ $infoUser->id }}">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Numero de
-                                    telephone</label>
+                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Numéro de
+                                    téléphone</label>
                                 <div class="col-md-9 col-sm-9 ">
                                     <input type="text" name="phone" class="form-control" value="{{ $infoUser->phone }}">
                                 </div>
@@ -454,36 +454,6 @@
 
 
     });
-    </script>
-
-    <script type="text/javascript">
-    function initialize() {
-        var options = {
-            //types: ['(cities)'],
-            componentRestrictions: {
-                country: "ci"
-            }
-        };
-        var input = document.getElementById('autocomplete');
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-    function positions() {
-        var geocoder = new google.maps.Geocoder();
-        var address = document.getElementById('autocomplete').value;
-
-        geocoder.geocode({
-            'address': address
-        }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                var latitude = results[0].geometry.location.lat();
-                var longitude = results[0].geometry.location.lng();
-                document.getElementById('longitude').value = longitude;
-                document.getElementById('latitude').value = latitude;
-            }
-        });
-    }
     </script>
 
     <script>

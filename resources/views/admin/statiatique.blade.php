@@ -49,7 +49,7 @@ label {
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Statistique </h3>
+                <h3>Statistiques </h3>
             </div>
 
             <div class="title_right">
@@ -76,7 +76,7 @@ label {
                                            </div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078"
                                             data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
-                                        <span class="text-white">Visite</span>
+                                        <span class="text-white">Visites</span>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ label {
                                             </div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278"
                                             data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
-                                        <span class="text-white">Prise contact</span>
+                                        <span class="text-white">Prises de contact</span>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@ label {
                                             </div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521"
                                             data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
-                                        <span class="text-white">Sollicitation</span>
+                                        <span class="text-white">Sollicitations</span>
                                     </div>
                                 </div>
                             </div>

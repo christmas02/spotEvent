@@ -74,16 +74,13 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Tableau de bords</h3>
+                <h3>Tableau de bord</h3>
             </div>
 
             <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
+                       
                     </div>
                 </div>
             </div>
@@ -110,7 +107,7 @@
                                             data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078"
                                             data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
-                                        <span class="text-white">Visite</span>
+                                        <span class="text-white">Visites</span>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +118,7 @@
                                             data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278"
                                             data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
-                                        <span class="text-white">Prise contact</span>
+                                        <span class="text-white">Prises de contact</span>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +129,7 @@
                                             data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521"
                                             data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
-                                        <span class="text-white">Sollicitation</span>
+                                        <span class="text-white">Sollicitations</span>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +152,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Profile</h2>
+                        <h2>Profil</h2>
                         <ul class="nav navbar-right panel_toolbox">
                         </ul>
 
@@ -203,7 +200,7 @@
                                             data-toggle="tab" aria-expanded="false">Évolution générale</a>
                                     </li>
                                     <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab"
-                                            data-toggle="tab" aria-expanded="false">Liste demandes</a>
+                                            data-toggle="tab" aria-expanded="false">Liste des demandes</a>
                                     </li>
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -215,26 +212,26 @@
                                         <table class="data table table-striped no-margin">
                                             <thead>
                                                 <tr style="font-size: 20px;">
-                                                    <th>#</th>
+                                                    <th></th>
                                                     <th>Designation</th>
-                                                    <th>Statistique</th>
+                                                    <th>Statistiques</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody style="font-size: 16px;">
                                                 <tr>
                                                     <td></td>
-                                                    <td>Nombre total de viste</td>
+                                                    <td>Nombre total de visites</td>
                                                     <td class="hidden-phone"><strong>{{ $visiteMonth }}</strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td>Nombre total de prise contact</td>
+                                                    <td>Nombre total de prises de contact</td>
                                                     <td class="hidden-phone"><strong>{{ $phoneMonth }}</strong></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td>Nombre total de sollicitation</td>
+                                                    <td>Nombre total de sollicitations</td>
                                                     <td class="hidden-phone"><strong>{{ $demandeMonth }}</strong></td>
                                                 </tr>
                                             </tbody>
@@ -248,10 +245,10 @@
                                         <table class="data table table-striped no-margin">
                                             <thead>
                                                 <tr style="font-size: 20px;">
-                                                    <th>#</th>
-                                                    <th>Informateion client</th>
+                                                    <th></th>
+                                                    <th>Information client</th>
                                                     <th>Date</th>
-                                                    <th>Statu</th>
+                                                    <th>Statut</th>
 
                                                 </tr>
                                             </thead>
@@ -287,10 +284,9 @@
                         <div>
                             @if($ficheExiste == null)
                             <div class="alert alert-danger">
-                                <h4>Vous devez completez les informations relative a votre comptre prestataire,
-                                    pour le fais cliquez cliquer sur ce lien <br> <a
-                                        href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
-                                    NB : Veiller contacter le services conseil et assistance au besoin</h4>
+                                <h4>Vous devez complèter les informations relatives à votre compte prestataire.<br>
+                                    Pour le faire cliquez sur ce lien <a href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
+                                    NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
                             </div>
                             @endif
                         </div>
@@ -298,11 +294,9 @@
                         <div>
                             @if(count($galerieExiste) == 0)
                             <div class="alert alert-warning">
-                                <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de presenter vos
-                                    réalisation,
-                                    aux utilisateur qui visiteros votre profil<br> <a class="" data-toggle="modal"
+                                <h4>Vous ne possédez pas de galerie photos.<br> Cette lucarne vous permet de présenter vos réalisations aux utilisateurs qui visiteront votre profil.<br> <a class="" data-toggle="modal"
                                         data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
-                                    NB : Veiller contacter le services conseil et assistance au besoin</h4>
+                                        NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
                             </div>
                             @endif
                         </div>

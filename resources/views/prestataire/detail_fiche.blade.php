@@ -260,6 +260,7 @@
 
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
+                    @if($ficheExiste)
                     <div class="x_title">
                         <h2>Information sur mon compte</h2>
                         <ul class="nav navbar-right panel_toolbox">
@@ -270,10 +271,10 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenterInfo"
                                         href="#">Modifier ma fiche</a>
-                                        @if(count($galerieExiste) < $ficheExiste->nbre_image)
-                                    <a class="dropdown-item"data-toggle="modal"
-                                            data-target="#exampleModalImage" href="#">Ajouter d' image</a>
-                                  
+                                    @if(count($galerieExiste) < $ficheExiste->nbre_image)
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalImage"
+                                            href="#">Ajouter d' image</a>
+
                                         @endif
                                 </div>
                             </li>
@@ -291,7 +292,7 @@
                         <div class="alert alert-warning">{{ Session::get('warning') }}</div>
                         @endif
 
-                        @if($ficheExiste)
+
                         <div>
 
                             <div class="col-md-12 col-sm-12 " style="border:0px solid #e5e5e5;">
@@ -321,8 +322,8 @@
                                 <br />
 
                                 <div class="">
-                 
-      
+
+
 
                                 </div>
                                 <hr>
@@ -333,7 +334,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="product-image container-image">
-                                            <img src="{{asset('spotevent/public/storage/'.$ficheExiste->path_img)}}" alt="..." />
+                                            <img src="{{asset('spotevent/public/storage/'.$ficheExiste->path_img)}}"
+                                                alt="..." />
                                             <div class="overlay">
                                                 <a href="" data-toggle="modal"
                                                     data-target="#exampleModalUpadeImage{{$ficheExiste->id}}"
@@ -345,19 +347,17 @@
                                     <div class="col-md-6">
                                         @if(count($galerieExiste) == 0)
                                         <div class="alert alert-warning">
-                                            <h4>Vous ne posédé pas de galerie photo, cette lucane vous permet de
-                                                presenter vos réalisation,
-                                                aux utilisateur qui visiteros votre profil<br> <a class=""
-                                                    data-toggle="modal" data-target="#exampleModalImages" href="#"> Ma
-                                                    galerie</a> <br>
-                                                NB : Veiller contacter le services conseil et assistance au besoin</h4>
-                                        </div>
+                                <h4>Vous ne possédez pas de galerie photos.<br> Cette lucarne vous permet de présenter vos réalisations aux utilisateurs qui visiteront votre profil.<br> <a class="" data-toggle="modal"
+                                        data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
+                                        NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                            </div>
                                         @else
                                         @foreach($galerieExiste as $items)
                                         <div class="">
                                             <div class="col-md-6 container-image">
                                                 <img width="" height="" style="margin-bottom: 20px; width:100%;"
-                                                    src="{{asset('spotevent/public/storage/'.$items->path )}}" alt="spotevent" />
+                                                    src="{{asset('spotevent/public/storage/'.$items->path )}}"
+                                                    alt="spotevent" />
                                                 <div class="overlay">
                                                     <button href="" data-toggle="modal"
                                                         data-target="#exampleModalUpadeImageSeconds{{$items->id}}"
@@ -382,11 +382,10 @@
                         </div>
                         @else
                         <div class="alert alert-danger">
-                            <h4>Vous devez completez les informations relative a votre comptre prestataire,
-                                pour le fais cliquez cliquer sur ce lien <br> <a
-                                    href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
-                                NB : Veiller contacter le services conseil et assistance au besoin</h4>
-                        </div>
+                                <h4>Vous devez complèter les informations relatives à votre compte prestataire.<br>
+                                    Pour le faire cliquez sur ce lien <a href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
+                                    NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                            </div>
                         @endif
 
 
@@ -437,7 +436,7 @@
                             <input type="text" name="name" class="form-control" value="{{$ficheExiste->name}}">
                         </div>
                     </div>
-                    <div class="item form-group">
+                    <!--<div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
                             Situation geographie <span class="required">*</span>
                         </label>
@@ -445,7 +444,7 @@
                             <input type="text" name="localisation" class="form-control"
                                 value="{{$ficheExiste->localisation}}">
                         </div>
-                    </div>
+                    </div>-->
                     <div class="item form-group">
                         <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Détail
                             localisaton</label>
@@ -470,7 +469,7 @@
                                 class="form-control">{{$ficheExiste->description}}</textarea>
                         </div>
                     </div>
-                    <div class="item form-group">
+                    <!--<div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
                             Estimation min<span class="required">*</span>
                         </label>
@@ -495,7 +494,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
                             Téléphone <span class="required">*</span>
@@ -567,75 +566,6 @@
         </div>
     </div>
 </div>
-@endif
-
-@foreach($galerieExiste as $items)
-<!-- Modal  Modification une image -->
-<div class="modal fade" id="exampleModalUpadeImageSeconds{{$items->id}}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <form method="POST" action="/update/image" enctype="multipart/form-data">
-                    @csrf
-                    <center>
-                        <h4>Modification de l'image !</h4>
-                    </center>
-
-
-                    <div class="item form-group">
-                        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Ajouter l'
-                            images</label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <input type="file" name="image" class="form-control" accept="image/*">
-                            <input type="text" hidden name="id" value="{{$items->id}}">
-                            <input type="text" hidden name="table" value="2">
-                        </div>
-
-                    </div>
-
-            </div>
-            <div class="modal-footer-btn">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-danger">Modifier</button>
-            </div>
-            </form>
-        </div>
-
-    </div>
-</div>
-@endforeach
-
-
-@foreach($galerieExiste as $items)
-<!-- Modal suppression une image -->
-<div class="modal fade" id="exampleModalDeletImage{{$items->id}}" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <form method="POST" action="/delet/image" enctype="">
-                    @csrf
-                    <div class="trash"><i class="fa fa-trash"></i></div>
-                    <center>
-                        <h3>Voulez-vous vraiment supprimer !</h3>
-                    </center>
-                    <input type="text" hidden name="id" value="{{$items->id}}">
-                    <input type="text" hidden name="table" value="2">
-
-            </div>
-            <div class="modal-footer-btn">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-danger">Valider</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-@endforeach
-
 
 <!-- UPDATE IMAGES  PRINCIPAL-->
 <div class="modal fade" id="exampleModalUpadeImage{{$ficheExiste->id}}" tabindex="-1" role="dialog"
@@ -684,6 +614,7 @@
     </div>
 </div>
 
+
 <!-- ADD IMAGES -->
 <div class="modal fade" id="exampleModalImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
@@ -705,11 +636,13 @@
                         <div class="col-md-6 col-sm-6 ">
                             <input type="file" name="images[]" class="form-control" accept="image/*" multiple>
                             <input type="text" hidden name="id_user" value="{{ $ficheExiste->id_user }}">
-                            <input type="text" hidden name="imgPossible" value="{{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }}">
+                            <input type="text" hidden name="imgPossible"
+                                value="{{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }}">
                         </div>
 
                     </div>
-                    <div id="" class="alert alert-danger">Vous pouvez enregistre que {{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }} images
+                    <div id="" class="alert alert-danger">Vous pouvez enregistre que
+                        {{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }} images
                     </div>
 
 
@@ -724,6 +657,75 @@
 
     </div>
 </div>
+@endif
+
+@foreach($galerieExiste as $items)
+<!-- Modal  Modification une image -->
+<div class="modal fade" id="exampleModalUpadeImageSeconds{{$items->id}}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form method="POST" action="/update/image" enctype="multipart/form-data">
+                    @csrf
+                    <center>
+                        <h4>Modification de l'image !</h4>
+                    </center>
+
+
+                    <div class="item form-group">
+                        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Ajouter l'
+                            images</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="file" name="image" class="form-control" accept="image/*">
+                            <input type="text" hidden name="id" value="{{$items->id}}">
+                            <input type="text" hidden name="table" value="2">
+                        </div>
+
+                    </div>
+
+            </div>
+            <div class="modal-footer-btn">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-danger">Modifier</button>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+@endforeach
+
+@if($galerieExiste)
+@foreach($galerieExiste as $items)
+<!-- Modal suppression une image -->
+<div class="modal fade" id="exampleModalDeletImage{{$items->id}}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form method="POST" action="/delet/image" enctype="">
+                    @csrf
+                    <div class="trash"><i class="fa fa-trash"></i></div>
+                    <center>
+                        <h3>Voulez-vous vraiment supprimer !</h3>
+                    </center>
+                    <input type="text" hidden name="id" value="{{$items->id}}">
+                    <input type="text" hidden name="table" value="2">
+
+            </div>
+            <div class="modal-footer-btn">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-danger">Valider</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+@endif
 
 
 @endsection

@@ -128,7 +128,7 @@ class PrestataireController extends Controller
 
         //dd($request->all());
         try {
-            //$this->validate($request,$this->rules,$this->message);
+            $this->validate($request,$this->rules,$this->message);
 
             /*$image = $request->file('image_five');
             $image_five = $input['image_fivename'] = time(). '.' . $image->getClientOriginalname();
@@ -172,7 +172,7 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.');
         }
 
     }
@@ -189,7 +189,6 @@ class PrestataireController extends Controller
     }
 
     public function updateFiche(Request $request){
-
         //dd($request->all());
         try {
             //$this->validate($request,$this->rules,$this->message);
@@ -198,9 +197,9 @@ class PrestataireController extends Controller
             $localisation = $request->get('localisation');
             $presentation = $request->get('presentation');
             $description = $request->get('description');
-           // $detail_localisation = $request->get('detail_localisation');
-            $estimation_min = $request->get('estimation_min');
-            $estimation_max = $request->get('estimation_max');
+            $detail_localisation = $request->get('detail_localisation');
+            // $estimation_min = $request->get('estimation_min');
+            // $estimation_max = $request->get('estimation_max');
             $phone_service = $request->get('phone_service');
             $phone2_service = $request->get('phone2_service');
             $phone_whastapp = $request->get('phone_whastapp');
@@ -217,8 +216,8 @@ class PrestataireController extends Controller
                 'description' => $description,
                 'presentation' => $presentation,
                 'detail_localisation' => $detail_localisation,
-                'estimation_min' => $estimation_min,
-                'estimation_max' => $estimation_max,
+                //'estimation_min' => $estimation_min,
+                //'estimation_max' => $estimation_max,
                 'phone_service' => $phone_service,
                 'phone2_service' => $phone2_service,
                 'phone_whastapp' => $phone_whastapp,
@@ -232,7 +231,7 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error de mise jour !');
         }
 
     }
@@ -285,7 +284,7 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.');
         }
     }
 
@@ -401,7 +400,7 @@ class PrestataireController extends Controller
 
         }catch(\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.');
         }
 
     }
@@ -444,7 +443,7 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.');
         }
 
 
@@ -461,7 +460,7 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
            //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.');
         } 
 
     }

@@ -38,7 +38,7 @@
                                   <div class="body l-parpl text-center">
                                       <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                       <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078" data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
-                                      <span class="text-white">Visite</span>
+                                      <span class="text-white">Visites</span>
                                   </div>
                               </div>
                           </div>
@@ -47,7 +47,7 @@
                                   <div class="body l-seagreen text-center">
                                       <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                       <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278" data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
-                                      <span class="text-white">Prise contact</span>
+                                      <span class="text-white">Prises de contact</span>
                                   </div>
                               </div>
                           </div>
@@ -56,7 +56,7 @@
                                   <div class="body l-amber text-center">
                                       <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                       <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521" data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
-                                      <span class="text-white">Sollicitation</span>
+                                      <span class="text-white">Sollicitations</span>
                                   </div>
                               </div>
                           </div>
@@ -77,7 +77,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Profile</h2>
+                    <h2>Profil</h2>
                     <ul class="nav navbar-right panel_toolbox">
                        <li><a href="/liste/prestataires" class=""><i class="fa fa-chevron-up"></i>Retour</a>
                     </ul>
@@ -108,7 +108,7 @@
                           
                           <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Évolution générale</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste demandes</a>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste des demandes</a>
                           </li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
@@ -119,26 +119,26 @@
                             <table class="data table table-striped no-margin">
                               <thead>
                                 <tr style="font-size: 20px;">
-                                  <th>#</th>
+                                  <th></th>
                                   <th>Designstion</th>
-                                  <th>Statistique</th>
+                                  <th>Statistiques</th>
                                 
                                 </tr>
                               </thead>
                               <tbody style="font-size: 16px;">
                                 <tr> 
                                   <td></td>
-                                  <td>Nombre total de viste</td>
+                                  <td>Nombre total de visite</td>
                                   <td class="hidden-phone"><strong>{{ $visiteMonth }}</strong></td>
                                 </tr>
                                 <tr> 
                                   <td></td>
-                                  <td>Nombre total de prise contact</td>
+                                  <td>Nombre total de prises de contact</td>
                                   <td class="hidden-phone"><strong>{{ $phoneMonth }}</strong></td>
                                 </tr>
                                 <tr> 
                                   <td></td>
-                                  <td>Nombre total de sollicitation</td>
+                                  <td>Nombre total de sollicitations</td>
                                   <td class="hidden-phone"><strong>{{ $demandeMonth }}</strong></td>
                                 </tr>
                               </tbody>
@@ -151,10 +151,10 @@
                              <table class="data table table-striped no-margin">
                               <thead>
                                 <tr style="font-size: 20px;">
-                                  <th>#</th>
-                                  <th>Informateion client</th>
+                                  <th></th>
+                                  <th>Information client</th>
                                   <th>Date</th>
-                                  <th>Statu</th>
+                                  <th>Statut</th>
                                 
                                 </tr>
                               </thead>
@@ -234,7 +234,7 @@
                         <button class="btn btn-danger "> Inactif</button>
                         @endif
                         {{ $prestataire->id_user }}
-                        <h3 style="" class="prod_title">{{ $prestataire->name }} / {{ $prestataire->localisation }}</h3>
+                        <h3 style="" class="prod_title">{{ $prestataire->name }} / </h3>
                         <h4>{{ $prestataire->presentation }}.</h4>
                         <br>
                         <h4>{{ $prestataire->description }}.</h4>
