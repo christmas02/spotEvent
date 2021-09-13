@@ -35,6 +35,11 @@
                     </div>
 
                     <div class="x_content">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">{{ Session::get('success') }}</div>
+                        @elseif(Session::has('danger'))
+                        <div class="alert alert-danger">{{ Session::get('danger') }}</div>
+                        @endif
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
@@ -50,6 +55,7 @@
                                                     <th> Rôle </th>
                                                     <th> Profil </th>
                                                     <th> Date d'inscriptio </th>
+                                                    <th></th>
                                                     
                                                 </tr>
                                             </thead>
@@ -76,6 +82,12 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $itmes->created_at }}</td>
+                                                <td>
+                                                    <button href="" data-toggle="modal"
+                                                        data-target="#exampleModalDeletImage{{$itmes->id}}"
+                                                        class="btn btn-sm btn-danger btn-rounded"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </td>
                                                 
                                             </tr>
                                             @endforeach
@@ -98,4 +110,33 @@
     </div>
 </div>
 <!-- /page content -->
+
+@foreach($Utilisateur as $items)
+<!-- Modal suppression une image -->
+<div class="modal fade" id="exampleModalDeletImage{{$items->id}}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form method="POST" action="/delet/user" enctype="">
+                    @csrf
+                    <div class="trash"><i class="fa fa-trash"></i></div>
+                    <center>
+                        <h4>Voulez-vous vraiment effectuer cette action !</h4>
+                    </center>
+                    <input type="text" hidden name="id" value="{{$items->id}}">
+
+            </div>
+            <div class="modal-footer-btn">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-danger">Valider</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
 @endsection

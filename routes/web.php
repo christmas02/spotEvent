@@ -40,7 +40,10 @@ Route::get('/list/prestations/{id}','AdminController@getPrestations');
 Route::get('/statistique/{id}','AdminController@statiatique');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
+Route::get('/Contenus/{id}','AdminController@listContenus');
 
+Route::post('/update/contenus','AdminController@updateContenus');
+Route::post('/delet/user','AdminController@deletUser');
 
 Route::get('/messageries/{id}','AdminController@message');
 Route::get('/listPrestatiaire/{id}','AdminController@listeprestatire');
