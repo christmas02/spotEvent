@@ -16,10 +16,14 @@ export default Vue.extend({
     loginModal,
     // , favoriteModal, WorkerSpaceModal
   },
-  beforeMount() {
+  async beforeMount() {
     this.$store.commit("auth/authFavoritesModalStatus", false);
     this.$store.commit("auth/authWorkerSpaceModalStatus", false);
-    //test
+    try {
+      await this.$store.dispatch("fetchContentTexts");
+    } catch (error) {
+      console.log(error);
+    }
   },
 });
 </script>

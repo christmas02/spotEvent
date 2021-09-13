@@ -60,3 +60,21 @@ export interface IResultForm {
     path_user?: any;
     id_fiche: number;
 }
+
+
+
+export interface Content {
+    id: number;
+    titre_contenus: string;
+    contenus: string;
+    page: string;
+    created_at: string;
+    updated_at: string;
+}
+export interface IContentsResponse {
+    statu: number;
+    message: string;
+    listCommune: Content[];
+}
+
+

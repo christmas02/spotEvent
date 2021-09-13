@@ -1,5 +1,6 @@
 import { ICommuneSearch } from "./../interfaces/commune.interface";
 import {
+    IContentsResponse,
     IEstimation,
     ISearchPrestataire,
     ISearchPrestataireResponse
@@ -159,6 +160,22 @@ export class AppService extends CommonService {
             return {
                 statu: 0
             } as IClickResponse;
+        }
+    }
+
+    async contents(): Promise<IContentsResponse> {
+        try {
+            const { data }: { data: IContentsResponse } = await this.client.get(
+                "Liste_contenus",
+            );
+
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message: "Erreur lors de la recuperation des textes"
+            } as IContentsResponse;
         }
     }
 }
