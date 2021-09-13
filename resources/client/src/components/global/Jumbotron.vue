@@ -50,7 +50,7 @@ export default Vue.extend({
   padding: 0 4%;
   color: #fff;
   height: 100%;
-  width: 100%;
+  width: 80%;
 }
 
 .background {
