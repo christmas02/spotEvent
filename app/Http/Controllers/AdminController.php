@@ -18,6 +18,7 @@ use Illuminate\Mail\Message as MailMessage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use App\Contenu;
 
 class AdminController extends Controller
 {
@@ -500,6 +501,51 @@ class AdminController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
         }
+
+    }
+
+    public function listContenus($id){
+
+        $infoUser = $this->Userinfo($id);
+        $listContenu = Contenu::all();
+        return view('admin.pages',compact('infoUser','listContenu'));
+    }
+
+    public function updateContenus(Request $request){
+
+        try {
+            //code...
+            $contenus = $request->get('contenus');
+            $id = $request->get('id');
+
+            Contenu::where('id',$id)
+            ->update([
+                'contenus' => $contenus,
+            ]);
+
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        }
+
+    }
+
+    public function deletUser(Request $request){
+
+        try {
+            $id = $request->get('id');
+
+            $image = User::find($id);
+            $image->delete();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+           //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        } 
 
     }
 

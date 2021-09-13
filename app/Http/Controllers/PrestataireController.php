@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Fiche;
 use App\Galerie;
@@ -128,7 +129,6 @@ class PrestataireController extends Controller
 
         //dd($request->all());
         try {
-            $this->validate($request,$this->rules,$this->message);
 
             /*$image = $request->file('image_five');
             $image_five = $input['image_fivename'] = time(). '.' . $image->getClientOriginalname();
@@ -170,9 +170,9 @@ class PrestataireController extends Controller
             $fiche->save();
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
 
-        } catch (\Throwable $th) {
-            //dd($th);
-            return redirect()->back()->with('danger', 'Error.');
+        } catch (\Throwable $e) {
+           // report($e);
+            return redirect()->back()->with('danger', 'Echec de l\'enregistrement');
         }
 
     }
@@ -191,7 +191,6 @@ class PrestataireController extends Controller
     public function updateFiche(Request $request){
         //dd($request->all());
         try {
-            //$this->validate($request,$this->rules,$this->message);
 
             $name = $request->get('name');
             $localisation = $request->get('localisation');

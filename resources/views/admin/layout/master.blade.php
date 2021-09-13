@@ -76,6 +76,7 @@
                     <ul class="nav child_menu">
                       <li><a href="/Categorie/{{ $infoUser->id }}">Categories</a></li>
                       <li><a href="/Estimation/{{ $infoUser->id }}">Estimations</a></li>
+                      <li><a href="/Contenus/{{ $infoUser->id }}">Gestion du contenu</a></li>
                     </ul>
                   </li>
                   

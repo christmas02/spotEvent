@@ -39,48 +39,27 @@
 
                         <!-- Smart Wizard -->
                         <p></p>
-                        <div id="wizard" class="form_wizard wizard_horizontal">
-                            <ul class="wizard_steps">
-                                <li><a href="#step-1"><span class="step_no">1</span>
-                                        <span class="step_descr">Etape 1<br />
-                                            <small>Etape 1 Identification</small>
-                                        </span></a>
-                                </li>
-                                <li><a href="#step-2"><span class="step_no">2</span>
-                                        <span class="step_descr">Etape 2<br />
-                                            <small>Etape 2 Contact</small>
-                                        </span></a>
-                                </li>
-                                <li><a href="#step-3"><span class="step_no">3</span>
-                                        <span class="step_descr"> Etape 3<br />
-                                            <small>Etape 3 Tarification des services</small>
-                                        </span></a>
-                                </li>
-                                <li><a href="#step-4"><span class="step_no">4</span>
-                                        <span class="step_descr">Etape 4<br />
-                                            <small>Etape 4 Galerie d'image</small>
-                                        </span></a>
-                                </li>
-                            </ul>
+                        <div >
+     
 							<form method="POST" action="/save/compte/prestatire" enctype="multipart/form-data">
                             @csrf
-                            <div id="step-1">
+                            <div id="">
                                     <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                            for="first-name">Nom de la structure <span class="required">*</span>
+                                        <label class="col-form-label col-md-4 col-sm-4 label-align"
+                                            for="first-name">Nom de la structure <small class="required text-danger">(Obligatoire)</small>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input type="text" name="name" class="form-control " required>
-                                            <input type="text" name="id_user" hidden value="{{ $infoUser->id }}" class="form-control " required>
+                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" autocomplete="name" autofocus required>
+                                            <input type="text" name="id_user" hidden value="{{ $infoUser->id }}" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                            for="first-name">Secteur d'activité <span class="required">*</span>
+                                        <label class="col-form-label col-md-4 col-sm-4 label-align"
+                                            for="first-name">Secteur d'activité <small class="required text-danger">(Obligatoire)</small>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <select required="required" name="id_prestations" class="form-control " required>
+                                            <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}"required>
                                             <option>Choisir votre prestation</option>
                                             @foreach($listPrestation as $items)
                                                 <option value="{{ $items->id }}"> {{ $items->name }}</option>
@@ -90,11 +69,11 @@
                                     </div>
 
                                     <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                            for="first-name">Situation géographique <span class="required">*</span>
+                                        <label class="col-form-label col-md-4 col-sm-4 label-align"
+                                            for="first-name">Situation géographique <small class="required text-danger">(Obligatoire)</small>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <select required="required" name="localisation" class="form-control " required>
+                                            <select name="localisation" class="form-control" value="{{ old('localisation') }}" autocomplete="localisation" autofocus required>
                                             <option>Choisir la commune</option>
                                             @foreach($listCommune as $items)
                                                 <option value="{{ $items->id }}"> {{ $items->name }}</option>
@@ -105,46 +84,47 @@
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Détail sur la localisation <small>Une présentation de 100 mots</small><span class="required">*</span></label>
+                                            class="col-form-label col-md-4 col-sm-4 label-align">Détail sur la localisation <small>Une présentation de 100 mots</small> <small class="required text-danger">(Obligatoire)</small></label>
 
                                         <div class="col-md-6 col-sm-6 ">
-                                            <textarea rows="4" size="100" name="detail_localisation" class="form-control" required></textarea>
+                                            <textarea rows="4" size="100" name="detail_localisation" class="form-control" value="{{ old('localisation') }}" autocomplete="localisation" autofocus required></textarea>
                                         </div>
                                     </div>
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Présentation de la structure <small>Une présentation de 250 mots</small> <span class="required">*</span></label>
+                                            class="col-form-label col-md-4 col-sm-4 label-align">Présentation de la structure <small>Une présentation de 250 mots</small> <small class="required text-danger">(Obligatoire)</small> </label>
 
                                         <div class="col-md-6 col-sm-6 ">
-                                            <textarea rows="4" size="400" name="presentation" class="form-control" required></textarea>
+                                            <textarea rows="4" size="400" name="presentation" class="form-control" value="{{ old('presentation') }}" autocomplete="presentation" autofocus required></textarea>
                                         </div>
                                     </div>
 
                                     <div class="item form-group">
                                         <label for="middle-name"
-                                            class="col-form-label col-md-3 col-sm-3 label-align">Description du service<span class="required">*</span></label>
+                                            class="col-form-label col-md-4 col-sm-4 label-align">Description du service <small class="required text-danger">(Obligatoire)</small> </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <textarea rows="8" name="description" class="form-control" required></textarea>
+                                            <textarea rows="8" name="description" class="form-control" value="{{ old('description') }}" autocomplete="description" autofocus required></textarea>
+                                    
                                         </div>
                                     </div>
 
 
                             </div>
                             <!-- Sstep-1 -->
-                            <div id="step-2">
+                            <div id="">
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">
-                                        Numéro de téléphone<span class="required">*</span>
+                                    <label class="col-form-label col-md-4 col-sm-4 label-align" for="last-name">
+                                        Numéro de téléphone <small class="required text-danger">(Obligatoire)</small>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" name="phone_service" class="form-control" required>
+                                        <input type="text" name="phone_service" class="form-control" value="{{ old('phone_service') }}" autocomplete="phone_service" autofocus required>
                                     </div>
                                 </div>
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Second numéro de téléphone
+                                        class="col-form-label col-md-4 col-sm-4 label-align">Second numéro de téléphone
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="phone2_service"  class="form-control">
@@ -153,7 +133,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Numéro WhatsApp
+                                        class="col-form-label col-md-4 col-sm-4 label-align">Numéro WhatsApp
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="phone_whastapp"  class="form-control">
@@ -163,7 +143,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Votre lien Facebook
+                                        class="col-form-label col-md-4 col-sm-4 label-align">Votre lien Facebook
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="lien_facebook"  class="form-control">
@@ -172,7 +152,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Votre lien Instagram
+                                        class="col-form-label col-md-4 col-sm-4 label-align">Votre lien Instagram
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="lien_instagram"  class="form-control">
@@ -181,7 +161,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Adresse électronique
+                                        class="col-form-label col-md-4 col-sm-4 label-align">Adresse électronique
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="email_service"  class="form-control">
@@ -191,10 +171,10 @@
 
                             </div>
                             <!-- Sstep-2 -->
-                            <div id="step-3">
+                            <div id="">
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Estimation min
+                                        class="col-form-label col-md-4 col-sm-4 label-align">Estimation min
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select required="required" name="estimation_min" class="form-control " required>
@@ -208,7 +188,7 @@
 
                                 <div class="item form-group">
                                     <label for="middle-name"
-                                        class="col-form-label col-md-3 col-sm-3 label-align">Estimation max
+                                        class="col-form-label col-md-4 col-sm-4 label-align">Estimation max
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select required="required" name="estimation_max" class="form-control " required>
@@ -221,12 +201,12 @@
                                 </div>
                             </div>
                             <!-- Sstep-3 -->
-                            <div id="step-4">
+                            <div id="">
                                 <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image
-                                        principale (Taille maximum 23Mo)</label>
+                                    <label for="middle-name" class="col-form-label col-md-4 col-sm-4 label-align">Image
+                                        principale (Taille maximum 23Mo) <small class="required text-danger">(Obligatoire)</small></label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="file" name="image_five" accept="jpg,png" class="form-control" required>
+                                        <input type="file" name="image_five" accept="image/*" class="form-control" required>
                                     </div>
                                 </div>
 

@@ -823,9 +823,8 @@ class ApiController extends Controller
     public function gestionContenus(){
 
         try {
-
             $contenu = Contenu::all();
-            return response()->json(['statu' => 0, 'listCommune' => $contenu]);
+            return response()->json(['statu' => 1, 'listContenue' => $contenu]);
             //code...
         } catch (\Throwable $th) {
             //throw $th;
