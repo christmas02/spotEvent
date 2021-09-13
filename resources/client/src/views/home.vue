@@ -3,13 +3,11 @@
     <div id="homepage">
       <div class="d-none d-md-block">
         <jumbotron image="images/jmbg1.png">
-          <h1 class="content-title">
-            L' organisation zen <br />
-            de votre mariage
-          </h1>
-          <p class="content-subtitle my-5">
-            les prestataires n'attendent que vous
-          </p>
+          <h1 class="content-title" v-html="contents.accueil_titre"></h1>
+          <p
+            class="content-subtitle my-5"
+            v-html="contents.accueil_sous_titre"
+          ></p>
           <div>
             <v-btn
               color="primary"
@@ -87,9 +85,7 @@ import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
-import { AppService } from "@/services/app.service";
 import expansionPanel from "@/components/expansionPanel.vue";
-import { IIdPrestation } from "@/interfaces/app-services.interfaces";
 
 export default Vue.extend({
   name: "Home",
@@ -144,6 +140,9 @@ export default Vue.extend({
     },
     isFilter(): IProvider[] {
       return this.$store.getters["benefits/isFilter"];
+    },
+    contents(): any {
+      return this.$store.getters["homeContents"];
     },
   },
   methods: {

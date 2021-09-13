@@ -5,7 +5,6 @@ import {
     IConversation,
     IMessage
 } from "@/interfaces/liste-conversations.interfaces";
-import { Message } from "vue-advanced-chat";
 import { IAuthState } from "./interfaces/state.interface";
 
 export default {

@@ -62,12 +62,13 @@ export interface IResultForm {
 }
 
 
+export type Page = "accueil" | "apropos" | "contact";
 
 export interface Content {
     id: number;
     titre_contenus: string;
     contenus: string;
-    page: string;
+    page: Page;
     created_at: string;
     updated_at: string;
 }

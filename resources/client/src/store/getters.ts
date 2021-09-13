@@ -1,8 +1,32 @@
+import { Content, Page } from "@/interfaces/app-services.interfaces";
+import { IRootState } from "./interfaces";
+
 export default {
-    contactModal(state: any) {
+    contactModal(state: IRootState): boolean {
         return state.contactModal;
     },
-    favoritesModal(state: any): boolean {
+    favoritesModal(state: IRootState): boolean {
         return state.favoritesModal;
+    },
+    contents(state: IRootState): any {
+        return (page: Page) => {
+            const contents: any = {};
+            state.contents
+            .filter(content => content.page === page)
+            .forEach(content => {
+                contents[content.titre_contenus] =  content.contenus
+            })
+
+            return contents;
+        }
+    },
+    homeContents(state: IRootState, getters: any): Content[] {
+        return getters.contents("accueil");
+    },
+    aboutContents(state: IRootState, getters: any): Content[] {
+        return getters.contents("apropos");
+    },
+    contactContents(state: IRootState, getters: any): Content[] {
+        return getters.contents("contact");
     }
 };

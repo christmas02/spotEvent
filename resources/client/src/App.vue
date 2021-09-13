@@ -9,8 +9,7 @@
 <script lang="ts">
 import Vue from "vue";
 import loginModal from "./components/global/loginModal.vue";
-import favoriteModal from "./components/global/favoriteModal.vue";
-import WorkerSpaceModal from "./components/global/WorkerSpaceModal.vue";
+
 export default Vue.extend({
   components: {
     loginModal,

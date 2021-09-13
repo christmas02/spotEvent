@@ -2,12 +2,9 @@
   <default-layout :padding="false">
     <div class="main">
       <jumbotron :image="require('../assets/images/jmbg2.png')">
-        <h1 class="content-title">Contactez-nous</h1>
+        <h1 class="content-title" v-html="contents.contact_titre"></h1>
         <div class="description">
-          <p>
-            Pour plus d'infos, notre équipe bienveillante se tient à votre
-            disposition pour vous aider
-          </p>
+          <p v-html="contents.contact_paragraphe"></p>
         </div>
       </jumbotron>
     </div>
@@ -27,7 +24,7 @@
                 >
 
                 <v-list-item-subtitle class="subtitle">
-                  <p class="m-0 p-0">Cocody 2 Plateau Vallon</p>
+                  <p class="m-0 p-0" v-html="contents.contact_localisation"></p>
                   <!-- <p class="m-0 p-0">Abidjan</p> -->
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -42,7 +39,7 @@
                 <v-list-item-title class="title">E-mail</v-list-item-title>
 
                 <v-list-item-subtitle class="subtitle">
-                  <p class="m-0 p-0">info@spoteventapp.net</p>
+                  <p class="m-0 p-0" v-html="contents.contact_email"></p>
                   <!-- <p class="m-0 p-0">Abidjan</p> -->
                 </v-list-item-subtitle>
               </v-list-item-content>
@@ -57,16 +54,20 @@
                 <v-list-item-title class="title">Contact</v-list-item-title>
 
                 <v-list-item-subtitle class="subtitle">
-                  <p class="m-0 p-0 my-2">+225 07 47 61 99 44</p>
-                  <p class="m-0 p-0 my-2">+225 05 84 96 93 04</p>
+                  <p
+                    class="m-0 p-0 my-2"
+                    v-for="contact in contacts"
+                    v-html="contact"
+                    :key="contact"
+                  ></p>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </div>
           <div class="col-md-8">
             <div>
-              <h3 class="form-titile">Envoyez-nous un message</h3>
-              <p>Nous vous répondrons dans les plus brefs délais</p>
+              <h3 class="form-titile" v-html="contents.formulaire_titre"></h3>
+              <p v-html="contents.formulaire_paragraphe"></p>
             </div>
             <div>
               <v-form
@@ -136,11 +137,8 @@
     <section class="maps">
       <div class="main">
         <div class="text-center">
-          <h3 class="form-titile">Trouvez-nous sur google</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
-            dolores neque ratione voluptates.
-          </p>
+          <h3 class="form-titile" v-html="contents.contact_maps"></h3>
+          <p v-html="contents.paragraphe_maps"></p>
         </div>
         <!-- <div>
           <iframe
@@ -233,6 +231,14 @@ export default Vue.extend({
         await this.$swal({ icon: "error", text: result.messaage });
         this.loading = false;
       }
+    },
+  },
+  computed: {
+    contents(): any {
+      return this.$store.getters["contactContents"];
+    },
+    contacts(): any {
+      return this.contents["Contact_telephone"].split("\r\n");
     },
   },
 });

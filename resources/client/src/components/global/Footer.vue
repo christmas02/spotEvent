@@ -10,10 +10,7 @@
             :src="require('../../assets/light-logo.png')"
           ></v-img>
         </div>
-        <p>
-          Constituez "l'équipe qui gagne" pour votre mariage grâce à Spot Event,
-          l'annuaire nuptial digital
-        </p>
+        <p v-html="contents.footer_paragraph"></p>
         <div>
           <v-btn
             icon
@@ -97,6 +94,9 @@ export default Vue.extend({
     },
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"].slice(0, 12);
+    },
+    contents(): any {
+      return this.$store.getters["homeContents"];
     },
   },
   methods: {

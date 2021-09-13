@@ -12,11 +12,11 @@
             >
               <div></div>
               <div class="title-container">
-                <h1 class="content-title">A Propos de Nous</h1>
-                <p class="content-subtitle my-5">
-                  Le répertoire des meilleurs prestataires œuvrant pour la
-                  réalisation de votre mariage
-                </p>
+                <h1 class="content-title" v-html="contents.appros_titre"></h1>
+                <p
+                  class="content-subtitle my-5"
+                  v-html="contents.apropos_sous_titre"
+                ></p>
               </div>
             </div>
           </div>
@@ -26,15 +26,14 @@
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="section">
-              <h2 class="section-title">Qui-sommes nous ?</h2>
-              <p class="font-weight-bold">
-                Nous sommes une plateforme de mise en relation entre les acteurs
-                de l'univers du mariage et les personnes désireuses de réaliser
-                un mariage. Notre but ultime est de contribuer à faire de votre
-                mariage une journée mémorable, unique et réussie. Nous y
-                parvenons grâce à la collaboration de nos partenaires
-                spécialistes du secteur.
-              </p>
+              <h2
+                class="section-title"
+                v-html="contents.qui_somme_nous_titre"
+              ></h2>
+              <p
+                class="font-weight-bold"
+                v-html="contents.qui_somme_nous_paragraphe"
+              ></p>
             </div>
           </div>
           <div class="d-none d-md-flex col-md-6 right">
@@ -54,13 +53,12 @@
                   max-height="100"
                 />
                 <!-- height="110" -->
-                <h2 class="text-primary text-uppercase mt-2">Notre service</h2>
+                <h2
+                  class="text-primary text-uppercase mt-2"
+                  v-html="contents.apropos_service_un_titre"
+                ></h2>
                 <div class="my-divider"></div>
-                <p>
-                  Un catalogue dynamique vous permettant de trouver le ou les
-                  prestataires dont vous avez besoin pour la réalisation de
-                  votre mariage
-                </p>
+                <p v-html="contents.apropos_service_un_paragraphe"></p>
               </div>
             </div>
             <div class="col-md-4 text-center">
@@ -71,14 +69,12 @@
                   class="img-fluid"
                 />
                 <!-- height="110" -->
-                <h2 class="text-primary text-uppercase mt-2">
-                  Un outil d’organisation simplifiée
-                </h2>
+                <h2
+                  class="text-primary text-uppercase mt-2"
+                  v-html="contents.apropos_service_deux_titre"
+                ></h2>
                 <div class="my-divider"></div>
-                <p>
-                  Centraliser en un seul et même endroit vos recherches de
-                  prestataires
-                </p>
+                <p v-html="contents.apropos_service_deux_paragraphe"></p>
               </div>
             </div>
             <div class="col-md-4 text-center">
@@ -89,9 +85,12 @@
                   class="img-fluid"
                 />
                 <!-- height="110" -->
-                <h2 class="text-primary text-uppercase mt-2">Une question ?</h2>
+                <h2
+                  class="text-primary text-uppercase mt-2"
+                  v-html="contents.apropos_service_trois_titre"
+                ></h2>
                 <div class="my-divider"></div>
-                <p>Notre équipe se tient à votre disposition pour vous aider</p>
+                <p v-html="contents.apropos_service_trois_paragraphe"></p>
               </div>
             </div>
           </div>
@@ -104,7 +103,13 @@
 <script lang="ts">
 import Vue from "vue";
 
-export default Vue.extend({});
+export default Vue.extend({
+  computed: {
+    contents(): any {
+      return this.$store.getters["aboutContents"];
+    },
+  },
+});
 </script>
 
 <style scoped>
