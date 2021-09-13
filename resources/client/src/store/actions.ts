@@ -1,20 +1,16 @@
 import { IRootState } from "./interfaces";
 import {AppService} from '@/services/app.service'
 export default {
-    async fetchContentTexts(state: IRootState): Promise<void> {
+    async fetchContentTexts({ state}: { state: IRootState }): Promise<void> {
         const service = new AppService();
 
             const result = await service.contents();
-            
-            console.log(result);
-            
+                        
             if (result.statu == 1) {
-                state.contents = result.listCommune;
+                state.contents = result.listContenue;
                 return;
             }
-
-            console.log("boom");
             
-            throw new Error("an error")
+           alert(result.message);
     }
 };

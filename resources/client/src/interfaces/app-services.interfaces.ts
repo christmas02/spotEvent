@@ -75,7 +75,7 @@ export interface Content {
 export interface IContentsResponse {
     statu: number;
     message: string;
-    listCommune: Content[];
+    listContenue: Content[];
 }
 
 

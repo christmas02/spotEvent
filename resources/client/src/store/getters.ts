@@ -9,24 +9,24 @@ export default {
         return state.favoritesModal;
     },
     contents(state: IRootState): any {
-        return (page: Page) => {
+        return (page: Page) => {            
             const contents: any = {};
             state.contents
-            .filter(content => content.page === page)
+            .filter(content => content.page == page)
             .forEach(content => {
                 contents[content.titre_contenus] =  content.contenus
-            })
-
+                
+            })            
             return contents;
         }
     },
-    homeContents(state: IRootState, getters: any): Content[] {
+    homeContents(_: IRootState, getters: any): Content[] {        
         return getters.contents("accueil");
     },
-    aboutContents(state: IRootState, getters: any): Content[] {
+    aboutContents(_: IRootState, getters: any): Content[] {
         return getters.contents("apropos");
     },
-    contactContents(state: IRootState, getters: any): Content[] {
+    contactContents(_: IRootState, getters: any): Content[] {
         return getters.contents("contact");
     }
 };
