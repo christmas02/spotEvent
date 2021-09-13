@@ -273,7 +273,7 @@
                                         href="#">Modifier ma fiche</a>
                                     @if(count($galerieExiste) < $ficheExiste->nbre_image)
                                         <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalImage"
-                                            href="#">Ajouter d' image</a>
+                                            href="#">Ajoute d'image</a>
 
                                         @endif
                                 </div>
@@ -641,8 +641,8 @@
                         </div>
 
                     </div>
-                    <div id="" class="alert alert-danger">Vous pouvez enregistre que
-                        {{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }} images
+                    <div id="" class="alert alert-danger">Il vous reste 
+                        {{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }} image(s)
                     </div>
 
 
