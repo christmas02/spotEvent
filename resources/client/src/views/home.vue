@@ -3,10 +3,10 @@
     <div id="homepage">
       <div class="d-none d-md-block">
         <jumbotron image="images/jmbg1.png">
-          <div class="col-md-6">
+          <div>
             <h1 class="content-title" v-html="contents.accueil_titre"></h1>
             <p
-              class="content-subtitle my-5"
+              class="content-subtitle my-5 col-md-10"
               v-html="contents.accueil_sous_titre"
             ></p>
             <div>
