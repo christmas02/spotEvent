@@ -1,15 +1,15 @@
 <template>
   <default-layout>
     <div id="homepage">
-      <div class="d-none d-md-block main psearch">
+      <div class="d-none d-md-flex main psearch">
         <search-form :handler="prestationsSearchForm"></search-form>
       </div>
 
       <div class="main mx-auto">
-        <div class="d-none d-sm-block d-md-none mx-auto">
+        <!-- <div class="d-none d-sm-block d-md-none mx-auto">
           <search-form :handler="prestationsSearchForm"></search-form>
-        </div>
-        <div class="d-block d-sm-none">
+        </div> -->
+        <div class="d-block d-md-none">
           <expansion-panel-prestation
             :prestationsSearchForm="prestationsSearchForm"
           ></expansion-panel-prestation>
