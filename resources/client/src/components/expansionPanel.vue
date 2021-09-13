@@ -2,7 +2,8 @@
   <v-expansion-panels>
     <v-expansion-panel>
       <v-expansion-panel-header>
-        RECHERCHE <v-icon>mdi-magnify </v-icon>
+        RECHERCHE
+        <!-- <v-icon>mdi-magnify </v-icon> -->
       </v-expansion-panel-header>
 
       <v-expansion-panel-content>
