@@ -3,18 +3,20 @@
     <div id="homepage">
       <div class="d-none d-md-block">
         <jumbotron image="images/jmbg1.png">
-          <h1 class="content-title" v-html="contents.accueil_titre"></h1>
-          <p
-            class="content-subtitle my-5"
-            v-html="contents.accueil_sous_titre"
-          ></p>
-          <div>
-            <v-btn
-              color="primary"
-              :to="{ name: 'auth-register' }"
-              v-if="!isAuth"
-              >Découvrir</v-btn
-            >
+          <div class="col-md-6">
+            <h1 class="content-title" v-html="contents.accueil_titre"></h1>
+            <p
+              class="content-subtitle my-5"
+              v-html="contents.accueil_sous_titre"
+            ></p>
+            <div>
+              <v-btn
+                color="primary"
+                :to="{ name: 'auth-register' }"
+                v-if="!isAuth"
+                >Découvrir</v-btn
+              >
+            </div>
           </div>
           <template #append>
             <div class="d-none d-md-block search-container">

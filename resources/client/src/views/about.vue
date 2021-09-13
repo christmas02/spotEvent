@@ -7,14 +7,12 @@
           <div
             class="d-md-flex justify-content-md-between align-items-md-center"
           >
-            <div
-              class="col-md-6 h-100 d-flex flex-column justify-content-between"
-            >
+            <div class="h-100 d-flex flex-column justify-content-between">
               <div></div>
               <div class="title-container">
                 <h1 class="content-title" v-html="contents.appros_titre"></h1>
                 <p
-                  class="content-subtitle my-5"
+                  class="content-subtitle my-5 col-md-10"
                   v-html="contents.apropos_sous_titre"
                 ></p>
               </div>
@@ -150,11 +148,11 @@ export default Vue.extend({
   /* width: 30%; */
   max-height: 100px;
 }
-@media screen and (min-width: 1264px) {
+/* @media screen and (min-width: 1264px) {
   .title-container {
     width: 60%;
   }
-}
+} */
 @media screen and (max-width: 425px) {
   .content-subtitle {
     text-align: center;
