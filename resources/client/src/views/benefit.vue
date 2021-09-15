@@ -24,7 +24,7 @@
                   <h1 class="content-title">{{ benefit.name | capitalize }}</h1>
                   <div class="content-subtitle my-5">
                     <p>
-                      {{ benefit.presentation | truncate(80) }}
+                      {{ benefit.presentation | truncate(100) }}
                     </p>
                   </div>
                 </div>
@@ -220,8 +220,6 @@ export default Vue.extend({
     this.id_prestataire = this.$store.getters["benefits/one"](
       this.currentId
     ).id_user.toString();
-    // console.log(this.currentId);
-    console.log(this.$store.getters["auth/isConnected"]);
   },
   beforeRouteEnter(_: any, __: any, next: any) {
     if (!sessionStorage.getItem("benefitId")) {
@@ -249,7 +247,7 @@ export default Vue.extend({
       return this.$store.getters["benefits/others"](this.currentId);
     },
     currentId(): string {
-      return sessionStorage.getItem("benefitId") as string;
+      return localStorage.getItem("benefitId") as string;
     },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
@@ -324,7 +322,6 @@ export default Vue.extend({
 
       if (statu == 1) {
         this.enterprise = this.benefit.name;
-        console.log();
 
         this.phone_service = this.benefit.phone_whastapp; // this.$swal(this.benefit.phone_whastapp);
         this.phone2_service = null; // this.$swal(this.benefit.phone_whastapp);
@@ -341,8 +338,6 @@ export default Vue.extend({
     },
     async updateSlder(benefitId: string) {
       const benefit = this.$store.getters["benefits/one"](benefitId);
-
-      console.log("my benefit", benefit);
 
       this.idProvider = benefit.id_user.toString();
 

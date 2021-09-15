@@ -18,7 +18,7 @@ export default {
     },
     others(state: IBenefitState): (id: number) => Benefit[] {
         return (id: number) =>
-            state.benefits.filter(benefit => benefit.id != id);
+            state.benefits.filter(benefit => benefit.id != id).slice(0, 3);
     },
     categories(state: IBenefitState): ICategory[] {
         return state.categories;
