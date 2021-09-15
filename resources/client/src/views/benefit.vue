@@ -80,11 +80,14 @@
                   v-if="isConnected"
                   :id_prestataire="id_prestataire"
                   :id_user="id_user.toString()"
+                  :currentId="currentId"
                 ></comment-rating-user>
               </div>
               <div class="avisUser">
                 <h1>Avis Utilisateurs</h1>
-                <comment-rating-grid></comment-rating-grid>
+                <comment-rating-grid
+                  :currentId="currentId"
+                ></comment-rating-grid>
               </div>
             </div>
             <div class="offset-md-1 col-md-4">
@@ -208,29 +211,33 @@ export default Vue.extend({
       slides: [] as ISlider[],
       idProvider: null,
       isChat: true,
+      userData: null as unknown as Benefit,
       id_prestataire: "" as string,
       phone_service: "" as string,
       phone2_service: "" as string,
       enterprise: "" as string,
+      currentId: null as unknown as number,
     };
   },
   async beforeMount(): Promise<void> {
     await this.$store.dispatch("benefits/fetchAll");
 
-    // await this.findPrestataire();
+    await this.findPrestataire();
 
-    await this.updateSlder(this.currentId);
-    this.id_prestataire = this.$store.getters["benefits/one"](
-      this.currentId
-    ).id_user.toString();
+    // this.id_prestataire = this.$store.getters["benefits/one"](
+    //   this.currentId
+    // ).id_user.toString();
+
+    await this.updateSlder(this.userData.id.toString());
+    this.id_prestataire = this.userData.id_user.toString();
   },
-  beforeRouteEnter(_: any, __: any, next: any) {
-    if (!sessionStorage.getItem("benefitId")) {
-      next("/");
-    } else {
-      next();
-    }
-  },
+  // beforeRouteEnter(_: any, __: any, next: any) {
+  //   if (!sessionStorage.getItem("benefitId")) {
+  //     next("/");
+  //   } else {
+  //     next();
+  //   }
+  // },
   components: {
     BenefitsGrid,
     ProviderContactFormModal,
@@ -243,15 +250,19 @@ export default Vue.extend({
     id_user() {
       return this.$store.getters["auth/user"].id;
     },
+    slug(): string {
+      return this.$route.params.slug;
+    },
     benefit(): Benefit {
       return this.$store.getters["benefits/one"](this.currentId);
     },
     others(): Benefit[] {
       return this.$store.getters["benefits/others"](this.currentId);
     },
-    currentId(): string {
-      return localStorage.getItem("benefitId") as string;
-    },
+    // async currentId() {
+    //   // return localStorage.getItem("benefitId") as string;
+
+    // },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
     },
@@ -360,28 +371,35 @@ export default Vue.extend({
       this.$store.commit("auth/updateIdBenefitToChat", this.benefit.id_user);
       this.$router.push({ name: "Chat" });
     },
-    async findPrestataire() {
+    async findPrestataire(slug: string): Promise<void> {
       // Items have already been loade
       // Lazily load input items
       const service = new BenefitService();
-      let urlParams = this.$route.params.slug.replace("-", " ");
+      let urlParams = this.$route.params.slug;
+      // console.log(urlParams);
 
       const result: IFindPrestataire = await service.findPrestataire(urlParams);
 
       if (result.statu == 1) {
-        sessionStorage.setItem(
-          "benefitId",
-          result.findPrestataire.id.toString()
-        );
+        // return result.findPrestataire.id.toString();
+        // localStorage.setItem("benefitId", result.findPrestataire.id.toString());
+        this.userData = result.findPrestataire;
+        this.currentId = result.findPrestataire.id;
       }
+      // return "0";
     },
   },
   watch: {
-    async currentId(val) {
-      this.id_prestataire = this.$store.getters["benefits/one"](
-        this.currentId
-      ).id_user.toString();
-      await this.updateSlder(val);
+    async currentId(n, o) {
+      this.id_prestataire =
+        this.$store.getters["benefits/one"](n).id_user.toString();
+      await this.updateSlder(n.toString());
+      console.log("bingoo");
+
+      // await this.findPrestataire();
+    },
+    async slug(n, o) {
+      await this.findPrestataire();
     },
   },
 });

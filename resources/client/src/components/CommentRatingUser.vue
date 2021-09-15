@@ -57,6 +57,10 @@ export default Vue.extend({
       type: String,
       required: true,
     },
+    currentId: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -70,9 +74,6 @@ export default Vue.extend({
   computed: {
     user() {
       return this.$store.getters["auth/user"];
-    },
-    currentId(): string {
-      return sessionStorage.getItem("benefitId") as string;
     },
   },
   methods: {

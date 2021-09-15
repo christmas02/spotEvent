@@ -69,12 +69,15 @@ export default Vue.extend({
       // comments: [],
     };
   },
+  props: {
+    currentId: {
+      type: Number,
+      required: true,
+    },
+  },
   computed: {
     comments() {
       return this.$store.getters["auth/listComment"];
-    },
-    currentId(): string {
-      return sessionStorage.getItem("benefitId") as string;
     },
   },
   methods: {
