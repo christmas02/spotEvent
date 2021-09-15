@@ -50,6 +50,6 @@ export default {
         return state.idBenefitToChat;
     },
     listComment(state: IAuthState): IResultListComment[] {
-        return state.listComment;
+        return state.listComment ? state.listComment : [];
     }
 };
