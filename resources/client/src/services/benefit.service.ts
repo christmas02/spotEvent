@@ -1,4 +1,8 @@
-import { BeneftsResponse } from "@/interfaces/benefit.interface";
+import { IFindPrestataire } from "./../interfaces/benefit.interface";
+import {
+    BeneftsResponse,
+    IfiltreEstimation
+} from "@/interfaces/benefit.interface";
 import { CommonService } from "./Common.service";
 import { ICategoryResponse } from "@/interfaces/category.interface";
 import { ICommuneResponse } from "@/interfaces/commune.interface";
@@ -126,24 +130,44 @@ export class BenefitService extends CommonService {
         }
     }
 
-    async autocompleteProviders(text: string): Promise<IAutocompleteProvidersResponse> {
+    async autocompleteProviders(
+        text: string
+    ): Promise<IAutocompleteProvidersResponse> {
         try {
             const {
                 data
-            }: { data: IAutocompleteProvidersResponse } = await this.client.post(
-                "/recherchePrestataire",
+            }: {
+                data: IAutocompleteProvidersResponse;
+            } = await this.client.post("/recherchePrestataire", {
+                name: text
+            });
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                message: "Erreur",
+                resultat: [],
+                statu: 0
+            } as IAutocompleteProvidersResponse;
+        }
+    }
+
+    async findPrestataire(text: string): Promise<IFindPrestataire> {
+        try {
+            const { data }: { data: IFindPrestataire } = await this.client.get(
+                "/find_prestataire",
                 {
-                    name: text
+                    params: {
+                        name: text
+                    }
                 }
             );
             return data;
         } catch (e) {
             console.log(e);
             return {
-               message: "Erreur",
-               resultat: [],
-               statu: 0
-            } as IAutocompleteProvidersResponse;
+                statu: 0
+            } as IFindPrestataire;
         }
     }
 }

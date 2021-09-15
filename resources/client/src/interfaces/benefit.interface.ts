@@ -31,6 +31,11 @@ export interface Benefit {
     nbre_image?: number;
 }
 
+export interface IFindPrestataire {
+    statu: number;
+    findPrestataire: IfiltreEstimation;
+}
+
 export interface IfiltreEstimation {
     id: number;
     id_user: number;

@@ -187,7 +187,7 @@ import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
 import CommentRatingGrid from "@/components/CommentRatingGrid.vue";
 import utilsMixin from "../mixins/utils.mixin";
-import { Benefit } from "../interfaces/benefit.interface";
+import { Benefit, IFindPrestataire } from "../interfaces/benefit.interface";
 import { BenefitService } from "../services/benefit.service";
 import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
@@ -216,6 +216,9 @@ export default Vue.extend({
   },
   async beforeMount(): Promise<void> {
     await this.$store.dispatch("benefits/fetchAll");
+
+    // await this.findPrestataire();
+
     await this.updateSlder(this.currentId);
     this.id_prestataire = this.$store.getters["benefits/one"](
       this.currentId
@@ -361,6 +364,21 @@ export default Vue.extend({
     chat(): void {
       this.$store.commit("auth/updateIdBenefitToChat", this.benefit.id_user);
       this.$router.push({ name: "Chat" });
+    },
+    async findPrestataire() {
+      // Items have already been loade
+      // Lazily load input items
+      const service = new BenefitService();
+      let urlParams = this.$route.params.slug.replace("-", " ");
+
+      const result: IFindPrestataire = await service.findPrestataire(urlParams);
+
+      if (result.statu == 1) {
+        sessionStorage.setItem(
+          "benefitId",
+          result.findPrestataire.id.toString()
+        );
+      }
     },
   },
   watch: {
