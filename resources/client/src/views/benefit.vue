@@ -24,7 +24,7 @@
                   <h1 class="content-title">{{ benefit.name | capitalize }}</h1>
                   <div class="content-subtitle my-5">
                     <p>
-                      {{ benefit.presentation | truncate(100) }}
+                      {{ benefit.presentation | truncate(250) }}
                     </p>
                   </div>
                 </div>
