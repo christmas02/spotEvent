@@ -44,9 +44,7 @@ export default Vue.extend({
       // console.log(statu, this.benefit.id_user.toString());
 
       if (statu == 1) {
-        // console.log(slugify(this.benefit.name));
-
-        sessionStorage.setItem("benefitId", this.benefit.id.toString());
+        localStorage.setItem("benefitId", this.benefit.id.toString());
         // console.log("uniikk");
         this.$router.push({
           name: "benefit",
