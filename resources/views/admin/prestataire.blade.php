@@ -6,6 +6,10 @@
         return $prestation;
     }
 
+    function gestCategorie($id){
+        $categorie = \App\Prestation::where('id',$id)->first();
+        return $categorie;
+    }
 ?>
 
 @section('content')
@@ -64,6 +68,7 @@
                                                     <th> Profil </th>
                                                     <th> Date d'inscriptio </th>
                                                     <th> Fiche prestataire </th>
+                                                    <th> Catégorie </th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -93,6 +98,13 @@
                                                 <td>
                                                     @if( gestPrestation($itmes->id) )
                                                     {{ gestPrestation($itmes->id)->name }}
+                                                    @else
+                                                    Indisponible
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if( gestPrestation($itmes->id) )
+                                                    {{ gestCategorie(gestPrestation($itmes->id)->id_prestations)->name }}
                                                     @else
                                                     Indisponible
                                                     @endif

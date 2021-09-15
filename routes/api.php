@@ -37,6 +37,7 @@ Route::get('Liste_contenus','ApiController@gestionContenus');
 Route::post('liste_slides','ApiController@getSlide');
 Route::post('first_prestation','ApiController@fisrtPrestation');
 Route::post('first_prestataire','ApiController@firstPrestataire');
+Route::post('find_prestataire','ApiController@findPrestation');
 
 Route::post('favoris','ApiController@Favoris');
 Route::post('clicfiche','ApiController@clicfiche');

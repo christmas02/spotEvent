@@ -137,6 +137,34 @@ class ApiController extends Controller
         return response()->json(['statu' => 1, 'firstPrestation' => $firstPrestation]);
     }
 
+    public function findPrestation(Request $request){
+
+        try {
+
+            $name = $request['name'];
+            $slug = str_replace('-',' ',$name);
+
+            //dd($slug);
+
+            $findPrestataire = Fiche::where('fiches.name', $slug)
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+            ->leftjoin('communes','communes.id','=','fiches.localisation')
+            ->select('fiches.*','communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
+            ->orderBy('fiches.id', 'desc')
+            ->first();
+
+           ///if($findPrestataire)
+            return response()->json(['statu' => 1, 'findPrestataire' => $findPrestataire]);
+
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([ 'erreur' => $th]);
+        }
+
+    }
+
     public function Favoris(Request $request)
     {
 
@@ -857,4 +885,5 @@ class ApiController extends Controller
             return redirect()->back()->with('danger', 'Echec');
         }
     }
+
 }
