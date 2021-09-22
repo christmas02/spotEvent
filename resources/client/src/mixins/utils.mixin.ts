@@ -6,7 +6,7 @@ export default {
         },
         capitalize,
         truncate(value: string, length = 50): string {
-            return (value.length > length) ? value.slice(0, length) + "..." : value
+            return (value.length > length) ? value.slice(0, length+1) + "..." : value
         }
     }
 };
