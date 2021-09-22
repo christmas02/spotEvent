@@ -31,7 +31,7 @@
           <search-form :handler="initSearch"></search-form>
         </div> -->
         <div class="d-block d-md-none">
-          <expansion-panel></expansion-panel>
+          <expansion-panel :handler="initSearch"></expansion-panel>
         </div>
 
         <div class="section">
