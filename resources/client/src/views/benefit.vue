@@ -37,7 +37,7 @@
                   <h2 class="primary--text">{{ benefit.prestation }}</h2>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 d-none d-md-block">
                 <div class="d-md-flex justify-content-md-center">
                   <v-carousel
                     cycle
@@ -68,6 +68,27 @@
         <div class="main mx-auto mt-md-5">
           <div class="row">
             <div class="col-md-7 left">
+              <div class="section d-md-none">
+                <h2 class="section-title">Realistion</h2>
+                <div>
+                  <div class="d-md-flex justify-content-md-center">
+                    <v-carousel
+                      cycle
+                      hide-delimiters
+                      v-model="model"
+                      height="400"
+                      class="provider-pics"
+                    >
+                      <v-carousel-item
+                        v-for="slide in slides"
+                        :key="slide.id"
+                        :src="slide.path | createImagePath"
+                      >
+                      </v-carousel-item>
+                    </v-carousel>
+                  </div>
+                </div>
+              </div>
               <div class="section">
                 <h2 class="section-title">Description</h2>
                 <div>
