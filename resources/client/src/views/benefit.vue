@@ -68,7 +68,7 @@
         <div class="main mx-auto mt-md-5">
           <div class="row">
             <div class="col-md-7 left">
-              <div class="section d-md-none">
+              <div class="section d-md-none d-block">
                 <h2 class="section-title">Realistion</h2>
                 <div>
                   <div class="d-md-flex justify-content-md-center">
