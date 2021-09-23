@@ -34,8 +34,8 @@
           item-text="libelle"
           item-value="libelle"
         ></v-select>
-        <v-btn color="primary" class="ml-md-5 submit-btn">
-          <v-icon @click="handler">mdi-magnify</v-icon>
+        <v-btn color="primary" @click="handler" class="ml-md-5 submit-btn">
+          <v-icon>mdi-magnify</v-icon>
         </v-btn>
       </div>
     </div>
