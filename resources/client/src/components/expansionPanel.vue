@@ -7,7 +7,6 @@
       </v-expansion-panel-header>
 
       <v-expansion-panel-content>
-        <v-btn @click="test">test</v-btn>
         <search-form :handler="initSearch"></search-form>
       </v-expansion-panel-content>
     </v-expansion-panel>
