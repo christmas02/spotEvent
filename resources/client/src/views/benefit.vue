@@ -69,7 +69,7 @@
           <div class="row">
             <div class="col-md-7 left">
               <div class="section d-md-none d-block">
-                <h2 class="section-title">Realistion</h2>
+                <h2 class="section-title">Realisations</h2>
                 <div>
                   <div class="d-md-flex justify-content-md-center">
                     <v-carousel
@@ -476,6 +476,9 @@ export default Vue.extend({
   .content-title {
     text-align: center;
     font-size: 55px;
+  }
+  .provider-pics {
+    width: 100%;
   }
 }
 
