@@ -18,11 +18,11 @@
               >
             </div>
           </div>
-          <template #append>
+          <!-- <template #append>
             <div class="d-none d-md-block search-container">
               <search-form :handler="initSearch"></search-form>
             </div>
-          </template>
+          </template> -->
         </jumbotron>
       </div>
 
@@ -30,13 +30,13 @@
         <!-- <div class="d-none d-sm-block d-md-none">
           <search-form :handler="initSearch"></search-form>
         </div> -->
-        <div class="d-block d-md-none">
+        <!-- <div class="d-block d-md-none">
           <expansion-panel :handler="initSearch"></expansion-panel>
-        </div>
+        </div> -->
 
         <div class="section">
           <filter-form></filter-form>
-          <div style="margin: 50px 0">
+          <div>
             <div class="loading" v-if="loading && benefits.length == 0">
               <v-progress-circular
                 indeterminate
