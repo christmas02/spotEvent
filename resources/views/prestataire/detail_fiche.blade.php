@@ -1,4 +1,16 @@
 @extends('prestataire/layout/master')
+<?php 
+
+function libellePrestation($id){
+
+    $data = App\Prestation::where('id',$id)->first();
+    return $data;
+}
+
+
+
+?>
+
 @section('content')
 <style>
 * {
@@ -496,6 +508,20 @@
                         </div>
                     </div>-->
                     <div class="item form-group">
+                        <label class="col-form-label col-md-4 col-sm-4 label-align"
+                            for="first-name">Secteur d'activité 
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}"required>
+                            <option value="{{$ficheExiste->id_prestations}}" selected>{{ libellePrestation($ficheExiste->id_prestations)->name }}</option>
+                            @foreach($listPrestation as $items)
+                                <option value="{{ $items->id }}" >{{ $items->name }}</option>
+                            @endforeach    
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
                             Téléphone <span class="required">*</span>
                         </label>
@@ -641,7 +667,8 @@
                         </div>
 
                     </div>
-                    <div id="" class="alert alert-danger">Il vous reste 
+                    <br><hr>
+                    <div id="" class="col-md-12 col-sm-6 alert alert-danger">Il vous reste 
                         {{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }} image(s)
                     </div>
 

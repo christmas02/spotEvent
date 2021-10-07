@@ -183,9 +183,10 @@ class PrestataireController extends Controller
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
         $listEstimation = Estimation::get();
+        $listPrestation = Prestation::get();
         //dd(!empty($galerieExiste));
 
-        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listEstimation'));
+        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listPrestation','listEstimation'));
     }
 
     public function updateFiche(Request $request){
@@ -197,6 +198,8 @@ class PrestataireController extends Controller
             $presentation = $request->get('presentation');
             $description = $request->get('description');
             $detail_localisation = $request->get('detail_localisation');
+            $id_prestations = $request->get('id_prestations');
+
             // $estimation_min = $request->get('estimation_min');
             // $estimation_max = $request->get('estimation_max');
             $phone_service = $request->get('phone_service');
@@ -214,6 +217,7 @@ class PrestataireController extends Controller
                 'localisation' => $localisation,
                 'description' => $description,
                 'presentation' => $presentation,
+                'id_prestations' => $id_prestations,
                 'detail_localisation' => $detail_localisation,
                 //'estimation_min' => $estimation_min,
                 //'estimation_max' => $estimation_max,

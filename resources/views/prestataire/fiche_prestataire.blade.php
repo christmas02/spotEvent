@@ -17,7 +17,7 @@
                 </div>
               </div>
             </div>
-        <divr class="clearfix"> </divr
+        <divr class="clearfix"> </div>
 
         <div class="row">
 
