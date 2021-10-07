@@ -55,7 +55,9 @@
             <!-- <v-btn color="primary" v-if="benefits.length >= 13" @click="seeMore"
               >Voir plus</v-btn
             > -->
-            <v-btn color="primary" @click="seeMore">Voir plus</v-btn>
+            <v-btn color="primary" class="mt-4" @click="seeMore"
+              >Voir plus</v-btn
+            >
           </div>
         </div>
 
