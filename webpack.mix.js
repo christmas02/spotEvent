@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -23,24 +23,22 @@ mix.webpackConfig({
             {
                 test: /\.s(c|a)ss$/,
                 use: [
-                    'vue-style-loader',
-                    'css-loader',
+                    "vue-style-loader",
+                    "css-loader",
                     {
-                        loader: 'sass-loader',
+                        loader: "sass-loader",
                         // Requires >= sass-loader@^8.0.0
                         options: {
-                            implementation: require('sass'),
+                            implementation: require("sass"),
                             sassOptions: {
                                 indentedSyntax: true // optional
-                            },
-                        },
-                    },
-                ],
-            },
-        ],
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
     }
-})
+});
 
-
-
-mix.ts('resources/client/src/main.ts', 'public/js')
+mix.ts("resources/client/src/main.ts", "public/js");
