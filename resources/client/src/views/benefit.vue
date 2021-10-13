@@ -127,7 +127,7 @@
                     :handler="displayPhoneNumber"
                     :disabled="benefit.actif_phone == 0"
                   >
-                    <v-icon @click="test">mdi-phone</v-icon>
+                    <v-icon>mdi-phone</v-icon>
                   </auth-btn>
 
                   <auth-btn
@@ -317,13 +317,29 @@ export default Vue.extend({
   },
 
   methods: {
-    async test(): Promise<void> {
+    async smsPhone(): Promise<void> {
       console.log("bibop");
       const service = new AppService();
       const payload = {
         id_utilisateur: this.$store.getters["auth/id"],
         id_prestataire: this.benefit.id_user,
         type_bottom: "télephone",
+      };
+
+      const { actionStatu } = await service.phoneOrWaClick(payload);
+      if (actionStatu == 1) {
+        console.log("action reussi");
+      } else {
+        console.log("action echouée", payload);
+      }
+    },
+    async smsWa(): Promise<void> {
+      console.log("bibop");
+      const service = new AppService();
+      const payload = {
+        id_utilisateur: this.$store.getters["auth/id"],
+        id_prestataire: this.benefit.id_user,
+        type_bottom: "whatsapp",
       };
 
       const { actionStatu } = await service.phoneOrWaClick(payload);
@@ -368,12 +384,7 @@ export default Vue.extend({
         this.hasNumber = false;
         this.isModal = true;
       }
-
-      if (actionStatu == 1) {
-        console.log("action reussi");
-      } else {
-        console.log("action echouée");
-      }
+      await this.smsPhone();
     },
     async displayWhatsappNumber(): Promise<void> {
       const service = new AppService();
@@ -395,6 +406,7 @@ export default Vue.extend({
         this.hasNumber = false;
         this.isModal = true;
       }
+      await this.smsWa();
     },
     showContactForm() {
       this.$store.commit("contactModal", true);
