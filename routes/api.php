@@ -70,5 +70,6 @@ Route::post('forgetPassword','ApiController@forgetPassword');
 
 Route::post('saveMessagerie','ApiController@saveMessagerie');
 
+Route::post('sendSms','ApiController@sendSms');
 
 

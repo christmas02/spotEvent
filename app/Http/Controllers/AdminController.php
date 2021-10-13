@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Contenu;
+use App\Smsrapport;
 
 class AdminController extends Controller
 {
@@ -546,6 +547,15 @@ class AdminController extends Controller
            //dd($th);
             return redirect()->back()->with('danger', 'Error.');
         } 
+
+    }
+
+    public function smsEnvoye($id){
+
+        $infoUser = $this->Userinfo($id);
+        $listsms = Smsrapport::all();
+        $stock_sms = DB::table('sms')->first();
+        return view('admin/smsenvoyer',compact('infoUser','listsms','stock_sms'));
 
     }
 

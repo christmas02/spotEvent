@@ -171,7 +171,7 @@ class PrestataireController extends Controller
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
 
         } catch (\Throwable $e) {
-           // report($e);
+            dd($e);
             return redirect()->back()->with('danger', 'Echec de l\'enregistrement');
         }
 

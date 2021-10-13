@@ -18,12 +18,14 @@ use App\Mail\fotgetPassword;
 use Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use DB;
+//use DB;
+use Illuminate\Support\Facades\DB;
 use App\Conversation;
 use App\Message;
 use App\Commune;
 use App\Messagerie;
 use App\Contenu;
+use App\Smsrapport;
 
 
 class ApiController extends Controller
@@ -882,6 +884,106 @@ class ApiController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
             //dd($th);
+            return redirect()->back()->with('danger', 'Echec');
+        }
+    }
+
+    public function sendSms(Request $request)
+    {
+        try {
+
+           //dd($request->all());
+
+           $id_utilisateur = $request['id_utilisateur'];
+           $id_prestataire = $request['id_prestataire'];
+           $type_bottom = $request['type_bottom'];
+
+           // Recuperation des information du prestataire 
+           $infoPrestataire = Fiche::where('id_user', $id_prestataire)->first();
+           //dd($infoPrestataire);
+
+           // Recuperation des information de l'utilisateur
+           $infoUtilisateur = User::where('id', $id_utilisateur)->first();
+
+           // Evois du sms au prestataire
+           $stock_sms = DB::table('sms')->select('volume')->first();
+
+           //dd($stock_sms->volume);
+
+            if($stock_sms->volume > 0){
+
+               //dd("Send sms");
+
+               /*$sender = 'SPOTEVENTAPP';
+                $mg = 'text message mtn cloud sms';
+                $destinataire = '225'.$infoPrestataire->phone_service;
+               //$destinataire = '2250748997945';
+
+                $data = array(
+                    'sender' => $sender,
+                    'content' => $mg,
+                    'dlrUrl' => 'https://myserver.com/XXXXXXXXX-XXXXXXXXXX',
+                    'recipients' => [$destinataire]
+                );
+        
+                $jsonString = json_encode($data);
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+        
+                    CURLOPT_URL => "https://api.smscloud.ci/xxxxxxxxxxxx",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => $jsonString,
+                    CURLOPT_HTTPHEADER => array(
+                        "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXX",
+                        "Content-Type: application/json " ,
+                        "cache-control: no-cache " ,
+                    ),
+        
+                ));
+                //
+                $output = curl_exec($curl);
+                $response = json_decode($output,true);
+
+                $err = curl_error($curl);   
+                curl_close($curl);*/
+
+
+                // Si le sms a ete envoyer correctement enregistrement du rapport d'envois
+                //if($response){
+
+                    $phone = str_replace(' ','',$infoPrestataire->phone_service);
+
+                    //dd($phone);
+
+                    $destinataire = '225'.$phone;
+                    $rapportSms =  new Smsrapport;
+
+                    $rapportSms->id_prestataire = $id_prestataire;
+                    $rapportSms->id_utilisateur = $id_utilisateur;
+                    $rapportSms->emetteur = "Spoteventapp";
+                    $rapportSms->numero_recepteur = $destinataire;
+                    $rapportSms->message = 'text message mtn cloud sms';
+                    $rapportSms->statu = 'envoyer';
+                    $rapportSms->type_btn = $type_bottom;
+
+                    $rapportSms->save();
+
+                //}
+
+                return response()->json(['statu' => 1, 'messaage' => "Sms envoyer !"]);
+
+            }else {
+                // Envoyer un mail a l'admnistrateur
+                dd("Echec send sms");
+
+
+            }
+            
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th);
             return redirect()->back()->with('danger', 'Echec');
         }
     }

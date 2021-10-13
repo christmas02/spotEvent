@@ -60,6 +60,8 @@ Route::post('/update/categorie','AdminController@updateCategorie');
 Route::post('/save/estimation','AdminController@saveEstimation');
 Route::post('/update/estimation','AdminController@updateEstimation');
 
+Route::get('/smsenvojer/{id}','AdminController@smsEnvoye');
+
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');
 

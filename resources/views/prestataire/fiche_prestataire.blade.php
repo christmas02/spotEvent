@@ -60,7 +60,7 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}"required>
-                                            <option>Choisir votre prestation</option>
+                                            <option value="0">Choisir votre prestation</option>
                                             @foreach($listPrestation as $items)
                                                 <option value="{{ $items->id }}"> {{ $items->name }}</option>
                                             @endforeach    
@@ -74,7 +74,7 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
                                             <select name="localisation" class="form-control" value="{{ old('localisation') }}" autocomplete="localisation" autofocus required>
-                                            <option>Choisir la commune</option>
+                                            <option value="0">Choisir la commune</option>
                                             @foreach($listCommune as $items)
                                                 <option value="{{ $items->id }}"> {{ $items->name }}</option>
                                             @endforeach    
@@ -178,7 +178,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select required="required" name="estimation_min" class="form-control " required>
-                                        <option>Choisir l'estimation</option>
+                                        <option value="0">Choisir l'estimation</option>
                                             @foreach($listEstimation as $items)
                                                 <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
                                             @endforeach    
@@ -192,7 +192,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select required="required" name="estimation_max" class="form-control " required>
-                                        <option>Choisir l'estimation</option>
+                                        <option value="0">Choisir l'estimation</option>
                                             @foreach($listEstimation as $items)
                                                 <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
                                             @endforeach    
