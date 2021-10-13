@@ -12,6 +12,7 @@ const opts = {
             light: {
                 primary: "#fbb231",
                 secondary: "#2f374a",
+                tertiary: "#fff",
                 accent: colors.indigo.base // #3F51B5
             },
             dark: {

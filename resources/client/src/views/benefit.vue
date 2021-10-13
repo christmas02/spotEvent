@@ -127,7 +127,7 @@
                     :handler="displayPhoneNumber"
                     :disabled="benefit.actif_phone == 0"
                   >
-                    <v-icon>mdi-phone</v-icon>
+                    <v-icon @click="test">mdi-phone</v-icon>
                   </auth-btn>
 
                   <auth-btn
@@ -142,7 +142,7 @@
                     icon
                     color="primary"
                     x-large
-                    @click="chat"
+                    @click="test"
                   >
                     <!-- :disabled="benefit.messagerie == 0" -->
                     <v-icon>mdi-message-processing</v-icon>
@@ -317,12 +317,34 @@ export default Vue.extend({
   },
 
   methods: {
+    async test(): Promise<void> {
+      console.log("bibop");
+      const service = new AppService();
+      const payload = {
+        id_utilisateur: this.$store.getters["auth/id"],
+        id_prestataire: this.benefit.id_user,
+        type_bottom: "télephone",
+      };
+
+      const { actionStatu } = await service.phoneOrWaClick(payload);
+      if (actionStatu == 1) {
+        console.log("action reussi");
+      } else {
+        console.log("action echouée", payload);
+      }
+    },
     async displayPhoneNumber(): Promise<void> {
       const service = new AppService();
       const id_user = this.$store.getters["auth/id"];
       const { statu } = await service.phoneClick({
         id_user,
         id_pres: this.benefit.id_user.toString(),
+      });
+
+      const { actionStatu } = await service.phoneOrWaClick({
+        id_utilisateur: this.$store.getters["auth/id"],
+        id_prestataire: this.benefit.id_user,
+        type_bottom: "télephone",
       });
 
       if (statu == 1) {
@@ -345,6 +367,12 @@ export default Vue.extend({
       } else {
         this.hasNumber = false;
         this.isModal = true;
+      }
+
+      if (actionStatu == 1) {
+        console.log("action reussi");
+      } else {
+        console.log("action echouée");
       }
     },
     async displayWhatsappNumber(): Promise<void> {

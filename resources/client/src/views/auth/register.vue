@@ -8,14 +8,43 @@
       v-model="tab"
       background-color="transparent"
       show-arrows
+      :hide-slider="true"
       grow
       center-active
       mobile-breakpoint="320"
       align-with-title
       :vertical="window.width < 620"
+      class="mt-2 tab-mod"
     >
-      <v-tab>En tant que client</v-tab>
-      <v-tab>En tant que prestataire</v-tab>
+      <v-tab
+        tag="button"
+        class="
+          px-0
+          v-btn--active
+          v-btn v-btn--outlined v-btn--router
+          theme--light
+          v-size--large
+          primary--text
+        "
+        active-class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--light v-size--large dtt primary tertiary--text "
+      >
+        Je suis un client
+      </v-tab>
+      <div class="mx-2 my-2"></div>
+      <v-tab
+        tag="button"
+        class="
+          px-0
+          v-btn--active
+          v-btn v-btn--outlined v-btn--router
+          theme--light
+          v-size--large
+          primary--text
+        "
+        active-class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--light v-size--large dtt primary tertiary--text "
+      >
+        Je suis un prestataire
+      </v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab">
@@ -53,6 +82,11 @@ export default Vue.extend({
   },
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
+  },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
   },
   methods: {
     handleResize() {

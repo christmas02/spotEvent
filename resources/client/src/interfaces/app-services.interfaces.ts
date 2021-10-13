@@ -61,7 +61,6 @@ export interface IResultForm {
     id_fiche: number;
 }
 
-
 export type Page = "accueil" | "apropos" | "contact";
 
 export interface Content {
@@ -77,5 +76,8 @@ export interface IContentsResponse {
     message: string;
     listContenue: Content[];
 }
-
-
+export interface IPhoneOrWaClick {
+    id_utilisateur: number;
+    id_prestataire: number;
+    type_bottom: string;
+}
