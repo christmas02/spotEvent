@@ -14,6 +14,12 @@
         :rules="requiredRules"
       ></v-text-field>
       <v-text-field
+        v-if="role == 2"
+        label="Nom de l'entreprise"
+        v-model="form.entreprise"
+        :rules="requiredRules"
+      ></v-text-field>
+      <v-text-field
         label="Email"
         type="email"
         v-model="form.email"
@@ -41,6 +47,17 @@
         @click:append="show2 = !show2"
         :rules="confirmPasswordRules"
       ></v-text-field>
+    </div>
+    <div class="nb" v-if="role == 2">
+      <p class="font-weight-bold">
+        N.B : - Lorsque vous souhaiterez joindre un prestataire par téléphone,
+        une notification lui sera envoyée comportant des informations telles que
+        votre prénom et votre nom ainsi que votre contact téléphonique
+      </p>
+      <p class="font-weight-bold">
+        - Lorsque vous aurez collaboré avec un prestataire, vous serez être
+        sollicité (e) pour noter le prestataire
+      </p>
     </div>
     <div>
       <v-btn color="primary" type="submit" :disabled="loading">
@@ -71,6 +88,7 @@ export default Vue.extend({
     return {
       form: {
         name: "",
+        entreprise: "",
         email: "",
         role: "",
         phone: "",

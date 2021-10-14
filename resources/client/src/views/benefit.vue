@@ -142,13 +142,13 @@
                     icon
                     color="primary"
                     x-large
-                    @click="test"
                   >
                     <!-- :disabled="benefit.messagerie == 0" -->
                     <v-icon>mdi-message-processing</v-icon>
                   </v-btn>
 
                   <v-btn icon color="primary" x-large @click="showContactForm">
+                    <!-- <v-btn icon color="primary" x-large @click="smsPhone"> -->
                     <v-icon>mdi-email</v-icon>
                   </v-btn>
                   <!-- Modal  Number Phone -->
@@ -328,7 +328,7 @@ export default Vue.extend({
 
       const { actionStatu } = await service.phoneOrWaClick(payload);
       if (actionStatu == 1) {
-        console.log("action reussi");
+        console.log("action reussi", payload);
       } else {
         console.log("action echouée", payload);
       }
@@ -344,7 +344,7 @@ export default Vue.extend({
 
       const { actionStatu } = await service.phoneOrWaClick(payload);
       if (actionStatu == 1) {
-        console.log("action reussi");
+        console.log("action reussi", payload);
       } else {
         console.log("action echouée", payload);
       }
@@ -380,11 +380,11 @@ export default Vue.extend({
         // this.$swal({
         //   html,
         // });
+        await this.smsPhone();
       } else {
         this.hasNumber = false;
         this.isModal = true;
       }
-      await this.smsPhone();
     },
     async displayWhatsappNumber(): Promise<void> {
       const service = new AppService();
@@ -402,11 +402,11 @@ export default Vue.extend({
         this.hasNumber = true;
         this.isModal = true;
         // this.$swal(this.benefit.phone_whastapp);
+        await this.smsWa();
       } else {
         this.hasNumber = false;
         this.isModal = true;
       }
-      await this.smsWa();
     },
     showContactForm() {
       this.$store.commit("contactModal", true);
