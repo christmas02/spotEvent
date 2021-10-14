@@ -137,9 +137,12 @@ export default Vue.extend({
       this.$router.push("/");
     },
     logout() {
+      // window.location.href = "/";
       this.$store.commit("auth/logout");
+      this.$router.push({ name: "auth-login" });
+      console.log("bingo");
       if (this.$route.name != "Home") {
-        this.$router.push("/");
+        // this.$router.push("/");
       }
     },
     chat() {
