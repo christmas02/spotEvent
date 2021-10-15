@@ -18,6 +18,7 @@ export interface IContactResponse {
 
 export interface IRegister {
     name: string;
+    entreprise?: string;
     email: string;
     role: string;
     phone: string;
