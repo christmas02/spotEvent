@@ -142,6 +142,7 @@
                     icon
                     color="primary"
                     x-large
+                    @click="chat"
                   >
                     <!-- :disabled="benefit.messagerie == 0" -->
                     <v-icon>mdi-message-processing</v-icon>
