@@ -9,16 +9,17 @@
 
     <div class="mt-3">
       <v-text-field
-        label="Nom et prenoms"
-        v-model="form.name"
-        :rules="requiredRules"
-      ></v-text-field>
-      <v-text-field
         v-if="role == 2"
         label="Nom de l'entreprise"
         v-model="form.entreprise"
         :rules="requiredRules"
       ></v-text-field>
+      <v-text-field
+        label="Nom et prenoms"
+        v-model="form.name"
+        :rules="requiredRules"
+      ></v-text-field>
+
       <v-text-field
         label="Email"
         type="email"
@@ -48,7 +49,7 @@
         :rules="confirmPasswordRules"
       ></v-text-field>
     </div>
-    <div class="nb" v-if="role == 2">
+    <div class="nb" v-if="role == 1">
       <p class="font-weight-bold">
         N.B : - Lorsque vous souhaiterez joindre un prestataire par téléphone,
         une notification lui sera envoyée comportant des informations telles que
