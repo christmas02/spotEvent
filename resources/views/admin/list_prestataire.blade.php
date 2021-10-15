@@ -75,15 +75,7 @@
                                                         @endif
                                                     </td>
 
-                                                    {{--<td>
-                                    @if($items->messagerie == 0 )
-                                    <span class="text-warning"> En cours </span>
-                                    @elseif($items->statu_fiche == 1 )
-                                    <span class="text-succes"> Actif</span>
-                                    @elseif($items->statu_fiche == 2 )
-                                    <span class="text-danger"> Inactif</span>
-                                    @endif
-                                    </td>--}}
+                                                 
 
                                                     <td>
                                                         @if($items->position == 0 )
@@ -123,12 +115,6 @@
 
                     </div>
                 </div>
-
-
-
-
-
-
 
             </div>
         </div>
