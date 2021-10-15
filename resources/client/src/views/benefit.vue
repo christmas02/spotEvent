@@ -357,11 +357,11 @@ export default Vue.extend({
         id_pres: this.benefit.id_user.toString(),
       });
 
-      const { actionStatu } = await service.phoneOrWaClick({
-        id_utilisateur: this.$store.getters["auth/id"],
-        id_prestataire: this.benefit.id_user,
-        type_bottom: "télephone",
-      });
+      // const { actionStatu } = await service.phoneOrWaClick({
+      //   id_utilisateur: this.$store.getters["auth/id"],
+      //   id_prestataire: this.benefit.id_user,
+      //   type_bottom: "télephone",
+      // });
 
       if (statu == 1) {
         this.phone_service = this.benefit.phone_service;
