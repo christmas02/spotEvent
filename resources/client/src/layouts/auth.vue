@@ -132,7 +132,8 @@ export default Vue.extend({
     //   console.log(this.$route.name);
     // },
     goHome() {
-      this.$router.push("/");
+      // this.$router.push("/");
+      this.$router.push({ name: "Home" });
     },
   },
   data() {

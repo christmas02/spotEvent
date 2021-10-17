@@ -126,7 +126,7 @@ export default Vue.extend({
         if (result.statu != 0) {
           const result = await this.$swal({
             icon: "info",
-            text: "Vous avez reçu un email de confirmation, verifiez aussi vos spams si vous le retrouvez pas dans votre boite de receprion",
+            text: "Vous avez reçu un email de confirmation, verifiez aussi vos spams si vous le retrouvez pas dans votre boite de reception",
             allowOutsideClick: false,
           });
 

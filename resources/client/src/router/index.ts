@@ -19,7 +19,7 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
     {
-        path: "/",
+        path: "/accueil",
         name: "Home",
         component: HomeScreen
     },
@@ -54,7 +54,7 @@ const routes: Array<RouteConfig> = [
         component: Chat
     },
     {
-        path: "/connexion",
+        path: "/",
         name: "auth-login",
         component: LoginScreen
     },

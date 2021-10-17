@@ -57,7 +57,7 @@
               </div>
             </div>
             <div class="top">
-              <v-btn color="primary" text x-large to="/">
+              <v-btn color="primary" text x-large to="/accueil">
                 <v-icon>mdi-arrow-left</v-icon>
                 Retour
               </v-btn>

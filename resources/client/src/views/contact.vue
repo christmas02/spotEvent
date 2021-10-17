@@ -226,7 +226,8 @@ export default Vue.extend({
             this.contact[key] = "";
           }
         }
-        this.$router.push("/");
+        // this.$router.push("/");
+        this.$router.push({ name: "Home" });
       } else {
         await this.$swal({ icon: "error", text: result.messaage });
         this.loading = false;
