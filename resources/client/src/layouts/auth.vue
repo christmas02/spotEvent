@@ -85,9 +85,10 @@
     </v-navigation-drawer>
     <div class="col-md-6">
       <div class="form-container">
-        <div class="d-flex justify-end">
+        <div class="d-flex justify-end" v-if="auth">
           <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         </div>
+
         <slot></slot>
       </div>
     </div>
