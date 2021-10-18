@@ -91,7 +91,7 @@ const router = new VueRouter({
 
 const guarded_routes: string[] = [];
 
-const guest_routes: string[] = ["auth-login", "auth-register"];
+const guest_routes: string[] = ["auth-login", "auth-register", "reset"];
 
 const isConnected = store.getters["auth/isConnected"];
 
