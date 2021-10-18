@@ -134,7 +134,8 @@ export default Vue.extend({
       this.$emit("change", true);
     },
     goHome() {
-      this.$router.push("/");
+      // this.$router.push("/");
+      this.$router.push({ name: "Home" });
     },
     logout() {
       // window.location.href = "/";
