@@ -11,7 +11,7 @@
           />
           <div>
             <img src="../assets/icons/lfb.png" alt="facebook" class="icon" />
-            <img src="../assets/icons/ltwt.png" alt="twitter" class="icon" />
+            <img src="../assets/icons/inst.png" alt="instagram" class="icon" />
             <img src="../assets/icons/lytb.png" alt="youtube" class="icon" />
           </div>
         </div>
@@ -202,6 +202,8 @@ export default Vue.extend({
 #auth-layout .icon {
   cursor: pointer;
   margin-left: 10px;
+  height: 50px;
+  width: 50px;
 }
 
 #auth-layout .page-title {
