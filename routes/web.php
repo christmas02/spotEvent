@@ -49,6 +49,7 @@ Route::get('/messageries/{id}','AdminController@message');
 Route::get('/listPrestatiaire/{id}','AdminController@listeprestatire');
 Route::get('/utilisateurs/{id}','AdminController@listeutilisateur');
 Route::get('/Categorie/{id}','AdminController@categorie');
+Route::get('/Commentaire/{id}','AdminController@listCommentaire');
 Route::get('/Estimation/{id}','AdminController@estimation');
 Route::get('/liste_message/{code}','AdminController@getmessage');
 Route::get('/new_message/{emetteur}/{recepteur}','AdminController@newMessage');
