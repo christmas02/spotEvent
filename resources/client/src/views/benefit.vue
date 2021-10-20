@@ -1,8 +1,17 @@
 <template>
   <default-layout :padding="false">
+    <loading
+      :active="benefit ? false : true"
+      :opacity="0.8"
+      loader="spinner"
+      :can-cancel="false"
+      color="#fbb231"
+      :is-full-page="true"
+    ></loading>
     <provider-contact-form-modal
       :provider="idProvider"
     ></provider-contact-form-modal>
+
     <div id="benefit-page" v-if="benefit">
       <div class="main">
         <div>
@@ -21,7 +30,9 @@
               >
                 <div></div>
                 <div>
-                  <h1 class="content-title">{{ benefit.name | capitalize }}</h1>
+                  <h1 class="content-title">
+                    {{ benefit.name | capitalize }}
+                  </h1>
                   <div class="content-subtitle my-5">
                     <p>
                       {{ benefit.presentation | truncate(250) }}
@@ -72,9 +83,16 @@
                   quote="The hot reload is so fast it\'s near instant. - Evan You"
                   hashtags="vuejs,vite"
                 >
-                  <v-btn icon x-large link color="primary">
-                    <v-icon x-large>mdi-share-variant</v-icon>
-                  </v-btn>
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn icon x-large link color="primary">
+                        <v-icon x-large v-bind="attrs" v-on="on"
+                          >mdi-share-variant</v-icon
+                        >
+                      </v-btn>
+                    </template>
+                    <span>Partager sur Facebook</span>
+                  </v-tooltip>
                 </ShareNetwork>
               </div>
             </div>
@@ -262,6 +280,7 @@ export default Vue.extend({
       phone2_service: "" as string,
       enterprise: "" as string,
       currentId: null as unknown as number,
+      SocketConnected: false,
     };
   },
   async beforeMount(): Promise<void> {

@@ -13,6 +13,13 @@ import vuetify from "@/plugins/vuetify";
 import "@/plugins/vue-sweetalert2";
 import "@/plugins/vue-social-sharing";
 
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+
+Vue.use(Loading);
+
+Vue.component("loading", Loading);
+
 Vue.config.productionTip = false;
 
 new Vue({

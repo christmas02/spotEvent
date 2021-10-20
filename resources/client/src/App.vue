@@ -1,6 +1,13 @@
 <template>
   <v-app app>
     <login-modal></login-modal>
+    <!-- <loading
+      :active="!SocketConnected"
+      :opacity="0.8"
+      loader="bars"
+      :can-cancel="false"
+      :is-full-page="true"
+    ></loading> -->
     <router-view />
   </v-app>
 </template>
@@ -15,6 +22,11 @@ export default Vue.extend({
     loginModal,
     // , favoriteModal, WorkerSpaceModal
   },
+  data() {
+    return {
+      SocketConnected: false,
+    };
+  },
   async beforeMount() {
     this.$store.commit("auth/authFavoritesModalStatus", false);
     this.$store.commit("auth/authWorkerSpaceModalStatus", false);
@@ -23,6 +35,7 @@ export default Vue.extend({
     } catch (error) {
       console.log(error);
     }
+    this.SocketConnected = true;
   },
 });
 </script>
