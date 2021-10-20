@@ -178,6 +178,16 @@
                 </p>
               </div>
               <div class="section">
+                <!-- <h2 class="section-title">Panneau</h2> -->
+                <div>
+                  <v-img
+                    :src="require('../assets/images/jmbg2.png')"
+                    class="w-100"
+                    height="300"
+                  ></v-img>
+                </div>
+              </div>
+              <div class="section">
                 <h2 class="section-title">Contacts</h2>
                 <p>Entrez en contact avec le prestataire.</p>
                 <div>
