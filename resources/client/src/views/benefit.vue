@@ -89,12 +89,15 @@
                       >
                     </v-btn>
                   </template>
-                  <span>Partager sur Facebook</span>
+                  <span>Partager sur les reseaux sociaux</span>
                 </v-tooltip>
               </div>
             </div>
           </jumbotron>
-          <share-modal :shareModals.sync="shareModals"></share-modal>
+          <share-modal
+            :benefit="benefit"
+            :shareModals.sync="shareModals"
+          ></share-modal>
         </div>
         <div class="main mx-auto mt-md-5">
           <div class="row">
@@ -126,8 +129,14 @@
                   <p>{{ benefit.description }}</p>
                 </div>
                 <div class="calendar">
-                  <p>Un calendrier</p>
-                  <div class="col-md-6">
+                  <h2 class="section-title">Disponibilité</h2>
+                  <div>
+                    <p>
+                      Les points vert designe les jours d'indisponibilité du
+                      prestataire
+                    </p>
+                  </div>
+                  <div class="col-md-12">
                     <yan-date></yan-date>
                   </div>
                 </div>
@@ -324,6 +333,9 @@ export default Vue.extend({
     },
     others(): Benefit[] {
       return this.$store.getters["benefits/others"](this.currentId);
+    },
+    url() {
+      return this.$route.path;
     },
     // async currentId() {
     //   // return localStorage.getItem("benefitId") as string;

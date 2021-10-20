@@ -1,13 +1,15 @@
 <template>
   <div>
     <v-date-picker
+      :readonly="true"
       v-model="date"
-      :allowed-dates="allowedDates"
+      :events="allowedDates"
       class="mt-4"
-      min="2016-06-15"
-      max="2018-03-20"
       locale="fr"
       full-width
+      event-color="green lighten-1"
+      color="primary"
+      elevation="10"
     ></v-date-picker>
   </div>
 </template>
@@ -17,18 +19,22 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      date: "2018-03-02",
+      allowedDates: null as unknown,
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),,
       test: ["2018-03-03", "2018-03-04"],
     };
   },
-  methods: {
-    allowedDates(val: any) {
-      for (var i = 0; i < this.test.length; i++) {
-        if (this.test[i] == val) {
-          return val;
-        }
-      }
-    },
+  mounted() {
+    // this.allowedDates = [new Date("2021-11-20")];
+    // this.allowedDates = [...Array(6)].map(() => {
+    //   const day = Math.floor(Math.random() * 30);
+    //   const d = new Date();
+    //   d.setDate(day);
+    //   console.log(d, d.toISOString().substr(0, 10));
+
+    //   return d.toISOString().substr(0, 10);
+    // });
+    this.allowedDates = ["2021-10-21", "2021-10-22"];
   },
 });
 </script>

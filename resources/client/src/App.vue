@@ -45,6 +45,10 @@ export default Vue.extend({
   --secondary: #2f374a;
   --default-padding: 5%;
 }
+.carousel-3d-controls span {
+  margin-bottom: 7px;
+  /* margin-left: 3px; */
+}
 .share {
   text-decoration: none !important;
 }

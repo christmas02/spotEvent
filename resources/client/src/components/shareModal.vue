@@ -29,17 +29,42 @@
                 </p>
                 <div class="d-flex justify-center col-md-8 mx-auto">
                   <div>
-                    <v-btn color="primary">
-                      <v-icon>mdi-facebook</v-icon>
-                      Facebook
-                    </v-btn>
+                    <ShareNetwork
+                      class="share"
+                      network="facebook"
+                      :url="url"
+                      :title="benefit.name"
+                      :description="benefit.presentation"
+                      :quote="benefit.presentation"
+                      hashtags="vuejs,vite"
+                    >
+                      <v-btn color="primary">
+                        <v-icon>mdi-facebook</v-icon>
+                        Facebook
+                      </v-btn>
+                    </ShareNetwork>
                   </div>
                   <v-spacer></v-spacer>
                   <div>
-                    <v-btn color="primary">
+                    <!-- :description="benefit.presentation" -->
+                    <ShareNetwork
+                      class="share"
+                      network="facebook"
+                      :url="url"
+                      :title="benefit.name"
+                      :quote="benefit.presentation"
+                      hashtags="vuejs,vite"
+                    >
+                      <v-btn color="primary">
+                        <v-icon>mdi-instagram</v-icon>
+                        Instagram
+                      </v-btn>
+                    </ShareNetwork>
+
+                    <!-- <v-btn color="primary">
                       <v-icon>mdi-instagram</v-icon>
                       Instagram
-                    </v-btn>
+                    </v-btn> -->
                   </div>
                 </div>
               </div>
@@ -71,12 +96,23 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropType } from "vue";
+import { Benefit } from "../interfaces/benefit.interface";
 export default Vue.extend({
   props: {
     shareModals: {
       type: Boolean,
       required: true,
+    },
+    benefit: {
+      type: Object as PropType<Benefit>,
+      required: true,
+    },
+  },
+  methods: {
+    url() {
+      // console.log(this.url, window.location.href);
+      return window.location.href;
     },
   },
 });
