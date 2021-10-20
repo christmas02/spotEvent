@@ -61,7 +61,22 @@
                 <v-icon>mdi-arrow-left</v-icon>
                 Retour
               </v-btn>
-              <favorite-btn :benefit="benefit"></favorite-btn>
+              <div>
+                <favorite-btn :benefit="benefit"></favorite-btn>
+                <ShareNetwork
+                  class="share"
+                  network="facebook"
+                  url="https://news.vuejs.org/issues/180"
+                  title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
+                  description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
+                  quote="The hot reload is so fast it\'s near instant. - Evan You"
+                  hashtags="vuejs,vite"
+                >
+                  <v-btn icon x-large link color="primary">
+                    <v-icon x-large>mdi-share-variant</v-icon>
+                  </v-btn>
+                </ShareNetwork>
+              </div>
             </div>
           </jumbotron>
         </div>

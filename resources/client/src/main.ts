@@ -11,6 +11,7 @@ import store from "./store";
 import vuetify from "@/plugins/vuetify";
 // import "@/plugins/chatBot";
 import "@/plugins/vue-sweetalert2";
+import "@/plugins/vue-social-sharing";
 
 Vue.config.productionTip = false;
 

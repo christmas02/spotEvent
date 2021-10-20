@@ -32,6 +32,9 @@ export default Vue.extend({
   --secondary: #2f374a;
   --default-padding: 5%;
 }
+.share {
+  text-decoration: none !important;
+}
 
 .main {
   width: 90%;
