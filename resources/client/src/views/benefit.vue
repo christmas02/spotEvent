@@ -8,6 +8,7 @@
       color="#fbb231"
       :is-full-page="true"
     ></loading>
+
     <provider-contact-form-modal
       :provider="idProvider"
     ></provider-contact-form-modal>
@@ -15,85 +16,96 @@
     <div id="benefit-page" v-if="benefit">
       <div class="main">
         <div>
-          <jumbotron :image="benefit.path_img | createImagePath">
-            <div
-              class="d-md-flex justify-content-md-between align-items-md-center"
-            >
+          <!-- skeleton -->
+          <v-skeleton-loader
+            transition="scale-transition"
+            type="card"
+            :loading="benefit ? false : true"
+          >
+            <jumbotron :image="benefit.path_img | createImagePath">
               <div
                 class="
-                  col-md-6
-                  h-100
-                  d-flex
-                  flex-column
-                  justify-content-between
+                  d-md-flex
+                  justify-content-md-between
+                  align-items-md-center
                 "
               >
-                <div></div>
-                <div>
-                  <h1 class="content-title">
-                    {{ benefit.name | capitalize }}
-                  </h1>
-                  <div class="content-subtitle my-5">
-                    <p>
-                      {{ benefit.presentation | truncate(250) }}
-                    </p>
+                <div
+                  class="
+                    col-md-6
+                    h-100
+                    d-flex
+                    flex-column
+                    justify-content-between
+                  "
+                >
+                  <div></div>
+                  <div>
+                    <h1 class="content-title">
+                      {{ benefit.name | capitalize }}
+                    </h1>
+                    <div class="content-subtitle my-5">
+                      <p>
+                        {{ benefit.presentation | truncate(250) }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <img
+                      :src="benefit.path_icone | createImagePath"
+                      height="40px"
+                      class="mr-1"
+                    />
+                    <h2 class="primary--text">{{ benefit.prestation }}</h2>
                   </div>
                 </div>
-                <div class="d-flex">
-                  <img
-                    :src="benefit.path_icone | createImagePath"
-                    height="40px"
-                    class="mr-1"
-                  />
-                  <h2 class="primary--text">{{ benefit.prestation }}</h2>
-                </div>
-              </div>
-              <div class="col-md-6 d-none d-md-block">
-                <div class="d-md-flex justify-content-md-center">
-                  <v-carousel
-                    cycle
-                    hide-delimiters
-                    v-model="model"
-                    height="400"
-                    class="provider-pics"
-                  >
-                    <v-carousel-item
-                      v-for="slide in slides"
-                      :key="slide.id"
-                      :src="slide.path | createImagePath"
+                <div class="col-md-6 d-none d-md-block">
+                  <div class="d-md-flex justify-content-md-center">
+                    <v-carousel
+                      cycle
+                      hide-delimiters
+                      v-model="model"
+                      height="400"
+                      class="provider-pics"
                     >
-                    </v-carousel-item>
-                  </v-carousel>
-                </div>
-              </div>
-            </div>
-            <div class="top">
-              <v-btn color="primary" text x-large to="/accueil">
-                <v-icon>mdi-arrow-left</v-icon>
-                Retour
-              </v-btn>
-              <div>
-                <favorite-btn :benefit="benefit"></favorite-btn>
-
-                <v-tooltip top>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      icon
-                      x-large
-                      link
-                      @click="shareModals = true"
-                      color="primary"
-                    >
-                      <v-icon x-large v-bind="attrs" v-on="on"
-                        >mdi-share-variant</v-icon
+                      <v-carousel-item
+                        v-for="slide in slides"
+                        :key="slide.id"
+                        :src="slide.path | createImagePath"
                       >
-                    </v-btn>
-                  </template>
-                  <span>Partager sur les reseaux sociaux</span>
-                </v-tooltip>
+                      </v-carousel-item>
+                    </v-carousel>
+                  </div>
+                </div>
               </div>
-            </div>
-          </jumbotron>
+              <div class="top">
+                <v-btn color="primary" text x-large to="/accueil">
+                  <v-icon>mdi-arrow-left</v-icon>
+                  Retour
+                </v-btn>
+                <div>
+                  <favorite-btn :benefit="benefit"></favorite-btn>
+
+                  <v-tooltip top>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        icon
+                        x-large
+                        link
+                        @click="shareModals = true"
+                        color="primary"
+                      >
+                        <v-icon x-large v-bind="attrs" v-on="on"
+                          >mdi-share-variant</v-icon
+                        >
+                      </v-btn>
+                    </template>
+                    <span>Partager sur les reseaux sociaux</span>
+                  </v-tooltip>
+                </div>
+              </div>
+            </jumbotron>
+          </v-skeleton-loader>
           <share-modal
             :benefit="benefit"
             :shareModals.sync="shareModals"
@@ -272,6 +284,11 @@ import SocialDialog from "@/components/socialDialog.vue";
 export default Vue.extend({
   name: "Benefit",
   mixins: [utilsMixin],
+  inject: {
+    theme: {
+      default: { isDark: false },
+    },
+  },
 
   data() {
     return {
