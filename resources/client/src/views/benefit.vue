@@ -74,29 +74,27 @@
               </v-btn>
               <div>
                 <favorite-btn :benefit="benefit"></favorite-btn>
-                <ShareNetwork
-                  class="share"
-                  network="facebook"
-                  url="https://news.vuejs.org/issues/180"
-                  title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
-                  description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-                  quote="The hot reload is so fast it\'s near instant. - Evan You"
-                  hashtags="vuejs,vite"
-                >
-                  <v-tooltip top>
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn icon x-large link color="primary">
-                        <v-icon x-large v-bind="attrs" v-on="on"
-                          >mdi-share-variant</v-icon
-                        >
-                      </v-btn>
-                    </template>
-                    <span>Partager sur Facebook</span>
-                  </v-tooltip>
-                </ShareNetwork>
+
+                <v-tooltip top>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      icon
+                      x-large
+                      link
+                      @click="shareModals = true"
+                      color="primary"
+                    >
+                      <v-icon x-large v-bind="attrs" v-on="on"
+                        >mdi-share-variant</v-icon
+                      >
+                    </v-btn>
+                  </template>
+                  <span>Partager sur Facebook</span>
+                </v-tooltip>
               </div>
             </div>
           </jumbotron>
+          <share-modal :shareModals.sync="shareModals"></share-modal>
         </div>
         <div class="main mx-auto mt-md-5">
           <div class="row">
@@ -249,6 +247,7 @@ import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import yanDate from "../components/yanDate.vue";
+import shareModal from "../components/shareModal.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
 import CommentRatingGrid from "@/components/CommentRatingGrid.vue";
 import utilsMixin from "../mixins/utils.mixin";
@@ -281,6 +280,7 @@ export default Vue.extend({
       enterprise: "" as string,
       currentId: null as unknown as number,
       SocketConnected: false,
+      shareModals: false,
     };
   },
   async beforeMount(): Promise<void> {
@@ -310,6 +310,7 @@ export default Vue.extend({
     CommentRatingGrid,
     SocialDialog,
     yanDate,
+    shareModal,
   },
   computed: {
     id_user() {

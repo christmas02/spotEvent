@@ -48,6 +48,9 @@ export default Vue.extend({
 .share {
   text-decoration: none !important;
 }
+.v-card {
+  overflow: hidden !important;
+}
 
 .main {
   width: 90%;
