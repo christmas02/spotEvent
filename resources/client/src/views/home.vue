@@ -61,12 +61,12 @@
           </div>
         </div>
         <div>
-          <h2 class="section-title">Panneau</h2>
+          <h2 class="section-title">Panneau publicitaire</h2>
           <div class="my-5">
-            <div class="col-md-4 mx-auto">
+            <div>
               <v-img
                 :src="require('../assets/images/jmbg2.png')"
-                height="300"
+                height="350"
               ></v-img>
             </div>
           </div>

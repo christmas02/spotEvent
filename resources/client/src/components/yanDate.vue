@@ -1,14 +1,16 @@
 <template>
   <div>
     <v-date-picker
-      :readonly="true"
-      v-model="date"
-      :events="allowedDates"
+      readonly
+      multiple
+      :show-current="false"
+      v-model="test"
       class="mt-4"
       locale="fr"
       full-width
-      event-color="green lighten-1"
-      color="primary"
+      header-color="primary"
+      color="red"
+      :picker-date.sync="pickerDate"
       elevation="10"
     ></v-date-picker>
   </div>
@@ -20,21 +22,12 @@ export default Vue.extend({
   data() {
     return {
       allowedDates: null as unknown,
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),,
-      test: ["2018-03-03", "2018-03-04"],
+      pickerDate: null,
+      // date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      //   .toISOString()
+      //   .substr(0, 10),
+      test: ["2021-10-22", "2021-10-23"],
     };
-  },
-  mounted() {
-    // this.allowedDates = [new Date("2021-11-20")];
-    // this.allowedDates = [...Array(6)].map(() => {
-    //   const day = Math.floor(Math.random() * 30);
-    //   const d = new Date();
-    //   d.setDate(day);
-    //   console.log(d, d.toISOString().substr(0, 10));
-
-    //   return d.toISOString().substr(0, 10);
-    // });
-    this.allowedDates = ["2021-10-21", "2021-10-22"];
   },
 });
 </script>

@@ -36,9 +36,12 @@
                       :title="benefit.name"
                       :description="benefit.presentation"
                       :quote="benefit.presentation"
-                      hashtags="vuejs,vite"
+                      :hashtags="name"
                     >
-                      <v-btn color="primary">
+                      <v-btn
+                        color="primary"
+                        @click="$emit('update:shareModals', false)"
+                      >
                         <v-icon>mdi-facebook</v-icon>
                         Facebook
                       </v-btn>
@@ -53,9 +56,12 @@
                       :url="url"
                       :title="benefit.name"
                       :quote="benefit.presentation"
-                      hashtags="vuejs,vite"
+                      :hashtags="name"
                     >
-                      <v-btn color="primary">
+                      <v-btn
+                        color="primary"
+                        @click="$emit('update:shareModals', false)"
+                      >
                         <v-icon>mdi-instagram</v-icon>
                         Instagram
                       </v-btn>
@@ -113,6 +119,13 @@ export default Vue.extend({
     url() {
       // console.log(this.url, window.location.href);
       return window.location.href;
+    },
+  },
+  computed: {
+    name(): string {
+      console.log(this.benefit.name);
+
+      return this.benefit.name.toLowerCase().replaceAll(" ", "_");
     },
   },
 });
