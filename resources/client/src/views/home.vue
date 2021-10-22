@@ -61,7 +61,7 @@
           </div>
         </div>
         <div>
-          <h2 class="section-title">Panneau publicitaire</h2>
+          <!-- <h2 class="section-title">Panneau publicitaire</h2> -->
           <div class="my-5">
             <div>
               <v-img

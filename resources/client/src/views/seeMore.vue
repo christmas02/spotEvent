@@ -2,6 +2,17 @@
   <default-layout>
     <div id="homepage">
       <div class="main mx-auto">
+        <div>
+          <!-- <h2 class="section-title">Panneau publicitaire</h2> -->
+          <div class="my-5">
+            <div>
+              <v-img
+                :src="require('../assets/images/jmbg2.png')"
+                height="350"
+              ></v-img>
+            </div>
+          </div>
+        </div>
         <!-- <div class="d-none d-sm-block d-md-none">
           <search-form :handler="initSearch"></search-form>
         </div> -->
