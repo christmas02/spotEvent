@@ -62,14 +62,15 @@
         </div>
         <div>
           <!-- <h2 class="section-title">Panneau publicitaire</h2> -->
-          <div class="my-5">
+          <!-- <div class="my-5">
             <div>
               <v-img
                 :src="require('../assets/images/jmbg2.png')"
                 height="250"
               ></v-img>
             </div>
-          </div>
+          </div> -->
+          <pub></pub>
         </div>
 
         <div class="section mt-0 d-none d-md-block">
@@ -93,6 +94,7 @@
 <script lang="ts">
 import Vue from "vue";
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
+import pub from "@/components/pub.vue";
 import ProvidersSlider from "@/components/ProvidersSlider.vue";
 import { Benefit } from "@/interfaces/benefit.interface";
 import { ICategory } from "@/interfaces/category.interface";
@@ -110,6 +112,7 @@ export default Vue.extend({
     SearchForm,
     FilterForm,
     expansionPanel,
+    pub,
   },
   data() {
     return {
