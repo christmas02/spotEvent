@@ -39,7 +39,7 @@
                       :hashtags="name"
                     >
                       <v-btn
-                        color="primary"
+                        color="facebook"
                         @click="$emit('update:shareModals', false)"
                       >
                         <v-icon>mdi-facebook</v-icon>
@@ -52,18 +52,19 @@
                     <!-- :description="benefit.presentation" -->
                     <ShareNetwork
                       class="share"
-                      network="facebook"
+                      network="whatsapp"
                       :url="url"
                       :title="benefit.name"
+                      :description="benefit.presentation"
                       :quote="benefit.presentation"
                       :hashtags="name"
                     >
                       <v-btn
-                        color="primary"
+                        color="wha"
                         @click="$emit('update:shareModals', false)"
                       >
-                        <v-icon>mdi-instagram</v-icon>
-                        Instagram
+                        <v-icon>mdi-whatsapp</v-icon>
+                        WhatsApp
                       </v-btn>
                     </ShareNetwork>
 
@@ -137,5 +138,20 @@ export default Vue.extend({
   margin-left: 20px;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.facebook,
+.facebook *,
+.wha,
+.wha * {
+  color: #fff !important;
+}
+
+.facebook {
+  background-color: #4267b2 !important;
+}
+
+.wha {
+  background-color: #25d366 !important;
 }
 </style>

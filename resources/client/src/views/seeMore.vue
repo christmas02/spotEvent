@@ -8,7 +8,7 @@
             <div>
               <v-img
                 :src="require('../assets/images/jmbg2.png')"
-                height="350"
+                height="250"
               ></v-img>
             </div>
           </div>

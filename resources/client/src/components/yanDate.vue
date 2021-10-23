@@ -11,7 +11,6 @@
       header-color="primary"
       color="red"
       :picker-date.sync="pickerDate"
-      elevation="10"
     ></v-date-picker>
   </div>
 </template>

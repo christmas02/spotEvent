@@ -3,6 +3,14 @@
     <div id="homepage">
       <div class="main mx-auto">
         <div class="section">
+          <div class="my-5">
+            <div>
+              <v-img
+                :src="require('../assets/images/jmbg2.png')"
+                height="250"
+              ></v-img>
+            </div>
+          </div>
           <div class="psearch mx-auto">
             <v-autocomplete
               v-model="model"
@@ -43,28 +51,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import YanPaginate from "@/components/YanPaginate.vue";
 import PrestatairesGrid from "@/components/PrestatairesGrid.vue";
-import ProvidersSlider from "@/components/ProvidersSlider.vue";
-import { Benefit } from "@/interfaces/benefit.interface";
-import { IProvider } from "@/interfaces/Provider.interface";
-import { ICategory } from "@/interfaces/category.interface";
-import { IEstimate } from "@/interfaces/estimation.interface";
-import SearchForm from "../components/forms/SearchForm.vue";
-import FilterForm from "@/components/forms/FilterForm.vue";
-import { AppService } from "@/services/app.service";
-import { IIdPrestation } from "@/interfaces/app-services.interfaces";
 import { BenefitService } from "../services/benefit.service";
 import { IAutocompleteProvidersResponse } from "../interfaces/provider.interface";
 export default Vue.extend({
   name: "Home",
   components: {
-    BenefitsGrid,
     PrestatairesGrid,
-    ProvidersSlider,
-    SearchForm,
-    FilterForm,
     YanPaginate,
   },
   data() {
