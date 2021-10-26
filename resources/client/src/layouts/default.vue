@@ -131,7 +131,7 @@ export default {
       navBarHeight: "90",
       scroll: 0,
       drawer: false,
-      defaultUrl: `${window.location.origin}/storage/`,
+      defaultUrl: `${window.location.origin}/spotevent/public/storage/`,
       group: null,
       links: [
         {
