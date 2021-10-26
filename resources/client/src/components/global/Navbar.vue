@@ -167,7 +167,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      defaultUrl: `${window.location.origin}/`,
+      defaultUrl: `${window.location.origin}/spotevent/public/storage/`,
       statusWorkerDialog: false,
       statusFavoriteDialog: false,
       links: [
