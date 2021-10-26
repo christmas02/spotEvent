@@ -38,8 +38,10 @@
             <v-avatar size="30" class="mr-2">
               <v-img
                 lazy-src="https://picsum.photos/id/11/500/300"
-                :src="user.path_user | createImagePath"
+                :src="defaultUrl + pathUser"
+                height="30px"
               ></v-img>
+              <!-- :src="user.path_user | createImagePath" -->
               <!-- <img :src="user.path_user | createImagePath" /> -->
             </v-avatar>
             {{ user.name }}
@@ -112,6 +114,7 @@ import WorkerSpaceModal from "@/components/global/WorkerSpaceModal.vue";
 import Vue from "vue";
 export default Vue.extend({
   components: { favoriteModal, WorkerSpaceModal },
+
   model: {
     prop: "drawer",
     event: "change",
@@ -164,6 +167,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      defaultUrl: `${window.location.origin}/`,
       statusWorkerDialog: false,
       statusFavoriteDialog: false,
       links: [
@@ -191,6 +195,9 @@ export default Vue.extend({
     };
   },
   computed: {
+    pathUser: function () {
+      return this.$store.getters["auth/user"].path_user;
+    },
     auth(): boolean {
       return this.$store.getters["auth/isConnected"];
     },

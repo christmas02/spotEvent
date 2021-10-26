@@ -1,7 +1,7 @@
 <template>
   <div class="my-5">
     <div>
-      <v-img :src="`${test}`" height="250"></v-img>
+      <v-img :src="val" height="250" aspect-ratio="1"></v-img>
       <!-- <v-img :src="require(`${test}`)" height="250"></v-img> -->
     </div>
   </div>
@@ -12,11 +12,16 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      test: "./../assets/images/jmbg2.png",
+      test: require("./../assets/images/jmbg2.png"),
     };
   },
-  mounted() {
-    this.test = "./../assets/images/jmbg2.png";
+  // mounted() {
+  //   this.test = "./../assets/images/jmbg2.png";
+  // },
+  computed: {
+    val() {
+      return require(`${this.src}`);
+    },
   },
   props: {
     src: {
