@@ -42,6 +42,12 @@ Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
 Route::get('/Contenus/{id}','AdminController@listContenus');
 
+Route::get('/fiche_actif/{id}','AdminController@listficheactif');
+Route::get('/fiche_non_actif/{id}','AdminController@listfichenonactif');
+
+Route::get('/smsenvojer/{id}','AdminController@smsEnvoye');
+
+
 Route::post('/update/contenus','AdminController@updateContenus');
 Route::post('/delet/user','AdminController@deletUser');
 
