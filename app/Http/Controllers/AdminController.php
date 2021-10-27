@@ -11,6 +11,7 @@ use App\Galerie;
 use App\Demande;
 use App\Clicfiche;
 use App\Clicphone;
+use App\Commentaire;
 use App\Conversation;
 use App\Estimation;
 use App\Message;
@@ -179,10 +180,16 @@ class AdminController extends Controller
                         $demandeMonth = $this->demandeMonth($prestataire->id_user);
 
         $galerie = $this->galerie($prestataire->id_user);
+
+        $commentaire = Commentaire::where('commentaires.id_prestataire',$id)
+        ->leftjoin('users','users.id','=','commentaires.id_user')
+        ->leftjoin('fiches','fiches.id','=','commentaires.id_prestataire')
+        ->select('fiches.name as prestataire','users.name as utilisateur', 'commentaires.contenus','commentaires.vote')
+        ->get();
         //dd($prestataire->id_user);
 
         return view('admin.fiche_prestataire',compact('prestataire','galerie','infoUser',
-        'visite','phone','demande','listDemande','visiteMonth','phoneMonth','demandeMonth'));
+        'visite','phone','demande','listDemande','visiteMonth','phoneMonth','demandeMonth','commentaire'));
     }
 
     public function statiatique($id){
@@ -556,6 +563,16 @@ class AdminController extends Controller
         $listsms = Smsrapport::all();
         $stock_sms = DB::table('sms')->first();
         return view('admin/smsenvoyer',compact('infoUser','listsms','stock_sms'));
+
+    }
+
+    public function listCommentaire($id){
+        $infoUser = $this->Userinfo($id);
+        $commentaire = Commentaire::leftjoin('users','users.id','=','commentaires.id_user')
+        ->leftjoin('fiches','fiches.id','=','commentaires.id_prestataire')
+        ->select('fiches.name as prestataire','users.name as utilisateur', 'commentaires.contenus','commentaires.vote')
+        ->get();
+        return view('admin/commentaires',compact('infoUser','commentaire'));
 
     }
 

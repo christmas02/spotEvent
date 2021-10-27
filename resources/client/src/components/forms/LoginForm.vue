@@ -21,11 +21,23 @@
         @click:append="show1 = !show1"
       ></v-text-field>
     </div>
-    <div class="d-flex justify-space-between align-end">
-      <v-btn color="primary" type="submit" :disabled="loading">{{
-        loading ? "Veuillez patienter ..." : "Connexion"
-      }}</v-btn>
-      <router-link :to="{ name: 'reset' }"> Mot de passe oublié ?</router-link>
+    <div class="d-sm-flex justify-space-between align-end">
+      <div>
+        <v-btn color="primary" type="submit" :disabled="loading">{{
+          loading ? "Veuillez patienter ..." : "Connexion"
+        }}</v-btn>
+      </div>
+      <div :style="$vuetify.breakpoint.smAndDown ? 'margin-top: 10px' : ''">
+        <router-link :to="{ name: 'reset' }">
+          Mot de passe oublié ?</router-link
+        >
+      </div>
+    </div>
+    <div class="mt-8" v-if="$vuetify.breakpoint.smAndDown">
+      <router-link :to="{ name: 'auth-register' }">Inscrivez-vous</router-link>
+    </div>
+    <div class="mt-8" v-if="$vuetify.breakpoint.smAndDown">
+      <router-link :to="{ name: 'auth-register' }">Inscrivez-vous</router-link>
     </div>
   </v-form>
 </template>

@@ -1,52 +1,98 @@
 <template>
-  <v-form
-    ref="registerForm"
-    lazy-validation
-    @submit.prevent="registerUser"
-    class="h-100 d-flex flex-column justify-content-between"
-  >
-    <h1 class="page-title">Inscription</h1>
+  <div>
+    <v-form
+      ref="registerForm"
+      lazy-validation
+      @submit.prevent="registerUser"
+      class="h-100 d-flex flex-column justify-content-between"
+    >
+      <h1 class="page-title">Inscription</h1>
 
-    <div class="mt-3">
-      <v-text-field
-        label="Nom et prenoms"
-        v-model="form.name"
-        :rules="requiredRules"
-      ></v-text-field>
-      <v-text-field
-        label="Email"
-        type="email"
-        v-model="form.email"
-        :rules="emailRules"
-      ></v-text-field>
-      <v-text-field
-        label="N° de téléphone"
-        v-model="form.phone"
-        type="tel"
-        :rules="requiredRules"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.password"
-        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-        :type="show1 ? 'text' : 'password'"
-        label="Choisir un mot de passe"
-        @click:append="show1 = !show1"
-        :rules="passwordRules"
-      ></v-text-field>
-      <v-text-field
-        v-model="form.password_confirmation"
-        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-        :type="show2 ? 'text' : 'password'"
-        label="Confirmer le mot de passe"
-        @click:append="show2 = !show2"
-        :rules="confirmPasswordRules"
-      ></v-text-field>
+      <div class="mt-3">
+        <v-text-field
+          v-if="role == 2"
+          label="Nom de l'entreprise"
+          v-model="form.entreprise"
+          :rules="requiredRules"
+        ></v-text-field>
+        <v-text-field
+          label="Nom et prenoms"
+          v-model="form.name"
+          :rules="requiredRules"
+        ></v-text-field>
+
+        <v-text-field
+          label="Email"
+          type="email"
+          v-model="form.email"
+          :rules="emailRules"
+        ></v-text-field>
+        <v-text-field
+          label="N° de téléphone"
+          v-model="form.phone"
+          type="tel"
+          :rules="requiredRules"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.password"
+          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="show1 ? 'text' : 'password'"
+          label="Choisir un mot de passe"
+          @click:append="show1 = !show1"
+          :rules="passwordRules"
+        ></v-text-field>
+        <v-text-field
+          v-model="form.password_confirmation"
+          :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="show2 ? 'text' : 'password'"
+          label="Confirmer le mot de passe"
+          @click:append="show2 = !show2"
+          :rules="confirmPasswordRules"
+        ></v-text-field>
+      </div>
+      <div class="nb" v-if="role == 1">
+        <div>
+          <v-checkbox
+            v-model="checkbox1"
+            :rules="[(v) => v == true || 'Vous devez accepter cette condition']"
+            label="Lorsque vous souhaiterez joindre un prestataire par téléphone,
+        une notification lui sera envoyée comportant des informations telles que
+        votre prénom et votre nom ainsi que votre contact téléphonique"
+          ></v-checkbox>
+        </div>
+        <div>
+          <v-checkbox
+            v-model="checkbox2"
+            :rules="[(v) => v == true || 'Vous devez accepter cette condition']"
+            label="Lorsque vous aurez collaboré avec un prestataire, vous serez être
+        sollicité (e) pour noter le prestataire"
+          ></v-checkbox>
+        </div>
+      </div>
+      <div class="mt-2">
+        <v-btn color="primary" type="submit" :disabled="loading">
+          <template v-if="loading">Veuillez patienter ...</template>
+          <v-icon v-else>mdi-arrow-right</v-icon>
+        </v-btn>
+      </div>
+    </v-form>
+    <div
+      class="mt-5 d-flex justify-content-end"
+      v-if="$vuetify.breakpoint.smAndDown"
+    >
+      <router-link :to="{ name: 'auth-login' }">Connectez-vous</router-link>
     </div>
-    <div>
+    <div class="mt-2">
       <v-btn color="primary" type="submit" :disabled="loading">
         <template v-if="loading">Veuillez patienter ...</template>
         <v-icon v-else>mdi-arrow-right</v-icon>
       </v-btn>
+    </div>
+    <div
+      class="mt-5 d-flex justify-content-end"
+      v-if="$vuetify.breakpoint.smAndDown"
+    >
+      <router-link :to="{ name: 'auth-login' }">Connectez-vous</router-link>
     </div>
   </v-form>
 </template>
@@ -71,12 +117,15 @@ export default Vue.extend({
     return {
       form: {
         name: "",
+        entreprise: "",
         email: "",
         role: "",
         phone: "",
         password: "",
         password_confirmation: "",
       } as IRegister,
+      checkbox1: false,
+      checkbox2: false,
       show1: false,
       show2: false,
       loading: false,
@@ -97,7 +146,7 @@ export default Vue.extend({
         if (result.statu != 0) {
           const result = await this.$swal({
             icon: "info",
-            text: "Vous avez reçu un email de confirmation, verifiez aussi vos spams si vous le retrouvez pas dans votre boite de receprion",
+            text: "Vous avez reçu un email de confirmation, verifiez aussi vos spams si vous le retrouvez pas dans votre boite de reception",
             allowOutsideClick: false,
           });
 

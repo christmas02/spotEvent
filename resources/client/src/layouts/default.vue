@@ -131,7 +131,7 @@ export default {
       navBarHeight: "90",
       scroll: 0,
       drawer: false,
-      defaultUrl: `${window.location.origin}/storage/`,
+      defaultUrl: `${window.location.origin}/spotevent/public/storage/`,
       group: null,
       links: [
         {
@@ -177,12 +177,16 @@ export default {
       this.$emit("change", true);
     },
     goHome() {
-      this.$router.push("/");
+      // this.$router.push("/");
+      this.$router.push({ name: "Home" });
     },
     logout() {
+      // window.location.href = "/";
       this.$store.commit("auth/logout");
+      this.$router.push({ name: "auth-login" });
+      console.log("bingo");
       if (this.$route.name != "Home") {
-        this.$router.push("/");
+        // this.$router.push("/");
       }
     },
     chat() {

@@ -11,7 +11,7 @@
           />
           <div>
             <img src="../assets/icons/lfb.png" alt="facebook" class="icon" />
-            <img src="../assets/icons/ltwt.png" alt="twitter" class="icon" />
+            <img src="../assets/icons/inst.png" alt="instagram" class="icon" />
             <img src="../assets/icons/lytb.png" alt="youtube" class="icon" />
           </div>
         </div>
@@ -85,9 +85,10 @@
     </v-navigation-drawer>
     <div class="col-md-6">
       <div class="form-container">
-        <div class="d-flex justify-end">
+        <div class="d-flex justify-end" v-if="auth">
           <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         </div>
+
         <slot></slot>
       </div>
     </div>
@@ -131,7 +132,8 @@ export default Vue.extend({
     //   console.log(this.$route.name);
     // },
     goHome() {
-      this.$router.push("/");
+      // this.$router.push("/");
+      this.$router.push({ name: "Home" });
     },
   },
   data() {
@@ -200,6 +202,8 @@ export default Vue.extend({
 #auth-layout .icon {
   cursor: pointer;
   margin-left: 10px;
+  height: 50px;
+  width: 50px;
 }
 
 #auth-layout .page-title {

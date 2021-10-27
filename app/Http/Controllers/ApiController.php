@@ -954,9 +954,12 @@ class ApiController extends Controller
 
                     $phone = str_replace(' ','',$infoPrestataire->phone_service);
 
-                    //dd($phone);
-
                     $destinataire = '225'.$phone;
+                    $msg = "Bonjour (nom du prestataire), 
+                           (prénom + nom du client) joignable au 
+                           (numéro de téléphone du client) a souhaité rentrer 
+                           en contact avec vous. L'équipe Spot Event";
+
                     $rapportSms =  new Smsrapport;
 
                     $rapportSms->id_prestataire = $id_prestataire;

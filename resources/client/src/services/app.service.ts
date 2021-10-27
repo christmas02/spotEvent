@@ -8,6 +8,7 @@ import {
 import { CommonService } from "./Common.service";
 import {
     IClick,
+    IPhoneOrWaClick,
     IClickResponse,
     IContactForm,
     IContactFormResponse,
@@ -146,6 +147,21 @@ export class AppService extends CommonService {
             } as IClickResponse;
         }
     }
+    async phoneOrWaClick(body: IPhoneOrWaClick): Promise<any> {
+        try {
+            const { data }: { data: IPhoneOrWaClick } = await this.client.post(
+                "sendSms",
+                body
+            );
+
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0
+            } as any;
+        }
+    }
 
     async benefitClick(body: IClick): Promise<IClickResponse> {
         try {
@@ -166,7 +182,7 @@ export class AppService extends CommonService {
     async contents(): Promise<IContentsResponse> {
         try {
             const { data }: { data: IContentsResponse } = await this.client.get(
-                "Liste_contenus",
+                "Liste_contenus"
             );
 
             return data;

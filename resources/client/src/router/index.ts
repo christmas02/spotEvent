@@ -19,7 +19,7 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
     {
-        path: "/",
+        path: "/accueil",
         name: "Home",
         component: HomeScreen
     },
@@ -54,7 +54,7 @@ const routes: Array<RouteConfig> = [
         component: Chat
     },
     {
-        path: "/connexion",
+        path: "/",
         name: "auth-login",
         component: LoginScreen
     },
@@ -91,19 +91,26 @@ const router = new VueRouter({
 
 const guarded_routes: string[] = [];
 
-const guest_routes: string[] = ["auth-login", "auth-register"];
+const guest_routes: string[] = ["auth-login", "auth-register", "reset"];
 
 const isConnected = store.getters["auth/isConnected"];
 
 router.beforeEach((to, from, next) => {
     const routeName = to.name as string;
+    const fromRouteName = from.name as string;
+    const local = localStorage.getItem("vuex") as any;
+    const isAuth = JSON.parse(local).auth.auth;
+    // console.log(JSON.parse(local).auth.auth);
+
     ///if not connected and want to access routes guarded
-    if (guarded_routes.includes(routeName) && !isConnected) {
+    if (guarded_routes.includes(routeName) && !isAuth) {
         next({ name: "auth-login" });
     }
     //else if connected and want to access to guest routes
-    else if (isConnected && guest_routes.includes(routeName)) {
+    else if (isAuth && guest_routes.includes(routeName)) {
         next({ name: "Home" });
+    } else if (!isAuth && !guest_routes.includes(routeName)) {
+        next({ name: "auth-login" });
     }
     //else good
     else next();
