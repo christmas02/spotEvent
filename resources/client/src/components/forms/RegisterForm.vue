@@ -74,6 +74,12 @@
         <v-icon v-else>mdi-arrow-right</v-icon>
       </v-btn>
     </div>
+    <div
+      class="mt-5 d-flex justify-content-end"
+      v-if="$vuetify.breakpoint.smAndDown"
+    >
+      <router-link :to="{ name: 'auth-login' }">Connectez-vous</router-link>
+    </div>
   </v-form>
 </template>
 
