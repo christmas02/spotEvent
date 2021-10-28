@@ -137,6 +137,29 @@ class PrestataireController extends Controller
             if($ficheExist){
                 return redirect()->back()->with('danger', 'Vous possédez déjà une fiche prestataire.');
             }
+            
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'localisation' => 'required',
+                'id_prestations' => 'required',
+                'description' => ['required'],
+                'presentation' => ['required', 'string', 'max:400'],
+                'detail_localisation' => 'required',
+                'phone_service' => ['string', 'max:10'],
+                'phone2_service' => ['string', 'max:10'],
+                'phone_whastapp' => ['string', 'max:10'],
+                'lien_facebook' => ['string', 'max:100'],
+                'lien_instagram' => ['string', 'max:100'],
+                'email_service' => ['string', 'max:50'],
+              
+                
+            ]);
+     
+            if ($validator->fails()) {
+                //dd($validator);
+                return back()->withErrors($validator)->withInput();
+            }
 
             /*$image = $request->file('image_five');
             $image_five = $input['image_fivename'] = time(). '.' . $image->getClientOriginalname();
