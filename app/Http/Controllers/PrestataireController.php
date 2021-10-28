@@ -146,12 +146,12 @@ class PrestataireController extends Controller
                 'description' => ['required'],
                 'presentation' => ['required', 'string', 'max:400'],
                 'detail_localisation' => 'required',
-                'phone_service' => ['string', 'max:10'],
-                'phone2_service' => ['string', 'max:10'],
-                'phone_whastapp' => ['string', 'max:10'],
+                'phone_service' => ['numeric', 'max:10'],
+                'phone2_service' => ['numeric', 'max:10'],
+                'phone_whastapp' => ['numeric', 'max:10'],
                 'lien_facebook' => ['string', 'max:100'],
                 'lien_instagram' => ['string', 'max:100'],
-                'email_service' => ['string', 'max:50'],
+                'email_service' => ['email', 'max:50'],
               
                 
             ]);

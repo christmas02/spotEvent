@@ -17,7 +17,7 @@
                 </div>
               </div>
             </div>
-        <divr class="clearfix"> </divr
+        <divr class="clearfix"> </div>
 
         <div class="row">
 
@@ -49,8 +49,11 @@
                                             for="first-name">Nom de la structure <small class="required text-danger">(Obligatoire)</small>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" autocomplete="name" autofocus required>
+                                            <input type="text" name="name" class="form-control  @error('nom') is-invalid @enderror" id="name" value="{{ old('name') }}">
                                             <input type="text" name="id_user" hidden value="{{ $infoUser->id }}" class="form-control">
+                                            @error('name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -59,12 +62,15 @@
                                             for="first-name">Secteur d'activité <small class="required text-danger">(Obligatoire)</small>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}"required>
-                                            <option>Choisir votre prestation</option>
+                                            <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}">
+                                            <option value="">Choisir votre prestation</option>
                                             @foreach($listPrestation as $items)
                                                 <option value="{{ $items->id }}"> {{ $items->name }}</option>
                                             @endforeach    
                                             </select>
+                                            @error('id_prestations')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -73,12 +79,15 @@
                                             for="first-name">Situation géographique <small class="required text-danger">(Obligatoire)</small>
                                         </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <select name="localisation" class="form-control" value="{{ old('localisation') }}" autocomplete="localisation" autofocus required>
-                                            <option>Choisir la commune</option>
+                                            <select name="localisation" class="form-control" value="{{ old('localisation') }}">
+                                            <option value="">Choisir la commune</option>
                                             @foreach($listCommune as $items)
                                                 <option value="{{ $items->id }}"> {{ $items->name }}</option>
                                             @endforeach    
                                             </select>
+                                            @error('localisation')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -87,7 +96,11 @@
                                             class="col-form-label col-md-4 col-sm-4 label-align">Détail sur la localisation <small>Une présentation de 100 mots</small> <small class="required text-danger">(Obligatoire)</small></label>
 
                                         <div class="col-md-6 col-sm-6 ">
-                                            <textarea rows="4" size="100" name="detail_localisation" class="form-control" value="{{ old('localisation') }}" autocomplete="localisation" autofocus required></textarea>
+                                            <textarea rows="4" size="100" name="detail_localisation" class="form-control" value=""> {{ old('detail_localisation') }} </textarea>
+                                        
+                                        @error('detail_localisation')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
 
@@ -96,7 +109,11 @@
                                             class="col-form-label col-md-4 col-sm-4 label-align">Présentation de la structure <small>Une présentation de 250 mots</small> <small class="required text-danger">(Obligatoire)</small> </label>
 
                                         <div class="col-md-6 col-sm-6 ">
-                                            <textarea rows="4" size="400" name="presentation" class="form-control" value="{{ old('presentation') }}" autocomplete="presentation" autofocus required></textarea>
+                                            <textarea rows="4" size="400" name="presentation" class="form-control" value="" autocomplete="presentation">{{ old('presentation') }}</textarea>
+                                        
+                                        @error('presentation')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
 
@@ -104,9 +121,12 @@
                                         <label for="middle-name"
                                             class="col-form-label col-md-4 col-sm-4 label-align">Description du service <small class="required text-danger">(Obligatoire)</small> </label>
                                         <div class="col-md-6 col-sm-6 ">
-                                            <textarea rows="8" name="description" class="form-control" value="{{ old('description') }}" autocomplete="description" autofocus required></textarea>
-                                    
+                                            <textarea rows="8" name="description" class="form-control" value="" autocomplete="description"> {{ old('description') }}</textarea>
+                                        @error('description')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
+                                        
                                     </div>
 
 
@@ -118,8 +138,13 @@
                                         Numéro de téléphone <small class="required text-danger">(Obligatoire)</small>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" name="phone_service" class="form-control" value="{{ old('phone_service') }}" autocomplete="phone_service" autofocus required>
+                                        <input type="text" name="phone_service" class="form-control" value="{{ old('phone_service') }}">
+                                    
+                                    @error('phone_service')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
+            
                                 </div>
 
                                 <div class="item form-group">
@@ -128,6 +153,9 @@
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="phone2_service"  class="form-control">
+                                        @error('phone2_service')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
                                 </div>
 
@@ -137,6 +165,9 @@
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="phone_whastapp"  class="form-control">
+                                        @error('phone_whastapp')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
                                 </div>
 
@@ -147,6 +178,9 @@
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="lien_facebook"  class="form-control">
+                                        @error('lien_facebook')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
                                 </div>
 
@@ -156,6 +190,9 @@
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="lien_instagram"  class="form-control">
+                                        @error('lien_instagram')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
                                 </div>
 
@@ -165,6 +202,9 @@
                                         </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <input type="text" name="email_service"  class="form-control">
+                                        @error('email_service')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
                                 </div>
 
@@ -178,7 +218,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select required="required" name="estimation_min" class="form-control " required>
-                                        <option>Choisir l'estimation</option>
+                                        <option value="0">Choisir l'estimation</option>
                                             @foreach($listEstimation as $items)
                                                 <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
                                             @endforeach    
@@ -192,7 +232,7 @@
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
                                         <select required="required" name="estimation_max" class="form-control " required>
-                                        <option>Choisir l'estimation</option>
+                                        <option value="0">Choisir l'estimation</option>
                                             @foreach($listEstimation as $items)
                                                 <option value="{{ $items->libelle }}"> {{ $items->libelle }}</option>
                                             @endforeach    

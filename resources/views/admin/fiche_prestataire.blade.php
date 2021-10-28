@@ -163,7 +163,7 @@
                                             <tbody style="font-size: 16px;">
                                                 <tr>
                                                     <td></td>
-                                                    <td>Nombre total de visite</td>
+                                                    <td>Nombre total de visites</td>
                                                     <td class="hidden-phone"><strong>{{ $visiteMonth }}</strong></td>
                                                 </tr>
                                                 <tr>
