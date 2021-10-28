@@ -30,6 +30,7 @@ Route::post('/add/gallerie','PrestataireController@addGaleri');
 Route::post('/update/image','PrestataireController@updateImage');
 Route::post('/delet/image','PrestataireController@deletImage');
 
+
 Route::get('mise_a_jour_image/{id}','PrestataireController@editImage');
 
 Route::get('/welcome/tableau/administrateur/{id}','AdminController@home')->name('administrateur');
@@ -40,16 +41,17 @@ Route::get('/list/prestations/{id}','AdminController@getPrestations');
 Route::get('/statistique/{id}','AdminController@statiatique');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
-Route::get('/Contenus/{id}','AdminController@listContenus');
+Route::get('/Contenus/{id}','AdminController@listContenus'); 
 
 Route::get('/fiche_actif/{id}','AdminController@listficheactif');
 Route::get('/fiche_non_actif/{id}','AdminController@listfichenonactif');
 
 Route::get('/smsenvojer/{id}','AdminController@smsEnvoye');
-
+Route::get('/Commentaire/{id}','AdminController@listCommentaire');
 
 Route::post('/update/contenus','AdminController@updateContenus');
 Route::post('/delet/user','AdminController@deletUser');
+Route::post('/delet/fiche','AdminController@deletfiche'); 
 
 Route::get('/messageries/{id}','AdminController@message');
 Route::get('/listPrestatiaire/{id}','AdminController@listeprestatire');

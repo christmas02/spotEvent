@@ -84,7 +84,7 @@
                                             data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278"
                                             data-speed="2000" data-fresh-interval="700">{{ count($commentaire) }}</h3>
-                                        <span class="text-white">Avis Utilisateur</span>
+                                        <span class="text-white">Avis Utilisateurs</span>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                             data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
                                         <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521"
                                             data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
-                                        <span class="text-white">Sms reçu</span>
+                                        <span class="text-white">Sms reçus</span>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                                             <thead>
                                                 <tr style="font-size: 20px;">
                                                     <th></th>
-                                                    <th>Designstion</th>
+                                                    <th>Designation</th>
                                                     <th>Statistiques</th>
 
                                                 </tr>
@@ -324,7 +324,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Avis Utkisateur</h2>
+                        <h2>Avis Utilisateur</h2>
 
                         <div class="clearfix"></div>
                     </div>

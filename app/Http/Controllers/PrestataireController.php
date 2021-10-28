@@ -130,6 +130,14 @@ class PrestataireController extends Controller
         //dd($request->all());
         try {
 
+            $id_user =  $request->get('id_user');
+
+            $ficheExist = Fiche::where('id_user',$id_user)->first();
+
+            if($ficheExist){
+                return redirect()->back()->with('danger', 'Vous possédez déjà une fiche prestataire.');
+            }
+
             /*$image = $request->file('image_five');
             $image_five = $input['image_fivename'] = time(). '.' . $image->getClientOriginalname();
             $destination = public_path('/image');

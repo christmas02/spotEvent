@@ -575,10 +575,36 @@ class AdminController extends Controller
 
     }
 
+    public function deletfiche(Request $request){
+
+        try {
+            $id = $request->get('id');
+
+            $image = Fiche::find($id);
+            $image->delete();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+           //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        } 
+
+    }
+
     public function deletUser(Request $request){
 
         try {
             $id = $request->get('id');
+
+            $ficheExist = Fiche::where('id_user',$id)->first();
+
+            /*if($ficheExist){
+
+                $fiche = Fiche::find($id);
+                $fiche->delete();
+
+            }*/
 
             $image = User::find($id);
             $image->delete();
