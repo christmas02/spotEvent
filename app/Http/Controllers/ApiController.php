@@ -142,7 +142,8 @@ class ApiController extends Controller
         try {
 
             $name = $request['name'];
-            $slug = str_replace('-',' ',$name);
+            $all = array(" ","'",",");
+            $slug = str_replace('-'," ",$name);
 
             //dd($slug);
 
