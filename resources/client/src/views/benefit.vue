@@ -94,6 +94,12 @@
                 <div>
                   <p>{{ benefit.description }}</p>
                 </div>
+                <div class="calendar">
+                  <p>Un calendrier</p>
+                  <div class="col-md-6">
+                    <yan-date></yan-date>
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -209,6 +215,7 @@
 import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
+import yanDate from "../components/yanDate.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
 import CommentRatingGrid from "@/components/CommentRatingGrid.vue";
 import utilsMixin from "../mixins/utils.mixin";
@@ -224,6 +231,7 @@ import SocialDialog from "@/components/socialDialog.vue";
 export default Vue.extend({
   name: "Benefit",
   mixins: [utilsMixin],
+
   data() {
     return {
       model: 0,
@@ -267,6 +275,7 @@ export default Vue.extend({
     CommentRatingUser,
     CommentRatingGrid,
     SocialDialog,
+    yanDate,
   },
   computed: {
     id_user() {
