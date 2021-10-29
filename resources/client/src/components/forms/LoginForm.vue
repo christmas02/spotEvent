@@ -27,6 +27,9 @@
       }}</v-btn>
       <router-link :to="{ name: 'reset' }"> Mot de passe oublié ?</router-link>
     </div>
+    <div class="mt-8" v-if="$vuetify.breakpoint.smAndDown">
+      <router-link :to="{ name: 'auth-register' }">Inscrivez-vous</router-link>
+    </div>
   </v-form>
 </template>
 
