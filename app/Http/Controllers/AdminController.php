@@ -637,6 +637,30 @@ class AdminController extends Controller
 
     }
 
+    public function profilactif($id){
+
+        
+        try {
+            //code...
+            //dd($request->all());
+            //dd($id);
+
+            $user = User::where('id',$id)->first();
+            //dd($id);
+            if($user){
+                //dd($evenement);
+                $user->update(['confirmation_token' => null]);
+                return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            //dd($th);
+        }
+
+
+
+    }
+
 
 
 

@@ -153,7 +153,6 @@ class PrestataireController extends Controller
                 'lien_instagram' => ['max:100'],
                 'email_service' => ['max:50'],
               
-                
             ]);
      
             if ($validator->fails()) {
@@ -314,7 +313,7 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.');
+            return redirect()->back()->with('danger', 'Erreur , vous ne possédez pas de fiche prestataire.');
         }
     }
 

@@ -66,7 +66,8 @@ Route::post('/save/message/prestataire','PrestataireController@saveMessage');
 Route::post('/save/categorie','AdminController@saveCategorie');
 Route::post('/update/categorie','AdminController@updateCategorie');
 Route::post('/save/estimation','AdminController@saveEstimation');
-Route::post('/update/estimation','AdminController@updateEstimation');
+Route::post('/update/estimation','AdminController@updateEstimation'); 
+Route::get('/activer/profil/{id}','AdminController@profilactif');
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');

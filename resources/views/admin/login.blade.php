@@ -10,7 +10,7 @@
                 <div class="card-body">
                    <img src="http://spoteventapp.net/images/dark-logo.png" style="margin:50px 0px;">
                    <br>
-                   <h3>Vous avez déjà confirmé la création de votre compte. Veuillez, vous connectez pour bénéficier des avantages de Spoteventapp </h3> 
+                   <h3>Votre compte a été confirmé. Veuillez, vous connectez pour bénéficier des avantages de Spoteventapp </h3> 
                    <br>
                    <a href="http://spoteventapp.net">Acceuil</a>
                    <br>

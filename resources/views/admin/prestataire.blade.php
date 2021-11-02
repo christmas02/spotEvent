@@ -89,9 +89,12 @@
                                                 </td>
                                                 <td>
                                                     @if($itmes->confirmation_token == NULL )
-                                                    Profil activé
+                                                    <button href="" data-toggle="modal" data-target="#"
+                                                        class="btn btn-sm btn-success btn-rounded">Activé</button>
                                                     @else
-                                                    Profil non activé
+                                                    
+                                                    <a href="/activer/profil/{{ $itmes->id }}"
+                                                        class="btn btn-sm btn-warning btn-rounded">Non activé</a>
                                                     @endif
                                                 </td>
                                                 <td>{{ $itmes->created_at }}</td>
