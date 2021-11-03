@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Contenu;
+use App\Publicite;
 use App\Smsrapport;
 
 class AdminController extends Controller
@@ -554,6 +555,38 @@ class AdminController extends Controller
         return view('admin.pages',compact('infoUser','listContenu'));
     }
 
+    public function listPublicite($id){
+
+        $infoUser = $this->Userinfo($id);
+        $listPublicite = Publicite::all();
+        return view('admin.publicite',compact('infoUser','listPublicite'));
+    }
+
+    public function updateImagepub(Request $request){
+        try {
+            $id = $request->get('id');
+
+            $file = $request->file('image');
+            $name_img = $file->getClientOriginalName();
+            $storage_data = Storage::disk('public')->put($name_img, file_get_contents($file));
+
+
+                Publicite::where('id',$id)
+                ->update([
+                    'path' => $name_img,
+                ]);
+
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        }
+
+
+    }
+
     public function updateContenus(Request $request){
 
         try {
@@ -638,8 +671,6 @@ class AdminController extends Controller
     }
 
     public function profilactif($id){
-
-        
         try {
             //code...
             //dd($request->all());
@@ -656,8 +687,6 @@ class AdminController extends Controller
             //throw $th;
             //dd($th);
         }
-
-
 
     }
 

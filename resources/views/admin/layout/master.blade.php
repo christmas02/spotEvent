@@ -78,6 +78,7 @@
                       <li><a href="/Categorie/{{ $infoUser->id }}">Categories</a></li>
                       <li><a href="/Estimation/{{ $infoUser->id }}">Estimations</a></li>
                       <li><a href="/Contenus/{{ $infoUser->id }}">Gestion du contenu</a></li>
+                      <li><a href="/Publicite/{{ $infoUser->id }}">Encart publicitaire</a></li>
                     </ul>
                   </li>
                   

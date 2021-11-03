@@ -42,6 +42,7 @@ Route::get('/statistique/{id}','AdminController@statiatique');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
 Route::get('/Contenus/{id}','AdminController@listContenus'); 
+Route::get('/Publicite/{id}','AdminController@listPublicite'); 
 
 Route::get('/fiche_actif/{id}','AdminController@listficheactif');
 Route::get('/fiche_non_actif/{id}','AdminController@listfichenonactif');
@@ -68,6 +69,7 @@ Route::post('/update/categorie','AdminController@updateCategorie');
 Route::post('/save/estimation','AdminController@saveEstimation');
 Route::post('/update/estimation','AdminController@updateEstimation'); 
 Route::get('/activer/profil/{id}','AdminController@profilactif');
+Route::post('/update/imagepub','AdminController@updateImagepub');
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');
