@@ -2,6 +2,7 @@ import { ICommuneSearch } from "./../interfaces/commune.interface";
 import {
     IContentsResponse,
     IEstimation,
+    IListPubResponse,
     ISearchPrestataire,
     ISearchPrestataireResponse
 } from "./../interfaces/app-services.interfaces";
@@ -192,6 +193,22 @@ export class AppService extends CommonService {
                 statu: 0,
                 message: "Erreur lors de la recuperation des textes"
             } as IContentsResponse;
+        }
+    }
+    async getPub(): Promise<IListPubResponse> {
+        try {
+            const { data }: { data: IListPubResponse } = await this.client.get(
+                "Liste_publicite"
+            );
+
+            return data;
+        } catch (e) {
+            console.log(e);
+            return {
+                statu: 0,
+                message:
+                    "Erreur lors de la recuperation des informations de publicité"
+            } as IListPubResponse;
         }
     }
 }

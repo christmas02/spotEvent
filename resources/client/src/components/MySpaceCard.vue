@@ -113,6 +113,7 @@ export default Vue.extend({
   data() {
     return {
       defaultUrl: `${window.location.origin}/spotevent/public/storage/`,
+      // defaultUrl: `${window.location.origin}/`,
       localFile: "",
       imageLoading: false,
     };
@@ -164,7 +165,7 @@ export default Vue.extend({
                 this.$swal({
                   toast: true,
                   icon: "error",
-                  title: "Erreurlors de la mise a jour de l'image",
+                  title: "Erreur lors de la mise a jour de l'image",
                   timer: 5000,
                   showConfirmButton: false,
                   position: "top-end",

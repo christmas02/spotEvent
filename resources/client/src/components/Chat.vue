@@ -315,7 +315,8 @@ export default Vue.extend({
       authUser.username = this.$store.getters["auth/user"].name;
       authUser.avatar =
         window.location.origin +
-        "/storage/" +
+        // "/storage/" +
+        " /spotevent/public/storage/" +
         this.$store.getters["auth/user"].path_user;
 
       authUser.status = {
@@ -344,7 +345,10 @@ export default Vue.extend({
           localRoom.roomName = element.name_recepteur;
           if (element.image_recepteur) {
             localRoom.avatar =
-              window.location.origin + "/storage/" + element.image_recepteur;
+              // window.location.origin + "/storage/" + element.image_recepteur;
+              window.location.origin +
+              "/spotevent/public/storage/" +
+              element.image_recepteur;
           } else {
             localRoom.avatar = "http://lorempixel.com/450/250/";
           }

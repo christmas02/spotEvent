@@ -81,3 +81,18 @@ export interface IPhoneOrWaClick {
     id_prestataire: number;
     type_bottom: string;
 }
+
+export interface IListPub {
+    id: number;
+    path: string;
+    page: string;
+    position: number;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface IListPubResponse {
+    statu: number;
+    message: string;
+    listContenue: IListPub[];
+}

@@ -1,69 +1,115 @@
 <template>
   <default-layout :padding="false">
+    <loading
+      :active="benefit ? false : true"
+      :opacity="0.8"
+      loader="spinner"
+      :can-cancel="false"
+      color="#fbb231"
+      :is-full-page="true"
+    ></loading>
+
     <provider-contact-form-modal
       :provider="idProvider"
     ></provider-contact-form-modal>
+
     <div id="benefit-page" v-if="benefit">
       <div class="main">
         <div>
-          <jumbotron :image="benefit.path_img | createImagePath">
-            <div
-              class="d-md-flex justify-content-md-between align-items-md-center"
-            >
+          <!-- skeleton -->
+          <v-skeleton-loader
+            transition="scale-transition"
+            type="card"
+            :loading="benefit ? false : true"
+          >
+            <jumbotron :image="benefit.path_img | createImagePath">
               <div
                 class="
-                  col-md-6
-                  h-100
-                  d-flex
-                  flex-column
-                  justify-content-between
+                  d-md-flex
+                  justify-content-md-between
+                  align-items-md-center
                 "
               >
-                <div></div>
-                <div>
-                  <h1 class="content-title">{{ benefit.name | capitalize }}</h1>
-                  <div class="content-subtitle my-5">
-                    <p>
-                      {{ benefit.presentation | truncate(250) }}
-                    </p>
+                <div
+                  class="
+                    col-md-6
+                    h-100
+                    d-flex
+                    flex-column
+                    justify-content-between
+                  "
+                >
+                  <div></div>
+                  <div>
+                    <h1 class="content-title">
+                      {{ benefit.name | capitalize }}
+                    </h1>
+                    <div class="content-subtitle my-5">
+                      <p>
+                        {{ benefit.presentation | truncate(250) }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <img
+                      :src="benefit.path_icone | createImagePath"
+                      height="40px"
+                      class="mr-1"
+                    />
+                    <h2 class="primary--text">{{ benefit.prestation }}</h2>
                   </div>
                 </div>
-                <div class="d-flex">
-                  <img
-                    :src="benefit.path_icone | createImagePath"
-                    height="40px"
-                    class="mr-1"
-                  />
-                  <h2 class="primary--text">{{ benefit.prestation }}</h2>
-                </div>
-              </div>
-              <div class="col-md-6 d-none d-md-block">
-                <div class="d-md-flex justify-content-md-center">
-                  <v-carousel
-                    cycle
-                    hide-delimiters
-                    v-model="model"
-                    height="400"
-                    class="provider-pics"
-                  >
-                    <v-carousel-item
-                      v-for="slide in slides"
-                      :key="slide.id"
-                      :src="slide.path | createImagePath"
+                <div class="col-md-6 d-none d-md-block">
+                  <div class="d-md-flex justify-content-md-center">
+                    <v-carousel
+                      cycle
+                      hide-delimiters
+                      v-model="model"
+                      height="400"
+                      class="provider-pics"
                     >
-                    </v-carousel-item>
-                  </v-carousel>
+                      <v-carousel-item
+                        v-for="slide in slides"
+                        :key="slide.id"
+                        :src="slide.path | createImagePath"
+                      >
+                      </v-carousel-item>
+                    </v-carousel>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="top">
-              <v-btn color="primary" text x-large to="/accueil">
-                <v-icon>mdi-arrow-left</v-icon>
-                Retour
-              </v-btn>
-              <favorite-btn :benefit="benefit"></favorite-btn>
-            </div>
-          </jumbotron>
+              <div class="top">
+                <v-btn color="primary" text x-large to="/accueil">
+                  <v-icon>mdi-arrow-left</v-icon>
+                  Retour
+                </v-btn>
+                <div>
+                  <favorite-btn :benefit="benefit"></favorite-btn>
+
+                  <!-- <v-tooltip top>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        icon
+                        x-large
+                        link
+                        @click="shareModals = true"
+                        color="primary"
+                      >
+                        <v-icon x-large v-bind="attrs" v-on="on"
+                          >mdi-share-variant</v-icon
+                        >
+                      </v-btn>
+                    </template>
+                    <span>Partager sur les reseaux sociaux</span>
+                  </v-tooltip> -->
+                </div>
+              </div>
+            </jumbotron>
+          </v-skeleton-loader>
+          <!-- <share-modal
+            :benefit="benefit"
+            :shareModals.sync="shareModals"
+          ></share-modal> -->
         </div>
         <div class="main mx-auto mt-md-5">
           <div class="row">
@@ -90,16 +136,35 @@
                 </div>
               </div>
               <div class="section">
+                <h2 class="section-title">Qui sommes-nous en video</h2>
+                <div>
+                  <video width="100%" height="250" controls>
+                    <source
+                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                    type=video/mp4>
+                  </video>
+                </div>
+              </div>
+              <div class="section">
                 <h2 class="section-title">Description</h2>
                 <div>
                   <p>{{ benefit.description }}</p>
                 </div>
-                <div class="calendar">
-                  <p>Un calendrier</p>
-                  <div class="col-md-6">
-                    <yan-date></yan-date>
-                  </div>
-                </div>
+                <!-- <div class="calendar"> -->
+                <!-- <h2 class="section-title">Agenda</h2> -->
+                <!-- <div class="">
+                    <div class="d-flex justify-left">
+                      <v-badge bottom inline left overlap color="red">
+                        designe les jours d'indisponibilité du
+                        prestataire</v-badge
+                      >
+                    </div>
+                  </div> -->
+                <!-- <div class="col-md-12">
+                    <agenda></agenda>
+                   
+                  </div> -->
+                <!-- </div> -->
               </div>
 
               <div>
@@ -124,6 +189,17 @@
                 <p>
                   {{ benefit.detail_localisation }}
                 </p>
+              </div>
+              <div class="section pub">
+                <!-- <h2 class="section-title">Panneau</h2> -->
+                <!-- <div>
+                  <v-img
+                    :src="require('../assets/images/jmbg2.png')"
+                    class="w-100"
+                    height="300"
+                  ></v-img>
+                </div> -->
+                <pub></pub>
               </div>
               <div class="section">
                 <h2 class="section-title">Contacts</h2>
@@ -216,6 +292,8 @@ import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import yanDate from "../components/yanDate.vue";
+import pub from "../components/pub.vue";
+import shareModal from "../components/shareModal.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
 import CommentRatingGrid from "@/components/CommentRatingGrid.vue";
 import utilsMixin from "../mixins/utils.mixin";
@@ -226,11 +304,17 @@ import ProviderContactFormModal from "../components/ProviderContactFormModal.vue
 import FavoriteBtn from "../components/FavoriteBtn.vue";
 import { AppService } from "../services/app.service";
 import SocialDialog from "@/components/socialDialog.vue";
+import Agenda from "../components/Agenda.vue";
 // import ChatBot from "../components/ChatBot.vue";
 
 export default Vue.extend({
   name: "Benefit",
   mixins: [utilsMixin],
+  inject: {
+    theme: {
+      default: { isDark: false },
+    },
+  },
 
   data() {
     return {
@@ -247,6 +331,8 @@ export default Vue.extend({
       phone2_service: "" as string,
       enterprise: "" as string,
       currentId: null as unknown as number,
+      SocketConnected: false,
+      shareModals: false,
     };
   },
   async beforeMount(): Promise<void> {
@@ -276,6 +362,9 @@ export default Vue.extend({
     CommentRatingGrid,
     SocialDialog,
     yanDate,
+    Agenda,
+    pub,
+    shareModal,
   },
   computed: {
     id_user() {
@@ -289,6 +378,9 @@ export default Vue.extend({
     },
     others(): Benefit[] {
       return this.$store.getters["benefits/others"](this.currentId);
+    },
+    url() {
+      return this.$route.path;
     },
     // async currentId() {
     //   // return localStorage.getItem("benefitId") as string;
