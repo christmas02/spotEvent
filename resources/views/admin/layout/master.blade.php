@@ -65,18 +65,20 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="/welcome/tableau/administrateur/{{ $infoUser->id }}"><i class="fa fa-home"></i> Tableau de bord</span></a></li>
-                  <li><a href="/liste/prestataires/{{ $infoUser->id }}/{{ $infoUser->user }}"><i class="fa fa-edit"></i> Prestataires</span></a></li>
+                  <li><a href="/welcome/tableau/administrateur/{{ $infoUser->id }}"><i class="fa fa-home"></i>Tableau de bord</span></a></li>
+                  <li><a href="/liste/prestataires/{{ $infoUser->id }}/{{ $infoUser->user }}"><i class="fa fa-edit"></i>Prestataires</span></a></li>
+                  <li><a href="/Commentaire/{{ $infoUser->id }}/{{ $infoUser->user }}"><i class="fa fa-edit"></i>Avis utilisateurs</span></a></li>
 
-  
                   <li><a href="/liste/demandes/{{ $infoUser->id }}"><i class="fa fa-table"></i> Liste des demandes </a></li>
                   <li><a href="/messageries/{{ $infoUser->id }}"><i class="fa fa-comments"></i> Messagerie </a></li>
                   <li><a href="/statistique/{{ $infoUser->id }}"><i class="fa fa-bar-chart-o"></i> Statistiques </a></li>
+                  <li><a href="/smsenvojer/{{ $infoUser->id }}"><i class="fa fa-bar-chart-o"></i> Sms envoyé </a></li>
                   <li><a href="#"><i class="fa fa-cog"></i> Paramètres<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/Categorie/{{ $infoUser->id }}">Categories</a></li>
                       <li><a href="/Estimation/{{ $infoUser->id }}">Estimations</a></li>
                       <li><a href="/Contenus/{{ $infoUser->id }}">Gestion du contenu</a></li>
+                      <li><a href="/Publicite/{{ $infoUser->id }}">Encart publicitaire</a></li>
                     </ul>
                   </li>
                   

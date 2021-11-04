@@ -24,7 +24,7 @@ use App\Message;
 use App\Commune;
 use App\Messagerie;
 use App\Contenu;
-
+use App\Publicite;
 
 class ApiController extends Controller
 {
@@ -142,7 +142,8 @@ class ApiController extends Controller
         try {
 
             $name = $request['name'];
-            $slug = str_replace('-',' ',$name);
+            $all = array(" ","'",",");
+            $slug = str_replace('-'," ",$name);
 
             //dd($slug);
 
@@ -883,6 +884,17 @@ class ApiController extends Controller
             //throw $th;
             //dd($th);
             return redirect()->back()->with('danger', 'Echec');
+        }
+    }
+
+    public function getPublicite(){
+        try {
+
+            $listpublicite = Publicite::all();
+            return response()->json(['statu' => 1, 'listContenue' => $listpublicite]);
+
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 

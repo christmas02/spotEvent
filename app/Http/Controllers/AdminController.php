@@ -11,6 +11,7 @@ use App\Galerie;
 use App\Demande;
 use App\Clicfiche;
 use App\Clicphone;
+use App\Commentaire;
 use App\Conversation;
 use App\Estimation;
 use App\Message;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Contenu;
+use App\Publicite;
+use App\Smsrapport;
 
 class AdminController extends Controller
 {
@@ -137,6 +140,41 @@ class AdminController extends Controller
         return view('admin.utilisateur', compact('Utilisateur','infoUser'));
     }
 
+    public function listficheactif($id){
+       
+        //dd();
+        $infoUser = User::where('id',$id)->first();
+        //dd($infoUser->name);
+        $Utilisateur = User::where('role',1)->get();
+        //dd($Prestataire);
+
+        $listePrestation = Db::table('fiches')->where('statu_fiche',1)
+                        ->leftjoin('users','users.id','=','fiches.id_user')
+                        ->leftjoin('communes','communes.id','=','fiches.localisation')
+                        ->select('users.name as nom','communes.name as commune','users.phone as numero','fiches.*')
+                        ->orderBy('fiches.id', 'desc')
+                        ->get();
+
+        return view('admin.list_fiche_actif', compact('Utilisateur','listePrestation','infoUser'));
+    }
+
+    public function listfichenonactif($id){
+       
+        //dd();
+        $infoUser = User::where('id',$id)->first();
+        //dd($infoUser->name);
+        $Utilisateur = User::where('role',1)->get();
+        //dd($Prestataire);
+
+        $listePrestation = Db::table('fiches')->where('statu_fiche',0)
+                        ->leftjoin('users','users.id','=','fiches.id_user')
+                        ->leftjoin('communes','communes.id','=','fiches.localisation')
+                        ->select('users.name as nom','communes.name as commune','users.phone as numero','fiches.*')
+                        ->orderBy('fiches.id', 'desc')
+                        ->get();
+        return view('admin.list_fiche_actif', compact('Utilisateur','listePrestation','infoUser'));
+    }
+
     public function getPrestatire($id){
 
         $infoUser = $this->Userinfo($id);
@@ -178,10 +216,16 @@ class AdminController extends Controller
                         $demandeMonth = $this->demandeMonth($prestataire->id_user);
 
         $galerie = $this->galerie($prestataire->id_user);
+
+        $commentaire = Commentaire::where('commentaires.id_prestataire',$id)
+        ->leftjoin('users','users.id','=','commentaires.id_user')
+        ->leftjoin('fiches','fiches.id','=','commentaires.id_prestataire')
+        ->select('fiches.name as prestataire','users.name as utilisateur', 'commentaires.contenus','commentaires.vote')
+        ->get();
         //dd($prestataire->id_user);
 
         return view('admin.fiche_prestataire',compact('prestataire','galerie','infoUser',
-        'visite','phone','demande','listDemande','visiteMonth','phoneMonth','demandeMonth'));
+        'visite','phone','demande','listDemande','visiteMonth','phoneMonth','demandeMonth','commentaire'));
     }
 
     public function statiatique($id){
@@ -511,6 +555,38 @@ class AdminController extends Controller
         return view('admin.pages',compact('infoUser','listContenu'));
     }
 
+    public function listPublicite($id){
+
+        $infoUser = $this->Userinfo($id);
+        $listPublicite = Publicite::all();
+        return view('admin.publicite',compact('infoUser','listPublicite'));
+    }
+
+    public function updateImagepub(Request $request){
+        try {
+            $id = $request->get('id');
+
+            $file = $request->file('image');
+            $name_img = $file->getClientOriginalName();
+            $storage_data = Storage::disk('public')->put($name_img, file_get_contents($file));
+
+
+                Publicite::where('id',$id)
+                ->update([
+                    'path' => $name_img,
+                ]);
+
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        }
+
+
+    }
+
     public function updateContenus(Request $request){
 
         try {
@@ -532,10 +608,36 @@ class AdminController extends Controller
 
     }
 
+    public function deletfiche(Request $request){
+
+        try {
+            $id = $request->get('id');
+
+            $image = Fiche::find($id);
+            $image->delete();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+           //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        } 
+
+    }
+
     public function deletUser(Request $request){
 
         try {
             $id = $request->get('id');
+
+            $ficheExist = Fiche::where('id_user',$id)->first();
+
+            /*if($ficheExist){
+
+                $fiche = Fiche::find($id);
+                $fiche->delete();
+
+            }*/
 
             $image = User::find($id);
             $image->delete();
@@ -546,6 +648,45 @@ class AdminController extends Controller
            //dd($th);
             return redirect()->back()->with('danger', 'Error.');
         } 
+
+    }
+
+    public function smsEnvoye($id){
+
+        $infoUser = $this->Userinfo($id);
+        $listsms = Smsrapport::all();
+        $stock_sms = DB::table('sms')->first();
+        return view('admin/smsenvoyer',compact('infoUser','listsms','stock_sms'));
+
+    }
+
+    public function listCommentaire($id){
+        $infoUser = $this->Userinfo($id);
+        $commentaire = Commentaire::leftjoin('users','users.id','=','commentaires.id_user')
+        ->leftjoin('fiches','fiches.id','=','commentaires.id_prestataire')
+        ->select('fiches.name as prestataire','users.name as utilisateur', 'commentaires.contenus','commentaires.vote')
+        ->get();
+        return view('admin/commentaires',compact('infoUser','commentaire'));
+
+    }
+
+    public function profilactif($id){
+        try {
+            //code...
+            //dd($request->all());
+            //dd($id);
+
+            $user = User::where('id',$id)->first();
+            //dd($id);
+            if($user){
+                //dd($evenement);
+                $user->update(['confirmation_token' => null]);
+                return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            //dd($th);
+        }
 
     }
 

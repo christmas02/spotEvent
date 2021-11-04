@@ -130,6 +130,36 @@ class PrestataireController extends Controller
         //dd($request->all());
         try {
 
+            $id_user =  $request->get('id_user');
+
+            $ficheExist = Fiche::where('id_user',$id_user)->first();
+
+            if($ficheExist){
+                return redirect()->back()->with('danger', 'Vous possédez déjà une fiche prestataire.');
+            }
+            
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'localisation' => 'required',
+                'id_prestations' => 'required',
+                'description' => ['required'],
+                'presentation' => ['required', 'string', 'max:400'],
+                'detail_localisation' => 'required',
+                'phone_service' => ['max:10'],
+                'phone2_service' => ['max:10'],
+                'phone_whastapp' => ['max:10'],
+                'lien_facebook' => ['max:100'],
+                'lien_instagram' => ['max:100'],
+                'email_service' => ['max:50'],
+              
+            ]);
+     
+            if ($validator->fails()) {
+                //dd($validator);
+                return back()->withErrors($validator)->withInput();
+            }
+
             /*$image = $request->file('image_five');
             $image_five = $input['image_fivename'] = time(). '.' . $image->getClientOriginalname();
             $destination = public_path('/image');
@@ -283,7 +313,7 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.');
+            return redirect()->back()->with('danger', 'Erreur , vous ne possédez pas de fiche prestataire.');
         }
     }
 

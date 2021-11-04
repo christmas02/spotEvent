@@ -30,6 +30,7 @@ Route::post('/add/gallerie','PrestataireController@addGaleri');
 Route::post('/update/image','PrestataireController@updateImage');
 Route::post('/delet/image','PrestataireController@deletImage');
 
+
 Route::get('mise_a_jour_image/{id}','PrestataireController@editImage');
 
 Route::get('/welcome/tableau/administrateur/{id}','AdminController@home')->name('administrateur');
@@ -40,10 +41,18 @@ Route::get('/list/prestations/{id}','AdminController@getPrestations');
 Route::get('/statistique/{id}','AdminController@statiatique');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
-Route::get('/Contenus/{id}','AdminController@listContenus');
+Route::get('/Contenus/{id}','AdminController@listContenus'); 
+Route::get('/Publicite/{id}','AdminController@listPublicite'); 
+
+Route::get('/fiche_actif/{id}','AdminController@listficheactif');
+Route::get('/fiche_non_actif/{id}','AdminController@listfichenonactif');
+
+Route::get('/smsenvojer/{id}','AdminController@smsEnvoye');
+Route::get('/Commentaire/{id}','AdminController@listCommentaire');
 
 Route::post('/update/contenus','AdminController@updateContenus');
 Route::post('/delet/user','AdminController@deletUser');
+Route::post('/delet/fiche','AdminController@deletfiche'); 
 
 Route::get('/messageries/{id}','AdminController@message');
 Route::get('/listPrestatiaire/{id}','AdminController@listeprestatire');
@@ -58,7 +67,9 @@ Route::post('/save/message/prestataire','PrestataireController@saveMessage');
 Route::post('/save/categorie','AdminController@saveCategorie');
 Route::post('/update/categorie','AdminController@updateCategorie');
 Route::post('/save/estimation','AdminController@saveEstimation');
-Route::post('/update/estimation','AdminController@updateEstimation');
+Route::post('/update/estimation','AdminController@updateEstimation'); 
+Route::get('/activer/profil/{id}','AdminController@profilactif');
+Route::post('/update/imagepub','AdminController@updateImagepub');
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');

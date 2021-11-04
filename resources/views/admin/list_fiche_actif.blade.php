@@ -97,8 +97,8 @@
                                                                 data-id_recepteur="{{ $items->id_user }}"
                                                                 data-id_user="{{ $infoUser->id }}"
                                                                 class="btn btn-modal"><i class="fa fa-envelope"></i></a>
-                                                            <a href="#" data-toggle="modal" data-target="#exampleModalDelet{{$items->id}}"
-                                                            class="btn btn-modal btn-danger"><i class="fa fa-trash"></i></a>
+                                                            {{--<a href="#" data-toggle="modal" data-target="#exampleModalDelet{{$items->id}}"
+                                                            class="btn btn-modal"><i class="fa fa-trash"></i></a>--}}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -324,31 +324,27 @@
 
 
 @foreach($listePrestation as $items)
+<!-- Modal -->
 <div class="modal fade" id="exampleModalDelet{{$items->id}}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Suppression du compte</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
-                <form method="POST" action="/delet/fiche" enctype="">
-                    @csrf
-                    <div class="trash"><i class="fa fa-trash"></i></div>
-                    <center>
-                        <h4>Voulez-vous vraiment effectuer cette action !</h4>
-                    </center>
-                    <input type="text" hidden name="id" value="{{$items->id}}">
-
+                <h5 class="text-center">Etre vous sur de vouloir supprimer le compte de {{ $items->name }}</h5>
             </div>
             <div class="modal-footer-btn">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-danger">Valider</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+                <button type="button" class="btn btn-danger">Supprimer</button>
             </div>
-            </form>
         </div>
     </div>
 </div>
-<!-- Modal -->
-
 @endforeach
 
 
