@@ -25,8 +25,7 @@ use App\Message;
 use App\Commune;
 use App\Messagerie;
 use App\Contenu;
-use App\Smsrapport;
-
+use App\Publicite;
 
 class ApiController extends Controller
 {
@@ -49,12 +48,11 @@ class ApiController extends Controller
         $listEstiomation = Estimation::all();
         $i = 0;
         $estimation = array();
-        foreach($listEstiomation as $item){
+        foreach ($listEstiomation as $item) {
             $estimation[$i]['id'] = $item->id;
             $estimation[$i]['libelle'] = ($item->libelle);
 
-            $i ++;
-
+            $i++;
         }
         return response()->json(['statu' => 1, 'listCategorie' => $estimation]);
     }
@@ -63,8 +61,8 @@ class ApiController extends Controller
     {
         $listPrestation = Fiche::where('statu_fiche', '!=', '0')->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
             //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-            ->leftjoin('communes','communes.id','=','fiches.localisation')
-            ->select('fiches.*','communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
+            ->leftjoin('communes', 'communes.id', '=', 'fiches.localisation')
+            ->select('fiches.*', 'communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
             ->orderBy('fiches.id', 'desc')
             ->get();
         //dd($listPrestataire);
@@ -73,22 +71,22 @@ class ApiController extends Controller
 
     public function getPrestataire()
     {
-       
+
 
         $list = Fiche::where('fiches.statu_fiche', 1)
-        ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
-        ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
-        ->select('users.*', 'fiches.name as name_entreprise','fiches.id as id_fiche' ,'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
-        ->get();
-        
-        
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id as id_fiche', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+            ->get();
+
+
         $listPrestataire = [];
         $i = 0;
 
-        foreach($list as $items){
+        foreach ($list as $items) {
 
-            $vote = Commentaire::where('id_prestataire',$items->id_user)->avg('vote');
-            $votant = Commentaire::where('id_prestataire',$items->id_user)->count();
+            $vote = Commentaire::where('id_prestataire', $items->id_user)->avg('vote');
+            $votant = Commentaire::where('id_prestataire', $items->id_user)->count();
 
             $listPrestataire[$i]['vote'] = (int)($vote);
             $listPrestataire[$i]['votant'] = (int)($votant);
@@ -100,10 +98,9 @@ class ApiController extends Controller
             $listPrestataire[$i]['id_fiche'] = $items->id_fiche;
 
             $i++;
-
         }
 
-       
+
 
 
         return response()->json(['statu' => 1, 'listPrestataire' => $listPrestataire]);
@@ -139,32 +136,33 @@ class ApiController extends Controller
         return response()->json(['statu' => 1, 'firstPrestation' => $firstPrestation]);
     }
 
-    public function findPrestation(Request $request){
+    public function findPrestation(Request $request)
+    {
 
         try {
 
             $name = $request['name'];
-            $slug = str_replace('-',' ',$name);
+            $all = array(" ", "'", ",");
+            $slug = str_replace('-', " ", $name);
 
             //dd($slug);
 
             $findPrestataire = Fiche::where('fiches.name', $slug)
-            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
-            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-            ->leftjoin('communes','communes.id','=','fiches.localisation')
-            ->select('fiches.*','communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
-            ->orderBy('fiches.id', 'desc')
-            ->first();
+                ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+                //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+                ->leftjoin('communes', 'communes.id', '=', 'fiches.localisation')
+                ->select('fiches.*', 'communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
+                ->orderBy('fiches.id', 'desc')
+                ->first();
 
-           ///if($findPrestataire)
+            ///if($findPrestataire)
             return response()->json(['statu' => 1, 'findPrestataire' => $findPrestataire]);
 
             //code...
         } catch (\Throwable $th) {
             //throw $th;
-            return response()->json([ 'erreur' => $th]);
+            return response()->json(['erreur' => $th]);
         }
-
     }
 
     public function Favoris(Request $request)
@@ -335,27 +333,27 @@ class ApiController extends Controller
     {
 
         $name = $request['name'];
-        $request=$request->all();
+        $request = $request->all();
 
         //dd($name); 
 
 
-        $list = Fiche:://where('fiches.name', $name)
+        $list = Fiche:: //where('fiches.name', $name)
             where('fiches.name', 'like', '%' . $name . '%')
             ->where('fiches.statu_fiche', 1)
             ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
             ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
-            ->select('users.*', 'fiches.name as name_entreprise','fiches.id as id_fiche' ,'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+            ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id as id_fiche', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
             ->get();
-        
-        
+
+
         $listPrestataire = [];
         $i = 0;
 
-        foreach($list as $items){
+        foreach ($list as $items) {
 
-            $vote = Commentaire::where('id_prestataire',$items->id_user)->avg('vote');
-            $votant = Commentaire::where('id_prestataire',$items->id_user)->count();
+            $vote = Commentaire::where('id_prestataire', $items->id_user)->avg('vote');
+            $votant = Commentaire::where('id_prestataire', $items->id_user)->count();
 
             $listPrestataire[$i]['vote'] = (int)($vote);
             $listPrestataire[$i]['votant'] = (int)($votant);
@@ -367,7 +365,6 @@ class ApiController extends Controller
             $listPrestataire[$i]['id_fiche'] = $items->id_fiche;
 
             $i++;
-
         };
 
         if (count($list) == '0') {
@@ -393,10 +390,10 @@ class ApiController extends Controller
 
         //dd(count($resultat));
 
-        if (count($resultat) != '0'){
+        if (count($resultat) != '0') {
             $message = "resultat disponible";
             return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
-        }else{
+        } else {
             $message = "resultat vide";
             return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $resultat]);
         }
@@ -454,7 +451,7 @@ class ApiController extends Controller
         }
     }
 
-   /* public function getConversation(Request $request)
+    /* public function getConversation(Request $request)
     {
 
         try {
@@ -830,12 +827,12 @@ class ApiController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
-    public function ListCommune(){
+    public function ListCommune()
+    {
         try {
-        
+
             $listCommune = Commune::get();
 
             if ($listCommune) {
@@ -843,14 +840,14 @@ class ApiController extends Controller
             } else {
                 return response()->json(['statu' => 0, 'listCommune' => $listCommune]);
             }
-
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
     }
 
-    public function gestionContenus(){
+    public function gestionContenus()
+    {
 
         try {
             $contenu = Contenu::all();
@@ -860,7 +857,6 @@ class ApiController extends Controller
             //throw $th;
             return redirect()->back()->with('danger', 'Error.');
         }
-
     }
 
     public function saveMessagerie(Request $request)
@@ -880,7 +876,6 @@ class ApiController extends Controller
             $messagerie->save();
 
             return response()->json(['statu' => 1, 'messaage' => "Nous avous bien recus votre message"]);
-
         } catch (\Throwable $th) {
             //throw $th;
             //dd($th);
@@ -888,107 +883,14 @@ class ApiController extends Controller
         }
     }
 
-    public function sendSms(Request $request)
+    public function getPublicite()
     {
         try {
 
-           //dd($request->all());
-
-           $id_utilisateur = $request['id_utilisateur'];
-           $id_prestataire = $request['id_prestataire'];
-           $type_bottom = $request['type_bottom'];
-
-           // Recuperation des information du prestataire 
-           $infoPrestataire = Fiche::where('id_user', $id_prestataire)->first();
-           //dd($infoPrestataire);
-
-           // Recuperation des information de l'utilisateur
-           $infoUtilisateur = User::where('id', $id_utilisateur)->first();
-
-           // Evois du sms au prestataire
-           $stock_sms = DB::table('sms')->select('volume')->first();
-
-           //dd($stock_sms->volume);
-
-            if($stock_sms->volume > 0){
-
-               //dd("Send sms");
-
-               /*$sender = 'SPOTEVENTAPP';
-                $mg = 'text message mtn cloud sms';
-                $destinataire = '225'.$infoPrestataire->phone_service;
-               //$destinataire = '2250748997945';
-
-                $data = array(
-                    'sender' => $sender,
-                    'content' => $mg,
-                    'dlrUrl' => 'https://myserver.com/XXXXXXXXX-XXXXXXXXXX',
-                    'recipients' => [$destinataire]
-                );
-        
-                $jsonString = json_encode($data);
-                $curl = curl_init();
-                curl_setopt_array($curl, array(
-        
-                    CURLOPT_URL => "https://api.smscloud.ci/xxxxxxxxxxxx",
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_CUSTOMREQUEST => "POST",
-                    CURLOPT_POSTFIELDS => $jsonString,
-                    CURLOPT_HTTPHEADER => array(
-                        "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXX",
-                        "Content-Type: application/json " ,
-                        "cache-control: no-cache " ,
-                    ),
-        
-                ));
-                //
-                $output = curl_exec($curl);
-                $response = json_decode($output,true);
-
-                $err = curl_error($curl);   
-                curl_close($curl);*/
-
-
-                // Si le sms a ete envoyer correctement enregistrement du rapport d'envois
-                //if($response){
-
-                    $phone = str_replace(' ','',$infoPrestataire->phone_service);
-
-                    $destinataire = '225'.$phone;
-                    $msg = "Bonjour (nom du prestataire), 
-                           (prénom + nom du client) joignable au 
-                           (numéro de téléphone du client) a souhaité rentrer 
-                           en contact avec vous. L'équipe Spot Event";
-
-                    $rapportSms =  new Smsrapport;
-
-                    $rapportSms->id_prestataire = $id_prestataire;
-                    $rapportSms->id_utilisateur = $id_utilisateur;
-                    $rapportSms->emetteur = "Spoteventapp";
-                    $rapportSms->numero_recepteur = $destinataire;
-                    $rapportSms->message = 'text message mtn cloud sms';
-                    $rapportSms->statu = 'envoyer';
-                    $rapportSms->type_btn = $type_bottom;
-
-                    $rapportSms->save();
-
-                //}
-
-                return response()->json(['statu' => 1, 'messaage' => "Sms envoyer !"]);
-
-            }else {
-                // Envoyer un mail a l'admnistrateur
-                dd("Echec send sms");
-
-
-            }
-            
-            
+            $listpublicite = Publicite::all();
+            return response()->json(['statu' => 1, 'listContenue' => $listpublicite]);
         } catch (\Throwable $th) {
             //throw $th;
-            dd($th);
-            return redirect()->back()->with('danger', 'Echec');
         }
     }
-
 }

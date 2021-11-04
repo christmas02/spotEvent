@@ -113,7 +113,6 @@ export default Vue.extend({
   data() {
     return {
       defaultUrl: `${window.location.origin}/spotevent/public/storage/`,
-      // defaultUrl: `${window.location.origin}/`,
       localFile: "",
       imageLoading: false,
     };
