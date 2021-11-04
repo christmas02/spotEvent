@@ -86,7 +86,7 @@
                 <div>
                   <favorite-btn :benefit="benefit"></favorite-btn>
 
-                  <v-tooltip top>
+                  <!-- <v-tooltip top>
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn
                         icon
@@ -101,15 +101,15 @@
                       </v-btn>
                     </template>
                     <span>Partager sur les reseaux sociaux</span>
-                  </v-tooltip>
+                  </v-tooltip> -->
                 </div>
               </div>
             </jumbotron>
           </v-skeleton-loader>
-          <share-modal
+          <!-- <share-modal
             :benefit="benefit"
             :shareModals.sync="shareModals"
-          ></share-modal>
+          ></share-modal> -->
         </div>
         <div class="main mx-auto mt-md-5">
           <div class="row">
@@ -150,9 +150,9 @@
                 <div>
                   <p>{{ benefit.description }}</p>
                 </div>
-                <div class="calendar">
-                  <h2 class="section-title">Agenda</h2>
-                  <!-- <div class="">
+                <!-- <div class="calendar"> -->
+                <!-- <h2 class="section-title">Agenda</h2> -->
+                <!-- <div class="">
                     <div class="d-flex justify-left">
                       <v-badge bottom inline left overlap color="red">
                         designe les jours d'indisponibilité du
@@ -160,11 +160,11 @@
                       >
                     </div>
                   </div> -->
-                  <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <agenda></agenda>
-                    <!-- <yan-date></yan-date> -->
-                  </div>
-                </div>
+                   
+                  </div> -->
+                <!-- </div> -->
               </div>
 
               <div>
@@ -190,15 +190,16 @@
                   {{ benefit.detail_localisation }}
                 </p>
               </div>
-              <div class="section">
+              <div class="section pub">
                 <!-- <h2 class="section-title">Panneau</h2> -->
-                <div>
+                <!-- <div>
                   <v-img
                     :src="require('../assets/images/jmbg2.png')"
                     class="w-100"
                     height="300"
                   ></v-img>
-                </div>
+                </div> -->
+                <pub></pub>
               </div>
               <div class="section">
                 <h2 class="section-title">Contacts</h2>
@@ -291,6 +292,7 @@ import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
 import yanDate from "../components/yanDate.vue";
+import pub from "../components/pub.vue";
 import shareModal from "../components/shareModal.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
 import CommentRatingGrid from "@/components/CommentRatingGrid.vue";
@@ -361,6 +363,7 @@ export default Vue.extend({
     SocialDialog,
     yanDate,
     Agenda,
+    pub,
     shareModal,
   },
   computed: {
