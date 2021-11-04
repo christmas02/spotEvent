@@ -1,14 +1,9 @@
 <template>
   <div class="my-5">
-    <div>
-      <v-img :src="val" height="250" aspect-ratio="1"></v-img>
-      <!-- <v-img :src="require(`${test}`)" height="250"></v-img> -->
-    </div>
-    <v-carousel hide-delimiters>
+    <v-carousel hide-delimiters height="250">
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
-        height="250"
         :src="item.src"
       ></v-carousel-item>
     </v-carousel>
@@ -28,30 +23,26 @@ export default Vue.extend({
       test: require("./../assets/images/jmbg2.png"),
 
       items: [
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-        // },
-        // {
-        //   src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-        // },
-      ] as IListPub[],
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+        },
+      ],
+      // ] as IListPub[],
     };
   },
   // mounted() {
   //   this.test = "./../assets/images/jmbg2.png";
   // },
   props: {
-    src: {
-      type: String,
-      required: false,
-      default: "./../assets/images/jmbg2.png",
-    },
     height: {
       type: String,
       required: false,
@@ -74,7 +65,9 @@ export default Vue.extend({
       const result: IListPubResponse = await service.getPub();
 
       if (result.statu == 1) {
-        this.items = result.listContenue as IListPub[];
+        console.log(result.listContenue, "list pubs");
+
+        // this.items = result.listContenue as IListPub[];
       }
       // return "0";
     },
