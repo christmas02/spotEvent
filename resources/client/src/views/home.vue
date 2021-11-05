@@ -70,7 +70,7 @@
               ></v-img>
             </div>
           </div> -->
-          <pub></pub>
+          <pub :routeName="routeName"></pub>
         </div>
 
         <div class="section mt-0 d-none d-md-block">
@@ -134,6 +134,9 @@ export default Vue.extend({
     ]);
   },
   computed: {
+    routeName(): string {
+      return this.$route.name ? this.$route.name : "";
+    },
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"].slice(0, 12);
       // return this.$store.getters["benefits/all"]

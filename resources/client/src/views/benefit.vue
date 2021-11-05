@@ -199,7 +199,7 @@
                     height="300"
                   ></v-img>
                 </div> -->
-                <pub></pub>
+                <pub :routeName="routeName"></pub>
               </div>
               <div class="section">
                 <h2 class="section-title">Contacts</h2>
@@ -336,6 +336,8 @@ export default Vue.extend({
     };
   },
   async beforeMount(): Promise<void> {
+    console.log(this.$route.name, "sino");
+
     await this.$store.dispatch("benefits/fetchAll");
 
     await this.findPrestataire();
@@ -367,6 +369,9 @@ export default Vue.extend({
     shareModal,
   },
   computed: {
+    routeName(): string {
+      return this.$route.name ? this.$route.name : "";
+    },
     id_user() {
       return this.$store.getters["auth/user"].id;
     },

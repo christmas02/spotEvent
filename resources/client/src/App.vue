@@ -28,6 +28,7 @@ export default Vue.extend({
     };
   },
   async beforeMount() {
+    console.log(this.$route.name, "sino");
     this.$store.commit("auth/authFavoritesModalStatus", false);
     this.$store.commit("auth/authWorkerSpaceModalStatus", false);
     try {

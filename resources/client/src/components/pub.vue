@@ -1,10 +1,10 @@
 <template>
   <div class="my-5">
-    <v-carousel hide-delimiters height="250">
+    <v-carousel hide-delimiters height="250" v-if="items.length > 0">
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
-        :src="item.src"
+        :src="'/spotevent/public/storage/' + item.path"
       ></v-carousel-item>
     </v-carousel>
   </div>
@@ -23,19 +23,19 @@ export default Vue.extend({
       test: require("./../assets/images/jmbg2.png"),
 
       items: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-        },
-      ],
+        // {
+        //   src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+        // },
+        // {
+        //   src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+        // },
+        // {
+        //   src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+        // },
+        // {
+        //   src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+        // },
+      ] as IListPub[],
       // ] as IListPub[],
     };
   },
@@ -43,10 +43,9 @@ export default Vue.extend({
   //   this.test = "./../assets/images/jmbg2.png";
   // },
   props: {
-    height: {
+    routeName: {
       type: String,
-      required: false,
-      default: "250",
+      required: true,
     },
   },
   computed: {
@@ -65,14 +64,34 @@ export default Vue.extend({
       const result: IListPubResponse = await service.getPub();
 
       if (result.statu == 1) {
+        let data = result.listContenue;
         console.log(result.listContenue, "list pubs");
-
-        // this.items = result.listContenue as IListPub[];
+        if (this.routeName === "Home" && data.length > 0) {
+          this.items = data.filter(
+            (el) => el.page == "Page accueil" && el.position == 1
+          );
+        } else if (this.routeName === "benefit" && data.length > 0) {
+          this.items = data.filter(
+            (el) => el.page == "Détail prestataire" && el.position == 4
+          );
+        } else if (this.routeName === "SeeMore" && data.length > 0) {
+          this.items = data.filter(
+            (el) => el.page == "Page catégorie" && el.position == 2
+          );
+        } else if (this.routeName === "listePrestataires" && data.length > 0) {
+          this.items = data.filter(
+            (el) => el.page == "Page prestataire" && el.position == 3
+          );
+        }
+      } else {
+        console.log(result, " pubs echec");
       }
       // return "0";
     },
   },
   async beforeMount() {
+    console.log("potattoo");
+
     await this.findPubs();
   },
 });
