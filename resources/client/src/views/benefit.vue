@@ -152,18 +152,11 @@
                 </div>
                 <div class="calendar">
                   <h2 class="section-title">Agenda</h2>
-                  <!-- <div class="">
-                    <div class="d-flex justify-left">
-                      <v-badge bottom inline left overlap color="red">
-                        designe les jours d'indisponibilité du
-                        prestataire</v-badge
-                      >
-                    </div>
-                  </div> -->
-                  <div class="col-md-12">
+
+                  <!-- <div class="col-md-12">
                     <agenda></agenda>
-                    <!-- <yan-date></yan-date> -->
-                  </div>
+                    
+                  </div> -->
                 </div>
               </div>
 
