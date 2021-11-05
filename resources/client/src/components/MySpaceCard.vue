@@ -112,8 +112,8 @@ export default Vue.extend({
   components: { UpdatePhotoForm, UpdateProfilForm, UpdatePasswordForm },
   data() {
     return {
-      defaultUrl: `${window.location.origin}/spotevent/public/storage/`,
-      // defaultUrl: `${window.location.origin}/`,
+      // defaultUrl: `${window.location.origin}/spotevent/public/storage/`,
+      defaultUrl: `${window.location.origin}/storage/`,
       localFile: "",
       imageLoading: false,
     };

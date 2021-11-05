@@ -4,8 +4,9 @@
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
-        :src="'/spotevent/public/storage/' + item.path"
+        :src="'/storage/' + item.path"
       ></v-carousel-item>
+      <!-- :src="'/spotevent/public/storage/' + item.path" -->
     </v-carousel>
   </div>
 </template>
@@ -85,7 +86,16 @@ export default Vue.extend({
         }
       } else {
         console.log(result, " pubs echec");
+        let dt = {} as IListPub;
+        dt.path = "defaultPub.jpg";
+        dt.id = 0;
+        dt.page = "";
+        dt.position = 0;
+        dt.created_at = "";
+        dt.updated_at = "";
+        this.items.push(dt);
       }
+
       // return "0";
     },
   },

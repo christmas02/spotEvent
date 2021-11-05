@@ -85,6 +85,32 @@
                 </v-btn>
                 <div>
                   <favorite-btn :benefit="benefit"></favorite-btn>
+                  <!-- start -->
+
+                  <!-- <v-menu offset-y>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        icon
+                        x-large
+                        link
+                        @click="shareModals = true"
+                        color="primary"
+                      >
+                        <v-icon x-large v-bind="attrs" v-on="on"
+                          >mdi-share-variant</v-icon
+                        >
+                      </v-btn>
+                    </template>
+                    <v-list color="transparent">
+                      <v-list-item v-for="(item, index) in items" :key="index">
+                        <v-list-item-icon>
+                          <v-icon>mdi-clock</v-icon>
+                        </v-list-item-icon>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu> -->
+
+                  <!-- end -->
 
                   <v-tooltip top>
                     <template v-slot:activator="{ on, attrs }">
@@ -135,7 +161,7 @@
                   </div>
                 </div>
               </div>
-              <div class="section">
+              <!-- <div class="section">
                 <h2 class="section-title">Qui sommes-nous en video</h2>
                 <div>
                   <video width="100%" height="250" controls>
@@ -144,7 +170,7 @@
                     type=video/mp4>
                   </video>
                 </div>
-              </div>
+              </div> -->
               <div class="section">
                 <h2 class="section-title">Description</h2>
                 <div>
@@ -333,6 +359,12 @@ export default Vue.extend({
       currentId: null as unknown as number,
       SocketConnected: false,
       shareModals: false,
+      items: [
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me" },
+        { title: "Click Me 2" },
+      ],
     };
   },
   async beforeMount(): Promise<void> {
