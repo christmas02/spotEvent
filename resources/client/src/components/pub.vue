@@ -11,6 +11,7 @@
       <v-img
         :src="'/storage/' + items[0].path"
         height="350"
+        :width="width"
         aspect-ratio="1"
       ></v-img>
       <!-- <v-img :src="require(`${test}`)" height="250"></v-img> -->
@@ -55,6 +56,10 @@ export default Vue.extend({
     routeName: {
       type: String,
       required: true,
+    },
+    width: {
+      type: String,
+      required: false,
     },
   },
   computed: {
