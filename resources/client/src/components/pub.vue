@@ -9,7 +9,7 @@
     </v-carousel> -->
     <div v-if="items.length > 0">
       <v-img
-        :src="'/storage/' + items[0].path"
+        :src="'/spotevent/public/storage/' + items[0].path"
         height="350"
         :width="width"
         aspect-ratio="1"
