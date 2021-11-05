@@ -1,5 +1,12 @@
 @extends('admin/layout/master')
 
+
+<?php  
+
+
+
+?>
+
 @section('content')
 <style>
 .btn-modal {
@@ -122,6 +129,58 @@ label {
             </div>
 
 
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Historique<small></small></h2>
+                       
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box table-responsive">
+
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table table-striped jambo_table bulk_action"
+                                            style="width:100%">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th> </th>
+                                                    <th> Prestataire </th>
+                                                    <th> Utilisateur </th>
+                                                    <th> Date de visite </th>
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody>
+                                                @if($allvisite)
+                                                @foreach($allvisite as $item)
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{ $item->id_user }}</td>
+                                                    <td>{{ $item->id_prestataire }}</td>
+                                                    <td>{{ $item->created_at }}</td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
 
 

@@ -239,7 +239,7 @@ class AdminController extends Controller
         $demande = count($allDemande);
         
         $infoUser = $this->Userinfo($id);
-        return view('admin.statiatique',compact('infoUser','visite','phone','demande'));
+        return view('admin.statiatique',compact('allvisite','infoUser','visite','phone','demande'));
     }
 
     public function getAlldemande($id){
