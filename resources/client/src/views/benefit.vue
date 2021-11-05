@@ -86,7 +86,7 @@
                 <div>
                   <favorite-btn :benefit="benefit"></favorite-btn>
 
-                  <!-- <v-tooltip top>
+                  <v-tooltip top>
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn
                         icon
@@ -101,15 +101,15 @@
                       </v-btn>
                     </template>
                     <span>Partager sur les reseaux sociaux</span>
-                  </v-tooltip> -->
+                  </v-tooltip>
                 </div>
               </div>
             </jumbotron>
           </v-skeleton-loader>
-          <!-- <share-modal
+          <share-modal
             :benefit="benefit"
             :shareModals.sync="shareModals"
-          ></share-modal> -->
+          ></share-modal>
         </div>
         <div class="main mx-auto mt-md-5">
           <div class="row">

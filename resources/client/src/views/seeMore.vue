@@ -113,6 +113,9 @@ export default Vue.extend({
     );
   },
   computed: {
+    routeName(): string {
+      return this.$route.name ? this.$route.name : "";
+    },
     benefits(): Benefit[] {
       this.allBenefits = this.$store.getters["benefits/all"];
       this.myBenefits = this.$store.getters["benefits/all"];

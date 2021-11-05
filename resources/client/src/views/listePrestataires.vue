@@ -98,6 +98,12 @@ export default Vue.extend({
       this.element = e;
     },
   },
+  computed: {
+    routeName(): string {
+      return this.$route.name ? this.$route.name : "";
+    },
+  },
+
   watch: {
     async search(val: string) {
       // Items have already been loaded
