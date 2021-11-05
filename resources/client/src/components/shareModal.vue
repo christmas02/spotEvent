@@ -34,7 +34,7 @@
                       network="facebook"
                       :url="url"
                       :title="benefit.name"
-                      :description="benefit.presentation"
+                      :description="benefit.description"
                       :quote="benefit.presentation"
                       :hashtags="name"
                     >
@@ -55,7 +55,7 @@
                       network="whatsapp"
                       :url="url"
                       :title="benefit.name"
-                      :description="benefit.presentation"
+                      :description="benefit.description"
                       :quote="benefit.presentation"
                       :hashtags="name"
                     >
