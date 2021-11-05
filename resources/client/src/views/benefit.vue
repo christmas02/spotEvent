@@ -225,7 +225,7 @@
                     height="300"
                   ></v-img>
                 </div> -->
-                <pub :routeName="routeName"></pub>
+                <pub :routeName="routeName" :witdh="350"></pub>
               </div>
               <div class="section">
                 <h2 class="section-title">Contacts</h2>
