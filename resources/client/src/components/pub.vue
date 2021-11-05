@@ -10,7 +10,7 @@
     <div v-if="items.length > 0">
       <v-img
         :src="'/storage/' + items[0].path"
-        height="250"
+        height="350"
         aspect-ratio="1"
       ></v-img>
       <!-- <v-img :src="require(`${test}`)" height="250"></v-img> -->
