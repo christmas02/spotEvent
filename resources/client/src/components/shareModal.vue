@@ -117,16 +117,22 @@ export default Vue.extend({
     },
   },
   methods: {
-    url() {
-      // console.log(this.url, window.location.href);
-      return window.location.href;
-    },
+    // url() {
+    // console.log(this.url, window.location.href);
+    // return "http://spoteventapp.net/prestations/Addic-Art-Prod";
+    // return window.location.href;
+    // },
   },
   computed: {
     name(): string {
       console.log(this.benefit.name);
 
       return this.benefit.name.toLowerCase().replaceAll(" ", "_");
+    },
+    url(): string {
+      // console.log(this.url, window.location.href);
+      return "http://spoteventapp.net/prestations/Addic-Art-Prod";
+      // return window.location.href;
     },
   },
 });

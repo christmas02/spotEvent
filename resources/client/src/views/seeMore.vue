@@ -5,12 +5,13 @@
         <div>
           <!-- <h2 class="section-title">Panneau publicitaire</h2> -->
           <div class="my-5">
-            <div>
+            <!-- <div>
               <v-img
                 :src="require('../assets/images/jmbg2.png')"
                 height="250"
               ></v-img>
-            </div>
+            </div> -->
+            <pub :routeName="routeName"></pub>
           </div>
         </div>
         <!-- <div class="d-none d-sm-block d-md-none">
@@ -62,6 +63,7 @@ import { ICategory } from "@/interfaces/category.interface";
 import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
+import pub from "@/components/pub.vue";
 import { AppService } from "@/services/app.service";
 import expansionPanel from "@/components/expansionPanel.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
@@ -75,6 +77,7 @@ export default Vue.extend({
     ProvidersSlider,
     SearchForm,
     FilterForm,
+    pub,
     expansionPanel,
   },
   data() {
@@ -110,6 +113,9 @@ export default Vue.extend({
     );
   },
   computed: {
+    routeName(): string {
+      return this.$route.name ? this.$route.name : "";
+    },
     benefits(): Benefit[] {
       this.allBenefits = this.$store.getters["benefits/all"];
       this.myBenefits = this.$store.getters["benefits/all"];

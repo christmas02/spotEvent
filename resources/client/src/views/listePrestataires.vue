@@ -2,14 +2,15 @@
   <default-layout>
     <div id="homepage">
       <div class="main mx-auto">
-        <div class="section">
+        <div class="section pub">
           <div class="my-5">
-            <div>
+            <pub :routeName="routeName"></pub>
+            <!-- <div>
               <v-img
                 :src="require('../assets/images/jmbg2.png')"
                 height="250"
               ></v-img>
-            </div>
+            </div> -->
           </div>
           <div class="psearch mx-auto">
             <v-autocomplete
@@ -53,6 +54,7 @@
 import Vue from "vue";
 import YanPaginate from "@/components/YanPaginate.vue";
 import PrestatairesGrid from "@/components/PrestatairesGrid.vue";
+import pub from "@/components/pub.vue";
 import { BenefitService } from "../services/benefit.service";
 import { IAutocompleteProvidersResponse } from "../interfaces/provider.interface";
 export default Vue.extend({
@@ -60,6 +62,7 @@ export default Vue.extend({
   components: {
     PrestatairesGrid,
     YanPaginate,
+    pub,
   },
   data() {
     return {
@@ -95,6 +98,12 @@ export default Vue.extend({
       this.element = e;
     },
   },
+  computed: {
+    routeName(): string {
+      return this.$route.name ? this.$route.name : "";
+    },
+  },
+
   watch: {
     async search(val: string) {
       // Items have already been loaded

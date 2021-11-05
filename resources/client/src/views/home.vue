@@ -18,22 +18,10 @@
               >
             </div>
           </div>
-          <!-- <template #append>
-            <div class="d-none d-md-block search-container">
-              <search-form :handler="initSearch"></search-form>
-            </div>
-          </template> -->
         </jumbotron>
       </div>
 
       <div class="main mx-auto">
-        <!-- <div class="d-none d-sm-block d-md-none">
-          <search-form :handler="initSearch"></search-form>
-        </div> -->
-        <!-- <div class="d-block d-md-none">
-          <expansion-panel :handler="initSearch"></expansion-panel>
-        </div> -->
-
         <div class="section">
           <filter-form></filter-form>
           <div>
@@ -70,7 +58,7 @@
               ></v-img>
             </div>
           </div> -->
-          <pub></pub>
+          <pub :routeName="routeName"></pub>
         </div>
 
         <div class="section mt-0 d-none d-md-block">
@@ -134,6 +122,9 @@ export default Vue.extend({
     ]);
   },
   computed: {
+    routeName(): string {
+      return this.$route.name ? this.$route.name : "";
+    },
     benefits(): Benefit[] {
       return this.$store.getters["benefits/all"].slice(0, 12);
       // return this.$store.getters["benefits/all"]

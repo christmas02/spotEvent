@@ -82,19 +82,7 @@
     >
       <router-link :to="{ name: 'auth-login' }">Connectez-vous</router-link>
     </div>
-    <div class="mt-2">
-      <v-btn color="primary" type="submit" :disabled="loading">
-        <template v-if="loading">Veuillez patienter ...</template>
-        <v-icon v-else>mdi-arrow-right</v-icon>
-      </v-btn>
-    </div>
-    <div
-      class="mt-5 d-flex justify-content-end"
-      v-if="$vuetify.breakpoint.smAndDown"
-    >
-      <router-link :to="{ name: 'auth-login' }">Connectez-vous</router-link>
-    </div>
-  </v-form>
+  </div>
 </template>
 
 <script lang="ts">
