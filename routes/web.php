@@ -58,6 +58,7 @@ Route::get('/messageries/{id}','AdminController@message');
 Route::get('/listPrestatiaire/{id}','AdminController@listeprestatire');
 Route::get('/utilisateurs/{id}','AdminController@listeutilisateur');
 Route::get('/Categorie/{id}','AdminController@categorie');
+Route::get('/Commentaire/{id}','AdminController@listCommentaire');
 Route::get('/Estimation/{id}','AdminController@estimation');
 Route::get('/liste_message/{code}','AdminController@getmessage');
 Route::get('/new_message/{emetteur}/{recepteur}','AdminController@newMessage');
@@ -70,6 +71,8 @@ Route::post('/save/estimation','AdminController@saveEstimation');
 Route::post('/update/estimation','AdminController@updateEstimation'); 
 Route::get('/activer/profil/{id}','AdminController@profilactif');
 Route::post('/update/imagepub','AdminController@updateImagepub');
+
+Route::get('/smsenvojer/{id}','AdminController@smsEnvoye');
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');

@@ -18,7 +18,8 @@ use App\Mail\fotgetPassword;
 use Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use DB;
+//use DB;
+use Illuminate\Support\Facades\DB;
 use App\Conversation;
 use App\Message;
 use App\Commune;
@@ -47,12 +48,11 @@ class ApiController extends Controller
         $listEstiomation = Estimation::all();
         $i = 0;
         $estimation = array();
-        foreach($listEstiomation as $item){
+        foreach ($listEstiomation as $item) {
             $estimation[$i]['id'] = $item->id;
             $estimation[$i]['libelle'] = ($item->libelle);
 
-            $i ++;
-
+            $i++;
         }
         return response()->json(['statu' => 1, 'listCategorie' => $estimation]);
     }
@@ -61,8 +61,8 @@ class ApiController extends Controller
     {
         $listPrestation = Fiche::where('statu_fiche', '!=', '0')->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
             //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-            ->leftjoin('communes','communes.id','=','fiches.localisation')
-            ->select('fiches.*','communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
+            ->leftjoin('communes', 'communes.id', '=', 'fiches.localisation')
+            ->select('fiches.*', 'communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
             ->orderBy('fiches.id', 'desc')
             ->get();
         //dd($listPrestataire);
@@ -71,22 +71,22 @@ class ApiController extends Controller
 
     public function getPrestataire()
     {
-       
+
 
         $list = Fiche::where('fiches.statu_fiche', 1)
-        ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
-        ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
-        ->select('users.*', 'fiches.name as name_entreprise','fiches.id as id_fiche' ,'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
-        ->get();
-        
-        
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+            ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id as id_fiche', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+            ->get();
+
+
         $listPrestataire = [];
         $i = 0;
 
-        foreach($list as $items){
+        foreach ($list as $items) {
 
-            $vote = Commentaire::where('id_prestataire',$items->id_user)->avg('vote');
-            $votant = Commentaire::where('id_prestataire',$items->id_user)->count();
+            $vote = Commentaire::where('id_prestataire', $items->id_user)->avg('vote');
+            $votant = Commentaire::where('id_prestataire', $items->id_user)->count();
 
             $listPrestataire[$i]['vote'] = (int)($vote);
             $listPrestataire[$i]['votant'] = (int)($votant);
@@ -98,10 +98,9 @@ class ApiController extends Controller
             $listPrestataire[$i]['id_fiche'] = $items->id_fiche;
 
             $i++;
-
         }
 
-       
+
 
 
         return response()->json(['statu' => 1, 'listPrestataire' => $listPrestataire]);
@@ -137,33 +136,33 @@ class ApiController extends Controller
         return response()->json(['statu' => 1, 'firstPrestation' => $firstPrestation]);
     }
 
-    public function findPrestation(Request $request){
+    public function findPrestation(Request $request)
+    {
 
         try {
 
             $name = $request['name'];
-            $all = array(" ","'",",");
-            $slug = str_replace('-'," ",$name);
+            $all = array(" ", "'", ",");
+            $slug = str_replace('-', " ", $name);
 
             //dd($slug);
 
             $findPrestataire = Fiche::where('fiches.name', $slug)
-            ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
-            //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
-            ->leftjoin('communes','communes.id','=','fiches.localisation')
-            ->select('fiches.*','communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
-            ->orderBy('fiches.id', 'desc')
-            ->first();
+                ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
+                //->leftjoin('estimations','estimations.id','=','fiches.id_estimation_min')
+                ->leftjoin('communes', 'communes.id', '=', 'fiches.localisation')
+                ->select('fiches.*', 'communes.name as localisation', 'prestations.name as prestation', 'prestations.path_icone')
+                ->orderBy('fiches.id', 'desc')
+                ->first();
 
-           ///if($findPrestataire)
+            ///if($findPrestataire)
             return response()->json(['statu' => 1, 'findPrestataire' => $findPrestataire]);
 
             //code...
         } catch (\Throwable $th) {
             //throw $th;
-            return response()->json([ 'erreur' => $th]);
+            return response()->json(['erreur' => $th]);
         }
-
     }
 
     public function Favoris(Request $request)
@@ -334,27 +333,27 @@ class ApiController extends Controller
     {
 
         $name = $request['name'];
-        $request=$request->all();
+        $request = $request->all();
 
         //dd($name); 
 
 
-        $list = Fiche:://where('fiches.name', $name)
+        $list = Fiche:: //where('fiches.name', $name)
             where('fiches.name', 'like', '%' . $name . '%')
             ->where('fiches.statu_fiche', 1)
             ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
             ->leftjoin('prestations', 'prestations.id', '=', 'fiches.id_prestations')
-            ->select('users.*', 'fiches.name as name_entreprise','fiches.id as id_fiche' ,'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
+            ->select('users.*', 'fiches.name as name_entreprise', 'fiches.id as id_fiche', 'fiches.id_user', 'prestations.name as prestation', 'prestations.path_icone')
             ->get();
-        
-        
+
+
         $listPrestataire = [];
         $i = 0;
 
-        foreach($list as $items){
+        foreach ($list as $items) {
 
-            $vote = Commentaire::where('id_prestataire',$items->id_user)->avg('vote');
-            $votant = Commentaire::where('id_prestataire',$items->id_user)->count();
+            $vote = Commentaire::where('id_prestataire', $items->id_user)->avg('vote');
+            $votant = Commentaire::where('id_prestataire', $items->id_user)->count();
 
             $listPrestataire[$i]['vote'] = (int)($vote);
             $listPrestataire[$i]['votant'] = (int)($votant);
@@ -366,7 +365,6 @@ class ApiController extends Controller
             $listPrestataire[$i]['id_fiche'] = $items->id_fiche;
 
             $i++;
-
         };
 
         if (count($list) == '0') {
@@ -392,10 +390,10 @@ class ApiController extends Controller
 
         //dd(count($resultat));
 
-        if (count($resultat) != '0'){
+        if (count($resultat) != '0') {
             $message = "resultat disponible";
             return response()->json(['statu' => 1, 'message' => $message, 'resultat' => $resultat]);
-        }else{
+        } else {
             $message = "resultat vide";
             return response()->json(['statu' => 0, 'message' => $message, 'resultat' => $resultat]);
         }
@@ -453,7 +451,7 @@ class ApiController extends Controller
         }
     }
 
-   /* public function getConversation(Request $request)
+    /* public function getConversation(Request $request)
     {
 
         try {
@@ -829,12 +827,12 @@ class ApiController extends Controller
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
-    public function ListCommune(){
+    public function ListCommune()
+    {
         try {
-        
+
             $listCommune = Commune::get();
 
             if ($listCommune) {
@@ -842,14 +840,14 @@ class ApiController extends Controller
             } else {
                 return response()->json(['statu' => 0, 'listCommune' => $listCommune]);
             }
-
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
         }
     }
 
-    public function gestionContenus(){
+    public function gestionContenus()
+    {
 
         try {
             $contenu = Contenu::all();
@@ -859,7 +857,6 @@ class ApiController extends Controller
             //throw $th;
             return redirect()->back()->with('danger', 'Error.');
         }
-
     }
 
     public function saveMessagerie(Request $request)
@@ -879,7 +876,6 @@ class ApiController extends Controller
             $messagerie->save();
 
             return response()->json(['statu' => 1, 'messaage' => "Nous avous bien recus votre message"]);
-
         } catch (\Throwable $th) {
             //throw $th;
             //dd($th);
@@ -887,15 +883,14 @@ class ApiController extends Controller
         }
     }
 
-    public function getPublicite(){
+    public function getPublicite()
+    {
         try {
 
             $listpublicite = Publicite::all();
             return response()->json(['statu' => 1, 'listContenue' => $listpublicite]);
-
         } catch (\Throwable $th) {
             //throw $th;
         }
     }
-
 }

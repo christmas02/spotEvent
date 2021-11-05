@@ -26,209 +26,240 @@ use App\Smsrapport;
 class AdminController extends Controller
 {
     //
-    public function visiteFiche($id){
-        $visite = Clicfiche::where('id_prestataire',$id)->get();
+    public function visiteFiche($id)
+    {
+        $visite = Clicfiche::where('id_prestataire', $id)->get();
         return count($visite);
     }
 
-    public function visiteFicheMonth($id){
+    public function visiteFicheMonth($id)
+    {
         $month = date('m');
-        $visiteMonth = Clicfiche::where('id_prestataire',$id)
-        ->whereMonth('created_at', $month)
-        ->get();
+        $visiteMonth = Clicfiche::where('id_prestataire', $id)
+            ->whereMonth('created_at', $month)
+            ->get();
         return count($visiteMonth);
     }
 
-    public function visitePhone($id){
+    public function visitePhone($id)
+    {
 
-        $phone = Clicphone::where('id_prestataire',$id)->get();
+        $phone = Clicphone::where('id_prestataire', $id)->get();
         return count($phone);
     }
 
-    public function visitePhoneMonth($id){
+    public function visitePhoneMonth($id)
+    {
         $month = date('m');
-        $phoneMonth = Clicphone::where('id_prestataire',$id)
-        ->whereMonth('created_at', $month)
-        ->get();
+        $phoneMonth = Clicphone::where('id_prestataire', $id)
+            ->whereMonth('created_at', $month)
+            ->get();
         return count($phoneMonth);
     }
 
     public function getDemande($id)
     {
-        $listDemande = Demande::where('id_prestataire',$id)->orderBy('id', 'desc')->get();
+        $listDemande = Demande::where('id_prestataire', $id)->orderBy('id', 'desc')->get();
         return $listDemande;
-
     }
 
-    public function demande($id){
+    public function demande($id)
+    {
 
-        $demande = Demande::where('id_prestataire',$id)->get();
+        $demande = Demande::where('id_prestataire', $id)->get();
         return count($demande);
     }
 
-    public function categorie($id){
+    public function categorie($id)
+    {
 
         $categories = Prestation::get();
         $infoUser = $this->Userinfo($id);
         //return count($demande);
-        return view('admin.list_categorie',compact('categories','infoUser'));
+        return view('admin.list_categorie', compact('categories', 'infoUser'));
     }
 
-    public function estimation($id){
+    public function estimation($id)
+    {
 
         $categories = Estimation::get();
         $infoUser = $this->Userinfo($id);
         //return count($demande);
-        return view('admin.list_estimation',compact('categories','infoUser'));
+        return view('admin.list_estimation', compact('categories', 'infoUser'));
     }
 
-    public function demandeMonth($id){
+    public function demandeMonth($id)
+    {
         $month = date('m');
-        $demandeMonth = Demande::where('id_prestataire',$id)
-        ->whereMonth('created_at', $month)
-        ->get();
+        $demandeMonth = Demande::where('id_prestataire', $id)
+            ->whereMonth('created_at', $month)
+            ->get();
         return count($demandeMonth);
     }
 
-    public function prestataire(){
+    public function prestataire()
+    {
         $listePrestation = Fiche::all();
         return $listePrestation;
     }
 
-    public function prestations(){
+    public function prestations()
+    {
         $listePrestation = Prestation::all();
         return $listePrestation;
     }
 
 
-    public function login(){
+    public function login()
+    {
         //$listePrestation = Prestation::get();
         return view('admin.login');
     }
 
-    public function Userinfo($id){
-        $infoUser = User::where('id',$id)->first();
+    public function Userinfo($id)
+    {
+        $infoUser = User::where('id', $id)->first();
         return  $infoUser;
     }
 
-    public function home($id){
-       
+    public function home($id)
+    {
+
         //dd();
-        $infoUser = User::where('id',$id)->first();
+        $infoUser = User::where('id', $id)->first();
         //dd($infoUser->name);
         $Users = User::all();
-        return view('admin.home', compact('Users','infoUser'));
+        return view('admin.home', compact('Users', 'infoUser'));
     }
 
-    public function listeprestatire($id){
-       
+    public function listeprestatire($id)
+    {
+
         //dd();
-        $infoUser = User::where('id',$id)->first();
+        $infoUser = User::where('id', $id)->first();
         //dd($infoUser->name);
-        $Prestataire = User::where('role',2)->get();
+        $Prestataire = User::where('role', 2)->get();
         //dd($Prestataire);
-        return view('admin.prestataire', compact('Prestataire','infoUser'));
+        return view('admin.prestataire', compact('Prestataire', 'infoUser'));
     }
 
-    public function listeutilisateur($id){
-       
+    public function listeutilisateur($id)
+    {
+
         //dd();
-        $infoUser = User::where('id',$id)->first();
+        $infoUser = User::where('id', $id)->first();
         //dd($infoUser->name);
-        $Utilisateur = User::where('role',1)->get();
+        $Utilisateur = User::where('role', 1)->get();
         //dd($Prestataire);
-        return view('admin.utilisateur', compact('Utilisateur','infoUser'));
+        return view('admin.utilisateur', compact('Utilisateur', 'infoUser'));
     }
 
-    public function listficheactif($id){
-       
+    public function listficheactif($id)
+    {
+
         //dd();
-        $infoUser = User::where('id',$id)->first();
+        $infoUser = User::where('id', $id)->first();
         //dd($infoUser->name);
-        $Utilisateur = User::where('role',1)->get();
-        //dd($Prestataire);
-
-        $listePrestation = Db::table('fiches')->where('statu_fiche',1)
-                        ->leftjoin('users','users.id','=','fiches.id_user')
-                        ->leftjoin('communes','communes.id','=','fiches.localisation')
-                        ->select('users.name as nom','communes.name as commune','users.phone as numero','fiches.*')
-                        ->orderBy('fiches.id', 'desc')
-                        ->get();
-
-        return view('admin.list_fiche_actif', compact('Utilisateur','listePrestation','infoUser'));
-    }
-
-    public function listfichenonactif($id){
-       
-        //dd();
-        $infoUser = User::where('id',$id)->first();
-        //dd($infoUser->name);
-        $Utilisateur = User::where('role',1)->get();
+        $Utilisateur = User::where('role', 1)->get();
         //dd($Prestataire);
 
-        $listePrestation = Db::table('fiches')->where('statu_fiche',0)
-                        ->leftjoin('users','users.id','=','fiches.id_user')
-                        ->leftjoin('communes','communes.id','=','fiches.localisation')
-                        ->select('users.name as nom','communes.name as commune','users.phone as numero','fiches.*')
-                        ->orderBy('fiches.id', 'desc')
-                        ->get();
-        return view('admin.list_fiche_actif', compact('Utilisateur','listePrestation','infoUser'));
+        $listePrestation = Db::table('fiches')->where('statu_fiche', 1)
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            ->leftjoin('communes', 'communes.id', '=', 'fiches.localisation')
+            ->select('users.name as nom', 'communes.name as commune', 'users.phone as numero', 'fiches.*')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
+
+        return view('admin.list_fiche_actif', compact('Utilisateur', 'listePrestation', 'infoUser'));
     }
 
-    public function getPrestatire($id){
+    public function listfichenonactif($id)
+    {
+
+        //dd();
+        $infoUser = User::where('id', $id)->first();
+        //dd($infoUser->name);
+        $Utilisateur = User::where('role', 1)->get();
+        //dd($Prestataire);
+
+        $listePrestation = Db::table('fiches')->where('statu_fiche', 0)
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            ->leftjoin('communes', 'communes.id', '=', 'fiches.localisation')
+            ->select('users.name as nom', 'communes.name as commune', 'users.phone as numero', 'fiches.*')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
+        return view('admin.list_fiche_actif', compact('Utilisateur', 'listePrestation', 'infoUser'));
+    }
+
+    public function getPrestatire($id)
+    {
 
         $infoUser = $this->Userinfo($id);
 
         $listePrestation = Db::table('fiches')
-                        ->leftjoin('users','users.id','=','fiches.id_user')
-                        ->leftjoin('communes','communes.id','=','fiches.localisation')
-                        ->select('users.name as nom','communes.name as commune','users.phone as numero','fiches.*')
-                        ->orderBy('fiches.id', 'desc')
-                        ->get();
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            ->leftjoin('communes', 'communes.id', '=', 'fiches.localisation')
+            ->select('users.name as nom', 'communes.name as commune', 'users.phone as numero', 'fiches.*')
+            ->orderBy('fiches.id', 'desc')
+            ->get();
 
-                        //dd($listePrestation);
+        //dd($listePrestation);
 
-        return view('admin.list_prestataire',compact('listePrestation','infoUser'));
+        return view('admin.list_prestataire', compact('listePrestation', 'infoUser'));
     }
 
-    public function galerie($id){
-        $galerie = Galerie::where('id_user','=',$id)->get();
+    public function galerie($id)
+    {
+        $galerie = Galerie::where('id_user', '=', $id)->get();
         return $galerie;
     }
 
-    public function onePrestatire($id,$user){
+    public function onePrestatire($id, $user)
+    {
 
         //dd($user);
         $infoUser = $this->Userinfo($user);
         $prestataire = DB::table('fiches')
-                        ->where('fiches.id',$id)
-                        ->leftjoin('users','users.id','=','fiches.id_user')
-                        //->leftjoin('galeries','galeries.id_user','fiches.id_user')
-                        ->select('users.name as nom','users.email as adresse','users.id as id_user','users.phone as numero','fiches.*')
-                        ->first();
+            ->where('fiches.id', $id)
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            //->leftjoin('galeries','galeries.id_user','fiches.id_user')
+            ->select('users.name as nom', 'users.email as adresse', 'users.id as id_user', 'users.phone as numero', 'fiches.*')
+            ->first();
 
-                        $visite = $this->visiteFiche($prestataire->id_user);
-                        $phone = $this->visitePhone($prestataire->id_user);
-                        $demande = $this->demande($prestataire->id_user);
-                        $listDemande = $this->getDemande($prestataire->id_user);
-                        $visiteMonth = $this->visiteFicheMonth($prestataire->id_user);
-                        $phoneMonth = $this->visitePhoneMonth($prestataire->id_user);
-                        $demandeMonth = $this->demandeMonth($prestataire->id_user);
+        $visite = $this->visiteFiche($prestataire->id_user);
+        $phone = $this->visitePhone($prestataire->id_user);
+        $demande = $this->demande($prestataire->id_user);
+        $listDemande = $this->getDemande($prestataire->id_user);
+        $visiteMonth = $this->visiteFicheMonth($prestataire->id_user);
+        $phoneMonth = $this->visitePhoneMonth($prestataire->id_user);
+        $demandeMonth = $this->demandeMonth($prestataire->id_user);
 
         $galerie = $this->galerie($prestataire->id_user);
 
-        $commentaire = Commentaire::where('commentaires.id_prestataire',$id)
-        ->leftjoin('users','users.id','=','commentaires.id_user')
-        ->leftjoin('fiches','fiches.id','=','commentaires.id_prestataire')
-        ->select('fiches.name as prestataire','users.name as utilisateur', 'commentaires.contenus','commentaires.vote')
-        ->get();
+        $commentaire = Commentaire::where('commentaires.id_prestataire', $id)
+            ->leftjoin('users', 'users.id', '=', 'commentaires.id_user')
+            ->leftjoin('fiches', 'fiches.id', '=', 'commentaires.id_prestataire')
+            ->select('fiches.name as prestataire', 'users.name as utilisateur', 'commentaires.contenus', 'commentaires.vote')
+            ->get();
         //dd($prestataire->id_user);
 
-        return view('admin.fiche_prestataire',compact('prestataire','galerie','infoUser',
-        'visite','phone','demande','listDemande','visiteMonth','phoneMonth','demandeMonth','commentaire'));
+        return view('admin.fiche_prestataire', compact(
+            'prestataire',
+            'galerie',
+            'infoUser',
+            'visite',
+            'phone',
+            'demande',
+            'listDemande',
+            'visiteMonth',
+            'phoneMonth',
+            'demandeMonth',
+            'commentaire'
+        ));
     }
 
-    public function statiatique($id){
+    public function statiatique($id)
+    {
 
         $allvisite = Clicfiche::all();
         $allphone = Clicphone::all();
@@ -237,27 +268,34 @@ class AdminController extends Controller
         $visite = count($allvisite);
         $phone = count($allphone);
         $demande = count($allDemande);
-        
+
         $infoUser = $this->Userinfo($id);
+<<<<<<< HEAD
         return view('admin.statiatique',compact('allvisite','infoUser','visite','phone','demande'));
+=======
+        return view('admin.statiatique', compact('infoUser', 'visite', 'phone', 'demande'));
+>>>>>>> 2328d3969b84b0a960b1b1d795e0f30607e7ba39
     }
 
-    public function getAlldemande($id){
+    public function getAlldemande($id)
+    {
         $infoUser = $this->Userinfo($id);
-        $allDemande = Demande::leftjoin('fiches','fiches.id_user','=','demandes.id_prestataire')
-        ->leftjoin('users','users.id','=','fiches.id_user')
-        ->select('demandes.*','fiches.name as prestation','users.name as prestataire')
-        ->get();
-        return view('admin.list_demande',compact('allDemande','infoUser'));
+        $allDemande = Demande::leftjoin('fiches', 'fiches.id_user', '=', 'demandes.id_prestataire')
+            ->leftjoin('users', 'users.id', '=', 'fiches.id_user')
+            ->select('demandes.*', 'fiches.name as prestation', 'users.name as prestataire')
+            ->get();
+        return view('admin.list_demande', compact('allDemande', 'infoUser'));
     }
 
-    public function getPrestations(){
+    public function getPrestations()
+    {
         $prestations =  $this->prestations();
-        return view('admin.list_prestation',compact('prestations'));
+        return view('admin.list_prestation', compact('prestations'));
     }
 
-    public function saveParametre(Request $request){
-        try{
+    public function saveParametre(Request $request)
+    {
+        try {
 
             //dd($request->all());
             $id_fiche = $request->get('id_fiche');
@@ -269,58 +307,56 @@ class AdminController extends Controller
             $telephone = $request->get('telephone');
             $whatsapp = $request->get('whatsapp');
             $cotaimage = $request->get('cotaimage');
-            
 
-            $firstFiche = Fiche::where('id',$id_fiche)->first();
+
+            $firstFiche = Fiche::where('id', $id_fiche)->first();
 
             //if($activation AND $activation != $firstFiche->statu_fiche){
-                Fiche::where('id',$id_fiche)->update(['statu_fiche' => $activation]);
+            Fiche::where('id', $id_fiche)->update(['statu_fiche' => $activation]);
             //}
 
             //if($position AND $position != $firstFiche->position){
-                Fiche::where('id',$id_fiche)->update(['position' => $position]);
+            Fiche::where('id', $id_fiche)->update(['position' => $position]);
             //}
 
             //if($messagerie AND $messagerie != $firstFiche->messagerie){
-                Fiche::where('id',$id_fiche)->update(['messagerie' => $messagerie]);
+            Fiche::where('id', $id_fiche)->update(['messagerie' => $messagerie]);
             //}
 
             //if($favoris AND $favoris != $firstFiche->favoris){
-                Fiche::where('id',$id_fiche)->update(['favoris' => $favoris]);
+            Fiche::where('id', $id_fiche)->update(['favoris' => $favoris]);
             //}
 
             //if($favoris AND $favoris != $firstFiche->favoris){
-                Fiche::where('id',$id_fiche)->update(['actif_phone' => $telephone]);
+            Fiche::where('id', $id_fiche)->update(['actif_phone' => $telephone]);
             //}
 
             //if($favoris AND $favoris != $firstFiche->favoris){
-                Fiche::where('id',$id_fiche)->update(['actif_whatsapp' => $whatsapp]);
+            Fiche::where('id', $id_fiche)->update(['actif_whatsapp' => $whatsapp]);
             //}
 
-            Fiche::where('id',$id_fiche)->update(['nbre_image' => $cotaimage]);
+            Fiche::where('id', $id_fiche)->update(['nbre_image' => $cotaimage]);
 
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
-
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
-        
-
     }
 
-    public function savePrestation(Request $request){
+    public function savePrestation(Request $request)
+    {
         try {
 
             //dd($request->all());
             $image = $request->file('image');
             //dd($image);
-            $image_icone = $input['imagename'] = time(). '.' . $image->getClientOriginalName();
+            $image_icone = $input['imagename'] = time() . '.' . $image->getClientOriginalName();
             $destination = public_path('/image');
             $image->move($destination, $input['imagename']);
-         
 
-            $prestation = New Prestation;
+
+            $prestation = new Prestation;
 
             $prestation->name = $request->get('name');
             $prestation->path_icone = $image_icone;
@@ -330,17 +366,17 @@ class AdminController extends Controller
             $prestation->save();
             //code...
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
-
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
     }
 
     ////// MESSAGERIE ///////////
 
-    public function saveMessage(Request $request){
-        try{
+    public function saveMessage(Request $request)
+    {
+        try {
 
             $id_emmetteur = $request->id_emmetteur;
             $contenus = $request->contenus;
@@ -348,7 +384,7 @@ class AdminController extends Controller
 
             $id_recepteur = $request->id_recepteur;
 
-            if($conversation > 0){
+            if ($conversation > 0) {
 
                 $message = new Message;
 
@@ -357,13 +393,12 @@ class AdminController extends Controller
                 $message->conversation = $conversation;
 
                 $message->save();
-
-            }else{
+            } else {
 
                 $conversatiom_exsite = Conversation::where('id_user', $id_emmetteur)
-                ->where('id_recepteur',$id_recepteur)->first();
+                    ->where('id_recepteur', $id_recepteur)->first();
 
-                if($conversatiom_exsite){
+                if ($conversatiom_exsite) {
                     //dd($conversatiom_exsite->cod_conversation);
                     $message = new Message;
 
@@ -372,8 +407,7 @@ class AdminController extends Controller
                     $message->conversation = $conversatiom_exsite->cod_conversation;
 
                     $message->save();
-
-                }else{
+                } else {
                     // Creation de la conversation
                     $code = time();
                     $conversation = new Conversation;
@@ -393,45 +427,42 @@ class AdminController extends Controller
                     $message->conversation = $code;
 
                     $message->save();
-
                 }
-                
-
             }
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
-
-        }catch(\Throwable $th) {
+        } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
 
-    public function message($id){
+    public function message($id)
+    {
         $infoUser = $this->Userinfo($id);
-        $conversation = Conversation::where('conversations.id_user',$id)
-        ->leftjoin('users','users.id','=','conversations.id_recepteur')
-        ->leftjoin('messages','messages.conversation','=','conversations.cod_conversation')
-        ->select('users.*','messages.id as id_message','messages.contenus','messages.conversation as code')
-        ->orderBy('messages.id', 'desc')
-        //->groupBy('messages.conversation')
-        //->distinct('messages.conversation')
-        ->distinct()
-        //->count('messages.conversation')
-        ->get();
+        $conversation = Conversation::where('conversations.id_user', $id)
+            ->leftjoin('users', 'users.id', '=', 'conversations.id_recepteur')
+            ->leftjoin('messages', 'messages.conversation', '=', 'conversations.cod_conversation')
+            ->select('users.*', 'messages.id as id_message', 'messages.contenus', 'messages.conversation as code')
+            ->orderBy('messages.id', 'desc')
+            //->groupBy('messages.conversation')
+            //->distinct('messages.conversation')
+            ->distinct()
+            //->count('messages.conversation')
+            ->get();
         //dd($conversation);
         //->get(['messages.conversation']);
-        return view('admin.messages',compact('infoUser','conversation'));
+        return view('admin.messages', compact('infoUser', 'conversation'));
     }
 
-    public function newMessage($emetteur,$recepteur){
-        
+    public function newMessage($emetteur, $recepteur)
+    {
+
         //dd($emetteur,$recepteur);
-        $convesation = Conversation::where('id_user',$emetteur)->where('id_recepteur',$recepteur)->first();
-        if($convesation){
-            $data = Message::where('conversation','=',$convesation->cod_conversation)->get();
-        }else{
+        $convesation = Conversation::where('id_user', $emetteur)->where('id_recepteur', $recepteur)->first();
+        if ($convesation) {
+            $data = Message::where('conversation', '=', $convesation->cod_conversation)->get();
+        } else {
             $code = time();
             $conversation = new Conversation;
 
@@ -442,23 +473,22 @@ class AdminController extends Controller
             $conversation->save();
 
             $data = $conversation;
-
         }
-       
-        return response()->json($data);
 
+        return response()->json($data);
     }
 
     public function getmessage($code)
     {
         //
         //dd($code)
-        $data = Message::where('conversation','=',$code)->get();
+        $data = Message::where('conversation', '=', $code)->get();
         //dd($data);
         return response()->json($data);
     }
 
-    public function updateCategorie(Request $request){
+    public function updateCategorie(Request $request)
+    {
 
         try {
             //code...
@@ -466,32 +496,31 @@ class AdminController extends Controller
             $name = $request->get('name');
             $id = $request->get('id');
 
-            Prestation::where('id',$id)
-            ->update([
-                'name' => $name,
-                'description' => $description,
-            ]);
+            Prestation::where('id', $id)
+                ->update([
+                    'name' => $name,
+                    'description' => $description,
+                ]);
 
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
-
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
-    public function updateEstimation(){
+    public function updateEstimation()
+    {
 
         try {
             //code...
         } catch (\Throwable $th) {
             //throw $th;
         }
-
     }
 
-    public function saveCategorie(Request $request){
+    public function saveCategorie(Request $request)
+    {
 
         try {
 
@@ -503,66 +532,66 @@ class AdminController extends Controller
             $storage_data = Storage::disk('public')->put($name_img, file_get_contents($file));
 
 
-            $prestation = New Prestation;
+            $prestation = new Prestation;
 
 
             $prestation->description = $request->get('description');
             $prestation->name = $request->get('name');
             $prestation->path_icone = $name_img;
- 
+
             // save du menu nourriture ---- #########
             $prestation->save();
-           
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
 
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
-            return redirect()->back()->with('danger', 'Error.'.$th);
+            return redirect()->back()->with('danger', 'Error.' . $th);
         }
-
     }
 
-    public function saveEstimation(Request $request){
+    public function saveEstimation(Request $request)
+    {
 
         try {
             //dd($request->all());
             //code...
-            $estimation = New Estimation;
+            $estimation = new Estimation;
             $estimation->libelle = $request->get('libelle');
 
-            $estimationExiste = Estimation::where('libelle',$request->get('libelle'))->first();
+            $estimationExiste = Estimation::where('libelle', $request->get('libelle'))->first();
 
-            if($estimationExiste){
+            if ($estimationExiste) {
                 return redirect()->back()->with('danger', 'Error.');
             }
 
             // save du menu nourriture ---- #########
             $estimation->save();
-           
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
 
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
         }
-
     }
 
-    public function listContenus($id){
+    public function listContenus($id)
+    {
 
         $infoUser = $this->Userinfo($id);
         $listContenu = Contenu::all();
-        return view('admin.pages',compact('infoUser','listContenu'));
+        return view('admin.pages', compact('infoUser', 'listContenu'));
     }
 
-    public function listPublicite($id){
+    public function listPublicite($id)
+    {
 
         $infoUser = $this->Userinfo($id);
         $listPublicite = Publicite::all();
-        return view('admin.publicite',compact('infoUser','listPublicite'));
+        return view('admin.publicite', compact('infoUser', 'listPublicite'));
     }
 
-    public function updateImagepub(Request $request){
+    public function updateImagepub(Request $request)
+    {
         try {
             $id = $request->get('id');
 
@@ -571,44 +600,41 @@ class AdminController extends Controller
             $storage_data = Storage::disk('public')->put($name_img, file_get_contents($file));
 
 
-                Publicite::where('id',$id)
+            Publicite::where('id', $id)
                 ->update([
                     'path' => $name_img,
                 ]);
 
 
             return redirect()->back()->with('success', "Opération éffectué avec succès.");
-
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
         }
-
-
     }
 
-    public function updateContenus(Request $request){
+    public function updateContenus(Request $request)
+    {
 
         try {
             //code...
             $contenus = $request->get('contenus');
             $id = $request->get('id');
 
-            Contenu::where('id',$id)
-            ->update([
-                'contenus' => $contenus,
-            ]);
+            Contenu::where('id', $id)
+                ->update([
+                    'contenus' => $contenus,
+                ]);
 
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
-
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
         }
-
     }
 
-    public function deletfiche(Request $request){
+    public function deletfiche(Request $request)
+    {
 
         try {
             $id = $request->get('id');
@@ -617,20 +643,19 @@ class AdminController extends Controller
             $image->delete();
 
             return redirect()->back()->with('success', "Opération éffectué avec succès.");
-
         } catch (\Throwable $th) {
-           //dd($th);
+            //dd($th);
             return redirect()->back()->with('danger', 'Error.');
-        } 
-
+        }
     }
 
-    public function deletUser(Request $request){
+    public function deletUser(Request $request)
+    {
 
         try {
             $id = $request->get('id');
 
-            $ficheExist = Fiche::where('id_user',$id)->first();
+            $ficheExist = Fiche::where('id_user', $id)->first();
 
             /*if($ficheExist){
 
@@ -643,42 +668,41 @@ class AdminController extends Controller
             $image->delete();
 
             return redirect()->back()->with('success', "Opération éffectué avec succès.");
-
         } catch (\Throwable $th) {
-           //dd($th);
+            //dd($th);
             return redirect()->back()->with('danger', 'Error.');
-        } 
-
+        }
     }
 
-    public function smsEnvoye($id){
+    public function smsEnvoye($id)
+    {
 
         $infoUser = $this->Userinfo($id);
         $listsms = Smsrapport::all();
         $stock_sms = DB::table('sms')->first();
-        return view('admin/smsenvoyer',compact('infoUser','listsms','stock_sms'));
-
+        return view('admin/smsenvoyer', compact('infoUser', 'listsms', 'stock_sms'));
     }
 
-    public function listCommentaire($id){
+    public function listCommentaire($id)
+    {
         $infoUser = $this->Userinfo($id);
-        $commentaire = Commentaire::leftjoin('users','users.id','=','commentaires.id_user')
-        ->leftjoin('fiches','fiches.id','=','commentaires.id_prestataire')
-        ->select('fiches.name as prestataire','users.name as utilisateur', 'commentaires.contenus','commentaires.vote')
-        ->get();
-        return view('admin/commentaires',compact('infoUser','commentaire'));
-
+        $commentaire = Commentaire::leftjoin('users', 'users.id', '=', 'commentaires.id_user')
+            ->leftjoin('fiches', 'fiches.id', '=', 'commentaires.id_prestataire')
+            ->select('fiches.name as prestataire', 'users.name as utilisateur', 'commentaires.contenus', 'commentaires.vote')
+            ->get();
+        return view('admin/commentaires', compact('infoUser', 'commentaire'));
     }
 
-    public function profilactif($id){
+    public function profilactif($id)
+    {
         try {
             //code...
             //dd($request->all());
             //dd($id);
 
-            $user = User::where('id',$id)->first();
+            $user = User::where('id', $id)->first();
             //dd($id);
-            if($user){
+            if ($user) {
                 //dd($evenement);
                 $user->update(['confirmation_token' => null]);
                 return redirect()->back()->with('success', 'Opération éffectué avec succès.');
@@ -687,12 +711,5 @@ class AdminController extends Controller
             //throw $th;
             //dd($th);
         }
-
     }
-
-
-
-
-
-
 }
