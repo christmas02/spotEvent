@@ -1,14 +1,22 @@
 <template>
   <div class="my-5">
-    <v-carousel hide-delimiters height="250" v-if="items.length > 0">
+    <!-- <v-carousel hide-delimiters height="250" v-if="items.length > 0">
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
         :src="'/storage/' + item.path"
       ></v-carousel-item>
-      <!-- :src="'/spotevent/public/storage/' + item.path" -->
-    </v-carousel>
+    </v-carousel> -->
+    <div v-if="items.length > 0">
+      <v-img
+        :src="'/storage/' + items[0].path"
+        height="250"
+        aspect-ratio="1"
+      ></v-img>
+      <!-- <v-img :src="require(`${test}`)" height="250"></v-img> -->
+    </div>
   </div>
+  <!-- :src="'/spotevent/public/storage/' + item.path" -->
 </template>
 
 <script lang="ts">
