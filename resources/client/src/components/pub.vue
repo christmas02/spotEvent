@@ -57,7 +57,7 @@ export default Vue.extend({
       type: String,
       required: true,
     },
-    witdh: {
+    width: {
       type: String,
       required: false,
     },
