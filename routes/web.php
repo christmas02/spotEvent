@@ -39,6 +39,7 @@ Route::get('/fiche/prestataires/{id}/{user}','AdminController@onePrestatire');
 Route::get('/liste/demandes/{id}','AdminController@getAlldemande');
 Route::get('/list/prestations/{id}','AdminController@getPrestations');
 Route::get('/statistique/{id}','AdminController@statiatique');
+Route::get('/statistique_contact/{id}','AdminController@statistiqueContact');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
 Route::get('/Contenus/{id}','AdminController@listContenus'); 

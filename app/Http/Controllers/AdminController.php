@@ -273,6 +273,21 @@ class AdminController extends Controller
         return view('admin.statiatique',compact('allvisite','infoUser','visite','phone','demande'));
     }
 
+    public function statistiqueContact($id)
+    {
+
+        $allvisite = Clicfiche::all();
+        $allphone = Clicphone::all();
+        $allDemande = Demande::all();
+
+        $visite = count($allvisite);
+        $phone = count($allphone);
+        $demande = count($allDemande);
+
+        $infoUser = $this->Userinfo($id);
+        return view('admin.statistiqueContact',compact('allphone','allvisite','infoUser','visite','phone','demande'));
+    }
+
     public function getAlldemande($id)
     {
         $infoUser = $this->Userinfo($id);

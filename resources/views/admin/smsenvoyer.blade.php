@@ -159,15 +159,20 @@ label {
                                                 @foreach($listsms as $item)
                                                 <tr>
                                                     <td>{{ $item->emetteur }}</td>
-                                                    <td>{{ getPrestataire($item->id_prestataire)->name }}</td>
-                                                    <td>{{ getUtilisateur($item->id_utilisateur)->name }}</td>
+                                                    <td>
+                                                        @if($item->id_prestataire != 0 and getPrestataire($item->id_prestataire) != null)
+                                                        {{ getPrestataire($item->id_prestataire)->name }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                       @if($item->id_utilisateur != 0 and getUtilisateur($item->id_utilisateur) != null )
+                                                       {{ getUtilisateur($item->id_utilisateur)->name }}
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $item->numero_recepteur }}</td>
                                                     <td>{{ $item->statu }}</td>
                                                     <td>{{ $item->message }}</td>
                                                 </tr>
-
-                                                
-
                                                 @endforeach
                                                 @endif
                                                

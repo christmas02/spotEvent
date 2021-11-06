@@ -138,7 +138,7 @@ label {
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Historique des visites<small></small></h2>
+                        <h2>Historique des clique sur le contact<small></small></h2>
                        
                         <div class="clearfix"></div>
                     </div>
@@ -162,8 +162,8 @@ label {
 
 
                                             <tbody>
-                                                @if($allvisite)
-                                                @foreach($allvisite as $item)
+                                                @if($allphone)
+                                                @foreach($allphone as $item)
                                                 <tr>
                                                     <td></td>
                                                     <td>
@@ -172,9 +172,9 @@ label {
                                                         @endif
                                                     </td>
                                                     <td>
-                                                       
+                                                        
                                                         @if($item->id_prestataire != 0 and getPestataire($item->id_prestataire) != null)
-                                                        {{ getPestataire($item->id_prestataire)->name }} 
+                                                        {{ getPestataire($item->id_prestataire)->name }}
                                                         @endif</td>
                                                     <td>{{ $item->created_at }}</td>
                                                 </tr>

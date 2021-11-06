@@ -34,7 +34,7 @@ function gestPrestation($id)
                 <div class="x_panel">
                     <div class="x_content">
                         <div class="row clearfix">
-                            <div class="col-lg-2 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="body l-parpl text-center">
                                         <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
@@ -61,15 +61,7 @@ function gestPrestation($id)
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-6">
-                                <div class="card">
-                                    <div class="body l-blue text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="978" data-speed="2000" data-fresh-interval="700">0</h3>
-                                        <span class="text-white">Messagerie</span>
-                                    </div>
-                                </div>
-                            </div>
+                           
                             <div class="col-lg-2 col-md-6">
                                 <div class="card">
                                     <div class="body l-seagreen text-center">
@@ -79,7 +71,7 @@ function gestPrestation($id)
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="body l-amber text-center">
                                         <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
@@ -253,7 +245,7 @@ function gestPrestation($id)
                                 @elseif($prestataire->statu_fiche == 2 )
                                 <button class="btn btn-danger "> Inactif</button>
                                 @endif
-                                {{ $prestataire->id_user }}
+                               
                                 <h3 style="" class="prod_title">{{ $prestataire->name }} / </h3>
                                 <h4>{{ $prestataire->presentation }}.</h4>
                                 <br>
