@@ -120,5 +120,8 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style scoped>
+.borde {
+  border: 1px solid;
+}
 </style>

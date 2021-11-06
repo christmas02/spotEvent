@@ -20,7 +20,7 @@
         <!-- <div class="d-block d-md-none">
           <expansion-panel></expansion-panel>
         </div> -->
-        <div class="section">
+        <div class="section mt-10">
           <filter-form></filter-form>
           <div style="margin: 50px 0">
             <div class="loading" v-if="loading && benefits.length == 0">
