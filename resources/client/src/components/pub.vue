@@ -1,5 +1,5 @@
 <template>
-  <div class="my-5">
+  <div>
     <!-- <v-carousel hide-delimiters height="250" v-if="items.length > 0">
       <v-carousel-item
         v-for="(item, i) in items"
