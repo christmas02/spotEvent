@@ -42,6 +42,7 @@
                         color="facebook"
                         @click="$emit('update:shareModals', false)"
                       >
+                        <!-- @click="$emit('update:shareModals', false)" -->
                         <v-icon>mdi-facebook</v-icon>
                         Facebook
                       </v-btn>
@@ -80,25 +81,6 @@
         </v-card>
       </v-dialog>
     </div>
-
-    <!-- <ShareNetwork
-      class="share"
-      network="facebook"
-      url="https://news.vuejs.org/issues/180"
-      title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
-      description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-      quote="The hot reload is so fast it\'s near instant. - Evan You"
-      hashtags="vuejs,vite"
-    >
-      <v-tooltip top>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn icon x-large link color="primary">
-            <v-icon x-large v-bind="attrs" v-on="on">mdi-share-variant</v-icon>
-          </v-btn>
-        </template>
-        <span>Partager sur Facebook</span>
-      </v-tooltip>
-    </ShareNetwork> -->
   </div>
 </template>
 
@@ -117,6 +99,9 @@ export default Vue.extend({
     },
   },
   methods: {
+    test() {
+      console.log(window.location.href);
+    },
     // url() {
     // console.log(this.url, window.location.href);
     // return "http://spoteventapp.net/prestations/Addic-Art-Prod";
