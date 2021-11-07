@@ -334,7 +334,7 @@
                             images</label>
                         <div class="col-md-6 col-sm-6 ">
                             <input type="file" name="image" class="form-control" accept="image/*">
-                            <input type="text"  name="id" value="{{$item->id}}">
+                            <input type="text" hidden name="id" value="{{$item->id}}">
                         </div>
 
                     </div>
