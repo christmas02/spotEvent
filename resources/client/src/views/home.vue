@@ -22,7 +22,7 @@
       </div>
 
       <div class="main mx-auto">
-        <div class="section">
+        <div class="section my-10">
           <filter-form></filter-form>
           <div>
             <div class="loading" v-if="loading && benefits.length == 0">
@@ -61,7 +61,7 @@
           <pub :routeName="routeName"></pub>
         </div>
 
-        <div class="section mt-0 d-none d-md-block">
+        <div class="section mt-0 d-none d-md-block mt-10">
           <div>
             <h2 class="section-title">Prestataires</h2>
           </div>
@@ -216,7 +216,7 @@ export default Vue.extend({
 
 @media screen and (min-width: 1264px) {
   #homepage .section {
-    margin: 136px 0;
+    margin: 136px 0 136px 0;
   }
 }
 

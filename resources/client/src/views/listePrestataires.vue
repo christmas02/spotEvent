@@ -2,8 +2,8 @@
   <default-layout>
     <div id="homepage">
       <div class="main mx-auto">
-        <div class="section pub">
-          <div class="my-5">
+        <div class="section pub my-0">
+          <div>
             <pub :routeName="routeName"></pub>
             <!-- <div>
               <v-img
@@ -12,7 +12,7 @@
               ></v-img>
             </div> -->
           </div>
-          <div class="psearch mx-auto">
+          <div class="psearch mx-auto mt-5">
             <v-autocomplete
               v-model="model"
               :items="providers"

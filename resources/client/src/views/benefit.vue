@@ -209,14 +209,14 @@
               </div>
             </div>
             <div class="offset-md-1 col-md-4">
-              <div class="section">
+              <div class="section mb-5">
                 <h2 class="section-title">Localisation</h2>
                 <h3 class="location-title">{{ benefit.localisation }}</h3>
                 <p>
                   {{ benefit.detail_localisation }}
                 </p>
               </div>
-              <div class="section pub">
+              <div class="pub my-5">
                 <!-- <h2 class="section-title">Panneau</h2> -->
                 <!-- <div>
                   <v-img
