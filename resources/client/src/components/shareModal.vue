@@ -131,8 +131,8 @@ export default Vue.extend({
     },
     url(): string {
       // console.log(this.url, window.location.href);
-      return "http://spoteventapp.net/prestations/Addic-Art-Prod";
-      // return window.location.href;
+      // return "http://spoteventapp.net/prestations/Addic-Art-Prod";
+      return window.location.href;
     },
   },
 });
