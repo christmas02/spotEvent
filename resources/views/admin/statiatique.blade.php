@@ -11,7 +11,7 @@ function getUser($id){
 }
 
 function getPestataire($id){
-    $prestataire = App\Fiche::where('id',$id)->first();
+    $prestataire = App\Fiche::where('id_user',$id)->first();
     return $prestataire;
 }
 
@@ -167,14 +167,15 @@ label {
                                                 <tr>
                                                     <td></td>
                                                     <td>
+                                                       
                                                         @if($item->id_user != 0)
                                                         {{ getUser($item->id_user)->name }}
                                                         @endif
                                                     </td>
                                                     <td>
-                                                       
+                                                     
                                                         @if($item->id_prestataire != 0 and getPestataire($item->id_prestataire) != null)
-                                                        {{ getPestataire($item->id_prestataire)->name }} 
+                                                        {{ getPestataire($item->id_prestataire)->name }} / {{ $item->name_prestataire }} 
                                                         @endif</td>
                                                     <td>{{ $item->created_at }}</td>
                                                 </tr>

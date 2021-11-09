@@ -261,7 +261,15 @@ class AdminController extends Controller
     public function statiatique($id)
     {
 
-        $allvisite = Clicfiche::all();
+        //$allvisite = Clicfiche::all();
+
+        $allvisite = Clicfiche::leftjoin('users','users.id','=','clicfiches.id_prestataire')
+        //->leftjoin('user','id.users','=','id_user.clifiches')
+        ->select('users.name as name_prestataire','clicfiches.*')
+        ->get();
+
+        //dd($allvisite);
+
         $allphone = Clicphone::all();
         $allDemande = Demande::all();
 
@@ -273,11 +281,60 @@ class AdminController extends Controller
         return view('admin.statiatique',compact('allvisite','infoUser','visite','phone','demande'));
     }
 
+    public function visitePrestataire($prestataire, $id){
+
+        $allvisite = Clicfiche::where('id_prestataire',$prestataire)
+        ->leftjoin('users','users.id','=','clicfiches.id_prestataire')
+        //->leftjoin('user','id.users','=','id_user.clifiches')
+        ->select('users.name as name_prestataire','clicfiches.*')
+        ->get();
+
+        //dd($prestataire);
+
+        $allphone = Clicphone::all();
+        $allDemande = Demande::all();
+
+        $visite = count($allvisite);
+        $phone = count($allphone);
+        $demande = count($allDemande);
+
+        $infoUser = $this->Userinfo($id);
+        return view('admin.visite',compact('allvisite','infoUser','visite','phone','demande'));
+
+    }
+
+    public function contactPrestataire($prestataire, $id){
+
+        //dd($allvisite);
+
+        $allvisite = Clicphone::where('id_prestataire',$prestataire)
+        ->leftjoin('users','users.id','=','clicphones.id_prestataire')
+        //->leftjoin('user','id.users','=','id_user.clifiches')
+        ->select('users.name as name_prestataire','clicphones.*')
+        ->get();
+
+        //dd($prestataire);
+
+
+        $infoUser = $this->Userinfo($id);
+        return view('admin.visite',compact('infoUser','allvisite'));
+
+    }
+
     public function statistiqueContact($id)
     {
 
+        //dd($allvisite);
         $allvisite = Clicfiche::all();
-        $allphone = Clicphone::all();
+
+        
+        $allphone = Clicphone::leftjoin('users','users.id','=','clicphones.id_prestataire')
+        //->leftjoin('user','id.users','=','id_user.clifiches')
+        ->select('users.name as name_prestataire','clicphones.*')
+        ->get();
+
+        //dd($allphone);
+
         $allDemande = Demande::all();
 
         $visite = count($allvisite);

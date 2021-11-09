@@ -36,20 +36,24 @@ function gestPrestation($id)
                         <div class="row clearfix">
                             <div class="col-lg-3 col-md-6">
                                 <div class="card">
-                                    <div class="body l-parpl text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078" data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
-                                        <span class="text-white">Visites</span>
-                                    </div>
+                                    <a href="/statistique_visite_prestataire/{{ $prestataire->id_user }}/{{ $infoUser->id }}">
+                                        <div class="body l-parpl text-center">
+                                            <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
+                                            <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078" data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
+                                            <span class="text-white">Visites</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6">
                                 <div class="card">
-                                    <div class="body l-seagreen text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278" data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
-                                        <span class="text-white">Prises de contact</span>
-                                    </div>
+                                    <a href="/statistique_contact_prestataire/{{ $prestataire->id_user }}/{{ $infoUser->id }}">
+                                        <div class="body l-seagreen text-center">
+                                            <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
+                                            <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278" data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
+                                            <span class="text-white">Prises de contact</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6">
@@ -103,7 +107,7 @@ function gestPrestation($id)
                                     <img class="img-responsive avatar-view" src="{{asset('spotevent/public/storage/'.$infoUser->path_user )}}" alt="Avatar" title="...">
                                 </div>
                             </div>
-                            <h3>{{ $prestataire->nom }}</h3>
+                            <h3>{{ $prestataire->name }}</h3>
 
                             <ul class="list-unstyled user_data">
                                 <li><i class="fa fa-envelope user-profile-icon"></i> {{ $prestataire->adresse }}</li>

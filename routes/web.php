@@ -45,6 +45,9 @@ Route::post('/save/parametre','AdminController@saveParametre');
 Route::get('/Contenus/{id}','AdminController@listContenus'); 
 Route::get('/Publicite/{id}','AdminController@listPublicite'); 
 
+Route::get('/statistique_visite_prestataire/{id}/{user}','AdminController@visitePrestataire');
+Route::get('/statistique_contact_prestataire/{id}/{user}','AdminController@contactPrestataire');
+
 Route::get('/fiche_actif/{id}','AdminController@listficheactif');
 Route::get('/fiche_non_actif/{id}','AdminController@listfichenonactif');
 

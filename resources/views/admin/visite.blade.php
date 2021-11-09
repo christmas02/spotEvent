@@ -67,7 +67,7 @@ label {
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Statistiques </h3>
+                <h3></h3>
             </div>
 
             <div class="title_right">
@@ -82,63 +82,10 @@ label {
         <div class="clearfix"></div>
 
         <div class="row">
-            <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
-                    <div class="x_content">
-                        <div class="row clearfix">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <a href="/statistique/{{ $infoUser->id }}">
-                                    <div class="body l-parpl text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">
-                                           </div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078"
-                                            data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
-                                        <span class="text-white">Visites</span>
-                                    </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <a href="/statistique_contact/{{ $infoUser->id }}">
-                                    <div class="body l-seagreen text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">
-                                            </div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278"
-                                            data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
-                                        <span class="text-white">Prises de contact</span>
-                                    </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <div class="body l-amber text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff">
-                                            </div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521"
-                                            data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
-                                        <span class="text-white">Sollicitations</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Historique des clique sur le contact<small></small></h2>
+                        <h2>Historique des visites<small></small></h2>
                        
                         <div class="clearfix"></div>
                     </div>
@@ -162,8 +109,8 @@ label {
 
 
                                             <tbody>
-                                                @if($allphone)
-                                                @foreach($allphone as $item)
+                                                @if($allvisite)
+                                                @foreach($allvisite as $item)
                                                 <tr>
                                                     <td></td>
                                                     <td>
@@ -172,7 +119,7 @@ label {
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        
+                                                       
                                                         @if($item->id_prestataire != 0 and getPestataire($item->id_prestataire) != null)
                                                         {{ getPestataire($item->id_prestataire)->name }} / {{ $item->name_prestataire }} 
                                                         @endif</td>
