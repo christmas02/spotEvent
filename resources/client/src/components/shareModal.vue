@@ -90,6 +90,10 @@ export default Vue.extend({
       type: Boolean,
       required: true,
     },
+    url: {
+      type: String,
+      required: true,
+    },
     benefit: {
       type: Object as PropType<Benefit>,
       required: true,
@@ -113,11 +117,10 @@ export default Vue.extend({
 
       return this.benefit.name.toLowerCase().replaceAll(" ", "_");
     },
-    url(): string {
-      // console.log(this.url, window.location.href);
-      // return "http://spoteventapp.net/prestations/Addic-Art-Prod";
-      return window.location.href;
-    },
+    // url(): string {
+    //   // return window.location.href;
+    //   return "http://spoteventapp.net/prestations/Divine-Amour-Event";
+    // },
   },
 });
 </script>

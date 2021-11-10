@@ -134,6 +134,7 @@
           </v-skeleton-loader>
           <share-modal
             :benefit="benefit"
+            :url="url"
             :shareModals.sync="shareModals"
           ></share-modal>
         </div>
@@ -401,6 +402,10 @@ export default Vue.extend({
     shareModal,
   },
   computed: {
+    url(): string {
+      return window.location.href;
+      // return "http://spoteventapp.net/prestations/Divine-Amour-Event";
+    },
     routeName(): string {
       return this.$route.name ? this.$route.name : "";
     },
