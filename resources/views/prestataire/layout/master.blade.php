@@ -204,6 +204,38 @@
         </div>
     </div>
 
+    <!-- Modal  MODIFIER DU COMPTE PRESTATAIRES-->
+    <div class="modal fade" id="exampleModalvideo" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form method="POST" action="/save/video" enctype="multipart/form-data">
+                        @csrf
+                        <center>
+                            <h4>Ajouter une video</h4>
+                        </center>
+                        <h5>Vous avez la possibilité .</h5>
+                        <br>
+                        <div class="item form-group">
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Ajouter les
+                                video</label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="file" name="video" accept="video/*" class="form-control">
+                                <input type="text" hidden name="id_user" value="{{ $infoUser->id }}">
+                            </div>
+
+                        </div>
+                </div>
+                <div class="modal-footer-btn">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" id="imageUploadForm" class="btn btn-success">Valider</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modal  MODIFIER DU PROFILE UTILISATEUR-->
     <div class="modal fade" id="exampleModalProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalProfile"

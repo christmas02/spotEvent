@@ -307,7 +307,7 @@ function libellePrestation($id){
 
                         <div>
 
-                            <div class="col-md-12 col-sm-12 " style="border:0px solid #e5e5e5;">
+                            <div class="col-md-8 col-sm-8 " style="border:0px solid #e5e5e5;">
                                 @if($ficheExiste->statu_fiche == 0 )
                                 <p class="alert alert-warning "> En cours de traitement</p>
                                 @elseif($ficheExiste->statu_fiche == 1 )
@@ -333,13 +333,22 @@ function libellePrestation($id){
 
                                 <br />
 
-                                <div class="">
-
-
-
-                                </div>
+                                
                                 <hr>
 
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                    @if($ficheExiste->video == 1 and $videoExiste == NULL)
+                                    <div class="alert alert-warning">
+                                        <h4>Vous avez la posibilite d'ajouter une videos.<br>
+                                            Pour le faire cliquez sur ce lien <a class="" data-toggle="modal"
+                                        data-target="#exampleModalvideo" href="#"> Ma video</a><br>
+                                            NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                                    </div>
+                                    @else
+
+                                    existe
+                                    @endif
                             </div>
 
                             <div class="col-md-12 col-sm-12 ">

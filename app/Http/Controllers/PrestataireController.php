@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Response;
 use App\Conversation;
 use App\Message;
 use App\Commune;
+use App\Video;
 
 
 class PrestataireController extends Controller
@@ -27,7 +28,6 @@ class PrestataireController extends Controller
     public function inscriptionPrestataire()
     {
        $data=[];
-
        return view('template.inscription')->with($data);
     }
 
@@ -85,6 +85,11 @@ class PrestataireController extends Controller
     public function galerieExiste($id){
         $galerieExiste = Galerie::where('id_user','=',$id)->get();
         return $galerieExiste;
+    }
+
+    public function videoExiste($id){
+        $videoExiste = Video::where('id_user','=',$id)->first();
+        return $videoExiste;
     }
 
     public function getDemande($id)
@@ -212,11 +217,16 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($id);
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
+        $videoExiste = $this->videoExiste($id);
         $listEstimation = Estimation::get();
         $listPrestation = Prestation::get();
-        //dd(!empty($galerieExiste));
 
-        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listPrestation','listEstimation'));
+        $video = Video::where('id_user',$id)->first();
+        //dd(!empty($videoExiste));
+        //dd($videoExiste);
+        
+
+        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listPrestation','listEstimation','video','videoExiste'));
     }
 
     public function updateFiche(Request $request){
@@ -535,6 +545,45 @@ class PrestataireController extends Controller
                 return redirect()->back()->with('success', "Opération éffectué avec succès.");
             }
 
+
+    }
+
+    public function addVideo(Request $request){
+
+        try {
+            //dd($request->all());
+
+            $id_user = $request->get('id_user');
+
+            $validator = Validator::make($request->all(), [
+                'video' => 'required|file|mimetypes:video/mp4',
+              
+            ]);
+     
+            if ($validator->fails()) {
+                //dd($validator);
+                return back()->withErrors($validator)->withInput();
+            }
+
+            
+
+            $file = $request->file('video');
+            $name_video = $file->getClientOriginalName();
+            $storage_data = Storage::disk('public')->put($name_video, file_get_contents($file));
+
+            $video = new Video;
+
+            $video->id_user = $id_user;
+            $video->path = $name_video;
+
+            $video->save();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('danger', 'Echec de l;enregistrement.');
+        }
 
     }
 

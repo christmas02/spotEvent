@@ -26,6 +26,8 @@ use App\Commune;
 use App\Messagerie;
 use App\Contenu;
 use App\Publicite;
+use App\Video;
+use App\Agenda;
 
 class ApiController extends Controller
 {
@@ -155,8 +157,28 @@ class ApiController extends Controller
                 ->orderBy('fiches.id', 'desc')
                 ->first();
 
+
+            //dd($findPrestataire->id_user);
+
+            $media = Video::where('id_user',$findPrestataire->id_user)->first();
+
+            $video = [
+                'active_video' => $findPrestataire->video,
+                'video' => $media->path
+
+            ];
+
+            $date = Agenda::where('id_user',$findPrestataire->id_user)->select('date_event')->get();
+
+            $agenda = [
+
+                'active_agenda' => $findPrestataire->agenda,
+                'video' => $date
+
+            ];
+
             ///if($findPrestataire)
-            return response()->json(['statu' => 1, 'findPrestataire' => $findPrestataire]);
+            return response()->json(['statu' => 1, 'findPrestataire' => $findPrestataire, 'video' => $video, 'agenda' => $agenda]);
 
             //code...
         } catch (\Throwable $th) {

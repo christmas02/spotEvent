@@ -20,6 +20,8 @@ Route::get('/fiche/prestataire/{id}','PrestataireController@Fiche');
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
 
 Route::post('/save/gallerie','PrestataireController@saveGalerie');
+Route::post('/save/video','PrestataireController@addVideo');
+
 Route::get('/list/demande/{id}','PrestataireController@getReservation');
 Route::get('/list/messageries/{id}','PrestataireController@getMessagerie');
 
