@@ -38,7 +38,7 @@
                       :quote="benefit.presentation"
                       :hashtags="name"
                     >
-                      <v-btn color="facebook" @click="test">
+                      <v-btn color="facebook" @click="goUrl">
                         <!-- @click="$emit('update:shareModals', false)" -->
                         <v-icon>mdi-facebook</v-icon>
                         Facebook
@@ -96,7 +96,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    test() {
+    goUrl() {
       // console.log(window.location.href);
       this.$emit("update:shareModals", false);
       console.log("test de lien facebook");
