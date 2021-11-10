@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
 
-    <title> | </title>
+    <title> | Spoteventapp </title>
 
     <!-- Bootstrap -->
     <link href="{{asset('/admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -32,6 +32,18 @@
 
      <!-- Custom Theme Style -->
      <link href="{{asset('/css/style.css')}}" rel="stylesheet">
+
+     <link rel="icon" type="image/png" href="https://spoteventapp.net/images/logo.spoteventapp.png" />
+
+<!-- Facebook and Twitter integration -->
+<meta property="og:title" content="l'annuaire nuptial digital" />
+<meta property="og:image" content="https://spoteventapp.net/images/logo.spoteventapp.png" />
+<meta property="og:url" content="https://spoteventapp.net/" />
+<meta property="og:type" content="siteweb" />
+<meta property="og:locale" content="" />
+<meta property="og:videos" content="" />
+<meta property="og:site_name" content="spoteventapp" />
+<meta property="og:description" content="Nous sommes une plateforme de mise en relation entre les acteurs de l'univers du mariage et les personnes désireuses de réaliser un mariage." />
   </head>
 
   <body class="nav-md">
@@ -109,7 +121,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalProfil"> Profil</a>
-                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalPassword">Modification du mot de passe</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#mdp">Modification du mot de passe</a>
                       <a class="dropdown-item" href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
                           {{ __('Déconnexion') }}<i class="fa fa-sign-out pull-right"></i>
@@ -220,36 +232,45 @@
       </div>
     </div>
 
-    <div class="modal fade" id="exampleModalPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modification de mot de passe</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-          <h4 class="text-center"></b></h4> 
-          <div class="silde">
-            <form method="POST" action="/save/parametre">
-            @csrf
 
+    <!-- Modal  MODIFIER DU MOT DE PASSE-->
+    <div class="modal fade" id="mdp">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form method="POST" action="/save/password" enctype="multipart/form-data">
+                        @csrf
+                        <center>
+                            <h4>Modification du mot de passe</h4>
+                        </center>
+                        <hr>
 
-            
-                
+                        <input type="" hidden name="id" class="form-control" value="{{ $infoUser->id }}">
+                        <div class="item form-group">
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Mot de
+                                passe</label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="password" name="password" class="form-control" value="">
+                            </div>
 
-            
-          </div>
-          </div>
-          <div class="modal-footer-btn">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button type="submit" class="btn btn-success">Valider</button>
-          </div>
-          </form>
+                        </div>
+                        <div class="item form-group">
+                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Confirmation
+                                mot de parse_str</label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="password" name="password_confirmation" class="form-control" value="">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer-btn">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-success">Valider</button>
+                </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
+
 
 
     <!-- jQuery -->

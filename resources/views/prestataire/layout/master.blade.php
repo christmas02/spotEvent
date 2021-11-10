@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-    <title> | </title>
+    <title> |Spoteventapp </title>
 
     <!-- Bootstrap -->
     <link href="{{asset('/admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -36,6 +36,18 @@
 
     <!-- Custom Theme Style -->
     <link href="{{asset('/css/style.css')}}" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="https://spoteventapp.net/images/logo.spoteventapp.png" />
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="l'annuaire nuptial digital" />
+    <meta property="og:image" content="https://spoteventapp.net/images/logo.spoteventapp.png" />
+    <meta property="og:url" content="https://spoteventapp.net/" />
+    <meta property="og:type" content="siteweb" />
+    <meta property="og:locale" content="" />
+    <meta property="og:videos" content="" />
+    <meta property="og:site_name" content="spoteventapp" />
+    <meta property="og:description" content="Nous sommes une plateforme de mise en relation entre les acteurs de l'univers du mariage et les personnes désireuses de réaliser un mariage." />
 </head>
 
 <body class="nav-md">

@@ -390,6 +390,9 @@ class AdminController extends Controller
             $whatsapp = $request->get('whatsapp');
             $cotaimage = $request->get('cotaimage');
 
+            $video = $request->get('video');
+            $agenda = $request->get('agenda');
+
 
             $firstFiche = Fiche::where('id', $id_fiche)->first();
 
@@ -418,6 +421,10 @@ class AdminController extends Controller
             //}
 
             Fiche::where('id', $id_fiche)->update(['nbre_image' => $cotaimage]);
+
+            Fiche::where('id', $id_fiche)->update(['video' => $video]);
+
+            Fiche::where('id', $id_fiche)->update(['agenda' => $agenda]);
 
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
         } catch (\Throwable $th) {

@@ -311,6 +311,57 @@
                     </div>
                 </div>
 
+                <div class="form-check form-switch">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Activation de l'option
+                                videos</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="margin-left: 10px;">
+                                @if($items->video != 0)
+                                <b>Oui</b> <input class="flat" type="radio" name="video" value="1" checked
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="video" value="0"
+                                    id="flexSwitchCheckDefault">
+                                @else
+                                <b>Oui</b> <input class="flat" type="radio" name="video" value="1"
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="video" value="0" checked
+                                    id="flexSwitchCheckDefault">
+                                @endif
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check form-switch">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Activation de l'option
+                                agenda</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="margin-left: 10px;">
+                                @if($items->agenda != 0)
+                                <b>Oui</b> <input class="flat" type="radio" name="agenda" value="1" checked
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="agenda" value="0"
+                                    id="flexSwitchCheckDefault">
+                                @else
+                                <b>Oui</b> <input class="flat" type="radio" name="agenda" value="1"
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="agenda" value="0" checked
+                                    id="flexSwitchCheckDefault">
+                                @endif
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
 
             </div>
         </div>
