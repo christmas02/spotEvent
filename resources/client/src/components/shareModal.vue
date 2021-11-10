@@ -32,7 +32,7 @@
                     <ShareNetwork
                       class="share"
                       network="facebook"
-                      url="https://news.vuejs.org/issues/180"
+                      :url="url"
                       :title="benefit.name"
                       :description="benefit.description"
                       :quote="benefit.presentation"
