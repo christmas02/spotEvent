@@ -32,16 +32,13 @@
                     <ShareNetwork
                       class="share"
                       network="facebook"
-                      :url="url"
+                      url="https://news.vuejs.org/issues/180"
                       :title="benefit.name"
                       :description="benefit.description"
                       :quote="benefit.presentation"
                       :hashtags="name"
                     >
-                      <v-btn
-                        color="facebook"
-                        @click="$emit('update:shareModals', false)"
-                      >
+                      <v-btn color="facebook" @click="test">
                         <!-- @click="$emit('update:shareModals', false)" -->
                         <v-icon>mdi-facebook</v-icon>
                         Facebook
@@ -100,7 +97,9 @@ export default Vue.extend({
   },
   methods: {
     test() {
-      console.log(window.location.href);
+      // console.log(window.location.href);
+      this.$emit("update:shareModals", false);
+      console.log("test de lien facebook");
     },
     // url() {
     // console.log(this.url, window.location.href);
