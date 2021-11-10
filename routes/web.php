@@ -75,8 +75,12 @@ Route::post('/save/estimation','AdminController@saveEstimation');
 Route::post('/update/estimation','AdminController@updateEstimation'); 
 Route::get('/activer/profil/{id}','AdminController@profilactif');
 Route::post('/update/imagepub','AdminController@updateImagepub');
+Route::post('/send/document','AdminController@sendDocument');
+Route::post('/delet/document','AdminController@deletDocument');
 
 Route::get('/smsenvojer/{id}','AdminController@smsEnvoye');
+Route::get('/Documents/{id}','AdminController@Document');
+Route::get('/lire/document/{id}','AdminController@lireDocument');
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');

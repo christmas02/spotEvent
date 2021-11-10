@@ -20,8 +20,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Contenu;
+use App\Folder;
 use App\Publicite;
 use App\Smsrapport;
+
 
 class AdminController extends Controller
 {
@@ -57,6 +59,8 @@ class AdminController extends Controller
         return count($phoneMonth);
     }
 
+
+
     public function getDemande($id)
     {
         $listDemande = Demande::where('id_prestataire', $id)->orderBy('id', 'desc')->get();
@@ -68,6 +72,11 @@ class AdminController extends Controller
 
         $demande = Demande::where('id_prestataire', $id)->get();
         return count($demande);
+    }
+
+    public function smsrecu($id){
+        $smsrecus = Smsrapport::where('id_prestataire',$id)->get();
+        return $smsrecus;
     }
 
     public function categorie($id)
@@ -233,6 +242,7 @@ class AdminController extends Controller
         $visiteMonth = $this->visiteFicheMonth($prestataire->id_user);
         $phoneMonth = $this->visitePhoneMonth($prestataire->id_user);
         $demandeMonth = $this->demandeMonth($prestataire->id_user);
+        $smsrecus = $this->smsrecu($prestataire->id_user);
 
         $galerie = $this->galerie($prestataire->id_user);
 
@@ -241,7 +251,9 @@ class AdminController extends Controller
             ->leftjoin('fiches', 'fiches.id', '=', 'commentaires.id_prestataire')
             ->select('fiches.name as prestataire', 'users.name as utilisateur', 'commentaires.contenus', 'commentaires.vote')
             ->get();
-        //dd($prestataire->id_user);
+
+        $document = Folder::where('id_prestataire',$prestataire->id_user)->get();
+        //dd($document);
 
         return view('admin.fiche_prestataire', compact(
             'prestataire',
@@ -254,7 +266,9 @@ class AdminController extends Controller
             'visiteMonth',
             'phoneMonth',
             'demandeMonth',
-            'commentaire'
+            'commentaire',
+            'smsrecus',
+            'document'
         ));
     }
 
@@ -779,5 +793,62 @@ class AdminController extends Controller
             //throw $th;
             //dd($th);
         }
+    }
+
+    public function Document(){
+
+    }
+
+    public function sendDocument(Request $request)
+    {
+
+        try {
+            //code...
+            //dd($request->all());
+
+            $file = $request->file('document');
+            //dd($image);
+            $filename = $input['documentname'] = time() . '.' . $file->getClientOriginalName();
+            $destination = public_path('/documents');
+            $file->move($destination, $input['documentname']);
+
+
+            $document = new Folder;
+
+            $document->id_prestataire = $request->get('id');
+            $document->path_document = $filename;
+            $document->titre_document = $request->get('titre_document');
+  
+
+            $document->save();
+            
+
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        }
+    }
+
+    public function lireDocument($id){
+
+        $document = Folder::find($id);
+        return response()->file( public_path('/documents/').$document->path_document);
+
+    }
+
+    public function deletDocument(Request $request){
+
+        try {
+
+            $id = $request->get('id');
+            $document = Folder::find($id)->delete();
+
+            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+        } catch (\Throwable $th) {
+            //dd($th);
+            return redirect()->back()->with('danger', 'Error.');
+        }
+
     }
 }
