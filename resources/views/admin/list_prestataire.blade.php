@@ -99,6 +99,8 @@
                                                                 class="btn btn-modal"><i class="fa fa-envelope"></i></a>
                                                             <a href="#" data-toggle="modal" data-target="#exampleModalDelet{{$items->id}}"
                                                             class="btn btn-modal btn-danger"><i class="fa fa-trash"></i></a>
+                                                            <a href="#" data-toggle="modal" data-target="#exampleModalsendfolder{{$items->id}}"
+                                                            class="btn btn-modal btn-warning"><i class="fa fa-folder"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -123,7 +125,7 @@
 <!-- /page content -->
 
 @foreach($listePrestation as $items)
-<!-- Modal -->
+<!-- Modal Setting -->
 <div class="modal fade" id="exampleModalSetting{{$items->id}}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -309,6 +311,57 @@
                     </div>
                 </div>
 
+                <div class="form-check form-switch">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Activation de l'option
+                                videos</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="margin-left: 10px;">
+                                @if($items->video != 0)
+                                <b>Oui</b> <input class="flat" type="radio" name="video" value="1" checked
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="video" value="0"
+                                    id="flexSwitchCheckDefault">
+                                @else
+                                <b>Oui</b> <input class="flat" type="radio" name="video" value="1"
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="video" value="0" checked
+                                    id="flexSwitchCheckDefault">
+                                @endif
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check form-switch">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Activation de l'option
+                                agenda</label>
+                        </div>
+                        <div class="col-md-4">
+                            <span style="margin-left: 10px;">
+                                @if($items->agenda != 0)
+                                <b>Oui</b> <input class="flat" type="radio" name="agenda" value="1" checked
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="agenda" value="0"
+                                    id="flexSwitchCheckDefault">
+                                @else
+                                <b>Oui</b> <input class="flat" type="radio" name="agenda" value="1"
+                                    id="flexSwitchCheckDefault">
+                                <b>Non</b> <input class="flat" type="radio" name="agenda" value="0" checked
+                                    id="flexSwitchCheckDefault">
+                                @endif
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
 
             </div>
         </div>
@@ -317,13 +370,11 @@
             <button type="submit" class="btn btn-success">Valider</button>
         </div>
         </form>
+        </div>
     </div>
 </div>
-</div>
-@endforeach
 
-
-@foreach($listePrestation as $items)
+<!-- Modal Delete -->
 <div class="modal fade" id="exampleModalDelet{{$items->id}}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -348,6 +399,54 @@
     </div>
 </div>
 <!-- Modal -->
+
+
+<!-- Modal Send Document -->
+<div class="modal fade" id="exampleModalsendfolder{{$items->id}}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+            <div class="modal-body">
+                <h4 class="text-center"></b></h4>
+                <center>
+                    <h3>Envoye un document <b></b></h3>
+                </center>
+                <hr>
+                <div class="silde">
+
+                    <form method="POST" action="/send/document" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="text" hidden name="id" value="{{$items->id_user}}">
+
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                                Titre du document <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input type="text" name="titre_document" class="form-control">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                                Document <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 ">
+                                <input type="file" name="document" class="form-control">
+                            </div>
+                        </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer-btn">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-success">Sauver</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @endforeach
 

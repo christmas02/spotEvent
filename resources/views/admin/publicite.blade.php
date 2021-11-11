@@ -220,19 +220,19 @@
 <style>
     .img-pub-horizontal{
         width: 100%;
-        height: 200px;
+       
         background: chartreuse;
         margin-bottom: 40px;
     }
     .img-pub-vertical{
         width: 100%;
-        height: 400px;
+       
         background: chartreuse;
         border: 1px solid #000;
     }
     .img-pub-horizontal img{
         width: 100%;
-        height: 100px;
+      
         border: 1px solid grey;
     }
     .title-img{
@@ -334,7 +334,7 @@
                             images</label>
                         <div class="col-md-6 col-sm-6 ">
                             <input type="file" name="image" class="form-control" accept="image/*">
-                            <input type="text"  name="id" value="{{$item->id}}">
+                            <input type="text" hidden name="id" value="{{$item->id}}">
                         </div>
 
                     </div>

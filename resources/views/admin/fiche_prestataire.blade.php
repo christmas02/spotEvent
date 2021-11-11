@@ -1,11 +1,12 @@
 @extends('admin/layout/master')
 
 @section('content')
-<?php 
-    function gestPrestation($id){
-        $prestation = \App\Prestation::where('id',$id)->first();
-        return $prestation;
-    }
+<?php
+function gestPrestation($id)
+{
+    $prestation = \App\Prestation::where('id', $id)->first();
+    return $prestation;
+}
 
 ?>
 <!-- page content -->
@@ -33,68 +34,52 @@
                 <div class="x_panel">
                     <div class="x_content">
                         <div class="row clearfix">
-                            <div class="col-lg-2 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card">
-                                    <div class="body l-parpl text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078"
-                                            data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
-                                        <span class="text-white">Visites</span>
-                                    </div>
+                                    <a href="/statistique_visite_prestataire/{{ $prestataire->id_user }}/{{ $infoUser->id }}">
+                                        <div class="body l-parpl text-center">
+                                            <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
+                                            <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="2078" data-speed="2000" data-fresh-interval="700">{{ $visite }}</h3>
+                                            <span class="text-white">Visites</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6">
                                 <div class="card">
-                                    <div class="body l-seagreen text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278"
-                                            data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
-                                        <span class="text-white">Prises de contact</span>
-                                    </div>
+                                    <a href="/statistique_contact_prestataire/{{ $prestataire->id_user }}/{{ $infoUser->id }}">
+                                        <div class="body l-seagreen text-center">
+                                            <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
+                                            <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278" data-speed="2000" data-fresh-interval="700">{{ $phone }}</h3>
+                                            <span class="text-white">Prises de contact</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6">
                                 <div class="card">
                                     <div class="body l-amber text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521"
-                                            data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
+                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
+                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521" data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
                                         <span class="text-white">Sollicitations</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-6">
-                                <div class="card">
-                                    <div class="body l-blue text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="978"
-                                            data-speed="2000" data-fresh-interval="700">0</h3>
-                                        <span class="text-white">Messagerie</span>
-                                    </div>
-                                </div>
-                            </div>
+                           
                             <div class="col-lg-2 col-md-6">
                                 <div class="card">
                                     <div class="body l-seagreen text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278"
-                                            data-speed="2000" data-fresh-interval="700">{{ count($commentaire) }}</h3>
+                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
+                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="1278" data-speed="2000" data-fresh-interval="700">{{ count($commentaire) }}</h3>
                                         <span class="text-white">Avis Utilisateurs</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="body l-amber text-center">
-                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px"
-                                            data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
-                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521"
-                                            data-speed="2000" data-fresh-interval="700">{{ $demande }}</h3>
+                                        <div class="sparkline" data-type="bar" data-width="97%" data-height="15px" data-bar-Width="2" data-bar-Spacing="5" data-bar-Color="#ffffff"></div>
+                                        <h3 class="m-b-0 m-t-10 text-white number count-to" data-from="0" data-to="521" data-speed="2000" data-fresh-interval="700">{{ count($smsrecus) }}</h3>
                                         <span class="text-white">Sms reçus</span>
                                     </div>
                                 </div>
@@ -119,12 +104,10 @@
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view"
-                                        src="{{asset('spotevent/public/storage/'.$infoUser->path_user )}}" alt="Avatar"
-                                        title="...">
+                                    <img class="img-responsive avatar-view" src="{{asset('spotevent/public/storage/'.$infoUser->path_user )}}" alt="Avatar" title="...">
                                 </div>
                             </div>
-                            <h3>{{ $prestataire->nom }}</h3>
+                            <h3>{{ $prestataire->name }}</h3>
 
                             <ul class="list-unstyled user_data">
                                 <li><i class="fa fa-envelope user-profile-icon"></i> {{ $prestataire->adresse }}</li>
@@ -138,17 +121,14 @@
                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 
-                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab"
-                                            data-toggle="tab" aria-expanded="false">Évolution générale</a>
+                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Évolution générale</a>
                                     </li>
-                                    <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab"
-                                            data-toggle="tab" aria-expanded="false">Liste des demandes</a>
+                                    <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Liste des demandes</a>
                                     </li>
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
 
-                                    <div role="tabpanel" class="tab-pane active" id="tab_content2"
-                                        aria-labelledby="profile-tab">
+                                    <div role="tabpanel" class="tab-pane active" id="tab_content2" aria-labelledby="profile-tab">
 
                                         <!-- start user projects -->
                                         <table class="data table table-striped no-margin">
@@ -181,8 +161,7 @@
                                         <!-- end user projects -->
 
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content3"
-                                        aria-labelledby="profile-tab">
+                                    <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                                         <!-- start user projects -->
                                         <table class="data table table-striped no-margin">
                                             <thead>
@@ -199,8 +178,7 @@
                                                 @foreach($listDemande as $items)
                                                 <tr>
                                                     <td></td>
-                                                    <td><a href="#" data-toggle="modal"
-                                                            data-target="#exampleModalDemande{{$items->id}}">{{ $items->name }}
+                                                    <td><a href="#" data-toggle="modal" data-target="#exampleModalDemande{{$items->id}}">{{ $items->name }}
                                                             - {{ $items->phone }}</a></td>
                                                     <td>{{ $items->created_at }}</td>
                                                     <td></td>
@@ -244,16 +222,14 @@
 
                             <div class="col-md-6 col-sm-7 ">
                                 <div class="product-image">
-                                    <img src="{{asset('spotevent/public/storage/'.$prestataire->path_img)}}"
-                                        alt="..." />
+                                    <img src="{{asset('spotevent/public/storage/'.$prestataire->path_img)}}" alt="..." />
                                 </div>
                                 <br>
                                 @if($galerie != [])
                                 <div class="product_gallery">
                                     @foreach($galerie as $image)
                                     <a>
-                                        <img width="50" height="90"
-                                            src="{{asset('spotevent/public/storage/'.$image->path)}}" alt="..." />
+                                        <img width="50" height="90" src="{{asset('spotevent/public/storage/'.$image->path)}}" alt="..." />
                                     </a>
                                     @endforeach
                                 </div>
@@ -273,7 +249,7 @@
                                 @elseif($prestataire->statu_fiche == 2 )
                                 <button class="btn btn-danger "> Inactif</button>
                                 @endif
-                                {{ $prestataire->id_user }}
+                               
                                 <h3 style="" class="prod_title">{{ $prestataire->name }} / </h3>
                                 <h4>{{ $prestataire->presentation }}.</h4>
                                 <br>
@@ -319,6 +295,8 @@
         </div>
 
 
+       
+
         <div class="row">
 
             <div class="col-md-12 col-sm-12 ">
@@ -335,8 +313,7 @@
                                 <div class="card-box table-responsive">
 
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-striped jambo_table bulk_action"
-                                            style="width:100%">
+                                        <table id="datatable" class="table table-striped jambo_table bulk_action" style="width:100%">
                                             <thead>
                                                 <tr class="headings">
                                                     <th> Utilisateur </th>
@@ -344,24 +321,21 @@
                                                     <th> Note </th>
                                                 </tr>
                                             </thead>
-                                              @if($commentaire)
-                                                @foreach($commentaire as $item)
-                                                <tr>
-                                                    <td>{{ $item->utilisateur }}</td>
-                                                    <td>{{ $item->contenus }}</td>
-                                                    <td>
-                                                        @for($i = 0; $i < $item->vote; $i++)
+                                            
+                                            <tbody>
+                                            @if($commentaire)
+                                            @foreach($commentaire as $item)
+                                            <tr>
+                                                <td>{{ $item->utilisateur }}</td>
+                                                <td>{{ $item->contenus }}</td>
+                                                <td>
+                                                    @for($i = 0; $i < $item->vote; $i++)
                                                         &#11088;
                                                         @endfor
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-
-
-                                            <tbody>
-
-
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @endif
                                             </tbody>
 
                                         </table>
@@ -379,10 +353,83 @@
                 </div>
             </div>
 
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Document ou facrure recus</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+			                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+			                      <thead>
+			                        <tr>
+			                          <th>Date d'envois</th>
+			                          <th>Titre</th>
+			                          <th></th>
+			                        </tr>
+			                      </thead>
+
+			                      <tbody>
+                                  @if($document)
+                                  @foreach($document as $item)
+                                    <tr>
+                                        <td>{{ $item->created_at }}</td>
+                                        <td>{{ $item->titre_document }}</td>
+                                        <td>
+                                        <a href="/lire/document/{{ $item->id }}"
+                                           target="_blank"  class="btn btn-modal"><i class="fa fa-eye"></i></a>
+                                        
+                                        <a href="#" data-toggle="modal" data-target="#exampleModalDelet{{$item->id}}"
+                                        class="btn btn-modal btn-danger"><i class="fa fa-trash"></i></a>
+                                        
+                                
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+
+                                  </tbody>
+
+			                    </table>
+					
+                  </div>
+                </div>
+            </div>
+
         </div>
 
-        <!-- /page content -->
 
+        <!-- /page content -->
+        
+        @foreach($document as $item)
+        <!-- Modal Delete -->
+        <div class="modal fade" id="exampleModalDelet{{$item->id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <form method="POST" action="/delet/document" enctype="">
+                            @csrf
+                            <div class="trash"><i class="fa fa-trash"></i></div>
+                            <center>
+                                <h4>Voulez-vous vraiment effectuer cette action !</h4>
+                            </center>
+                            <input type="text" hidden  name="id" value="{{$item->id}}">
+
+                    </div>
+                    <div class="modal-footer-btn">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-danger">Valider</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
 
 
 

@@ -1,4 +1,16 @@
 @extends('prestataire/layout/master')
+<?php 
+
+function libellePrestation($id){
+
+    $data = App\Prestation::where('id',$id)->first();
+    return $data;
+}
+
+
+
+?>
+
 @section('content')
 <style>
 * {
@@ -295,7 +307,7 @@
 
                         <div>
 
-                            <div class="col-md-12 col-sm-12 " style="border:0px solid #e5e5e5;">
+                            <div class="col-md-8 col-sm-8 " style="border:0px solid #e5e5e5;">
                                 @if($ficheExiste->statu_fiche == 0 )
                                 <p class="alert alert-warning "> En cours de traitement</p>
                                 @elseif($ficheExiste->statu_fiche == 1 )
@@ -321,13 +333,22 @@
 
                                 <br />
 
-                                <div class="">
-
-
-
-                                </div>
+                                
                                 <hr>
 
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                    @if($ficheExiste->video == 1 and $videoExiste == NULL)
+                                    <div class="alert alert-warning">
+                                        <h4>Vous avez la posibilite d'ajouter une videos.<br>
+                                            Pour le faire cliquez sur ce lien <a class="" data-toggle="modal"
+                                        data-target="#exampleModalvideo" href="#"> Ma video</a><br>
+                                            NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                                    </div>
+                                    @else
+
+                                    existe
+                                    @endif
                             </div>
 
                             <div class="col-md-12 col-sm-12 ">
@@ -496,6 +517,20 @@
                         </div>
                     </div>-->
                     <div class="item form-group">
+                        <label class="col-form-label col-md-4 col-sm-4 label-align"
+                            for="first-name">Secteur d'activité 
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}"required>
+                            <option value="{{$ficheExiste->id_prestations}}" selected>{{ libellePrestation($ficheExiste->id_prestations)->name }}</option>
+                            @foreach($listPrestation as $items)
+                                <option value="{{ $items->id }}" >{{ $items->name }}</option>
+                            @endforeach    
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
                             Téléphone <span class="required">*</span>
                         </label>
@@ -641,7 +676,8 @@
                         </div>
 
                     </div>
-                    <div id="" class="alert alert-danger">Il vous reste 
+                    <br><hr>
+                    <div id="" class="col-md-12 col-sm-6 alert alert-danger">Il vous reste 
                         {{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }} image(s)
                     </div>
 

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Response;
 use App\Conversation;
 use App\Message;
 use App\Commune;
+use App\Video;
 
 
 class PrestataireController extends Controller
@@ -27,7 +28,6 @@ class PrestataireController extends Controller
     public function inscriptionPrestataire()
     {
        $data=[];
-
        return view('template.inscription')->with($data);
     }
 
@@ -85,6 +85,11 @@ class PrestataireController extends Controller
     public function galerieExiste($id){
         $galerieExiste = Galerie::where('id_user','=',$id)->get();
         return $galerieExiste;
+    }
+
+    public function videoExiste($id){
+        $videoExiste = Video::where('id_user','=',$id)->first();
+        return $videoExiste;
     }
 
     public function getDemande($id)
@@ -201,7 +206,7 @@ class PrestataireController extends Controller
             return redirect()->back()->with('success', 'Opération éffectué avec succès.');
 
         } catch (\Throwable $e) {
-           // report($e);
+            dd($e);
             return redirect()->back()->with('danger', 'Echec de l\'enregistrement');
         }
 
@@ -212,10 +217,16 @@ class PrestataireController extends Controller
         $ficheExiste = $this->ficheExiste($id);
         $infoUser = $this->infoUser($id);
         $galerieExiste = $this->galerieExiste($id);
+        $videoExiste = $this->videoExiste($id);
         $listEstimation = Estimation::get();
-        //dd(!empty($galerieExiste));
+        $listPrestation = Prestation::get();
 
-        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listEstimation'));
+        $video = Video::where('id_user',$id)->first();
+        //dd(!empty($videoExiste));
+        //dd($videoExiste);
+        
+
+        return view('prestataire.detail_fiche',compact('infoUser','ficheExiste','galerieExiste', 'listPrestation','listEstimation','video','videoExiste'));
     }
 
     public function updateFiche(Request $request){
@@ -227,6 +238,8 @@ class PrestataireController extends Controller
             $presentation = $request->get('presentation');
             $description = $request->get('description');
             $detail_localisation = $request->get('detail_localisation');
+            $id_prestations = $request->get('id_prestations');
+
             // $estimation_min = $request->get('estimation_min');
             // $estimation_max = $request->get('estimation_max');
             $phone_service = $request->get('phone_service');
@@ -244,6 +257,7 @@ class PrestataireController extends Controller
                 'localisation' => $localisation,
                 'description' => $description,
                 'presentation' => $presentation,
+                'id_prestations' => $id_prestations,
                 'detail_localisation' => $detail_localisation,
                 //'estimation_min' => $estimation_min,
                 //'estimation_max' => $estimation_max,
@@ -531,6 +545,45 @@ class PrestataireController extends Controller
                 return redirect()->back()->with('success', "Opération éffectué avec succès.");
             }
 
+
+    }
+
+    public function addVideo(Request $request){
+
+        try {
+            //dd($request->all());
+
+            $id_user = $request->get('id_user');
+
+            $validator = Validator::make($request->all(), [
+                'video' => 'required|file|mimetypes:video/mp4',
+              
+            ]);
+     
+            if ($validator->fails()) {
+                //dd($validator);
+                return back()->withErrors($validator)->withInput();
+            }
+
+            
+
+            $file = $request->file('video');
+            $name_video = $file->getClientOriginalName();
+            $storage_data = Storage::disk('public')->put($name_video, file_get_contents($file));
+
+            $video = new Video;
+
+            $video->id_user = $id_user;
+            $video->path = $name_video;
+
+            $video->save();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('danger', 'Echec de l;enregistrement.');
+        }
 
     }
 

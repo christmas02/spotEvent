@@ -20,6 +20,8 @@ Route::get('/fiche/prestataire/{id}','PrestataireController@Fiche');
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
 
 Route::post('/save/gallerie','PrestataireController@saveGalerie');
+Route::post('/save/video','PrestataireController@addVideo');
+
 Route::get('/list/demande/{id}','PrestataireController@getReservation');
 Route::get('/list/messageries/{id}','PrestataireController@getMessagerie');
 
@@ -39,10 +41,14 @@ Route::get('/fiche/prestataires/{id}/{user}','AdminController@onePrestatire');
 Route::get('/liste/demandes/{id}','AdminController@getAlldemande');
 Route::get('/list/prestations/{id}','AdminController@getPrestations');
 Route::get('/statistique/{id}','AdminController@statiatique');
+Route::get('/statistique_contact/{id}','AdminController@statistiqueContact');
 Route::post('/save/prestation','AdminController@savePrestation');
 Route::post('/save/parametre','AdminController@saveParametre');
 Route::get('/Contenus/{id}','AdminController@listContenus'); 
 Route::get('/Publicite/{id}','AdminController@listPublicite'); 
+
+Route::get('/statistique_visite_prestataire/{id}/{user}','AdminController@visitePrestataire');
+Route::get('/statistique_contact_prestataire/{id}/{user}','AdminController@contactPrestataire');
 
 Route::get('/fiche_actif/{id}','AdminController@listficheactif');
 Route::get('/fiche_non_actif/{id}','AdminController@listfichenonactif');
@@ -58,6 +64,7 @@ Route::get('/messageries/{id}','AdminController@message');
 Route::get('/listPrestatiaire/{id}','AdminController@listeprestatire');
 Route::get('/utilisateurs/{id}','AdminController@listeutilisateur');
 Route::get('/Categorie/{id}','AdminController@categorie');
+Route::get('/Commentaire/{id}','AdminController@listCommentaire');
 Route::get('/Estimation/{id}','AdminController@estimation');
 Route::get('/liste_message/{code}','AdminController@getmessage');
 Route::get('/new_message/{emetteur}/{recepteur}','AdminController@newMessage');
@@ -70,6 +77,12 @@ Route::post('/save/estimation','AdminController@saveEstimation');
 Route::post('/update/estimation','AdminController@updateEstimation'); 
 Route::get('/activer/profil/{id}','AdminController@profilactif');
 Route::post('/update/imagepub','AdminController@updateImagepub');
+Route::post('/send/document','AdminController@sendDocument');
+Route::post('/delet/document','AdminController@deletDocument');
+
+Route::get('/smsenvojer/{id}','AdminController@smsEnvoye');
+Route::get('/Documents/{id}','AdminController@Document');
+Route::get('/lire/document/{id}','AdminController@lireDocument');
 
 Route::get('/connexion','AdminController@login');
 //Route::get('/administration','AdminController@home')->name('admin.login');
