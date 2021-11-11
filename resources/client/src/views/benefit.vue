@@ -162,7 +162,7 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="section">
+              <div class="section">
                 <h2 class="section-title">Qui sommes-nous en video</h2>
                 <div>
                   <video width="100%" height="250" controls>
@@ -171,27 +171,26 @@
                     type=video/mp4>
                   </video>
                 </div>
-              </div> -->
+              </div>
               <div class="section">
                 <h2 class="section-title">Description</h2>
                 <div>
                   <p>{{ benefit.description }}</p>
                 </div>
-                <!-- <div class="calendar"> -->
-                <!-- <h2 class="section-title">Agenda</h2> -->
-                <!-- <div class="">
+                <div class="calendar">
+                  <h2 class="section-title">Agenda</h2>
+                  <div class="">
                     <div class="d-flex justify-left">
                       <v-badge bottom inline left overlap color="red">
                         designe les jours d'indisponibilité du
                         prestataire</v-badge
                       >
                     </div>
-                  </div> -->
-                <!-- <div class="col-md-12">
+                  </div>
+                  <div class="col-md-12">
                     <agenda></agenda>
-                   
-                  </div> -->
-                <!-- </div> -->
+                  </div>
+                </div>
               </div>
 
               <div>

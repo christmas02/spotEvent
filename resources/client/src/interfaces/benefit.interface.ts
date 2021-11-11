@@ -4,6 +4,7 @@ export interface Benefit {
     name: string;
     localisation: string;
     id_prestations: number;
+    presentation: string;
     description: string;
     detail_localisation: string;
     path_img: string;
@@ -13,27 +14,29 @@ export interface Benefit {
     lien_facebook: string;
     lien_instagram: string;
     email_service: string;
-    id_estimation: number;
+    estimation_min: string;
+    estimation_max: string;
     statu_fiche: number;
     messagerie: number;
+    actif_chat: number;
     position: number;
-    favoris?: number;
+    favoris: number;
+    actif_phone: number;
+    actif_whatsapp: number;
+    nbre_image: number;
+    video: number;
+    agenda: number;
     created_at: string;
     updated_at: string;
     prestation: string;
-    presentation: string;
     path_icone: string;
-    actif_whatsapp: number;
-    actif_phone: number;
-    estimation_min?: number;
-    estimation_max?: number;
-    actif_chat?: number;
-    nbre_image?: number;
 }
 
 export interface IFindPrestataire {
     statu: number;
     findPrestataire: IfiltreEstimation;
+    video: Video;
+    agenda: Agenda;
 }
 
 export interface IfiltreEstimation {
@@ -47,13 +50,13 @@ export interface IfiltreEstimation {
     detail_localisation: string;
     path_img: string;
     phone_service: string;
-    phone2_service?: any;
-    phone_whastapp?: any;
-    lien_facebook?: any;
-    lien_instagram?: any;
+    phone2_service: string;
+    phone_whastapp: string;
+    lien_facebook: string;
+    lien_instagram: string;
     email_service: string;
-    estimation_min: number;
-    estimation_max: number;
+    estimation_min: string;
+    estimation_max: string;
     statu_fiche: number;
     messagerie: number;
     actif_chat: number;
@@ -62,10 +65,65 @@ export interface IfiltreEstimation {
     actif_phone: number;
     actif_whatsapp: number;
     nbre_image: number;
+    video: number;
+    agenda: number;
     created_at: string;
     updated_at: string;
+    prestation: string;
+    path_icone: string;
 }
+
 export interface BeneftsResponse {
     statu: number;
     listPrestation: Benefit[];
+}
+
+////////////////////
+
+// export interface FindPrestataire {
+//     id: number;
+//     id_user: number;
+//     name: string;
+//     localisation: string;
+//     id_prestations: number;
+//     presentation: string;
+//     description: string;
+//     detail_localisation: string;
+//     path_img: string;
+//     phone_service: string;
+//     phone2_service: string;
+//     phone_whastapp: string;
+//     lien_facebook: string;
+//     lien_instagram: string;
+//     email_service: string;
+//     estimation_min: string;
+//     estimation_max: string;
+//     statu_fiche: number;
+//     messagerie: number;
+//     actif_chat: number;
+//     position: number;
+//     favoris: number;
+//     actif_phone: number;
+//     actif_whatsapp: number;
+//     nbre_image: number;
+//     video: number;
+//     agenda: number;
+//     created_at: string;
+//     updated_at: string;
+//     prestation: string;
+//     path_icone: string;
+// }
+
+export interface Video {
+    active_video: number;
+    video: string;
+}
+
+export interface Video2 {
+    date_event: string;
+}
+
+export interface Agenda {
+    active_agenda: number;
+    video: Video2[];
 }
