@@ -35,8 +35,8 @@ export interface Benefit {
 export interface IFindPrestataire {
     statu: number;
     findPrestataire: IfiltreEstimation;
-    video: Video;
-    agenda: Agenda;
+    video?: Video;
+    agenda?: Agenda;
 }
 
 export interface IfiltreEstimation {
@@ -65,8 +65,8 @@ export interface IfiltreEstimation {
     actif_phone: number;
     actif_whatsapp: number;
     nbre_image: number;
-    video: number;
-    agenda: number;
+    video?: number;
+    agenda?: number;
     created_at: string;
     updated_at: string;
     prestation: string;
