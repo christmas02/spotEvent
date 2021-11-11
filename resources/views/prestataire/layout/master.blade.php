@@ -92,6 +92,8 @@
                                         compte</span></a></li>
                                 <li><a href="/list/demande/{{ $infoUser->id }}"><i class="fa fa-table"></i> Liste des
                                         demandes </a></li>
+                                        <li><a href="/Agenda/{{ $infoUser->id }}"><i class="fa fa-table"></i>
+                                        Mon agenda </a></li>
                                 <li><a href="/list/messageries/{{ $infoUser->id }}"><i class="fa fa-comments"></i>
                                         Messagerie</a></li>
 

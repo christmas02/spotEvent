@@ -342,6 +342,14 @@ class PrestataireController extends Controller
         return view('prestataire.list_reservation', compact('infoUser','listDemande'));
     }
 
+    public function Agenda($id){
+        $infoUser = $this->infoUser($id);
+        $ficheExiste = $this->ficheExiste($id);
+        //dd($ficheExiste);
+        return view('prestataire.agenda', compact('infoUser','ficheExiste'));
+
+    }
+
     public function onePrestatire($id){
 
         $prestataire = DB::table('fiches')
@@ -565,8 +573,7 @@ class PrestataireController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            
-
+        
             $file = $request->file('video');
             $name_video = $file->getClientOriginalName();
             $storage_data = Storage::disk('public')->put($name_video, file_get_contents($file));

@@ -17,6 +17,9 @@ Route::get('/welcome/tableau/gesttion/{id}','PrestataireController@home')->name(
 Route::get('/infos/compte/prestatire/{id}','PrestataireController@getFiche');
 Route::post('/save/compte/prestatire','PrestataireController@postFiche');
 Route::get('/fiche/prestataire/{id}','PrestataireController@Fiche');
+
+Route::get('/Agenda/{id}','PrestataireController@Agenda');
+
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
 
 Route::post('/save/gallerie','PrestataireController@saveGalerie');
