@@ -433,8 +433,8 @@ export default Vue.extend({
               };
             })
           : [];
-        return [];
       }
+      return [];
     },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
