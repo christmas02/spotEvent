@@ -106,7 +106,8 @@ export default Vue.extend({
       this.$emit("update:shareModals", false);
       console.log(
         "test de lien facebook",
-        `http://spoteventapp.net${this.url}`
+        `http://spoteventapp.net${this.url}`,
+        window.location.href
       );
     },
     // url() {
@@ -124,9 +125,10 @@ export default Vue.extend({
     getUrl() {
       console.log(`http://spoteventapp.net${this.url}`, "wsipkipik");
 
-      return this.url.includes("http://spoteventapp.net")
-        ? this.url
-        : `http://spoteventapp.net${this.url}`;
+      // return this.url.includes("http://spoteventapp.net")
+      //   ? this.url
+      //   : `http://spoteventapp.net${this.url}`;
+      return window.location.href;
     },
     // url(): string {
     //   // return window.location.href;
