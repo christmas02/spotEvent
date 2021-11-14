@@ -1,7 +1,7 @@
 <template>
   <default-layout :padding="false">
     <loading
-      :active="hasBenefit && !hasError ? false : true"
+      :active="isLoading ? true : false"
       :opacity="0.8"
       loader="spinner"
       :can-cancel="false"
@@ -371,7 +371,7 @@ export default Vue.extend({
         { title: "Click Me 2" },
       ],
       video: null as unknown as Video,
-      hasError: false,
+      isLoading: true,
       // agendas: [] as unknown as Agenda,
     };
   },
@@ -384,6 +384,8 @@ export default Vue.extend({
     console.log(this.userData, "banaro");
     await this.updateSlder(this.userData.id.toString());
     this.id_prestataire = this.userData.id_user.toString();
+
+    this.isLoading = false;
   },
   components: {
     BenefitsGrid,
@@ -486,6 +488,7 @@ export default Vue.extend({
       if (actionStatu == 1) {
         console.log("action reussi", payload);
       } else {
+        this.isLoading = false;
         console.log("action echouée", payload);
       }
     },
@@ -569,7 +572,8 @@ export default Vue.extend({
       const result = await service.getSliders(benefit.id_user);
 
       if (result.statu == 0) {
-        this.hasError = true;
+        this.isLoading = false;
+        // this.isLoading = true;
         this.$swal({
           icon: "error",
           title: "Erreur lors de la recuperation des slides",
@@ -610,8 +614,10 @@ export default Vue.extend({
         this.userData = result.findPrestataire;
         this.currentId = result.findPrestataire.id;
       } else {
+        this.isLoading = false;
         console.log("no findPrestataire");
       }
+      // this.isLoading = true;
       // return "0";
     },
   },
