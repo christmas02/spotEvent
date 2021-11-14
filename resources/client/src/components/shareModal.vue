@@ -32,7 +32,7 @@
                     <ShareNetwork
                       class="share"
                       network="facebook"
-                      :url="url"
+                      :url="getUrl"
                       :title="benefit.name"
                       :description="benefit.description"
                       :quote="benefit.presentation"
@@ -51,7 +51,7 @@
                     <ShareNetwork
                       class="share"
                       network="whatsapp"
-                      :url="url"
+                      :url="getUrl"
                       :title="benefit.name"
                       :description="benefit.description"
                       :quote="benefit.presentation"
@@ -102,8 +102,12 @@ export default Vue.extend({
   methods: {
     goUrl() {
       // console.log(window.location.href);
+      // console.log(window.location.href);
       this.$emit("update:shareModals", false);
-      console.log("test de lien facebook");
+      console.log(
+        "test de lien facebook",
+        `http://spoteventapp.net${this.url}`
+      );
     },
     // url() {
     // console.log(this.url, window.location.href);
@@ -116,6 +120,13 @@ export default Vue.extend({
       console.log(this.benefit.name);
 
       return this.benefit.name.toLowerCase().replaceAll(" ", "_");
+    },
+    getUrl() {
+      console.log(`http://spoteventapp.net${this.url}`, "wsipkipik");
+
+      return this.url.includes("http://spoteventapp.net")
+        ? this.url
+        : `http://spoteventapp.net${this.url}`;
     },
     // url(): string {
     //   // return window.location.href;
