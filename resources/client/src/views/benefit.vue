@@ -1,7 +1,7 @@
 <template>
   <default-layout :padding="false">
     <loading
-      :active="benefit ? false : true"
+      :active="hasBenefit && !hasError ? false : true"
       :opacity="0.8"
       loader="spinner"
       :can-cancel="false"
@@ -371,6 +371,7 @@ export default Vue.extend({
         { title: "Click Me 2" },
       ],
       video: null as unknown as Video,
+      hasError: false,
       // agendas: [] as unknown as Agenda,
     };
   },
@@ -397,6 +398,9 @@ export default Vue.extend({
     shareModal,
   },
   computed: {
+    // hasBenefit(): boolean{
+    //   if(benefit)
+    // },
     url(): string {
       return window.location.origin;
       // return "http://spoteventapp.net/prestations/Divine-Amour-Event";
@@ -565,6 +569,7 @@ export default Vue.extend({
       const result = await service.getSliders(benefit.id_user);
 
       if (result.statu == 0) {
+        this.hasError = true;
         this.$swal({
           icon: "error",
           title: "Erreur lors de la recuperation des slides",
