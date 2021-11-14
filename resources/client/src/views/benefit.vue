@@ -398,7 +398,7 @@ export default Vue.extend({
   },
   computed: {
     url(): string {
-      return window.location.href;
+      return window.location.origin;
       // return "http://spoteventapp.net/prestations/Divine-Amour-Event";
     },
     routeName(): string {
