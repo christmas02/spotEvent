@@ -177,21 +177,20 @@
                 <div>
                   <p>{{ benefit.description }}</p>
                 </div>
-                <!-- <div class="calendar"> -->
-                <!-- <h2 class="section-title">Agenda</h2> -->
-                <!-- <div class="">
+                <div class="calendar" v-if="agendas.length > 0">
+                  <h2 class="section-title">Agenda</h2>
+                  <div class="">
                     <div class="d-flex justify-left">
                       <v-badge bottom inline left overlap color="red">
                         designe les jours d'indisponibilité du
                         prestataire</v-badge
                       >
                     </div>
-                  </div> -->
-                <!-- <div class="col-md-12">
-                    <agenda></agenda>
-                   
-                  </div> -->
-                <!-- </div> -->
+                  </div>
+                  <div class="col-md-12">
+                    <agenda :events="agendas"></agenda>
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -324,14 +323,19 @@ import shareModal from "../components/shareModal.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
 import CommentRatingGrid from "@/components/CommentRatingGrid.vue";
 import utilsMixin from "../mixins/utils.mixin";
-import { Benefit, IFindPrestataire } from "../interfaces/benefit.interface";
+import {
+  Agenda,
+  Benefit,
+  IFindPrestataire,
+  Video,
+} from "../interfaces/benefit.interface";
 import { BenefitService } from "../services/benefit.service";
 import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
 import FavoriteBtn from "../components/FavoriteBtn.vue";
 import { AppService } from "../services/app.service";
 import SocialDialog from "@/components/socialDialog.vue";
-import Agenda from "../components/Agenda.vue";
+import agenda from "../components/Agenda.vue";
 // import ChatBot from "../components/ChatBot.vue";
 
 export default Vue.extend({
@@ -366,6 +370,8 @@ export default Vue.extend({
         { title: "Click Me" },
         { title: "Click Me 2" },
       ],
+      video: null as unknown as Video,
+      // agendas: [] as unknown as Agenda,
     };
   },
   async beforeMount(): Promise<void> {
@@ -374,21 +380,10 @@ export default Vue.extend({
     await this.$store.dispatch("benefits/fetchAll");
 
     await this.findPrestataire();
-
-    // this.id_prestataire = this.$store.getters["benefits/one"](
-    //   this.currentId
-    // ).id_user.toString();
-
+    console.log(this.userData, "banaro");
     await this.updateSlder(this.userData.id.toString());
     this.id_prestataire = this.userData.id_user.toString();
   },
-  // beforeRouteEnter(_: any, __: any, next: any) {
-  //   if (!sessionStorage.getItem("benefitId")) {
-  //     next("/");
-  //   } else {
-  //     next();
-  //   }
-  // },
   components: {
     BenefitsGrid,
     ProviderContactFormModal,
@@ -397,7 +392,7 @@ export default Vue.extend({
     CommentRatingGrid,
     SocialDialog,
     yanDate,
-    Agenda,
+    agenda,
     pub,
     shareModal,
   },
@@ -424,10 +419,23 @@ export default Vue.extend({
     url() {
       return this.$route.path;
     },
-    // async currentId() {
-    //   // return localStorage.getItem("benefitId") as string;
-
-    // },
+    agendas() {
+      let benefit = this.$store.getters["benefits/one"](this.currentId);
+      if (benefit.agenda == 1) {
+        return benefit.agenda.video
+          ? benefit.agenda.video.map((elem: any) => {
+              const event = elem.date_event.split("");
+              return {
+                name: "Indisponible",
+                start: new Date(event[0]),
+                end: new Date(event[0]),
+                color: "red",
+              };
+            })
+          : [];
+        return [];
+      }
+    },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
     },
@@ -500,13 +508,6 @@ export default Vue.extend({
         id_user,
         id_pres: this.benefit.id_user.toString(),
       });
-
-      // const { actionStatu } = await service.phoneOrWaClick({
-      //   id_utilisateur: this.$store.getters["auth/id"],
-      //   id_prestataire: this.benefit.id_user,
-      //   type_bottom: "télephone",
-      // });
-
       if (statu == 1) {
         this.phone_service = this.benefit.phone_service;
         // console.log(this.benefit.phone2_service);
@@ -569,7 +570,18 @@ export default Vue.extend({
           title: "Erreur lors de la recuperation des slides",
         });
       } else {
+        let localSlides = result.listPrestataire;
+
         this.slides = result.listPrestataire;
+
+        if (this.video) {
+          let vid = {};
+          vid.path = this.video.video;
+          vid.id = 0;
+
+          this.localSlides = [vid, ...this.localSlides];
+        }
+        this.slides = this.localSlides;
       }
     },
     chat(): void {
@@ -581,15 +593,19 @@ export default Vue.extend({
       // Lazily load input items
       const service = new BenefitService();
       let urlParams = this.$route.params.slug;
-      // console.log(urlParams);
+      console.log(urlParams);
 
       const result: IFindPrestataire = await service.findPrestataire(urlParams);
 
       if (result.statu == 1) {
+        console.log("findPrestataire", result);
+
         // return result.findPrestataire.id.toString();
         // localStorage.setItem("benefitId", result.findPrestataire.id.toString());
         this.userData = result.findPrestataire;
         this.currentId = result.findPrestataire.id;
+      } else {
+        console.log("no findPrestataire");
       }
       // return "0";
     },
