@@ -39,6 +39,10 @@
 
     <link rel="icon" type="image/png" href="https://spoteventapp.net/images/logo.spoteventapp.png" />
 
+    <!-- FullCalendar -->
+    <link href="{{asset('/admin/vendors/fullcalendar/dist/fullcalendar.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/admin/vendors/fullcalendar/dist/fullcalendar.print.css')}}" rel="stylesheet" media="print">
+
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content="l'annuaire nuptial digital" />
     <meta property="og:image" content="https://spoteventapp.net/images/logo.spoteventapp.png" />
@@ -399,6 +403,14 @@
 
     <!-- jQuery Smart Wizard -->
     <script src="{{asset('/admin/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
+
+    <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+    <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+    <!-- /calendar modal -->
+        
+    <!-- FullCalendar -->
+    <script src="{{asset('/admin/vendors/moment/min/moment.min.js')}}"></script>
+    <script src="{{asset('/admin/vendors/fullcalendar/dist/fullcalendar.min.js')}}"></script>
 
     <script>
     $(document).ready(function() {

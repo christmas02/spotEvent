@@ -48,6 +48,7 @@
                                             href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
                                         NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
                                 </div>
+                                <div id='calendar'></div>
                                 @endif
 
                             </div>
