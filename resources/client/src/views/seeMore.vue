@@ -68,7 +68,6 @@ import { AppService } from "@/services/app.service";
 import expansionPanel from "@/components/expansionPanel.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
-import expansionPanel from "@/components/expansionPanel.vue";
 
 export default Vue.extend({
   name: "Home",

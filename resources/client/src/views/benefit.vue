@@ -334,7 +334,7 @@ import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
 import FavoriteBtn from "../components/FavoriteBtn.vue";
 import { AppService } from "../services/app.service";
-import SocialDialog from "@/components/socialDialog.vue";
+import SocialDialog from "@/components/SocialDialog.vue";
 import agenda from "../components/Agenda.vue";
 // import ChatBot from "../components/ChatBot.vue";
 
@@ -391,7 +391,6 @@ export default Vue.extend({
     CommentRatingUser,
     CommentRatingGrid,
     SocialDialog,
-    yanDate,
     agenda,
     pub,
     shareModal,
