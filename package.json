@@ -6,13 +6,13 @@
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress",
         "watch": "cross-env NODE_ENV=development webpack --watch --progress ",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development webpack --progress",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production webpack"
+        "production": "cross-env NODE_ENV=production webpack",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "dependencies": {
         "axios": "^0.21.1",
