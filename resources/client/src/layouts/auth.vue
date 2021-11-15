@@ -10,7 +10,7 @@
             class="logo"
           />
           <div>
-            <img src="../assets/icons/lfb.png" alt="facebook" class="icon" />
+            <img :src="assets.lfb" alt="facebook" class="icon" />
             <img src="../assets/icons/inst.png" alt="instagram" class="icon" />
             <img src="../assets/icons/lytb.png" alt="youtube" class="icon" />
           </div>
@@ -97,6 +97,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import lfb from "../assets/icons/lfb.png";
 export default Vue.extend({
   name: "auth",
   props: {
@@ -117,27 +118,11 @@ export default Vue.extend({
       },
     },
   },
-
-  computed: {
-    currentRouteName() {
-      return this.$route.name;
-    },
-    auth(): boolean {
-      return this.$store.getters["auth/isConnected"];
-    },
-  },
-
-  methods: {
-    // test() {
-    //   console.log(this.$route.name);
-    // },
-    goHome() {
-      // this.$router.push("/");
-      this.$router.push({ name: "Home" });
-    },
-  },
   data() {
     return {
+      assets: {
+        lfb
+      },
       drawer: false,
       group: null,
       links: [
@@ -164,6 +149,25 @@ export default Vue.extend({
       ],
     };
   },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    auth(): boolean {
+      return this.$store.getters["auth/isConnected"];
+    },
+  },
+
+  methods: {
+    // test() {
+    //   console.log(this.$route.name);
+    // },
+    goHome() {
+      // this.$router.push("/");
+      this.$router.push({ name: "Home" });
+    },
+  },
+
 });
 </script>
 
