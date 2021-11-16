@@ -372,6 +372,7 @@ export default Vue.extend({
       ],
       video: null as unknown as Video,
       isLoading: true,
+      agendas: [] as unknown as Agenda[],
       // agendas: [] as unknown as Agenda,
     };
   },
@@ -425,23 +426,23 @@ export default Vue.extend({
     url() {
       return this.$route.path;
     },
-    agendas() {
-      let benefit = this.$store.getters["benefits/one"](this.currentId);
-      if (benefit.agenda == 1) {
-        return benefit.agenda.video
-          ? benefit.agenda.video.map((elem: any) => {
-              const event = elem.date_event.split("");
-              return {
-                name: "Indisponible",
-                start: new Date(event[0]),
-                end: new Date(event[0]),
-                color: "red",
-              };
-            })
-          : [];
-      }
-      return [];
-    },
+    // agendas() {
+    //   let benefit = this.$store.getters["benefits/one"](this.currentId);
+    //   if (benefit.agenda == 1) {
+    //     return benefit.agenda.video
+    //       ? benefit.agenda.video.map((elem: any) => {
+    //           const event = elem.date_event.split("");
+    //           return {
+    //             name: "Indisponible",
+    //             start: new Date(event[0]),
+    //             end: new Date(event[0]),
+    //             color: "red",
+    //           };
+    //         })
+    //       : [];
+    //   }
+    //   return [];
+    // },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
     },
@@ -612,7 +613,25 @@ export default Vue.extend({
         // return result.findPrestataire.id.toString();
         // localStorage.setItem("benefitId", result.findPrestataire.id.toString());
         this.userData = result.findPrestataire;
+
         this.currentId = result.findPrestataire.id;
+        if (result.video?.active_video == 1) {
+          this.video = result.video.active_video;
+        }
+        // this.agendas =
+
+        this.agendas =
+          result.agenda?.active_agenda == 1
+            ? result.agenda.video.map((elem: any) => {
+                const event = elem.date_event.split("");
+                return {
+                  name: "Indisponible",
+                  start: new Date(event[0]),
+                  end: new Date(event[0]),
+                  color: "red",
+                };
+              })
+            : [];
       } else {
         this.isLoading = false;
         console.log("no findPrestataire");
