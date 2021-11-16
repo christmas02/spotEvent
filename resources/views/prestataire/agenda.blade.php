@@ -13,13 +13,20 @@
         </div>
 
         <div class="clearfix"></div>
+        @if($ficheExiste)
+        @if($ficheExiste->agenda == 0)
 
+        {{-- Mettre le gestionnaire d'agenda ici --}}
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Mon agenda <small></small></h2>
-                        
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li style="color: #fff;" ><a href="#" data-toggle="modal"
+                                            data-target="#modalAgendar" class="btn btn-info">Ajouter un evenement</a></li>
+                            
+                        </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -30,26 +37,51 @@
                         @endif
                         <div class="row">
                             <div class="col-sm-12">
-                                @if($ficheExiste)
-                                    @if($ficheExiste->agenda == 1)
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Heure</th>
+                          <th>Evenement</th>
 
-                                    {{-- Mettre le gestionnaire d'agenda ici --}}
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Tiger</td>
+                          <td>Nixon</td>
+                          <td>System Architect</td>
+                          <td>Edinburgh</td>
+                        </tr>
+        
+                      </tbody>
+                    </table>
+                            </div>
+                        </div>
 
-                                    @else
-                                    <div class="alert alert-danger">
-                                        <h4>Vous ne disposez pas de cette fonctionnalité. <br>
-                                            NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
-                                    </div>
-                                    @endif
-                                @else
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        @else
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Mon agenda <small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                       
+                        <div class="row">
+                            <div class="col-sm-12">
                                 <div class="alert alert-danger">
-                                    <h4>Vous devez complèter les informations relatives à votre compte prestataire.<br>
-                                        Pour le faire cliquez sur ce lien <a
-                                            href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
+                                    <h4>Vous ne disposez pas de cette fonctionnalité. <br>
                                         NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
                                 </div>
-                                <div id='calendar'></div>
-                                @endif
 
                             </div>
                         </div>
@@ -59,41 +91,45 @@
 
             </div>
         </div>
+
+        @endif
+        @else
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Mon agenda <small></small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="alert alert-danger">
+                                    <h4>Vous devez complèter les informations relatives à votre compte prestataire.<br>
+                                        Pour le faire cliquez sur ce lien <a href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
+                                        NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        @endif
+
+
+
     </div>
 </div>
 </div>
 <!-- /page content -->
 
 
-<!-- Modal demande formulaire -->
-<div class="modal fade" id="modalMessagerie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
 
-            <div class="modal-body">
-                <div class="mesgs">
-                    <div class="msg_history">
-                    </div>
-                    <div class="type_msg">
-                        <form method="post" action="/save/message/prestataire">
-                            @csrf
-                            <div class="input_msg_write">
-                                <input type="hidden" value="0" name="conversation">
-                                <input type="hidden" value="" id="recepteur" name="id_recepteur">
-                                <input type="hidden" value="{{ $infoUser->id }}" name="id_emmetteur">
-                                <input type="text" name="contenus" class="write_msg" placeholder="Message ..."
-                                    required />
-                                <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane"
-                                        aria-hidden="true"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

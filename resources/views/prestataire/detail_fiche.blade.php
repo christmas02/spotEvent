@@ -604,14 +604,6 @@ function libellePrestation($id){
                                 value="{{ $ficheExiste->email_service }}">
                         </div>
                     </div>
-
-
-
-
-
-
-
-
             </div>
             <div class="modal-footer-btn">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

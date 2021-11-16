@@ -35,6 +35,8 @@ Route::post('/add/gallerie','PrestataireController@addGaleri');
 Route::post('/update/image','PrestataireController@updateImage');
 Route::post('/delet/image','PrestataireController@deletImage');
 
+Route::post('/save/agenda','PrestataireController@saveAgenda');
+
 
 Route::get('mise_a_jour_image/{id}','PrestataireController@editImage');
 

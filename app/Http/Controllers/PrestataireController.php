@@ -19,6 +19,7 @@ use App\Conversation;
 use App\Message;
 use App\Commune;
 use App\Video;
+use App\Agenda;
 
 
 class PrestataireController extends Controller
@@ -345,8 +346,10 @@ class PrestataireController extends Controller
     public function Agenda($id){
         $infoUser = $this->infoUser($id);
         $ficheExiste = $this->ficheExiste($id);
+
+        $listEvent = Agenda::where('id_user',$id)->get();
         //dd($ficheExiste);
-        return view('prestataire.agenda', compact('infoUser','ficheExiste'));
+        return view('prestataire.agenda', compact('infoUser','listEvent','ficheExiste'));
 
     }
 
@@ -589,6 +592,51 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //throw $th;
+            return redirect()->back()->with('danger', 'Echec de l;enregistrement.');
+        }
+
+    }
+
+    public function saveAgenda(Request $request){
+
+        try {
+            //dd($request->all());
+            $validator = Validator::make($request->all(), [
+                'date' => 'required',
+              
+            ]);
+     
+            if ($validator->fails()) {
+                //dd($validator);
+                return back()->withErrors($validator)->withInput();
+            }
+
+            $id_user = $request->get('id_user');
+            $heure = $request->get('heure');
+            $date = $request->get('date');
+
+            $eventHeur = Agenda::where('heure',$heure)->where('date_event',$date)->first();
+
+            if($eventHeur){
+                return redirect()->back()->with('danger', 'Vous avez un événement déjà enregistré à cette date et à cette heure.');
+            }
+
+            
+
+            $agemda = new Agenda;
+
+            $agemda->id_user = $id_user;
+            $agemda->date_event = $date;
+            $agemda->titre = $request->get('event');
+            $agemda->heure = $heure;
+
+            $agemda->save();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            //dd($th);
             return redirect()->back()->with('danger', 'Echec de l;enregistrement.');
         }
 
