@@ -97,7 +97,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import lfb from "../assets/icons/lfb.png";
+import lfb from "@/assets/icons/lfb.png";
 
 export default Vue.extend({
   name: "auth",
@@ -122,7 +122,7 @@ export default Vue.extend({
   data() {
     return {
       assets: {
-        lfb
+        lfb,
       },
       drawer: false,
       group: null,
@@ -168,7 +168,6 @@ export default Vue.extend({
       this.$router.push({ name: "Home" });
     },
   },
-
 });
 </script>
 

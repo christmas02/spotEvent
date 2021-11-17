@@ -1,7 +1,7 @@
 <template>
   <default-layout :padding="false">
     <loading
-      :active="benefit ? false : true"
+      :active="isLoading ? true : false"
       :opacity="0.8"
       loader="spinner"
       :can-cancel="false"
@@ -336,7 +336,6 @@ import FavoriteBtn from "../components/FavoriteBtn.vue";
 import { AppService } from "../services/app.service";
 import SocialDialog from "@/components/SocialDialog.vue";
 import agenda from "../components/Agenda.vue";
-// import ChatBot from "../components/ChatBot.vue";
 
 export default Vue.extend({
   name: "Benefit",
@@ -371,18 +370,24 @@ export default Vue.extend({
         { title: "Click Me 2" },
       ],
       video: null as unknown as Video,
+      isLoading: false,
+      agendas: [] as unknown as Agenda[],
       // agendas: [] as unknown as Agenda,
     };
   },
   async beforeMount(): Promise<void> {
-    console.log(this.$route.name, "sino");
+    try {
+      this.isLoading = true;
+      await this.$store.dispatch("benefits/fetchAll");
 
-    await this.$store.dispatch("benefits/fetchAll");
-
-    await this.findPrestataire();
-    console.log(this.userData, "banaro");
-    await this.updateSlder(this.userData.id.toString());
-    this.id_prestataire = this.userData.id_user.toString();
+      await this.findPrestataire();
+      await this.updateSlder(this.userData.id.toString());
+      this.id_prestataire = this.userData.id_user.toString();
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.isLoading = false;
+    }
   },
   components: {
     BenefitsGrid,
@@ -398,7 +403,6 @@ export default Vue.extend({
   computed: {
     url(): string {
       return window.location.origin;
-      // return "http://spoteventapp.net/prestations/Divine-Amour-Event";
     },
     routeName(): string {
       return this.$route.name ? this.$route.name : "";
@@ -415,26 +419,26 @@ export default Vue.extend({
     others(): Benefit[] {
       return this.$store.getters["benefits/others"](this.currentId);
     },
-    url() {
-      return this.$route.path;
-    },
-    agendas() {
-      let benefit = this.$store.getters["benefits/one"](this.currentId);
-      if (benefit.agenda == 1) {
-        return benefit.agenda.video
-          ? benefit.agenda.video.map((elem: any) => {
-              const event = elem.date_event.split("");
-              return {
-                name: "Indisponible",
-                start: new Date(event[0]),
-                end: new Date(event[0]),
-                color: "red",
-              };
-            })
-          : [];
-      }
-      return [];
-    },
+    // url() {
+    //   return this.$route.path;
+    // },
+    // agendas() {
+    //   let benefit = this.$store.getters["benefits/one"](this.currentId);
+    //   if (benefit.agenda == 1) {
+    //     return benefit.agenda.video
+    //       ? benefit.agenda.video.map((elem: any) => {
+    //           const event = elem.date_event.split("");
+    //           return {
+    //             name: "Indisponible",
+    //             start: new Date(event[0]),
+    //             end: new Date(event[0]),
+    //             color: "red",
+    //           };
+    //         })
+    //       : [];
+    //   }
+    //   return [];
+    // },
     isComment(): boolean {
       return this.$store.getters["auth/isComment"];
     },
@@ -469,7 +473,6 @@ export default Vue.extend({
 
   methods: {
     async smsPhone(): Promise<void> {
-      console.log("bibop");
       const service = new AppService();
       const payload = {
         id_utilisateur: this.$store.getters["auth/id"],
@@ -479,13 +482,11 @@ export default Vue.extend({
 
       const { actionStatu } = await service.phoneOrWaClick(payload);
       if (actionStatu == 1) {
-        console.log("action reussi", payload);
       } else {
-        console.log("action echouée", payload);
+        this.isLoading = false;
       }
     },
     async smsWa(): Promise<void> {
-      console.log("bibop");
       const service = new AppService();
       const payload = {
         id_utilisateur: this.$store.getters["auth/id"],
@@ -494,11 +495,6 @@ export default Vue.extend({
       };
 
       const { actionStatu } = await service.phoneOrWaClick(payload);
-      if (actionStatu == 1) {
-        console.log("action reussi", payload);
-      } else {
-        console.log("action echouée", payload);
-      }
     },
     async displayPhoneNumber(): Promise<void> {
       const service = new AppService();
@@ -509,21 +505,12 @@ export default Vue.extend({
       });
       if (statu == 1) {
         this.phone_service = this.benefit.phone_service;
-        // console.log(this.benefit.phone2_service);
 
         this.phone2_service = this.benefit.phone2_service;
         this.hasNumber = true;
         this.isModal = true;
         this.enterprise = this.benefit.name;
-        console.log("gwouuuu");
 
-        const html = `
-          <h2>${this.benefit.phone_service}</h2>
-          <h2>${this.benefit.phone2_service}</h2>
-        `;
-        // this.$swal({
-        //   html,
-        // });
         await this.smsPhone();
       } else {
         this.hasNumber = false;
@@ -564,6 +551,8 @@ export default Vue.extend({
       const result = await service.getSliders(benefit.id_user);
 
       if (result.statu == 0) {
+        this.isLoading = false;
+        // this.isLoading = true;
         this.$swal({
           icon: "error",
           title: "Erreur lors de la recuperation des slides",
@@ -574,52 +563,67 @@ export default Vue.extend({
         this.slides = result.listPrestataire;
 
         if (this.video) {
-          let vid = {};
+          let vid = {} as any;
+
           vid.path = this.video.video;
           vid.id = 0;
 
-          this.localSlides = [vid, ...this.localSlides];
+          localSlides = [vid, ...localSlides];
         }
-        this.slides = this.localSlides;
+        this.slides = localSlides;
       }
     },
     chat(): void {
       this.$store.commit("auth/updateIdBenefitToChat", this.benefit.id_user);
       this.$router.push({ name: "Chat" });
     },
-    async findPrestataire(slug: string): Promise<void> {
+    async findPrestataire(): Promise<void> {
       // Items have already been loade
       // Lazily load input items
       const service = new BenefitService();
-      let urlParams = this.$route.params.slug;
-      console.log(urlParams);
+      const slug = this.$route.params.slug;
 
-      const result: IFindPrestataire = await service.findPrestataire(urlParams);
+      const result: IFindPrestataire = await service.findPrestataire(slug);
 
+      this.video = null;
       if (result.statu == 1) {
-        console.log("findPrestataire", result);
-
-        // return result.findPrestataire.id.toString();
-        // localStorage.setItem("benefitId", result.findPrestataire.id.toString());
         this.userData = result.findPrestataire;
+
         this.currentId = result.findPrestataire.id;
+        if (result.video?.active_video == 1) {
+          this.video = result.video;
+        }
+        this.agendas =
+          result.agenda?.active_agenda == 1
+            ? result.agenda.video.map((elem: any) => {
+                const event = elem.date_event.split("");
+                return {
+                  name: "Indisponible",
+                  start: new Date(event[0]),
+                  end: new Date(event[0]),
+                  color: "red",
+                };
+              })
+            : [];
       } else {
-        console.log("no findPrestataire");
+        this.isLoading = false;
       }
+      // this.isLoading = true;
       // return "0";
     },
   },
   watch: {
-    async currentId(n, o) {
-      this.id_prestataire =
-        this.$store.getters["benefits/one"](n).id_user.toString();
-      await this.updateSlder(n.toString());
-      console.log("bingoo");
-
-      // await this.findPrestataire();
+    async currentId(curr, prev) {
+      if (prev) {
+        this.id_prestataire =
+          this.$store.getters["benefits/one"](curr).id_user.toString();
+        await this.updateSlder(curr.toString());
+      }
     },
-    async slug(n, o) {
-      await this.findPrestataire();
+    async slug(n, prev) {
+      if (prev) {
+        await this.findPrestataire();
+      }
     },
   },
 });

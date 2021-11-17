@@ -1,7 +1,6 @@
 const { VueLoaderPlugin } = require("vue-loader");
 const path = require("path");
 
-
 module.exports = {
     mode: "development",
     plugins: [new VueLoaderPlugin()],
@@ -48,6 +47,9 @@ module.exports = {
                 use: [
                     {
                         loader: "file-loader"
+                    },
+                    {
+                        loader: "url-loader"
                     }
                 ]
             }

@@ -79,7 +79,6 @@ export default Vue.extend({
 
       if (result.statu == 1) {
         let data = result.listContenue;
-        console.log(result.listContenue, "list pubs");
         if (this.routeName === "Home" && data.length > 0) {
           this.items = data.filter(
             (el) => el.page == "Page accueil" && el.position == 1

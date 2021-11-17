@@ -6,7 +6,7 @@
         @click="goHome"
         width="120"
         class="logo"
-        :src="require('../../assets/dark-logo.png')"
+        src="../../assets/dark-logo.png"
       >
       </v-img>
     </div>

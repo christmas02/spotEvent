@@ -155,9 +155,9 @@ export class BenefitService extends CommonService {
     async findPrestataire(text: string): Promise<IFindPrestataire> {
         try {
             const { data }: { data: IFindPrestataire } = await this.client.post(
-                "/find_prestataire",
+                "find_prestataire",
                 {
-                    name: text
+                    name: text.toLowerCase()
                 }
             );
             return data;
