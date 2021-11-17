@@ -1,7 +1,7 @@
 <template>
   <default-layout :padding="false">
     <div class="main">
-      <jumbotron :image="require('../assets/images/jmbg2.png')">
+      <jumbotron image="/images/jmbg2.png">
         <h1 class="content-title" v-html="contents.contact_titre"></h1>
         <div class="description">
           <p v-html="contents.contact_paragraphe"></p>

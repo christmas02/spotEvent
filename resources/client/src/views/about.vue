@@ -2,8 +2,8 @@
   <default-layout :padding="false">
     <div id="benefit-page">
       <div class="default-padding">
-        <!-- <jumbotron :image="require('../assets/about/jmb.png')"> -->
-        <jumbotron :image="require('../assets/about/img01.jpg')">
+        <!-- <jumbotron image='/images/jmb.png'> -->
+        <jumbotron image="/images/img01.jpg">
           <div
             class="d-md-flex justify-content-md-between align-items-md-center"
           >
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="d-none d-md-flex col-md-6 right">
-            <img :src="require('../assets/about/image.png')" height="275" />
+            <img src="/images/image.png" height="275" />
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
             <div class="col-md-4 text-center">
               <div class="more-info">
                 <img
-                  :src="require('../assets/about/about3.png')"
+                  src="/images/about3.png"
                   alt="oki"
                   class="img-fluid"
                   max-height="100"
@@ -61,11 +61,7 @@
             </div>
             <div class="col-md-4 text-center">
               <div class="more-info">
-                <img
-                  :src="require('../assets/about/about1.png')"
-                  alt="oki"
-                  class="img-fluid"
-                />
+                <img src="/images/about1.png" alt="oki" class="img-fluid" />
                 <!-- height="110" -->
                 <h2
                   class="text-primary text-uppercase mt-2"

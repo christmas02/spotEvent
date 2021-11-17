@@ -220,7 +220,7 @@
                 <!-- <h2 class="section-title">Panneau</h2> -->
                 <!-- <div>
                   <v-img
-                    :src="require('../assets/images/jmbg2.png')"
+                    src='/images/jmbg2.png'
                     class="w-100"
                     height="300"
                   ></v-img>
