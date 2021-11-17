@@ -584,6 +584,7 @@ export default Vue.extend({
       const slug = this.$route.params.slug;
 
       const result: IFindPrestataire = await service.findPrestataire(slug);
+      console.log(result);
 
       this.video = null;
       if (result.statu == 1) {
@@ -596,7 +597,9 @@ export default Vue.extend({
         this.agendas =
           result.agenda?.active_agenda == 1
             ? result.agenda.video.map((elem: any) => {
-                const event = elem.date_event.split("");
+                const event = elem.date_event.split(" ");
+                console.log(event);
+
                 return {
                   name: "Indisponible",
                   start: new Date(event[0]),
@@ -614,6 +617,8 @@ export default Vue.extend({
   },
   watch: {
     async currentId(curr, prev) {
+      console.log(curr, "curr");
+
       if (prev) {
         this.id_prestataire =
           this.$store.getters["benefits/one"](curr).id_user.toString();
