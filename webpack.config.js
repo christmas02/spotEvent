@@ -1,16 +1,6 @@
 const { VueLoaderPlugin } = require("vue-loader");
 const path = require("path");
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
 
 module.exports = {
     mode: "development",
@@ -57,10 +47,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [
                     {
-                        loader: "url-loader",
-                        options: {
-                            limit: 8192
-                        }
+                        loader: "file-loader"
                     }
                 ]
             }

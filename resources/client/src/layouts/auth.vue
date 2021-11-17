@@ -98,6 +98,7 @@
 <script lang="ts">
 import Vue from "vue";
 import lfb from "../assets/icons/lfb.png";
+
 export default Vue.extend({
   name: "auth",
   props: {
