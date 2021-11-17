@@ -77,11 +77,7 @@
             </div>
             <div class="col-md-4 text-center">
               <div class="more-info">
-                <img
-                  :src="require('../assets/about/about2.png')"
-                  alt="oki"
-                  class="img-fluid"
-                />
+                <img :src="about2" alt="oki" class="img-fluid" />
                 <!-- height="110" -->
                 <h2
                   class="text-primary text-uppercase mt-2"
@@ -100,8 +96,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-
+import about2 from "@/assets/about/about2.png";
 export default Vue.extend({
+  data() {
+    return {
+      about2,
+    };
+  },
   computed: {
     contents(): any {
       return this.$store.getters["aboutContents"];

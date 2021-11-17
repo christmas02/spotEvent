@@ -41,12 +41,7 @@
     <v-navigation-drawer v-model="drawer" app fixed temporary>
       <!-- :lazy-src="require('../assets/dark-logo.png')" -->
       <div class="d-flex justify-center my-3">
-        <v-img
-          :src="require('../assets/dark-logo.png')"
-          contain
-          height="60"
-          width="120"
-        >
+        <v-img src="images/dark-logo.png" contain height="60" width="120">
         </v-img>
       </div>
       <v-list dense v-model="group" active-class="primary">
