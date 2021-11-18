@@ -1,5 +1,16 @@
 @extends('prestataire/layout/master')
 
+<?php
+
+function Eventdate($date, $id_user)
+{
+    $eventDate = App\Agenda::where('date_event', $date)->where('id_user', $id_user)->get();
+    return $eventDate;
+}
+
+
+?>
+
 @section('content')
 
 <!-- page content -->
@@ -14,7 +25,7 @@
 
         <div class="clearfix"></div>
         @if($ficheExiste)
-        @if($ficheExiste->agenda == 0)
+        @if($ficheExiste->agenda == 1)
 
         {{-- Mettre le gestionnaire d'agenda ici --}}
         <div class="row">
@@ -23,9 +34,8 @@
                     <div class="x_title">
                         <h2>Mon agenda <small></small></h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li style="color: #fff;" ><a href="#" data-toggle="modal"
-                                            data-target="#modalAgendar" class="btn btn-info">Ajouter un evenement</a></li>
-                            
+                            <li style="color: #fff;"><a href="#" data-toggle="modal" data-target="#modalAgendar" class="btn btn-info">Ajouter un evenement</a></li>
+
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -37,26 +47,51 @@
                         @endif
                         <div class="row">
                             <div class="col-sm-12">
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
-                        <tr>
-                          <th>Date</th>
-                          <th>Heure</th>
-                          <th>Evenement</th>
+                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Heure</th>
+                                            <th>Evenement</th>
 
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Tiger</td>
-                          <td>Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                        </tr>
-        
-                      </tbody>
-                    </table>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if($listEvent)
+                                        @foreach($listEvent as $item)
+                                        @if($item->date_count > 1)
+
+                                        <tr>
+                                            <td rowspan="{{ ($item->date_count)+1}}">
+                                                <div class="">{{ $item->date_event }}</div>
+                                            </td>
+
+                                        </tr>
+                                        @foreach(Eventdate($item->date_event, $item->id_user) as $value)
+                                        <tr>
+                                            <td>{{$value->heure}}</td>
+                                            <td>{{$value->titre}}</td>
+                                            <td></td>
+                                        </tr>
+                                        @endforeach
+
+
+                                        @else
+                                        @foreach(Eventdate($item->date_event, $item->id_user) as $value)
+                                        <tr>
+                                            <td rowspan="">{{$value->date_event}}</td>
+                                            <td>{{$value->heure}}</td>
+                                            <td>{{$value->titre}}</td>
+                                            <td></td>
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                        @endforeach
+                                        @endif
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
@@ -75,7 +110,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                       
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="alert alert-danger">

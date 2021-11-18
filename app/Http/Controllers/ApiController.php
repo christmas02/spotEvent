@@ -181,20 +181,15 @@ class ApiController extends Controller
 
             if($date){
                 $agenda = [
-
                     'active_agenda' => $findPrestataire->agenda,
                     'agenda' => $date
-    
                 ];
 
             }else{
                 $agenda = [
-
                     'active_agenda' => $findPrestataire->agenda,
                     'agenda' => []
-    
                 ];
-                
             }
 
             ///if($findPrestataire)

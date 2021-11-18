@@ -20,7 +20,7 @@ use App\Message;
 use App\Commune;
 use App\Video;
 use App\Agenda;
-
+use Illuminate\Support\Facades\DB;
 
 class PrestataireController extends Controller
 {
@@ -347,8 +347,14 @@ class PrestataireController extends Controller
         $infoUser = $this->infoUser($id);
         $ficheExiste = $this->ficheExiste($id);
 
-        $listEvent = Agenda::where('id_user',$id)->get();
-        //dd($ficheExiste);
+         Agenda::where('id_user',$id)->get();
+         //$listEvent = Agenda::groupBy('date_event')->where('id_user',$id)->get();
+         $listEvent = DB::table('agendas')
+            ->where('id_user',$id)
+            ->select('*', DB::raw('COUNT(*) as date_count'))
+            ->groupBy('date_event')
+            ->get();
+        //dd($listEvent);
         return view('prestataire.agenda', compact('infoUser','listEvent','ficheExiste'));
 
     }
