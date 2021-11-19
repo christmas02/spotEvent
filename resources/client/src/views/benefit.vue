@@ -13,8 +13,8 @@
       :provider="idProvider"
     ></provider-contact-form-modal>
 
-    <div id="benefit-page" v-if="benefit">
-      <div class="main">
+    <div id="benefit-page">
+      <div class="main" v-if="benefit">
         <div>
           <!-- skeleton -->
           <v-skeleton-loader
@@ -303,6 +303,11 @@
           </div>
         </div>
       </div>
+      <div v-else-if="!isLoading">
+        <h2 class="text-center">
+          Erreur lors de la recuperation de la prestation
+        </h2>
+      </div>
       <div class="other-benefits">
         <div class="default-padding">
           <h2 class="section-title">Autres prestations</h2>
@@ -317,7 +322,6 @@
 import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
-import yanDate from "../components/yanDate.vue";
 import pub from "../components/pub.vue";
 import shareModal from "../components/shareModal.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
@@ -381,8 +385,11 @@ export default Vue.extend({
       await this.$store.dispatch("benefits/fetchAll");
 
       await this.findPrestataire();
-      await this.updateSlder(this.userData.id.toString());
-      this.id_prestataire = this.userData.id_user.toString();
+
+      if (this.userData) {
+        await this.updateSlder(this.userData.id.toString());
+        this.id_prestataire = this.userData.id_user.toString();
+      }
     } catch (e) {
       console.log(e);
     } finally {
@@ -481,8 +488,7 @@ export default Vue.extend({
       };
 
       const { actionStatu } = await service.phoneOrWaClick(payload);
-      if (actionStatu == 1) {
-      } else {
+      if (actionStatu != 1) {
         this.isLoading = false;
       }
     },
@@ -494,7 +500,7 @@ export default Vue.extend({
         type_bottom: "whatsapp",
       };
 
-      const { actionStatu } = await service.phoneOrWaClick(payload);
+      await service.phoneOrWaClick(payload);
     },
     async displayPhoneNumber(): Promise<void> {
       const service = new AppService();
@@ -584,7 +590,6 @@ export default Vue.extend({
       const slug = this.$route.params.slug;
 
       const result: IFindPrestataire = await service.findPrestataire(slug);
-      console.log(result);
 
       this.video = null;
       if (result.statu == 1) {
@@ -598,7 +603,6 @@ export default Vue.extend({
           result.agenda?.active_agenda == 1
             ? result.agenda.video.map((elem: any) => {
                 const event = elem.date_event.split(" ");
-                console.log(event);
 
                 return {
                   name: "Indisponible",
@@ -608,17 +612,16 @@ export default Vue.extend({
                 };
               })
             : [];
-      } else {
-        this.isLoading = false;
       }
+
+      this.isLoading = false;
+
       // this.isLoading = true;
       // return "0";
     },
   },
   watch: {
     async currentId(curr, prev) {
-      console.log(curr, "curr");
-
       if (prev) {
         this.id_prestataire =
           this.$store.getters["benefits/one"](curr).id_user.toString();
