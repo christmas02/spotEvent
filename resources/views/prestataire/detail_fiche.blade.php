@@ -333,22 +333,37 @@ function libellePrestation($id){
 
                                 <br />
 
-                                
+
                                 <hr>
 
                             </div>
                             <div class="col-md-4 col-sm-4">
-                                    @if($ficheExiste->video == 1 and $videoExiste == NULL)
-                                    <div class="alert alert-warning">
-                                        <h4>Vous avez la posibilite d'ajouter une videos.<br>
-                                            Pour le faire cliquez sur ce lien <a class="" data-toggle="modal"
-                                        data-target="#exampleModalvideo" href="#"> Ma video</a><br>
-                                            NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                                @if($ficheExiste->video == 1 and $videoExiste == NULL)
+                                <div class="alert alert-warning">
+                                    <h4>Vous avez la possibilité d'ajouter une vidéo.<br>
+                                        Pour le faire cliquez sur ce lien <a class="" data-toggle="modal"
+                                            data-target="#exampleModalvideo" href="#"> Ma video</a><br>
+                                        NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                                </div>
+                                @else
+                                <div class="">
+                                    <div class="container-image">
+                                        <img width="" height="" style="margin-bottom: 20px; width:100%;"
+                                            src="{{asset('spotevent/public/storage/'.$items->path )}}"
+                                            alt="spotevent" />
+                                        <div class="overlay">
+                                            <button href="" data-toggle="modal"
+                                                data-target="#exampleModalUpadeImageSeconds{{$items->id}}"
+                                                class="btn btn-sm btn-primary btn-rounded"><i
+                                                    class="fa fa-pencil"></i></button>
+                                            <button href="" data-toggle="modal"
+                                                data-target="#exampleModalDeletImage{{$items->id}}"
+                                                class="btn btn-sm btn-danger btn-rounded"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
-                                    @else
-
-                                    existe
-                                    @endif
+                                </div>
+                                @endif
                             </div>
 
                             <div class="col-md-12 col-sm-12 ">
@@ -368,14 +383,17 @@ function libellePrestation($id){
                                     <div class="col-md-6">
                                         @if(count($galerieExiste) == 0)
                                         <div class="alert alert-warning">
-                                <h4>Vous ne possédez pas de galerie photos.<br> Cette lucarne vous permet de présenter vos réalisations aux utilisateurs qui visiteront votre profil.<br> <a class="" data-toggle="modal"
-                                        data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
-                                        NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
-                            </div>
+                                            <h4>Vous ne possédez pas de galerie photos.<br> Cette lucarne vous permet de
+                                                présenter vos réalisations aux utilisateurs qui visiteront votre
+                                                profil.<br> <a class="" data-toggle="modal"
+                                                    data-target="#exampleModalImages" href="#"> Ma galerie</a> <br>
+                                                NB : Veuillez contacter le service conseil et assistance en cas de
+                                                besoin.</h4>
+                                        </div>
                                         @else
                                         @foreach($galerieExiste as $items)
                                         <div class="">
-                                            <div class="col-md-6 container-image">
+                                            <div class="col-md-4 container-image">
                                                 <img width="" height="" style="margin-bottom: 20px; width:100%;"
                                                     src="{{asset('spotevent/public/storage/'.$items->path )}}"
                                                     alt="spotevent" />
@@ -403,10 +421,11 @@ function libellePrestation($id){
                         </div>
                         @else
                         <div class="alert alert-danger">
-                                <h4>Vous devez complèter les informations relatives à votre compte prestataire.<br>
-                                    Pour le faire cliquez sur ce lien <a href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
-                                    NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
-                            </div>
+                            <h4>Vous devez complèter les informations relatives à votre compte prestataire.<br>
+                                Pour le faire cliquez sur ce lien <a
+                                    href="/infos/compte/prestatire/{{ $infoUser->id }}"> Compte prestataire</a> <br>
+                                NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                        </div>
                         @endif
 
 
@@ -517,15 +536,16 @@ function libellePrestation($id){
                         </div>
                     </div>-->
                     <div class="item form-group">
-                        <label class="col-form-label col-md-4 col-sm-4 label-align"
-                            for="first-name">Secteur d'activité 
+                        <label class="col-form-label col-md-4 col-sm-4 label-align" for="first-name">Secteur d'activité
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}"required>
-                            <option value="{{$ficheExiste->id_prestations}}" selected>{{ libellePrestation($ficheExiste->id_prestations)->name }}</option>
-                            @foreach($listPrestation as $items)
-                                <option value="{{ $items->id }}" >{{ $items->name }}</option>
-                            @endforeach    
+                            <select name="id_prestations" class="form-control" value="{{ old('id_prestations') }}"
+                                required>
+                                <option value="{{$ficheExiste->id_prestations}}" selected>
+                                    {{ libellePrestation($ficheExiste->id_prestations)->name }}</option>
+                                @foreach($listPrestation as $items)
+                                <option value="{{ $items->id }}">{{ $items->name }}</option>
+                                @endforeach
 
                             </select>
                         </div>
@@ -584,14 +604,6 @@ function libellePrestation($id){
                                 value="{{ $ficheExiste->email_service }}">
                         </div>
                     </div>
-
-
-
-
-
-
-
-
             </div>
             <div class="modal-footer-btn">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -676,8 +688,9 @@ function libellePrestation($id){
                         </div>
 
                     </div>
-                    <br><hr>
-                    <div id="" class="col-md-12 col-sm-6 alert alert-danger">Il vous reste 
+                    <br>
+                    <hr>
+                    <div id="" class="col-md-12 col-sm-6 alert alert-danger">Il vous reste
                         {{ nbreImage($ficheExiste->nbre_image, count($galerieExiste)) }} image(s)
                     </div>
 

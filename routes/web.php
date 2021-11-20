@@ -17,6 +17,9 @@ Route::get('/welcome/tableau/gesttion/{id}','PrestataireController@home')->name(
 Route::get('/infos/compte/prestatire/{id}','PrestataireController@getFiche');
 Route::post('/save/compte/prestatire','PrestataireController@postFiche');
 Route::get('/fiche/prestataire/{id}','PrestataireController@Fiche');
+
+Route::get('/Agenda/{id}','PrestataireController@Agenda');
+
 Route::post('/update/compte/prestatire','PrestataireController@updateFiche');
 
 Route::post('/save/gallerie','PrestataireController@saveGalerie');
@@ -31,6 +34,8 @@ Route::post('/add/gallerie','PrestataireController@addGaleri');
 
 Route::post('/update/image','PrestataireController@updateImage');
 Route::post('/delet/image','PrestataireController@deletImage');
+
+Route::post('/save/agenda','PrestataireController@saveAgenda');
 
 
 Route::get('mise_a_jour_image/{id}','PrestataireController@editImage');

@@ -19,7 +19,8 @@ use App\Conversation;
 use App\Message;
 use App\Commune;
 use App\Video;
-
+use App\Agenda;
+use Illuminate\Support\Facades\DB;
 
 class PrestataireController extends Controller
 {
@@ -342,6 +343,22 @@ class PrestataireController extends Controller
         return view('prestataire.list_reservation', compact('infoUser','listDemande'));
     }
 
+    public function Agenda($id){
+        $infoUser = $this->infoUser($id);
+        $ficheExiste = $this->ficheExiste($id);
+
+         Agenda::where('id_user',$id)->get();
+         //$listEvent = Agenda::groupBy('date_event')->where('id_user',$id)->get();
+         $listEvent = DB::table('agendas')
+            ->where('id_user',$id)
+            ->select('*', DB::raw('COUNT(*) as date_count'))
+            ->groupBy('date_event')
+            ->get();
+        //dd($listEvent);
+        return view('prestataire.agenda', compact('infoUser','listEvent','ficheExiste'));
+
+    }
+
     public function onePrestatire($id){
 
         $prestataire = DB::table('fiches')
@@ -565,8 +582,7 @@ class PrestataireController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            
-
+        
             $file = $request->file('video');
             $name_video = $file->getClientOriginalName();
             $storage_data = Storage::disk('public')->put($name_video, file_get_contents($file));
@@ -582,6 +598,51 @@ class PrestataireController extends Controller
 
         } catch (\Throwable $th) {
             //throw $th;
+            return redirect()->back()->with('danger', 'Echec de l;enregistrement.');
+        }
+
+    }
+
+    public function saveAgenda(Request $request){
+
+        try {
+            //dd($request->all());
+            $validator = Validator::make($request->all(), [
+                'date' => 'required',
+              
+            ]);
+     
+            if ($validator->fails()) {
+                //dd($validator);
+                return back()->withErrors($validator)->withInput();
+            }
+
+            $id_user = $request->get('id_user');
+            $heure = $request->get('heure');
+            $date = $request->get('date');
+
+            $eventHeur = Agenda::where('heure',$heure)->where('date_event',$date)->first();
+
+            if($eventHeur){
+                return redirect()->back()->with('danger', 'Vous avez un événement déjà enregistré à cette date et à cette heure.');
+            }
+
+            
+
+            $agemda = new Agenda;
+
+            $agemda->id_user = $id_user;
+            $agemda->date_event = $date;
+            $agemda->titre = $request->get('event');
+            $agemda->heure = $heure;
+
+            $agemda->save();
+
+            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            //dd($th);
             return redirect()->back()->with('danger', 'Echec de l;enregistrement.');
         }
 

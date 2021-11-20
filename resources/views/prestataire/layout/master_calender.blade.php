@@ -18,30 +18,12 @@
     <link href="{{asset('/admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- NProgress -->
     <link href="{{asset('/admin/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
-
-    <!-- iCheck -->
-    <link href="{{asset('/admin/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
-    <!-- Datatables -->
-
-    <link href="{{asset('/admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('/admin/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('/admin/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}"
-        rel="stylesheet">
-    <link href="{{asset('/admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}"
-        rel="stylesheet">
-    <link href="{{asset('/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="{{asset('/admin/build/css/custom.min.css')}}" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="{{asset('/css/style.css')}}" rel="stylesheet">
-
-    <link rel="icon" type="image/png" href="https://spoteventapp.net/images/logo.spoteventapp.png" />
-
     <!-- FullCalendar -->
     <link href="{{asset('/admin/vendors/fullcalendar/dist/fullcalendar.min.css')}}" rel="stylesheet">
     <link href="{{asset('/admin/vendors/fullcalendar/dist/fullcalendar.print.css')}}" rel="stylesheet" media="print">
+
+    <!-- Custom styling plus plugins -->
+    <link href="{{asset('/admin//build/css/custom.min.css')}}" rel="stylesheet">
 
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content="l'annuaire nuptial digital" />
@@ -221,7 +203,7 @@
                         <center>
                             <h4>Ajouter une video</h4>
                         </center>
-                        
+                        <h5>Vous avez la possibilité .</h5>
                         <br>
                         <div class="item form-group">
                             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Ajouter les
@@ -231,52 +213,6 @@
                                 <input type="text" hidden name="id_user" value="{{ $infoUser->id }}">
                             </div>
 
-                        </div>
-                </div>
-                <div class="modal-footer-btn">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                    <button type="submit" id="imageUploadForm" class="btn btn-success">Valider</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal  AGENDA-->
-    <div class="modal fade" id="modalAgendar" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form method="POST" action="/save/agenda" enctype="multipart/form-data">
-                        @csrf
-                        <center>
-                            <h4>Ajouter un evenement</h4>
-                        </center>
-                        
-                        <br>
-                        <div class="item form-group">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Date </label>
-                            <div class="col-md- col-sm-6 ">
-                                <input type="date" name="date" class="form-control">
-                                <input type="text" hidden name="id_user" value="{{ $infoUser->id }}">
-                            </div>
-                           
-                        </div>
-                        <div class="item form-group">
-                            
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Heure </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input type="time" name="heure" class="form-control">
-                            </div>
-                            
-                        </div>
-                        <div class="item form-group">
-                            
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Evenement </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input type="text" name="event" class="form-control">
-                            </div>
                         </div>
                 </div>
                 <div class="modal-footer-btn">
@@ -390,319 +326,100 @@
     </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqqwfoyJERekoo-c243pZUj4azUHqvR_U&libraries=places&callback=initAutocomplete"
-        async defer></script>
+     <!-- calendar modal -->
+     <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
+          </div>
+          <div class="modal-body">
+            <div id="testmodal" style="padding: 5px 20px;">
+              <form id="antoform" class="form-horizontal calender" role="form">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Title</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="title" name="title">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Description</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-    <!-- jQuery -->
-    <script src="{{asset('/admin/vendors/jquery/dist/jquery.min.js')}}"></script>
-    <!-- Bootstrap -->
-    <script src="{{asset('/admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- FastClick -->
-    <script src="{{asset('/admin/vendors/fastclick/lib/fastclick.js')}}"></script>
-    <!-- NProgress -->
-    <script src="{{asset('/admin/vendors/nprogress/nprogress.js')}}"></script>
-    <!-- iCheck -->
-    <script src="{{asset('/admin/vendors/iCheck/icheck.min.js')}}"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="{{asset('/admin/vendors/moment/min/moment.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-    <!-- bootstrap-wysiwyg -->
-    <script src="{{asset('/admin/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script>
-    <script src="{{asset('/admin/vendors/google-code-prettify/src/prettify.js')}}"></script>
-    <!-- jQuery Tags Input -->
-    <script src="{{asset('/admin/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
-    <!-- Switchery -->
-    <script src="{{asset('/admin/vendors/switchery/dist/switchery.min.js')}}"></script>
-    <!-- Select2 -->
-    <script src="{{asset('/admin/vendors/select2/dist/js/select2.full.min.js')}}"></script>
-    <!-- Parsley -->
-    <script src="{{asset('/admin/vendors/parsleyjs/dist/parsley.min.js')}}"></script>
-    <!-- Autosize -->
-    <script src="{{asset('/admin/vendors/autosize/dist/autosize.min.js')}}"></script>
-    <!-- jQuery autocomplete -->
-    <script src="{{asset('/admin/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
+          </div>
+          <div class="modal-body">
 
-  
+            <div id="testmodal2" style="padding: 5px 20px;">
+              <form id="antoform2" class="form-horizontal calender" role="form">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Title</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="title2" name="title2">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Description</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
+                  </div>
+                </div>
 
-
-    <!-- Datatables -->
-    <script src="{{asset('/admin/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
-    <script src="{{asset('/admin/vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/jszip/dist/jszip.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('/admin/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="{{asset('/admin/build/js/custom.min.js')}}"></script>
-
-    <!-- jQuery Smart Wizard -->
-    <script src="{{asset('/admin/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
     <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
     <!-- /calendar modal -->
         
+    <!-- jQuery -->
+    <script src="{{asset('/admin/vendors/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Bootstrap -->
+   <script src="{{asset('/admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{asset('/admin/vendors/fastclick/lib/fastclick.js')}}"></script>
+    <!-- NProgress -->
+    <script src="{{asset('/admin/vendors/nprogress/nprogress.js')}}"></script>
+    <!-- FullCalendar -->
+    <script src="{{asset('/admin/vendors/moment/min/moment.min.js')}}"></script>
+    <script src="{{asset('/admin/vendors/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{asset('/admin/build/js/custom.min.js')}}"></script>
+
+
+  
   
 
-    <script>
-    $(document).ready(function() {
-        $("#erreur").hide();
-    });
 
-    $("#image").on("change", function() {
-        if ($("#image")[0].files.length > 6) {
-            //alert("You can select only 2 images");
-            $('#erreur').show();
-        } else {
-            $("#imageUploadForm").submit();
-        }
-    });
-
-    function readURL(input) {
-            //console.log("input_image");
-            if (input.files && input.files[0]) {
-                // Get the selected file
-                var files = $('#file')[0].files;
-                var id_user = document.getElementById("id").value;
-                if (files.length > 0) {
-                    var fd = new FormData();
-                    // Append data 
-                    fd.append('file', files[0]);
-                    fd.append('id',id_user);
-                    //fd.append('_token',CSRF_TOKEN);
-                    console.log(id_user);
-                    $.ajax({
-                        url: '/updade/img/profile',
-                        type: 'post',
-                        data: fd,
-                        contentType: false,
-                        processData: false,
-                        success: function(response) {
-                            var reader = new FileReader();
-                            reader.onload = function(e) {
-                                $('#imagePreview').css('background-image', 'url(' + e.target
-                                    .result + ')');
-                                $('#imagePreview').hide();
-                                $('#imagePreview').fadeIn(650);
-                            }
-                            reader.readAsDataURL(input.files[0]);
-                        }
-                    });
-                }
-            }
-        }
-        $("#file").change(function() {
-            readURL(this);
-        });
-
-    </script>
-
-    <script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('body').on('click', '#messagerie', function() {
-            var post_code = $(this).data('code');
-            var id_user = $(this).data('id_user');
-            var id_recepteur = $(this).data('id_recepteur');
-
-            $.get('/liste_message/' + post_code, function(data) {
-                console.log(post_code);
-                console.log(id_user);
-                console.log(id_recepteur);
-                console.log(data);
-                $('#modalMessagerie').modal('show');
-                $('#recepteur').val(id_recepteur);
-
-                $.each(data, function(index, subcatObj) {
-                    $('.msg_history').append(function() {
-                        var id = subcatObj.id_emmetteur;
-
-                        if (id == id_user) {
-                            return '<div class="outgoing_msg"><div class="sent_msg"><span>' +
-                                "Moi :" + '</span><p>' + subcatObj.contenus +
-                                '</p><span class="time_date">' + subcatObj
-                                .created_at + '</span>' + '</div></div>';
-
-                        } else {
-                            return '<div class="incoming_msg"><div class="received_msg"><div class="received_withd_msg">' +
-                                "Lui :" + '<p>' + subcatObj.contenus +
-                                '</p><span class="time_date">' + subcatObj
-                                .created_at + '</span>' + '</div></div>';
-                        }
-
-                    });
-                });
-            })
-
-
-        });
-
-
-    });
-    </script>
-
-    <script>
-    // File Upload
-    // 
-    function ekUpload() {
-        function Init() {
-
-            console.log("Upload Initialised");
-
-            var fileSelect = document.getElementById('file-upload'),
-                fileDrag = document.getElementById('file-drag'),
-                submitButton = document.getElementById('submit-button');
-
-            fileSelect.addEventListener('change', fileSelectHandler, false);
-
-            // Is XHR2 available?
-            var xhr = new XMLHttpRequest();
-            if (xhr.upload) {
-                // File Drop
-                fileDrag.addEventListener('dragover', fileDragHover, false);
-                fileDrag.addEventListener('dragleave', fileDragHover, false);
-                fileDrag.addEventListener('drop', fileSelectHandler, false);
-            }
-        }
-
-        function fileDragHover(e) {
-            var fileDrag = document.getElementById('file-drag');
-
-            e.stopPropagation();
-            e.preventDefault();
-
-            fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
-        }
-
-        function fileSelectHandler(e) {
-            // Fetch FileList object
-            var files = e.target.files || e.dataTransfer.files;
-
-            // Cancel event and hover styling
-            fileDragHover(e);
-
-            // Process all File objects
-            for (var i = 0, f; f = files[i]; i++) {
-                parseFile(f);
-                uploadFile(f);
-            }
-        }
-
-        // Output
-        function output(msg) {
-            // Response
-            var m = document.getElementById('messages');
-            m.innerHTML = msg;
-        }
-
-        function parseFile(file) {
-
-            console.log(file.name);
-            output(
-                '<strong>' + encodeURI(file.name) + '</strong>'
-            );
-
-            // var fileType = file.type;
-            // console.log(fileType);
-            var imageName = file.name;
-
-            var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
-            if (isGood) {
-                document.getElementById('start').classList.add("hidden");
-                document.getElementById('response').classList.remove("hidden");
-                document.getElementById('notimage').classList.add("hidden");
-                // Thumbnail Preview
-                document.getElementById('file-image').classList.remove("hidden");
-                document.getElementById('file-image').src = URL.createObjectURL(file);
-            } else {
-                document.getElementById('file-image').classList.add("hidden");
-                document.getElementById('notimage').classList.remove("hidden");
-                document.getElementById('start').classList.remove("hidden");
-                document.getElementById('response').classList.add("hidden");
-                document.getElementById("file-upload-form").reset();
-            }
-        }
-
-        function setProgressMaxValue(e) {
-            var pBar = document.getElementById('file-progress');
-
-            if (e.lengthComputable) {
-                pBar.max = e.total;
-            }
-        }
-
-        function updateFileProgress(e) {
-            var pBar = document.getElementById('file-progress');
-
-            if (e.lengthComputable) {
-                pBar.value = e.loaded;
-            }
-        }
-
-        function uploadFile(file) {
-
-            var xhr = new XMLHttpRequest(),
-                fileInput = document.getElementById('class-roster-file'),
-                pBar = document.getElementById('file-progress'),
-                fileSizeLimit = 1024; // In MB
-            if (xhr.upload) {
-                // Check if file is less than x MB
-                if (file.size <= fileSizeLimit * 1024 * 1024) {
-                    // Progress bar
-                    pBar.style.display = 'inline';
-                    xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
-                    xhr.upload.addEventListener('progress', updateFileProgress, false);
-
-                    // File received / failed
-                    xhr.onreadystatechange = function(e) {
-                        if (xhr.readyState == 4) {
-                            // Everything is good!
-
-                            // progress.className = (xhr.status == 200 ? "success" : "failure");
-                            // document.location.reload(true);
-                        }
-                    };
-
-                    // Start upload
-                    xhr.open('POST', document.getElementById('file-upload-form').action, true);
-                    xhr.setRequestHeader('X-File-Name', file.name);
-                    xhr.setRequestHeader('X-File-Size', file.size);
-                    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-                    xhr.send(file);
-                } else {
-                    output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
-                }
-            }
-        }
-
-        // Check for the various File API support.
-        if (window.File && window.FileList && window.FileReader) {
-            Init();
-        } else {
-            document.getElementById('file-drag').style.display = 'none';
-        }
-    }
-    ekUpload();
-    </script>
 
 </body>
 

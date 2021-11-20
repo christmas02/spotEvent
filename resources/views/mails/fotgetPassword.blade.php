@@ -6,7 +6,6 @@
                 <tbody>
                     <tr>
                         <td align="center">
-
                             <div class="m_-2080771603404522028mj-column-per-100"
                                 style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">

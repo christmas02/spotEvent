@@ -168,7 +168,7 @@ label {
                                                     <td></td>
                                                     <td>
                                                        
-                                                        @if($item->id_user != 0)
+                                                        @if($item->id_user != 0 and getUser($item->id_user) != null)
                                                         {{ getUser($item->id_user)->name }}
                                                         @endif
                                                     </td>

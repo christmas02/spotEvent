@@ -160,29 +160,44 @@ class ApiController extends Controller
 
             //dd($findPrestataire->id_user);
 
-            $media = Video::where('id_user',$findPrestataire->id_user)->first();
+            $media = Video::where('id_user',$findPrestataire->id_user)->select('path')->first();
+            
+            if($media){
+                $video = [
+                    'active_video' => $findPrestataire->video,
+                    'video' => $media
+                ];
 
-            $video = [
-                'active_video' => $findPrestataire->video,
-                'video' => $media->path
+            }else{
+                $video = [
+                    'active_video' => $findPrestataire->video,
+                    'video' => null
+                ];
 
-            ];
+            }
+
 
             $date = Agenda::where('id_user',$findPrestataire->id_user)->select('date_event')->get();
 
-            $agenda = [
+            if($date){
+                $agenda = [
+                    'active_agenda' => $findPrestataire->agenda,
+                    'agenda' => $date
+                ];
 
-                'active_agenda' => $findPrestataire->agenda,
-                'video' => $date
-
-            ];
+            }else{
+                $agenda = [
+                    'active_agenda' => $findPrestataire->agenda,
+                    'agenda' => []
+                ];
+            }
 
             ///if($findPrestataire)
             return response()->json(['statu' => 1, 'findPrestataire' => $findPrestataire, 'video' => $video, 'agenda' => $agenda]);
 
             //code...
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
             return response()->json(['erreur' => $th]);
         }
     }
