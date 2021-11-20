@@ -62,12 +62,16 @@
                 <div class="col-md-6 d-none d-md-block">
                   <div class="d-md-flex justify-content-md-center">
                     <v-carousel
-                      cycle
                       hide-delimiters
                       v-model="model"
                       height="400"
                       class="provider-pics"
                     >
+                      <v-carousel-item v-if="presentationVideo">
+                        <video id="presentation-video" controls autoplay>
+                          <source :src="presentationVideo" type="video/mp4" />
+                        </video>
+                      </v-carousel-item>
                       <v-carousel-item
                         v-for="slide in slides"
                         :key="slide.id"
@@ -85,32 +89,6 @@
                 </v-btn>
                 <div>
                   <favorite-btn :benefit="benefit"></favorite-btn>
-                  <!-- start -->
-
-                  <!-- <v-menu offset-y>
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                        icon
-                        x-large
-                        link
-                        @click="shareModals = true"
-                        color="primary"
-                      >
-                        <v-icon x-large v-bind="attrs" v-on="on"
-                          >mdi-share-variant</v-icon
-                        >
-                      </v-btn>
-                    </template>
-                    <v-list color="transparent">
-                      <v-list-item v-for="(item, index) in items" :key="index">
-                        <v-list-item-icon>
-                          <v-icon>mdi-clock</v-icon>
-                        </v-list-item-icon>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu> -->
-
-                  <!-- end -->
 
                   <v-tooltip top>
                     <template v-slot:activator="{ on, attrs }">
@@ -373,9 +351,9 @@ export default Vue.extend({
         { title: "Click Me" },
         { title: "Click Me 2" },
       ],
-      video: null as unknown as Video,
       isLoading: false,
       agendas: [] as unknown as Agenda[],
+      presentationVideo: null as unknown as string,
       // agendas: [] as unknown as Agenda,
     };
   },
@@ -395,6 +373,12 @@ export default Vue.extend({
     } finally {
       this.isLoading = false;
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      console.log("laaa", document.querySelector("#presentation-video"));
+      document.querySelector("#presentation-video")?.play();
+    }, 5000);
   },
   components: {
     BenefitsGrid,
@@ -564,19 +548,7 @@ export default Vue.extend({
           title: "Erreur lors de la recuperation des slides",
         });
       } else {
-        let localSlides = result.listPrestataire;
-
         this.slides = result.listPrestataire;
-
-        if (this.video) {
-          let vid = {} as any;
-
-          vid.path = this.video.video;
-          vid.id = 0;
-
-          localSlides = [vid, ...localSlides];
-        }
-        this.slides = localSlides;
       }
     },
     chat(): void {
@@ -591,14 +563,14 @@ export default Vue.extend({
 
       const result: IFindPrestataire = await service.findPrestataire(slug);
 
-      this.video = null;
       if (result.statu == 1) {
         this.userData = result.findPrestataire;
 
         this.currentId = result.findPrestataire.id;
         if (result.video?.active_video == 1) {
-          this.video = result.video;
+          this.presentationVideo = result.video.video;
         }
+
         this.agendas =
           result.agenda?.active_agenda == 1
             ? result.agenda.agenda.map((elem: any) => {
