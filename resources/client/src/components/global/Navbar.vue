@@ -6,7 +6,7 @@
         @click="goHome"
         width="120"
         class="logo"
-        src="images/dark-logo.png"
+        src="/images/dark-logo.png"
       >
       </v-img>
     </div>

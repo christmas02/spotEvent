@@ -119,11 +119,11 @@ export interface Video {
     video: string;
 }
 
-export interface Video2 {
+export interface Event {
     date_event: string;
 }
 
 export interface Agenda {
     active_agenda: number;
-    video: Video2[];
+    agenda: Event[];
 }

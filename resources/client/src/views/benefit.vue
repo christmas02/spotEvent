@@ -601,7 +601,7 @@ export default Vue.extend({
         }
         this.agendas =
           result.agenda?.active_agenda == 1
-            ? result.agenda.video.map((elem: any) => {
+            ? result.agenda.agenda.map((elem: any) => {
                 const event = elem.date_event.split(" ");
 
                 return {
