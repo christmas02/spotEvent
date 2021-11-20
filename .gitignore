@@ -13,3 +13,5 @@ yarn-error.log
 docker-compose.yml
 .idea
 public/.DS_Store
+docker-compose.yml
+index.php

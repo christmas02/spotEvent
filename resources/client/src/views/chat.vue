@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import chat from "@/components/chat";
+import chat from "@/components/Messenger.vue";
 export default Vue.extend({
   components: { chat },
   data() {

@@ -13,8 +13,8 @@
       :provider="idProvider"
     ></provider-contact-form-modal>
 
-    <div id="benefit-page" v-if="benefit">
-      <div class="main">
+    <div id="benefit-page">
+      <div class="main" v-if="benefit">
         <div>
           <!-- skeleton -->
           <v-skeleton-loader
@@ -220,7 +220,7 @@
                 <!-- <h2 class="section-title">Panneau</h2> -->
                 <!-- <div>
                   <v-img
-                    :src="require('../assets/images/jmbg2.png')"
+                    src='/images/jmbg2.png'
                     class="w-100"
                     height="300"
                   ></v-img>
@@ -303,6 +303,11 @@
           </div>
         </div>
       </div>
+      <div v-else-if="!isLoading">
+        <h2 class="text-center">
+          Erreur lors de la recuperation de la prestation
+        </h2>
+      </div>
       <div class="other-benefits">
         <div class="default-padding">
           <h2 class="section-title">Autres prestations</h2>
@@ -317,7 +322,6 @@
 import Vue from "vue";
 
 import BenefitsGrid from "@/components/BenefitsGrid.vue";
-import yanDate from "../components/yanDate.vue";
 import pub from "../components/pub.vue";
 import shareModal from "../components/shareModal.vue";
 import CommentRatingUser from "@/components/CommentRatingUser.vue";
@@ -334,9 +338,8 @@ import { ISlider } from "@/interfaces/provider.interface";
 import ProviderContactFormModal from "../components/ProviderContactFormModal.vue";
 import FavoriteBtn from "../components/FavoriteBtn.vue";
 import { AppService } from "../services/app.service";
-import SocialDialog from "@/components/socialDialog.vue";
+import SocialDialog from "@/components/SocialDialog.vue";
 import agenda from "../components/Agenda.vue";
-// import ChatBot from "../components/ChatBot.vue";
 
 export default Vue.extend({
   name: "Benefit",
@@ -371,22 +374,27 @@ export default Vue.extend({
         { title: "Click Me 2" },
       ],
       video: null as unknown as Video,
-      isLoading: true,
+      isLoading: false,
       agendas: [] as unknown as Agenda[],
       // agendas: [] as unknown as Agenda,
     };
   },
   async beforeMount(): Promise<void> {
-    console.log(this.$route.name, "sino");
+    try {
+      this.isLoading = true;
+      await this.$store.dispatch("benefits/fetchAll");
 
-    await this.$store.dispatch("benefits/fetchAll");
+      await this.findPrestataire();
 
-    await this.findPrestataire();
-    console.log(this.userData, "banaro");
-    await this.updateSlder(this.userData.id.toString());
-    this.id_prestataire = this.userData.id_user.toString();
-
-    this.isLoading = false;
+      if (this.userData) {
+        await this.updateSlder(this.userData.id.toString());
+        this.id_prestataire = this.userData.id_user.toString();
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.isLoading = false;
+    }
   },
   components: {
     BenefitsGrid,
@@ -395,18 +403,13 @@ export default Vue.extend({
     CommentRatingUser,
     CommentRatingGrid,
     SocialDialog,
-    yanDate,
     agenda,
     pub,
     shareModal,
   },
   computed: {
-    // hasBenefit(): boolean{
-    //   if(benefit)
-    // },
     url(): string {
       return window.location.origin;
-      // return "http://spoteventapp.net/prestations/Divine-Amour-Event";
     },
     routeName(): string {
       return this.$route.name ? this.$route.name : "";
@@ -423,9 +426,9 @@ export default Vue.extend({
     others(): Benefit[] {
       return this.$store.getters["benefits/others"](this.currentId);
     },
-    url() {
-      return this.$route.path;
-    },
+    // url() {
+    //   return this.$route.path;
+    // },
     // agendas() {
     //   let benefit = this.$store.getters["benefits/one"](this.currentId);
     //   if (benefit.agenda == 1) {
@@ -477,7 +480,6 @@ export default Vue.extend({
 
   methods: {
     async smsPhone(): Promise<void> {
-      console.log("bibop");
       const service = new AppService();
       const payload = {
         id_utilisateur: this.$store.getters["auth/id"],
@@ -486,15 +488,11 @@ export default Vue.extend({
       };
 
       const { actionStatu } = await service.phoneOrWaClick(payload);
-      if (actionStatu == 1) {
-        console.log("action reussi", payload);
-      } else {
+      if (actionStatu != 1) {
         this.isLoading = false;
-        console.log("action echouée", payload);
       }
     },
     async smsWa(): Promise<void> {
-      console.log("bibop");
       const service = new AppService();
       const payload = {
         id_utilisateur: this.$store.getters["auth/id"],
@@ -502,12 +500,7 @@ export default Vue.extend({
         type_bottom: "whatsapp",
       };
 
-      const { actionStatu } = await service.phoneOrWaClick(payload);
-      if (actionStatu == 1) {
-        console.log("action reussi", payload);
-      } else {
-        console.log("action echouée", payload);
-      }
+      await service.phoneOrWaClick(payload);
     },
     async displayPhoneNumber(): Promise<void> {
       const service = new AppService();
@@ -518,21 +511,12 @@ export default Vue.extend({
       });
       if (statu == 1) {
         this.phone_service = this.benefit.phone_service;
-        // console.log(this.benefit.phone2_service);
 
         this.phone2_service = this.benefit.phone2_service;
         this.hasNumber = true;
         this.isModal = true;
         this.enterprise = this.benefit.name;
-        console.log("gwouuuu");
 
-        const html = `
-          <h2>${this.benefit.phone_service}</h2>
-          <h2>${this.benefit.phone2_service}</h2>
-        `;
-        // this.$swal({
-        //   html,
-        // });
         await this.smsPhone();
       } else {
         this.hasNumber = false;
@@ -585,45 +569,41 @@ export default Vue.extend({
         this.slides = result.listPrestataire;
 
         if (this.video) {
-          let vid = {};
+          let vid = {} as any;
+
           vid.path = this.video.video;
           vid.id = 0;
 
-          this.localSlides = [vid, ...this.localSlides];
+          localSlides = [vid, ...localSlides];
         }
-        this.slides = this.localSlides;
+        this.slides = localSlides;
       }
     },
     chat(): void {
       this.$store.commit("auth/updateIdBenefitToChat", this.benefit.id_user);
       this.$router.push({ name: "Chat" });
     },
-    async findPrestataire(slug: string): Promise<void> {
+    async findPrestataire(): Promise<void> {
       // Items have already been loade
       // Lazily load input items
       const service = new BenefitService();
-      let urlParams = this.$route.params.slug;
-      console.log(urlParams);
+      const slug = this.$route.params.slug;
 
-      const result: IFindPrestataire = await service.findPrestataire(urlParams);
+      const result: IFindPrestataire = await service.findPrestataire(slug);
 
+      this.video = null;
       if (result.statu == 1) {
-        console.log("findPrestataire", result);
-
-        // return result.findPrestataire.id.toString();
-        // localStorage.setItem("benefitId", result.findPrestataire.id.toString());
         this.userData = result.findPrestataire;
 
         this.currentId = result.findPrestataire.id;
         if (result.video?.active_video == 1) {
-          this.video = result.video.active_video;
+          this.video = result.video;
         }
-        // this.agendas =
-
         this.agendas =
           result.agenda?.active_agenda == 1
-            ? result.agenda.video.map((elem: any) => {
-                const event = elem.date_event.split("");
+            ? result.agenda.agenda.map((elem: any) => {
+                const event = elem.date_event.split(" ");
+
                 return {
                   name: "Indisponible",
                   start: new Date(event[0]),
@@ -632,25 +612,26 @@ export default Vue.extend({
                 };
               })
             : [];
-      } else {
-        this.isLoading = false;
-        console.log("no findPrestataire");
       }
+
+      this.isLoading = false;
+
       // this.isLoading = true;
       // return "0";
     },
   },
   watch: {
-    async currentId(n, o) {
-      this.id_prestataire =
-        this.$store.getters["benefits/one"](n).id_user.toString();
-      await this.updateSlder(n.toString());
-      console.log("bingoo");
-
-      // await this.findPrestataire();
+    async currentId(curr, prev) {
+      if (prev) {
+        this.id_prestataire =
+          this.$store.getters["benefits/one"](curr).id_user.toString();
+        await this.updateSlder(curr.toString());
+      }
     },
-    async slug(n, o) {
-      await this.findPrestataire();
+    async slug(n, prev) {
+      if (prev) {
+        await this.findPrestataire();
+      }
     },
   },
 });

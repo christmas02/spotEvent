@@ -13,11 +13,7 @@
             <div>
               <div class="d-flex justify-center">
                 <div>
-                  <v-img
-                    width="80"
-                    class="logo"
-                    :src="require('../assets/dark-logo.png')"
-                  >
+                  <v-img width="80" class="logo" src="images/dark-logo.png">
                   </v-img>
                 </div>
               </div>

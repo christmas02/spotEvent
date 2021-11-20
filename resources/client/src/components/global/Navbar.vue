@@ -6,7 +6,7 @@
         @click="goHome"
         width="120"
         class="logo"
-        :src="require('../../assets/dark-logo.png')"
+        src="/images/dark-logo.png"
       >
       </v-img>
     </div>
@@ -110,7 +110,6 @@ import { IUser } from "@/interfaces/auth.interfaces";
 import utilsMixin from "@/mixins/utils.mixin";
 import favoriteModal from "@/components/global/favoriteModal.vue";
 import WorkerSpaceModal from "@/components/global/WorkerSpaceModal.vue";
-
 import Vue from "vue";
 export default Vue.extend({
   components: { favoriteModal, WorkerSpaceModal },

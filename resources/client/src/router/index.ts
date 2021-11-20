@@ -82,10 +82,10 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
     mode: "history",
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior() {
         return { x: 0, y: 0 };
     },
-    base: process.env.BASE_URL,
+    // base: process.env.BASE_URL,
     routes
 });
 
@@ -99,7 +99,7 @@ router.beforeEach((to, from, next) => {
     const routeName = to.name as string;
     const fromRouteName = from.name as string;
     const local = localStorage.getItem("vuex") as any;
-    const isAuth = JSON.parse(local).auth.auth;
+    const isAuth = JSON.parse(local)?.auth.auth;
     // console.log(JSON.parse(local).auth.auth);
 
     ///if not connected and want to access routes guarded

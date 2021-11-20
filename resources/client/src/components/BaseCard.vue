@@ -5,11 +5,7 @@
     :min-width="minWidth"
     :class="customClass"
   >
-    <v-img
-      :lazy-src="require('../assets/dark-logo.png')"
-      :src="image"
-      height="250px"
-    >
+    <v-img lazy-src="/images/dark-logo.png" :src="image" height="250px">
       <slot></slot>
     </v-img>
     <!-- <div class="row"> -->

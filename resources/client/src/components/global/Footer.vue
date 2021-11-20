@@ -7,7 +7,7 @@
             style="width: 50%; max-width: 180px"
             class="footerLogo"
             contain
-            :src="require('../../assets/light-logo.png')"
+            src="../../assets/light-logo.png"
           ></v-img>
         </div>
         <p v-html="contents.footer_paragraph"></p>
@@ -76,18 +76,13 @@ export default Vue.extend({
       let final = [];
 
       let elem = this.$store.getters["benefits/categories"];
-      // let elem = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-      console.log(elem);
+
       let count = Math.floor(elem.length / 4);
       let lastIndex = 0;
       for (let index = 0; index < elem.length; index += 4) {
-        console.log(index);
         final.push(elem.slice(index, index + 4));
         lastIndex = index;
       }
-      console.log(final);
-
-      console.log(final);
 
       // return this.$store.getters["benefits/categories"];
       return final;

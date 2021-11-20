@@ -15,7 +15,7 @@
           <div class="d-flex">
             <v-img
               style="width: 60px; margin-right: 5px"
-              :src="require('../../assets/light-logo.png')"
+              :src="lightLogo"
             ></v-img>
             <h3>Mon profil</h3>
           </div>
@@ -31,6 +31,8 @@
 <script lang="ts">
 import Vue from "vue";
 import MySpaceCard from "@/components/MySpaceCard.vue";
+// @ts-ignore
+import lightLogo from "../../assets/light-logo.png";
 import { mapGetters } from "vuex";
 
 export default Vue.extend({
@@ -45,6 +47,11 @@ export default Vue.extend({
       required: true,
       default: false,
     },
+  },
+  data() {
+    return {
+      lightLogo,
+    };
   },
   methods: {
     closeDialog() {

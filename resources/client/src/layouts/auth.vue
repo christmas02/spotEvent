@@ -3,16 +3,11 @@
     <div class="col-md-6 left d-none d-md-block" :class="action">
       <div class="welcome">
         <div class="top">
-          <img
-            @click="goHome"
-            src="../assets/logo.png"
-            alt="logo"
-            class="logo"
-          />
+          <img @click="goHome" src="images/logo.png" alt="logo" class="logo" />
           <div>
-            <img src="../assets/icons/lfb.png" alt="facebook" class="icon" />
-            <img src="../assets/icons/inst.png" alt="instagram" class="icon" />
-            <img src="../assets/icons/lytb.png" alt="youtube" class="icon" />
+            <img :src="assets.lfb" alt="facebook" class="icon" />
+            <img :src="assets.inst" alt="instagram" class="icon" />
+            <img :src="assets.lytb" alt="youtube" class="icon" />
           </div>
         </div>
         <div class="d-flex flex-column align-items-center w-100">
@@ -41,12 +36,8 @@
     <v-navigation-drawer v-model="drawer" app fixed temporary>
       <!-- :lazy-src="require('../assets/dark-logo.png')" -->
       <div class="d-flex justify-center my-3">
-        <v-img
-          :src="require('../assets/dark-logo.png')"
-          contain
-          height="60"
-          width="120"
-        >
+        <v-img src="images/dark-logo.png" contain height="60" width="120">
+          <!-- images/dark-logo.png -->
         </v-img>
       </div>
       <v-list dense v-model="group" active-class="primary">
@@ -97,6 +88,10 @@
 
 <script lang="ts">
 import Vue from "vue";
+import lfb from "@/assets/icons/lfb.png";
+import inst from "@/assets/icons/inst.png";
+import lytb from "@/assets/icons/lytb.png";
+
 export default Vue.extend({
   name: "auth",
   props: {
@@ -117,27 +112,13 @@ export default Vue.extend({
       },
     },
   },
-
-  computed: {
-    currentRouteName() {
-      return this.$route.name;
-    },
-    auth(): boolean {
-      return this.$store.getters["auth/isConnected"];
-    },
-  },
-
-  methods: {
-    // test() {
-    //   console.log(this.$route.name);
-    // },
-    goHome() {
-      // this.$router.push("/");
-      this.$router.push({ name: "Home" });
-    },
-  },
   data() {
     return {
+      assets: {
+        lfb,
+        inst,
+        lytb,
+      },
       drawer: false,
       group: null,
       links: [
@@ -163,6 +144,24 @@ export default Vue.extend({
         },
       ],
     };
+  },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    auth(): boolean {
+      return this.$store.getters["auth/isConnected"];
+    },
+  },
+
+  methods: {
+    // test() {
+    //   console.log(this.$route.name);
+    // },
+    goHome() {
+      // this.$router.push("/");
+      this.$router.push({ name: "Home" });
+    },
   },
 });
 </script>

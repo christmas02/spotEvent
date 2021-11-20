@@ -53,7 +53,7 @@
           <!-- <div class="my-5">
             <div>
               <v-img
-                :src="require('../assets/images/jmbg2.png')"
+                src='/images/jmbg2.png'
                 height="250"
               ></v-img>
             </div>

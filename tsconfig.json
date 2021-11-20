@@ -1,15 +1,11 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
+        "target": "es5",
+        // this enables stricter inference for data properties on `this`
         "strict": true,
-        "jsx": "preserve",
-        "importHelpers": true,
+        // if using webpack 2+ or rollup, to leverage tree shaking:
+        "module": "es2015",
         "moduleResolution": "node",
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
         "baseUrl": ".",
         "types": ["webpack-env"],
         "paths": {
@@ -17,6 +13,6 @@
         },
         "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
     },
-    "include": ["resources/client/**/*"],
+    "include": ["resources/client/**/*", "babel.config.js"],
     "exclude": ["node_modules"]
 }

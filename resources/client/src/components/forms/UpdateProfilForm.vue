@@ -88,7 +88,7 @@ export default Vue.extend({
   },
   computed: {
     name: {
-      get() {
+      get(): string {
         this.newName = this.$store.getters["auth/user"].name.toString();
         return this.$store.getters["auth/user"].name.toString();
       },
@@ -97,7 +97,7 @@ export default Vue.extend({
       },
     },
     phone: {
-      get() {
+      get(): string {
         this.newPhone = this.$store.getters["auth/user"].phone.toString();
         return this.$store.getters["auth/user"].phone.toString();
       },
@@ -106,7 +106,7 @@ export default Vue.extend({
       },
     },
     email: {
-      get() {
+      get(): string {
         this.newEmail = this.$store.getters["auth/user"].email.toString();
         return this.$store.getters["auth/user"].email.toString();
       },

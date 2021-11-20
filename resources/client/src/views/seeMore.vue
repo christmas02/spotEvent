@@ -7,7 +7,7 @@
           <div class="my-5">
             <!-- <div>
               <v-img
-                :src="require('../assets/images/jmbg2.png')"
+                src='/images/jmbg2.png'
                 height="250"
               ></v-img>
             </div> -->
@@ -68,7 +68,6 @@ import { AppService } from "@/services/app.service";
 import expansionPanel from "@/components/expansionPanel.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
-import expansionPanel from "@/components/expansionPanel.vue";
 
 export default Vue.extend({
   name: "Home",
