@@ -69,7 +69,11 @@
                     >
                       <v-carousel-item v-if="presentationVideo">
                         <video id="presentation-video" controls autoplay>
-                          <source :src="presentationVideo" type="video/mp4" />
+                          <!-- <source :src="presentationVideo" type="video/mp4" /> -->
+                          <source
+                            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                            type="video/mp4"
+                          />
                         </video>
                       </v-carousel-item>
                       <v-carousel-item
@@ -155,7 +159,7 @@
                 <div>
                   <p>{{ benefit.description }}</p>
                 </div>
-                <div class="calendar" v-if="agendas.length > 0">
+                <div class="calendar" v-if="showAgenda">
                   <h2 class="section-title">Agenda</h2>
                   <div class="">
                     <div class="d-flex justify-left">
@@ -309,7 +313,6 @@ import {
   Agenda,
   Benefit,
   IFindPrestataire,
-  Video,
 } from "../interfaces/benefit.interface";
 import { BenefitService } from "../services/benefit.service";
 import { ISlider } from "@/interfaces/provider.interface";
@@ -337,6 +340,7 @@ export default Vue.extend({
       slides: [] as ISlider[],
       idProvider: null,
       isChat: true,
+      showAgenda: false,
       userData: null as unknown as Benefit,
       id_prestataire: "" as string,
       phone_service: "" as string,
@@ -376,7 +380,6 @@ export default Vue.extend({
   },
   mounted() {
     setTimeout(() => {
-      console.log("laaa", document.querySelector("#presentation-video"));
       document.querySelector("#presentation-video")?.play();
     }, 5000);
   },
@@ -565,25 +568,25 @@ export default Vue.extend({
 
       if (result.statu == 1) {
         this.userData = result.findPrestataire;
-
         this.currentId = result.findPrestataire.id;
         if (result.video?.active_video == 1) {
           this.presentationVideo = result.video.video;
         }
 
-        this.agendas =
-          result.agenda?.active_agenda == 1
-            ? result.agenda.agenda.map((elem: any) => {
-                const event = elem.date_event.split(" ");
+        this.showAgenda = result.agenda?.active_agenda == 1;
 
-                return {
-                  name: "Indisponible",
-                  start: new Date(event[0]),
-                  end: new Date(event[0]),
-                  color: "red",
-                };
-              })
-            : [];
+        this.agendas = this.showAgenda
+          ? result.agenda.agenda.map((elem: any) => {
+              const event = elem.date_event.split(" ");
+
+              return {
+                name: "Indisponible",
+                start: new Date(event[0]),
+                end: new Date(event[0]),
+                color: "red",
+              };
+            })
+          : [];
       }
 
       this.isLoading = false;
