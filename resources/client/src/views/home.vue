@@ -22,6 +22,12 @@
       </div>
 
       <div class="main mx-auto">
+        <!-- <div class="d-none d-sm-block d-md-none">
+          <search-form :handler="initSearch"></search-form>
+        </div> -->
+        <div class="d-block d-md-none expansion">
+          <expansion-filter></expansion-filter>
+        </div>
         <div class="section my-10">
           <filter-form></filter-form>
           <div>
@@ -90,7 +96,8 @@ import { IEstimate } from "@/interfaces/estimation.interface";
 import { IProvider } from "@/interfaces/provider.interface";
 import SearchForm from "../components/forms/SearchForm.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
-import expansionPanel from "@/components/expansionPanel.vue";
+// import expansionPanel from "@/components/expansionPanel.vue";
+import expansionFilter from "@/components/expansionFilter.vue";
 
 export default Vue.extend({
   name: "Home",
@@ -99,7 +106,8 @@ export default Vue.extend({
     ProvidersSlider,
     SearchForm,
     FilterForm,
-    expansionPanel,
+    // expansionPanel,
+    expansionFilter,
     pub,
   },
   data() {
@@ -206,6 +214,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.expansion {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
 #homepage .section {
   margin: 50px 0;
 }

@@ -41,6 +41,11 @@ export default Vue.extend({
 });
 </script>
 <style>
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+.swal2-popup {
+  font-family: "Nunito", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+}
 :root {
   --primary: #fbb231;
   --secondary: #2f374a;

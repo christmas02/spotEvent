@@ -69,7 +69,11 @@
                     >
                       <v-carousel-item v-if="presentationVideo">
                         <video id="presentation-video" controls autoplay>
-                          <source :src="presentationVideo" type="video/mp4" />
+                          <!-- <source :src="presentationVideo" type="video/mp4" /> -->
+                          <source
+                            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                            type="video/mp4"
+                          />
                         </video>
                       </v-carousel-item>
                       <v-carousel-item
