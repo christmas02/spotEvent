@@ -45,8 +45,7 @@
                                                     <th> Service client </th>
                                                     <th> Statut </th>
                                                     <th> A la une </th>
-
-
+                                                    <th> Date de création </th>
                                                     <th> Actions </th>
                                                 </tr>
                                             </thead>
@@ -85,6 +84,8 @@
                                                         <span class="text-danger"> Inactif</span>
                                                         @endif
                                                     </td>
+
+                                                    <td>{{ $items->created_at }}</td>
 
                                                     <td>
                                                         <div class="">

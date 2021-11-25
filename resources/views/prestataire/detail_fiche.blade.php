@@ -315,8 +315,7 @@ function libellePrestation($id){
                                 @elseif($ficheExiste->statu_fiche == 2 )
                                 <p class="alert alert-danger "> Inactif</p>
                                 @endif
-                                <h3 style="" class="prod_title">{{ $ficheExiste->name }} /
-                                    {{ $ficheExiste->localisation }}</h3>
+                                <h3 style="" class="prod_title">{{ $ficheExiste->name }}</h3>
                                 <h4><strong>Présentation :</strong>{{ $ficheExiste->presentation }}.</h4>
                                 <h4><strong>Detail de localisation :</strong>{{ $ficheExiste->detail_localisation }}.
                                 </h4>
@@ -338,31 +337,37 @@ function libellePrestation($id){
 
                             </div>
                             <div class="col-md-4 col-sm-4">
-                                @if($ficheExiste->video == 1 and $videoExiste == NULL)
-                                <div class="alert alert-warning">
-                                    <h4>Vous avez la possibilité d'ajouter une vidéo.<br>
-                                        Pour le faire cliquez sur ce lien <a class="" data-toggle="modal"
-                                            data-target="#exampleModalvideo" href="#"> Ma video</a><br>
-                                        NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
-                                </div>
-                                @else
-                                <div class="">
-                                    <div class="container-image">
-                                        <img width="" height="" style="margin-bottom: 20px; width:100%;"
-                                            src="{{asset('spotevent/public/storage/'.$items->path )}}"
-                                            alt="spotevent" />
-                                        <div class="overlay">
-                                            <button href="" data-toggle="modal"
-                                                data-target="#exampleModalUpadeImageSeconds{{$items->id}}"
-                                                class="btn btn-sm btn-primary btn-rounded"><i
-                                                    class="fa fa-pencil"></i></button>
-                                            <button href="" data-toggle="modal"
-                                                data-target="#exampleModalDeletImage{{$items->id}}"
-                                                class="btn btn-sm btn-danger btn-rounded"><i
-                                                    class="fa fa-trash"></i></button>
+                                @if($ficheExiste->video == 1)
+                                    @if($videoExiste == NULL)
+                                    <div class="alert alert-warning">
+                                        <h4>Vous avez la possibilité d'ajouter une vidéo.<br>
+                                            Pour le faire cliquez sur ce lien <a class="" data-toggle="modal"
+                                                data-target="#exampleModalvideo" href="#"> Ma video</a><br>
+                                            NB : Veuillez contacter le service conseil et assistance en cas de besoin.</h4>
+                                    </div>
+                                    @else
+                                    <div class="">
+                                        <div class="container-image">
+                                        <video width="400" height="222" controls="controls">
+                                        <source src="video.mp4" type="video/mp4" />
+                                        <source src="video.webm" type="video/webm" />
+                                        <source src="video.ogv" type="video/ogg" />
+                                        Ici l'alternative à la vidéo : un lien de téléchargement, un message, etc.
+                                        </video>
+                                            <source src="{{asset('storage/'.$videoExiste->path)}}" type="video/mp4" />
+                                            <div class="overlay">
+                                                <button href="" data-toggle="modal"
+                                                    data-target="#"
+                                                    class="btn btn-sm btn-primary btn-rounded"><i
+                                                        class="fa fa-pencil"></i></button>
+                                                <button href="" data-toggle="modal"
+                                                    data-target="#"
+                                                    class="btn btn-sm btn-danger btn-rounded"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    @endif
                                 @endif
                             </div>
 
