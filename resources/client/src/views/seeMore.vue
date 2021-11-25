@@ -17,9 +17,9 @@
         <!-- <div class="d-none d-sm-block d-md-none">
           <search-form :handler="initSearch"></search-form>
         </div> -->
-        <!-- <div class="d-block d-md-none">
-          <expansion-panel></expansion-panel>
-        </div> -->
+        <div class="d-block d-md-none expansion">
+          <expansion-filter></expansion-filter>
+        </div>
         <div class="section mt-10">
           <filter-form></filter-form>
           <div style="margin: 50px 0">
@@ -68,6 +68,7 @@ import { AppService } from "@/services/app.service";
 import expansionPanel from "@/components/expansionPanel.vue";
 import FilterForm from "@/components/forms/FilterForm.vue";
 import { IIdPrestation } from "@/interfaces/app-services.interfaces";
+import expansionFilter from "@/components/expansionFilter.vue";
 
 export default Vue.extend({
   name: "Home",
@@ -78,6 +79,7 @@ export default Vue.extend({
     FilterForm,
     pub,
     expansionPanel,
+    expansionFilter,
   },
   data() {
     return {
@@ -180,6 +182,11 @@ export default Vue.extend({
 </script>
 
 <style>
+.expansion {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
 #homepage .section {
   margin: 50px 0;
 }
