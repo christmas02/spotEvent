@@ -103,6 +103,7 @@ export default Vue.extend({
       console.log(
         "test de lien facebook",
         `http://spoteventapp.net${this.url}`,
+        "url",
         window.location.href
       );
     },
@@ -121,13 +122,12 @@ export default Vue.extend({
     getUrl() {
       console.log(`http://spoteventapp.net${this.url}`, "wsipkipik");
 
-      // return this.url.includes("http://spoteventapp.net")
-      //   ? this.url
-      //   : `http://spoteventapp.net${this.url}`;
-      return window.location.href;
+      return window.location.href.includes("http://spoteventapp.net")
+        ? window.location.href
+        : `http://spoteventapp.net${window.location.href}`;
     },
     // url(): string {
-    //   // return window.location.href;
+    //   // return window.location.href
     //   return "http://spoteventapp.net/prestations/Divine-Amour-Event";
     // },
   },
