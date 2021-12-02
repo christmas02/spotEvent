@@ -426,7 +426,7 @@ class AdminController extends Controller
 
             Fiche::where('id', $id_fiche)->update(['agenda' => $agenda]);
 
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
@@ -454,7 +454,7 @@ class AdminController extends Controller
 
             $prestation->save();
             //code...
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
@@ -518,7 +518,7 @@ class AdminController extends Controller
                     $message->save();
                 }
             }
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
@@ -591,7 +591,7 @@ class AdminController extends Controller
                     'description' => $description,
                 ]);
 
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
@@ -631,7 +631,7 @@ class AdminController extends Controller
             // save du menu nourriture ---- #########
             $prestation->save();
 
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.' . $th);
@@ -656,7 +656,7 @@ class AdminController extends Controller
             // save du menu nourriture ---- #########
             $estimation->save();
 
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
@@ -695,7 +695,7 @@ class AdminController extends Controller
                 ]);
 
 
-            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+            return redirect()->back()->with('success', "Opération effectuée avec succès.");
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
@@ -715,7 +715,7 @@ class AdminController extends Controller
                     'contenus' => $contenus,
                 ]);
 
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
@@ -731,7 +731,7 @@ class AdminController extends Controller
             $image = Fiche::find($id);
             $image->delete();
 
-            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+            return redirect()->back()->with('success', "Opération effectuée avec succès.");
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
@@ -756,7 +756,7 @@ class AdminController extends Controller
             $image = User::find($id);
             $image->delete();
 
-            return redirect()->back()->with('success', "Opération éffectué avec succès.");
+            return redirect()->back()->with('success', "Opération effectuée avec succès.");
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
@@ -794,7 +794,7 @@ class AdminController extends Controller
             if ($user) {
                 //dd($evenement);
                 $user->update(['confirmation_token' => null]);
-                return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+                return redirect()->back()->with('success', 'Opération effectuée avec succès.');
             }
         } catch (\Throwable $th) {
             //throw $th;
@@ -830,7 +830,7 @@ class AdminController extends Controller
             $document->save();
             
 
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');
@@ -851,7 +851,7 @@ class AdminController extends Controller
             $id = $request->get('id');
             $document = Folder::find($id)->delete();
 
-            return redirect()->back()->with('success', 'Opération éffectué avec succès.');
+            return redirect()->back()->with('success', 'Opération effectuée avec succès.');
         } catch (\Throwable $th) {
             //dd($th);
             return redirect()->back()->with('danger', 'Error.');

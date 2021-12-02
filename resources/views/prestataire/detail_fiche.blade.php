@@ -348,13 +348,9 @@ function libellePrestation($id){
                                     @else
                                     <div class="">
                                         <div class="container-image">
-                                        <video width="400" height="222" controls="controls">
-                                        <source src="video.mp4" type="video/mp4" />
-                                        <source src="video.webm" type="video/webm" />
-                                        <source src="video.ogv" type="video/ogg" />
-                                        Ici l'alternative à la vidéo : un lien de téléchargement, un message, etc.
-                                        </video>
-                                            <source src="{{asset('storage/'.$videoExiste->path)}}" type="video/mp4" />
+                                            <img width="" height="" style="margin-bottom: 20px; width:100%;"
+                                                src=""
+                                                alt="spotevent" />
                                             <div class="overlay">
                                                 <button href="" data-toggle="modal"
                                                     data-target="#"
