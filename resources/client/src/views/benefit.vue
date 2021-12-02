@@ -164,8 +164,12 @@
                   <div class="">
                     <div class="d-flex justify-left">
                       <v-badge bottom inline left overlap color="red">
-                        designe les jours d'indisponibilité du
-                        prestataire</v-badge
+                        Indisponible</v-badge
+                      >
+                    </div>
+                    <div class="d-flex justify-left">
+                      <v-badge bottom inline left overlap color="green">
+                        Disponible</v-badge
                       >
                     </div>
                   </div>
@@ -579,12 +583,14 @@ export default Vue.extend({
           ? result.agenda.agenda.map((elem: any) => {
               const event = elem.date_event.split(" ");
 
-              return {
-                name: "Indisponible",
-                start: new Date(event[0]),
-                end: new Date(event[0]),
-                color: "red",
-              };
+              console.log(event[0]);
+              // return {
+              //   name: "Indisponible",
+              //   start: new Date(event[0]),
+              //   end: new Date(event[0]),
+              //   color: "red",
+              // };
+              return event[0];
             })
           : [];
       }

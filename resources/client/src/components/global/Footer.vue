@@ -7,7 +7,7 @@
             style="width: 50%; max-width: 180px"
             class="footerLogo"
             contain
-            src="../../assets/light-logo.png"
+            src="/images/light-logo.png"
           ></v-img>
         </div>
         <p v-html="contents.footer_paragraph"></p>
