@@ -244,8 +244,7 @@ class PrestataireController extends Controller
             $phone_service = $request->get('phone_service');
             $phone2_service = $request->get('phone2_service');
             $phone_whastapp = $request->get('phone_whastapp');
-            $lien_facebook = $request->get('lien_facebook');
-            $lien_instagram = $request->get('lien_instagram');
+
             $email_service = $request->get('email_service');
 
             $id = $request->get('id');
@@ -263,8 +262,6 @@ class PrestataireController extends Controller
                 'phone_service' => $phone_service,
                 'phone2_service' => $phone2_service,
                 'phone_whastapp' => $phone_whastapp,
-                'lien_facebook' => $lien_facebook,
-                'lien_instagram' => $lien_instagram,
                 'email_service' => $email_service,
             ]);
 

@@ -326,7 +326,6 @@ function libellePrestation($id){
                                 <h4><strong>Telephone</strong> : {{ $ficheExiste->phone_service }} /
                                     {{ $ficheExiste->phone2_service }}</h4>
                                 <h4>Whatsapp : {{ $ficheExiste->phone_whastapp }}</h4>
-                                <h4>Facebook : {{ $ficheExiste->lien_facebook }}</h4>
                                 <h4>Email : {{ $ficheExiste->email_service }}</h4>
                                 <h4>Secteur : {{ gestPrestation($ficheExiste->id_prestations)->name }}</h4>
 
@@ -578,24 +577,7 @@ function libellePrestation($id){
                                 value="{{ $ficheExiste->phone_whastapp }}">
                         </div>
                     </div>
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                            Lien facebook <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <input type="text" name="lien_facebook" class="form-control"
-                                value="{{ $ficheExiste->lien_facebook }}">
-                        </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
-                            Lien instagram <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <input type="text" name="lien_instagram" class="form-control"
-                                value="{{ $ficheExiste->lien_instagram }}">
-                        </div>
-                    </div>
+
                     <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
                             Adresse email<span class="required">*</span>

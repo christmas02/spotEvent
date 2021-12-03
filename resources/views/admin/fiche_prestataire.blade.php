@@ -258,7 +258,6 @@ function gestPrestation($id)
                                 <h4>Telephone : {{ $prestataire->phone_service }} / {{ $prestataire->phone2_service }}
                                 </h4>
                                 <h4>Whatsapp : {{ $prestataire->phone_whastapp }}</h4>
-                                <h4>Facebook : {{ $prestataire->lien_facebook }}</h4>
                                 <h4>Email : {{ $prestataire->email_service }}</h4>
                                 <h4>Secteur : {{ gestPrestation($prestataire->id_prestations)->name }}</h4>
 
