@@ -155,8 +155,7 @@ class PrestataireController extends Controller
                 'phone_service' => ['max:10'],
                 'phone2_service' => ['max:10'],
                 'phone_whastapp' => ['max:10'],
-                'lien_facebook' => ['max:100'],
-                'lien_instagram' => ['max:100'],
+        
                 'email_service' => ['max:50'],
               
             ]);
@@ -187,8 +186,7 @@ class PrestataireController extends Controller
             $fiche->phone_service = $request->get('phone_service');
             $fiche->phone2_service = $request->get('phone2_service');
             $fiche->phone_whastapp = $request->get('phone_whastapp');
-            $fiche->lien_facebook = $request->get('lien_facebook');
-            $fiche->lien_instagram = $request->get('lien_instagram');
+ 
             $fiche->email_service = $request->get('email_service');
             $fiche->estimation_max = $request->get('estimation_max');
             $fiche->estimation_min = $request->get('estimation_min');

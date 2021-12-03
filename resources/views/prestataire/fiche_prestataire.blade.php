@@ -165,27 +165,6 @@
                                 </div>
 
 
-                                <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-4 col-sm-4 label-align">Votre lien Facebook
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" name="lien_facebook" class="form-control">
-                                        @error('lien_facebook')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-4 col-sm-4 label-align">Votre lien Instagram
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" name="lien_instagram" class="form-control">
-                                        @error('lien_instagram')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
 
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-4 col-sm-4 label-align">Adresse électronique
