@@ -142,7 +142,6 @@ export default Vue.extend({
       }
     },
     logout() {
-      // window.location.href = "/";
       this.$store.commit("auth/logout");
       this.$router.push({ name: "auth-login" });
       console.log("bingo");
