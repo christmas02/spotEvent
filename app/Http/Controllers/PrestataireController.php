@@ -155,7 +155,6 @@ class PrestataireController extends Controller
                 'phone_service' => ['max:10'],
                 'phone2_service' => ['max:10'],
                 'phone_whastapp' => ['max:10'],
-        
                 'email_service' => ['max:50'],
               
             ]);
@@ -471,6 +470,7 @@ class PrestataireController extends Controller
 
     public function updateImage(Request $request){
         try {
+            
             $id = $request->get('id');
             $table = $request->get('table');
 
@@ -501,13 +501,12 @@ class PrestataireController extends Controller
             return redirect()->back()->with('danger', 'Error.');
         }
 
-
     }
 
     public function deletImage(Request $request){
         try {
-            $id = $request->get('id');
 
+            $id = $request->get('id');
             $image = Galerie::find($id);
             $image->delete();
 
