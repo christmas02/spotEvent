@@ -54,8 +54,8 @@ export default Vue.extend({
   data() {
     return {
       form: {
-        email: "marcel@gmail.com",
-        password: "12345678",
+        email: "",
+        password: "",
       } as ILogin,
       show1: false,
       loading: false,
