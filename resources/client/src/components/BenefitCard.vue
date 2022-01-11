@@ -46,10 +46,12 @@ export default Vue.extend({
       if (statu == 1) {
         localStorage.setItem("benefitId", this.benefit.id.toString());
         // console.log("uniikk");
-        this.$router.push({
-          name: "benefit",
-          params: { slug: slugify(this.benefit.name) },
-        });
+        this.$router
+          .push({
+            name: "benefit",
+            params: { slug: slugify(this.benefit.name) },
+          })
+          .catch(() => {});
       }
     },
   },

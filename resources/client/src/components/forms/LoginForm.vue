@@ -54,8 +54,8 @@ export default Vue.extend({
   data() {
     return {
       form: {
-        email: "",
-        password: "",
+        email: "marcel@gmail.com",
+        password: "12345678",
       } as ILogin,
       show1: false,
       loading: false,
@@ -76,7 +76,21 @@ export default Vue.extend({
           switch (result.role) {
             case 1:
               this.$store.commit("auth/login", result);
-              await this.$router.push({ name: "Home" });
+              console.log(this.$route.params);
+
+              const urlParams = this.$route.params.isDetailBenefit;
+
+              if (this.$route.params.routeName == "benefit") {
+                console.log("winnamax");
+
+                await this.$router.push(
+                  this.$route.params.urlDetailBenefit.toString()
+                );
+              } else {
+                console.log("furia");
+                await this.$router.push({ name: "Home" });
+              }
+
               break;
             case 2:
             case 3:
