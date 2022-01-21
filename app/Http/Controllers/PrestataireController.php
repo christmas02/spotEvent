@@ -144,7 +144,6 @@ class PrestataireController extends Controller
                 return redirect()->back()->with('danger', 'Vous possédez déjà une fiche prestataire.');
             }
             
-
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'localisation' => 'required',

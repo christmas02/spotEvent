@@ -831,14 +831,11 @@ class ApiController extends Controller
     {
 
         try {
-
             $email = $request['email'];
             $user_exist = User::where('email', $email)->first();
-
+            
             $user = User::whereId($user_exist->id)->first();
             $password = time();
-
-
 
             if ($user) {
                 $passwords = bcrypt($password);
@@ -851,9 +848,10 @@ class ApiController extends Controller
                 ];
 
                 // communication mail pas defaut
-                Mail::to($user_exist->email)->send(new fotgetPassword($data));
+                $mail = Mail::to($email)->send(new fotgetPassword($data));
+                //dd($mail);
 
-                $message = 'Votre mot de passe a bien été reinitialisé. \m Veuiller consultez votre boite mail';
+                $message = 'Votre mot de passe a bien été reinitialisé. Veuiller consultez votre boite mail';
                 return response()->json(['statu' => 1, 'message' => $message]);
             } else {
 
